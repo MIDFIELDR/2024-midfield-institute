@@ -1,0 +1,34 @@
+---
+title: "Welcome"
+---
+
+**2024 MIDFIELD Institute**  
+Location: Virtual   
+Date: June 10--13  
+Time: 1--5 pm Eastern Time (US)   
+
+::: {layout="[[1,3]]"}
+![](figures/midfield-grad-logo.png)
+
+**Registration.** <a href="mailto:slord@sandiego.edu?subject=Register for 2024 MIDFIELD Institute&body=I am interested in attending the 2024 MIDFIELD Institute.">Click here</a> to email us that you are interested in attending the Institute. If the link fails, email Susan Lord (slord@sandiego.edu) with the subject line *Register for 2024 MIDFIELD Institute.*
+:::
+
+
+
+
+
+We welcome faculty, staff, graduate students, and anyone interested in exploring MIDFIELD.
+
+Our learning objectives can be categorized in two broad classes: qualitative and computational. Qualitatively, by the end of the workshop participants should be able to: 
+
+1. Describe the data available in MIDFIELD  
+1. Describe how the MIDFIELD data are organized  
+1. Describe key principles of effective data visualization
+1. Draft a research question that can be addressed using MIDFIELD
+ 
+Computationally, participants should be able use midfieldr, an R package specifically designed for use with MIDFIELD, to:
+
+1. Subset MIDFIELD data to obtain a population to study  
+1. Classify student records by desired groupings  
+1. Summarize the data by groups and display results   
+

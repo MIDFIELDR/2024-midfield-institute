@@ -1,0 +1,16 @@
+---
+title: "Open source licenses"
+---
+
+![Image: *License and Registration Please* by Thomas Hawk is licensed under [CC BY-NC 2.0](https://creativecommons.org/licenses/by-nc/2.0/legalcode)](figures/license.png)
+
+The following licenses apply to the text, data, and code in these workshops. Our goal is to minimize legal encumbrances to the dissemination, sharing, use, and re-use of this work. 
+
+- [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode) for text.  
+- [GPL-3](https://www.r-project.org/Licenses/GPL-3) for code.  
+- [CC0](https://wiki.creativecommons.org/wiki/CC0_use_for_data) for data. 
+
+The existing rights of authors whose text, code, or data are cited are reserved to those authors. 
+
+Where noted, works adapted under another license are distributed under the same license. 
+
