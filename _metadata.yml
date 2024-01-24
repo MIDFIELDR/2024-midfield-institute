@@ -1,0 +1,18 @@
+# options that apply to all posts in this directory
+bibliography: references.bib
+csl: information-science-and-technology.csl
+title-block-banner: false
+freeze: true
+toc-depth: 2
+toc: true
+# citation: true # wait for bug fix
+
+# knitr chunk options
+execute:
+   message: false
+   warning: false
+   echo: true
+
+# note, tips, etc., my summaries at the top of a post
+callout-icon: false;
+callout-appearance: minimal
