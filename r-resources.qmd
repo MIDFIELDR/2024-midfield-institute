@@ -1,0 +1,77 @@
+---
+title: "Resources"
+---
+
+![Image: *Library* by Ming-Yueh Wang is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode)](figures/resources.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+
+If you happen to come across other resources that you find useful, please let us know and we'll add them to the list. 
+
+
+## Package links
+
+- [midfieldr](https://midfieldr.github.io/midfieldr/)
+- [midfielddata](https://midfieldr.github.io/midfielddata/)
+- [ggplot2](https://ggplot2.tidyverse.org/) 
+- [data.table](https://rdatatable.gitlab.io/data.table/)
+
+## Using R
+
+- @Atrebas:2019 for doing identical tasks in the data.table and dplyr environments. Very useful if you are familiar with dplyr syntax and want to translate that familiar functionality to data.table syntax. 
+
+- @R-data.table-website for the data.table website with vignettes by the package authors 
+
+- @R-ggplot2-gallery for a gallery of chart designs possible with ggplot2.
+
+- [R-bloggers](https://www.r-bloggers.com/), a searchable aggregator of R blogs.
+
+- [Stackoverflow](https://stackoverflow.com/questions/tagged/r) Searchable, public platform for coding questions and answers. For R-specific Q&A, add `[r]` as a search tag. Additional search tags such as `[ggplot2]` or `[data.table]` will help narrow your searches involving these packages. 
+
+- @R-rstudio-cheatsheets Links to downloadable help summaries (cheat sheets) for ggplot2 and many other packages. For data.table scroll down to the "Contributed cheatsheets" section. 
+
+- @Zumel+Mount:2020 for data science work with a very good chapter on data manipulation that performs every step three ways: a base R solution,  a data.table solution, and a dplyr solution. 
+
+
+
+
+## Data visualization 
+
+Books 
+
+- @Cairo:2019 for a data journalist's approach to avoiding lying to an audience (and to one's self).
+
+- @Cleveland:1993 for a detailed look at matching chart design to the types of variables. 
+
+- @Robbins:2013 for a detailed development of principles and practices for creating effective charts, based largely on Cleveland's work. 
+
+- @Tufte:1983 One of the best developments of aligning one's visual rhetoric to one's verbal rhetoric.
+
+- @Wainer:1997 Often humorous in presenting do's and dont's of data display
+
+- @Wainer:2014 Using evidence and visualization to improve healthcare.
+
+Blogs
+
+- @Evergreen:blog:2023 Intentional reporting and data visualization
+
+- @Few:blog:2021 Visual business intelligence 
+
+- @Knaflic:blog:2023 Storytelling with data
+
+- @Layton:2023 for Richard's blog in which several articles illustrate redesigning a published chart in an engineering education article to better align the logic of a display with the logic of the argument. 
+
+
+
+## Data visualization using R
+
+- @Healy:2019 Hands-on introduction to principles and practices of looking at and prsenting data using R and ggplot2.
+
+- @Machlis:2019 Especially useful for spreadsheet users who want to "graduate" to a reproducible scripted programming language. 
+
+## References

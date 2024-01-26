@@ -28,6 +28,21 @@ website:
       - text: "Welcome"
         file: index.qmd
 
+      - text: "Introduction"
+        file: introduction.qmd
+
+      - text: "Before you arrive"
+        file: before-you-arrive.qmd
+
+      - text: "Program"
+        file: agenda.qmd
+
+      - text: "Tutorial links"
+        file: tutorials.qmd
+
+      - text: "Resources"
+        file: r-resources.qmd
+
       - text: "License"
         file: license.qmd
 

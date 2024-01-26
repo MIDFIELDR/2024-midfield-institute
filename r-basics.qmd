@@ -1,0 +1,643 @@
+---
+title: "R basics"
+---
+
+![](figures/logo-R.png)
+
+
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+
+An introduction to key concepts in R. 
+
+[License.]{.important} This material is adapted from *Getting started in R: Tinyverse edition* by Bashir and Eddelbuettel [-@Bashir+Eddelbuettel:2018] which was licensed under CC BY-SA by [ilustat](https://ilustat.com/post/writing-real-life-motivated-r-guides/). This adaptation and extension, *R basics* by Richard Layton, is licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/legalcode). 
+
+## Preface
+
+This guide gives you a flavor of what R can do for you. To get the most out of this guide, do the examples and exercises as you read along.
+
+[Experiment safely.]{.important} Be brave and experiment with commands and options as it is an essential part of the learning process. Things can and will go "wrong", like getting error messages or deleting things that you create. You can recover from most situations using "undo" `ctrl Z` (MacOS `cmd Z`) or restarting R with the RStudio menu *Session \> Restart R*.
+
+[Before starting.]{.important} Our tutorials assume that you
+
+- Have completed the [Before you arrive](before-you-arrive.html) instructions\
+- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2023.Rproj`
+
+If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
+
+    midfield-institute-2023\
+        data\
+        results\
+        scripts\
+        midfield-institute-2023.Rproj
+
+## Getting started
+
+[Starting R & RStudio.]{.important} R starts automatically when you open RStudio with a screen similar to @fig-pane-layout. 
+
+- Source: view and edit files, e.g., R scripts   
+- Console: run lines of code interactively  
+- Environment: display currently saved R objects 
+- Output: files, plots, packages, help
+
+```{r}
+#| label: fig-pane-layout
+#| echo: false
+#| fig-cap: RStudio pane layout. See RStudio's User Guide [Pane layout](https://docs.posit.co/ide/user/ide/guide/ui/ui-panes.html) for details on contents and layout editing.  
+#| fig-cap-location: margin
+
+knitr::include_graphics("figures/pane-layout.png")
+```
+
+The console starts with information about the version number, license and contributors. The last line is a prompt (`>`) that indicates R is ready to do something.
+
+```{r}
+#| label: fig-console-startup
+#| echo: false
+#| fig-cap: Console at startup
+#| fig-cap-location: margin
+
+knitr::include_graphics("figures/console-startup.png")
+```
+
+
+[Quitting R & RStudio]{.important}. When you quit RStudio you will be asked whether to *Save workspace?* with a yes or no option. If you choose *Yes*, your current workspace is restored the next time you open RStudio. But as long as you save your script, saving the workspace is unnecessary. I recommend you choose *No*.
+
+To set *No* as the default option, from the RStudio menu select *Tools \> Global Options*.
+
+-   Un-check the box *Restore .RData into workspace at startup*
+-   Set *Save workspace to .RData on exit:* to "Never"
+
+```{r}
+#| label: fig-tinyverse-02
+#| echo: false
+#| fig-cap: RStudio global options default settings. 
+#| fig-cap-location: margin
+
+knitr::include_graphics("figures/rstudio-never-workspace.png")
+```
+
+## R help
+
+R's built-in help system is an essential part of finding solutions to your R programming problems.
+
+[help() function]{.important}. From the R Console you can use the `help()` function or `?`. For example, try the following two commands (which give the same result):
+
+``` r
+# view the function help page
+help(mean)
+? mean
+```
+
+If you are asking for the package help page (assuming you have installed the package), type in the Console, 
+
+``` r
+# view a package help page
+help(package = "midfieldr")
+```
+
+[Keyword search.]{.important} To do a keyword search use the function `apropos()` with the keyword in double quotes ("keyword") or single quote ('keyword'). For example:
+
+```{r}
+# keyword search 
+apropos("mean")
+```
+
+The lines of R output are labeled---here with `[1]`, `[5]` , and `[9]`. These labels indicate the index or position of the first element in that line within the overall output (here, of length 12). Thus in this output vector, `".colMeans"` has index 1, `"mean"` has index 5, and `"mean.POSIXct"` has index 9.
+
+[Help examples.]{.important} Use the `example()` function to run the examples at the end of the help for a function:
+
+```{r}
+# run the examples at the end of the help page
+example(mean)
+```
+
+Here, the output of the `mean()` example has length 2 (8.75 5.50). The label `[1]` indicates that the number 8.75 has index 1. 
+
+[RStudio help.]{.important} Rstudio provides search box in the *Help* tab in the *Output pane* to make your life easier (see @fig-pane-layout).
+
+[Online help.]{.important} When you search online use \[r\] in your search terms, for example, "\[r\] linear regression". Because we use data.table for data manipulation, I further recommend that you include data.table as a keyword, e.g., "\[r\]\[data.table\] group and summarize". 
+
+There is nearly always more than one solution to your problem---investigate the different options and try to use one whose arguments and logic you can follow. Limiting your browser's search to the past year can sometimes eliminate out-of-date solutions.
+
+   
+
+::: panel-tabset
+
+## [Exercise 1.1]{.important} 
+
+Try the following.
+
+1.  `help(median)`
+2.  `? sd`
+3.  `? max`
+
+## Answer
+
+The following help pages should appear in the RStudio *Help* pane.
+
+![](figures/r-basics-ans-01.png)
+
+![](figures/r-basics-ans-02.png)
+
+![](figures/r-basics-ans-03.png)
+:::
+
+[Warning.]{.important} If an R command is not complete then R will show a plus sign (`+`) prompt on second and subsequent lines until the command syntax is correct.
+
+``` r
++ 
+```
+
+Press the escape key (ESC) to break out.
+
+[Hint.]{.important} To recall a previous command, put your cursor in the Console and use the up arrow key (↑). To go between previously typed commands use the up and down arrow (↓) keys. To modify or correct a command use the left (←) and right arrow (→) keys.
+
+
+
+## R scripts
+
+[Creating a script]{.important} I recommend that you write your lines of code in a script. Scripts can saved, edited, and run again and again. 
+
+- Use *File &gt; New File &gt; R Script* to create a new R script
+- *File &gt; Save As...* to name the file (I suggest `01-r-basics.R`), then save it to the `scripts` directory 
+- At the top of the script, add a minimal header, something like: 
+
+```{r}
+# R basics 
+# your name 
+# date 
+```
+
+The hash symbol `#` denotes a *comment* in R, that is, a line that isn't run. Comments are annotations to make the source code easier for humans to understand but are ignored by R.
+
+Next,  
+
+- Use `library()` to load packages used in the script. 
+
+```{r}
+# packages
+library("midfieldr")
+```
+
+Note: In a code chunk like the one above, you can click on the "Copy to clipboard" icon in the upper right corner to enable quick copy and paste from this document to your script.
+
+[**Running a script**]{.important}
+
+- Run the script by clicking the *Source* button. Some participants report that this does not always work. The workaround is to: 
+- Select the lines you want to run  then *ctrl Enter* (MacOS *cmd Return*). Use the keyboard shortcuts *ctrl A* (MacOS *cmd A*) to select all lines. (See the appendices for a table of useful keyboard shortcuts.)
+
+If you see an error like this one, 
+
+```
+    Error in library("midfieldr"): there is no package called 'midfieldr'
+```
+
+then you should install the missing package(s) and run the script again. You can review how to install a package [here](before-you-arrive.html#install-cran-packages).  
+
+
+Use your script throughout the tutorial. When a new chunk of code is given,  
+
+- Copy the line(s) of code into your script, save, and run.     
+- Check your result by comparing it to the result in the tutorial.
+- Check what you've learned using the **Your turn** exercises. 
+
+## R concepts
+
+In R speak, scalars, vectors, variables and datasets are called *objects.* To create objects (things) we use the assignment operator (`<-`). 
+
+For example, the object `height` is assigned a value of 173 as follows,
+
+```{r}
+# assign a value to a named object 
+height <- 173
+```
+
+Typing the name alone prints out its value, 
+
+```{r}
+# view
+height
+```
+
+In these notes, everything that comes back to us in the Console as the result of running a script is shown prefaced by `#>`.
+
+Objects in your R project workspace are listed in the RStudio Environment pane. At this point, we have three objects in the environment.  
+
+![](figures/rstudio-environment-x-y.png)
+
+[Warning: R is case sensitive.]{.important} `age` and `AgE` are different:
+
+```{r}
+# illustrating case-sensitivity 
+age <- 10
+AgE <- 50
+```
+
+```{r}
+# display result
+age
+AgE
+```
+
+[New lines.]{.important} R commands are usually separated by a new line but
+they can also be separated by a semicolon (not recommended). 
+
+```{r}
+# recommended style
+name <- "Leo"
+age  <- 25
+city <- "Lisbon"
+
+# views
+name
+age
+city
+
+# style not recommended 
+name <- "Leo"; age <- 25; city <- "Lisbon"
+
+# view
+name; age; city
+```
+
+[Comments.]{.important} It is useful to put comments in your script---especially useful to the future you looking back at your script after several months.  
+
+R comments start with a hash sign (`#`). Everything after the hash to the end of the line is ignored by R.
+
+```{r}
+# This comment line is ignored when run.
+
+city # text after "#" is ignored.
+```
+
+## R as a calculator
+
+You can use R as a calculator by typing in the Console. Try the following:
+
+```{r}
+# type in the console
+2 + 3
+
+(5 * 11) / 4 - 7
+
+7^3 # exponent
+```
+
+[Other math functions.]{.important} You can also use standard mathematical functions that are typically found on a scientific calculator. 
+
+- trigonometric: `sin()`, `cos()`, `tan()`, etc. 
+- rounding: `abs()`, `ceiling()`, `floor()`, `round()`, `sign()`,
+`signif()`, `trunc()`
+- logarithms and exponentials: `log()`, `log10()`, `log2()`, `exp()`
+
+```{r}
+# type in the console
+
+# square root
+sqrt(2)
+
+# round down to nearest integer
+floor(8.6178)
+
+# round to 2 decimal places
+round(8.6178, 2)
+```
+
+::: panel-tabset
+
+## [Exercise 1.2]{.important} 
+
+What do the following pairs of examples do?
+
+1. `ceiling(18.33); signif(9488, 2)`
+2. `exp(1); log10(1000)`
+3. `sign(-2.9); sign(32)`
+4. `abs(-27.9); abs(11.9)`
+
+## Answer
+
+1. `r ceiling(18.33)` and `r signif(9488, 2)` 
+2. `r round(exp(1), 3)` and `r log10(1000)`
+3. `r sign(-2.9)` and `r sign(32)`
+4. `r abs(-27.9)` and `r abs(11.9)`
+:::
+
+
+## More R concepts
+
+From this point, please type the R code chunks in your script, save and run, and compare your results to those shown. 
+
+You can do some useful things using the assignment operator (`<-`), for example, 
+
+```{r}
+# assign dimensions
+room_length <- 7.8
+room_width  <- 6.4
+
+# compute area
+room_area <- room_length * room_width
+
+# view
+room_area
+```
+
+[On coding style.]{.important} Summary of commonly used coding styles for naming objects in R include: 
+
+|style       |example       |
+|:-----------|:-------------|
+|snake case  | `room_area`  |
+|camel case  | `roomArea`   |
+|Pascal case | `RoomArea`   |
+
+We use *snake case*, that is, lowercase letters and numbers with words separated by underscores. You may of course use any style you are comfortable with.
+
+[Text objects.]{.important} You can assign text to an object.
+
+```{r}
+# assign text to an object
+greeting <- "Hello world!"
+
+# view
+greeting
+```
+
+[Vectors.]{.important} The objects presented so far have been scalars (single values). Working with vectors is where R shines best as they are the basic building blocks of datasets. 
+
+We can create a vector using the `c()` (combine values into a vector) function.
+
+```{r}
+# a numeric vector
+x1 <- c(26, 10, 4, 7, 41, 19)
+
+# view
+x1
+
+# a character vector
+x2 <- c("Peru", "Italy", "Cuba", "Ghana")
+
+# view
+x2
+```
+
+There are many other ways to create vectors, for example, `rep()`
+(replicate elements) and `seq()` (create sequences):
+
+```{r}
+# repeat vector (2, 6, 7, 4) three times
+r1 <- rep(c(2, 6, 7, 4), times = 3)
+
+# view
+r1
+
+
+# vector from -2 to 3 incremented by 0.5
+s1 <- seq(from = -2, to = 3, by = 0.5)
+
+# view
+s1
+```
+
+[Vector operations.]{.important} You can do calculations on vectors, for example using `x1` from above:
+
+```{r}
+# multiply every element by 2
+x1 * 2
+
+# operation order: product, root, then round
+round(sqrt(x1 * 2.6), 2)
+```
+
+[Missing values.]{.important} Missing values are coded as `NA` in R. For example,
+
+```{r}
+# numeric vector with a missing value
+x2 <- c(3, -7, NA, 5, 1, 1)
+
+# view
+x2
+
+# character vector with a missing value
+x3 <- c("rat", NA, "mouse", "hamster")
+
+# view
+x3
+```
+
+[Managing objects.]{.important} Use function `ls()` to list the objects in your
+workspace. The `rm()` function deletes them. 
+
+```{r}
+# view objects in workspace
+ls()
+
+# remove objects
+rm(x1, x2, x3, r1, s1, AgE, age)
+
+# view result
+ls()
+```
+
+::: panel-tabset
+
+## [Exercise 1.3]{.important} 
+
+Add the tax to the net amount and round to the nearest integer. 
+
+```{r}
+net <- c(108.99, 291.42, 16.28, 62.29, 31.77)
+tax <- c(22.89, 17.49, 0.98, 13.08, 6.67)
+```
+
+## Answer
+
+```{r}
+#| echo: false
+gross <- round(net + tax, 0)
+
+# view
+gross
+```
+:::
+
+## R functions and packages
+
+[R functions.]{.important} We have already used some R functions (e.g. `c()`, `mean()`, `rep()`, `sqrt()`, `round()`). Most computation in R involves  functions. 
+
+A function essentially has a name and a list of arguments separated by commas. For example:
+
+```{r}
+# closer look at function arguments
+seq(from = 5, to = 8, by = 0.4)
+```
+
+- the function name is `seq` 
+- the function has three arguments `from` (the start value), `to` (the end value), and `by` (the increment between values)
+- arguments are assigned values (using `=`) within the parentheses and are separated by commas
+
+The `seq()` function has other arguments, documented in the help page. For example, we could use the argument `length.out` (instead of `by`) to fix the length of the sequence as follows:
+
+```{r}
+# replacing `by` with `length.out` 
+seq(from = 5, to = 8, length.out = 16)
+```
+
+[Custom functions.]{.important} As you gain familiarity with R, you may want to learn how to construct your own custom functions, but that's not an objective of our "basics" tutorials. 
+
+[R packages.]{.important} The basic R installation comes with over 2000 functions, but R can be extended further using contributed *packages*. Packages are like "apps" for R, containing functions, data, and documentation. 
+
+To see a list of functions and data sets bundled in a package, use the `ls()` function, e,g,
+
+```{r}
+ls("package:midfieldr")
+```
+
+Alternatively, in RStudio select the `Packages` tab and in its menu bar type the package name in the search box. In the pane, click on the package name. A help page opens listing all the functions and names of data sets in the package, e.g., 
+
+![](figures/rstudio-package-functions.png)
+
+In MIDFIELD work, we use a small number of R packages:
+
+- midfieldr for tools to study student unit records
+- midfielddata for practice data 
+- data.table for manipulating data 
+- ggplot2 for charts 
+
+
+
+
+
+## About R objects
+
+[Everything in R has class.]{.important}
+
+
+```{r}
+class(room_area)  # assigned earlier
+
+class(greeting)   # assigned earlier
+
+class(seq)        # R function 
+```
+
+Certain actions will change the class of an object. Suppose we create a vector from the `room_area` and `greeting` objects.
+
+```{r}
+x <- c(room_area, greeting)
+x
+
+class(x)
+```
+
+By concatenating a number and a character string, R changed the class of room area from "numeric" to "character" because all elements of a vector must have the same class.
+
+[Data frames.]{.important} The most common class of data object we will use is the *data frame*: a two-dimensional array of rows and columns in R. All values in a column are of the same type (numerical, character, logical, etc.) but columns can be of different types. 
+
+For example, the data frame `study_results` that is bundled with midfieldr has three character columns and three numerical columns. 
+
+```{r}
+# a data frame bundled with midfieldr
+study_results
+
+class(study_results)
+```
+
+The `class()` function reveals that this `data.frame` object is also a `data.table` object, which is an enhanced version of R's standard data frame.
+
+::: {.panel-tabset}
+
+## [Exercise 1.4]{.important} 
+
+For the following midfieldr objects, determine:
+
+- the class of `add_timely_term`
+- the class of `toy_student`
+- the names of the variables in `toy_term`
+
+## Answer
+1. `r class(add_timely_term)`
+2. `r class(toy_student)`
+3. `r names(toy_term)`
+
+
+:::
+
+[Everything in R has structure]{.important}
+
+```{r}
+str(room_area)  # assigned earlier
+
+str(greeting)         # assigned earlier
+
+str(seq)              # R function 
+
+str(study_results)
+```
+
+
+::: {.panel-tabset}
+
+## [Exercise 1.5]{.important} 
+
+Use `str()` to determine 
+
+1. `add_timely_term` arguments
+2. `toy_student` dimensions
+3. `study_results` numerical variables
+
+## Answer
+
+```{r}
+#| echo: false
+x <- Filter(is.numeric, study_results)
+```
+
+1. The `str()` function prints out the arguments and their default values within the parentheses:
+```{r}
+str(add_timely_term)
+```
+2. `r dim(toy_student)[1]` rows and `r dim(toy_student)[2]` columns
+3. `r ncol(x)` variables: `r names(x)`
+
+:::
+
+
+
+
+## Keyboard shortcuts {.appendix}
+
+If you are working in RStudio, you can see the menu of keyboard shortcuts using the menu *Tools \> Keyboard Shortcuts Help*.
+
+The shortcuts we use regularly include
+
+```{r}
+#| echo: false
+
+library("data.table")
+df <- wrapr::build_frame(
+  "Windows / Linux", "Action", "Mac OS"|
+    "`ctrl L`"       , "Clear the RStudio Console"  , "`ctrl L`" |
+    "`ctrl Enter`"   , "Run selected line(s)"        , "`cmd Return`" |
+    "`ctrl alt B`"   , "Run from  begining to line"  , "`cmd option B`" |
+    "`ctrl alt E`"   , "Run from line to end"        , "`cmd option E`" |
+    "`alt` --"       , "Insert the assignment operator `<-`", "`option` --" |
+    "`ctrl shift C`" , "Comment/uncomment line(s)"   , "`cmd shift C`" |
+    "`ctrl X, C, V`" , "Cut, copy, paste"            , "`cmd X, C, V`" |
+    "`ctrl Z`"       , "Undo"                        , "`cmd Z`" |
+    "`ctrl F`"       , "Find in text"                , "`cmd F`" |
+    "`ctrl I`"       , "Indent or re-indent lines od code", "`cmd I`" |
+    "`ctrl S`"       , "Save"                        , "`cmd S`" |
+    "`ctrl A`"       , "Select all text"             , "`cmd A`"  |
+    "`ctrl shift K`" , " Compile R Markdown document", "`cmd shift K`"
+)
+setDT(df)
+setkey(df, Action)
+knitr::kable(df)
+```
+
+## References

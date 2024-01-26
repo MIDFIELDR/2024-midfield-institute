@@ -1,0 +1,538 @@
+---
+title: "R data basics"
+nocite: |
+  @R-data.table
+---
+
+![Image: *US Route 60 Large Array* by Mobilus In Mobili is licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/legalcode)](figures/data-basics.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+Using data.table to manipulate data in R. 
+
+[License.]{.important} This material is adapted from *Getting started in R: Tinyverse edition* by Bashir and Eddelbuettel [-@Bashir+Eddelbuettel:2018] which was licensed under CC BY-SA by [ilustat](https://ilustat.com/post/writing-real-life-motivated-r-guides/). This adaptation and extension, *R data basics* by Richard Layton, is licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/legalcode). 
+
+## Preface
+
+MIDFIELD data are curated, that is, organized and integrated from multiple institutions, maintained over time, and available for reuse and preservation. Yet to address any specific research question, the data must be wrangled into a shape useful for analysis.
+
+> The basic concept of data wrangling is to visualize your data being structured to make your task easier, and then take the steps to add this structure to your data  [@Zumel+Mount:2020, p.113.]. 
+
+This tutorial covers basic operations for data shaping with the goal of obtaining a simple "data matrix" where each row is an observation and each column is a measurement type.
+
+ 
+
+
+
+
+[Using data.table.]{.important} The rationale for manipulating data using the data.table package instead of base R or the dplyr package include speed, memory efficiency, and concise transforms via the []-indexing operator (e.g., the "by" grouping notation). 
+
+To mitigate the extra cognitive load for new R users of learning data.table syntax while also learning R, I use a "no-frills" approach as much as possible. 
+
+Conceptually, data.table operations can be viewed as 
+
+        dt[i, j, by]
+
+with some intentional similarity to SQL. Here `i` operates on rows, `j` operates on columns, and `by` is the grouping operator.
+
+
+[Before starting.]{.important} Our tutorials assume that you
+
+- Have completed the [Before you arrive](before-you-arrive.html) instructions
+- Have completed the [R basics](r-basics.html) guide 
+- Have completed the [R chart basics](chart-basics.html) guide 
+- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2023.Rproj`
+
+If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
+
+    midfield-institute-2023\
+        data\
+        results\
+        scripts\
+        midfield-institute-2023.Rproj
+
+## Getting started 
+
+[Start a new script.]{.important} I recommend that you start a new script for this segment. 
+
+- Use *File &gt; New File &gt; R Script* to create a new R script
+- *File &gt; Save As...* to name the file (we suggest `03-data-basics.R`), then save it to the `scripts` directory 
+- At the top of the script, add a minimal header, something like: 
+
+```{r}
+# R data basics
+# your name  
+# date 
+```
+
+- Use `library()` to load packages used in the script. 
+
+```{r}
+# silently load packages
+suppressPackageStartupMessages(library("data.table"))
+
+# set data.table printout options
+options(
+  datatable.print.nrows = 20,
+  datatable.print.topn = 5,
+  datatable.print.class = TRUE
+)
+```
+
+
+Reminder: In a code chunk like the one above, you can click on the "Copy to clipboard" icon in the upper right corner to enable quick copy and paste from this document to your script.
+
+Use your script throughout the tutorial. When a new chunk of code is given,  
+
+- Copy the line(s) of code into your script, save, and run.     
+- Check your result by comparing it to the result in the tutorial.
+- Check what you've learned using the **Your turn** exercises.  
+
+## Import data
+
+Read the same data file we used in the previous tutorial. The data set is in block-record (or "data matrix") form, that is, variables are columns and observations are rows. 
+
+```{r}
+# import data
+cw <- fread("data/chick_weight.csv")
+
+# view
+cw
+```
+
+
+## Changes in place
+
+[Rename variables.]{.important} Edit column names "in place." 
+
+By *in place* we mean that the change is made using data.table *reference semantics* (or *by reference*) in which changes are made without assigning the result back to a name, that is, we write
+
+        setnames(cw, old, new)
+
+not
+
+        cw <- setnames(cw, old, new)
+
+
+For example, changing the variable names in the `cw` data frame,  
+
+```{r}
+# change column names in place
+setnames(cw, 
+         old = c("Chick", "Diet", "Time", "weight"), 
+         new = c("chick_id", "group", "day", "weight_g"))
+
+cw
+```
+
+There's much more to reference semantics than dropping the assignment operator---it's really about speed and memory efficiency with large data sets. However, for our "basics" series, you need to recall only that the `:=` operator and all data.table functions with names starting with `set` work by reference. 
+
+
+::: panel-tabset
+
+## [Exercise 3.1]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- In `x`, rename the ID variable to `ID`. 
+
+## Answer
+
+```{r}
+x <- copy(cw)
+setnames(x, old = c("chick_id"), new = c("ID"))
+x
+```
+:::
+
+
+
+
+
+[Reorder variables.]{.important} Another example of an operation in-place. The columns listed are moved to the left-hand side of the data frame and other columns appear to the right in their original order. Here we move `day`and `group` to the first two column positions. 
+
+```{r}
+# reorder column positions in place
+setcolorder(cw, c("day", "group"))
+
+# view
+cw
+```
+
+If you want to make a change without affecting the source data frame, assign a copy of the data frame to a new name with the `copy()` function. Assignment to a new name is not enough; you have to deliberately use the `copy()` function. 
+
+```{r}
+# create an new object in memory
+x <- copy(cw)
+
+# edit in place
+setcolorder(x, c("group", "day"))
+
+# view
+x
+
+# source remains unchanged
+cw
+```
+
+::: panel-tabset
+
+## [Exercise 3.2]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- In `x`, reorder the columns from left to right ID, group, day, weight. 
+
+## Answer
+
+```{r}
+x <- copy(cw)
+setcolorder(x, c("chick_id", "group", "day", "weight_g"))
+x
+```
+:::
+
+## Column operations
+
+[`j` to transform a variable.]{.important} Use `:=` to transform column values in place, here, converting an integer to a double-precision number. 
+
+```{r}
+# modify values in an existing column
+cw[, weight_g := as.numeric(weight_g)]
+
+# view
+cw
+```
+
+Here we use `paste0()` to add a prefix to the group number, converting the variable to a character type at the same time. 
+
+```{r}
+# modify values in an existing column
+cw[, group := paste0("diet ", group)]
+
+# view
+cw
+```
+
+
+::: panel-tabset
+
+## [Exercise 3.3]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- In `x`, add the prefix "day" to the day number, converting the variable to type character. 
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x[, day := paste0("day ", day)]
+x
+```
+:::
+
+
+[`j` to select variables.]{.important} Variables not listed are dropped. Here, for example, we drop the `chick_id` variable by not listing it. 
+
+```{r}
+# select columns 
+x <- cw[, .(day, group, weight_g)]
+
+# view
+x
+```
+
+
+::: panel-tabset
+
+## [Exercise 3.4]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- In `x`, select all columns except `day`. 
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x <- x[, .(chick_id, group, weight_g)]
+x
+```
+:::
+
+
+[`j` to add a variable.]{.important} The new variable is added to the right of the other columns. Here, for example, we add the `weight_kg` variable. 
+
+```{r}
+# add a column
+cw[, weight_kg := weight_g / 1000]
+
+# view
+cw
+```
+
+::: panel-tabset
+
+## [Exercise 3.5]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- In `x`, add a weight variable `weight_oz` in ounces (28.35 grams per ounce). Round the answer to the nearest tenth.
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x[, weight_oz := round(weight_g / 28.35, 1)]
+x
+```
+:::
+
+
+
+
+[`j` to delete a variable.]{.important} Assigning `NULL` by reference deletes the variable. 
+
+```{r}
+# delete a column
+cw[, weight_kg := NULL]
+
+# view
+cw
+```
+
+::: panel-tabset
+
+## [Exercise 3.6]{.important} 
+
+Using the `x` data frame from the previous exercise, delete the weight variables in grams and kilograms.
+
+## Answer
+
+```{r}
+x[, weight_g := NULL]
+x[, weight_kg := NULL]
+x
+```
+:::
+
+## Row operations
+
+[`i` to filter by values.]{.important} Use relational operators to compare values. 
+
+```{r}
+# subset by observation
+y <- cw[day == 21 & weight_g > 300]
+
+# view
+y
+```
+
+For comparing values in vectors use: `<` (less than), `>` (greater than), `<=` (less than or equal to), `>=` (greater than or equal to), `==` (equal to), and `!=` (not equal to). These can be combined logically using `&` (and) and `|` (or).
+
+::: panel-tabset
+
+## [Exercise 3.7]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- Filter `x` to retain all observations on day 4, diet 3 
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x <- x[day == 4 & group == "diet 3"]
+x
+```
+:::
+
+
+
+
+[`i` to arrange rows.]{.important} 
+
+```{r}
+# order rows by values in columns
+y <- cw[order(weight_g, day)]
+
+# view
+y
+```
+
+::: panel-tabset
+
+## [Exercise 3.8]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- Arrange rows of `x` by group and day
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x <- x[order(group, day)]
+x
+```
+:::
+
+
+[`i` to filter by index.]{.important} 
+
+```{r}
+# subset by position
+y <- cw[1:10]
+
+# view
+y
+```
+
+
+::: panel-tabset
+
+## [Exercise 3.9]{.important} 
+
+Using the `x` data frame from the previous exercise, filter to retain the last 10 rows.
+
+## Answer
+
+```{r}
+x <- x[569:578]
+x
+```
+:::
+
+## Group and summarize
+
+[`by` to count.]{.important} `.N` is a data.table function that yields the number of observations (rows) in a group identified with the `by` argument.
+
+```{r}
+# count number of chicks by diet group
+y <- cw[, .(N_chicks = .N), by = c("group")]
+
+# view
+y
+```
+
+
+::: panel-tabset
+
+## [Exercise 3.10]{.important} 
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- Count the number of observations by day. Name the variable `count`
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x <- x[, .(count = .N), by = c("day")]
+x
+```
+:::
+
+
+[`by` to summarize.]{.important} Yields three new variables for count, mean, and standard deviation by the two grouping variables `group` and `day`. 
+
+```{r}
+# compute summary statistics grouped by two variables
+y <- cw[,                                         # i (empty)
+        .(N_chicks = .N,                          # j
+          mean_wt_g = round(mean(weight_g), 1),   # j (cont.)
+          std_dev_wt_g = round(sd(weight_g), 1)), # j (cont.)
+        by = c("group", "day")]                   # by
+
+# view
+y
+```
+
+
+::: panel-tabset
+
+## [Exercise 3.11]{.important}
+
+- Create a copy of `cw` using `x <- copy(cw)`
+- Count the number of chicks in `x` by group and day. Name the variable `count`
+
+## Answer
+
+```{r}
+x <- copy(cw)
+x <- x[, .(count = .N), by = c("group", "day")]
+x
+```
+:::
+
+
+## Combine operations
+
+[`[i, j, by]` in combination.]{.important} In this example, we use `i` to filter for two specific days, `j` to create new summary variables grouped `by` variables `group` and `day`. The results are the count `N` plus weight statistics: mean, standard deviation, median, minimum, and maximum. 
+
+```{r}
+# grouped summaries of specific observations
+cw_stats <- cw[day %in% c(0, 21),                         # i
+               .(N = .N,                                  # j
+                 mean_wt_g    = round(mean(weight_g), 0), # j (cont.)
+                 std_dev_wt_g = round(sd(weight_g), 1),   # j (cont.)
+                 median_wt_g  = median(weight_g),         # j (cont.)
+                 min_wt_g     = min(weight_g),            # j (cont.)
+                 max_wt_g     = max(weight_g)),           # j (cont.)
+               by = .(group, day)]                        # by
+
+# view
+cw_stats
+```
+
+
+## Create a table 
+
+Finally, we can make the summaries "prettier" for a possible report or publication where we format the numeric values as text and edit the column names for readability just before printing. 
+
+```{r}
+# combine mean and std dev into a single character column
+cw_stats[, mean_sd := paste0(mean_wt_g, " (", std_dev_wt_g, ")")]
+
+# combine min and max into a range column
+cw_stats[, range := paste0(min_wt_g, "--", max_wt_g)]
+
+# retain specific columns
+cw_stats <- cw_stats[ , .(group, day, N, mean_sd, median_wt_g, range)]
+
+# order the rows
+cw_stats <- cw_stats[order(group, day)]
+
+# edit the column names for readability 
+setnames(cw_stats,
+         old = c("group", "day", "median_wt_g","mean_sd", "range"),
+         new = c("Group", "Day", "Median", "Mean [SD]", "Range"))
+
+# view
+cw_stats
+```
+
+Eventually you should be able to produce a publication-ready version such as the following table, using Rmarkdown and the knitr package. Full details are available in other sources.
+
+```{r}
+#| echo: false
+
+knitr::kable(cw_stats, align = "lrrrrr", caption = "Table 1. Chick weight summary statistics (grams).")
+```
+
+[Interpretation.]{.important} This summary table offers similar results to those revealed in the charts, 
+
+- in day 21, diet 3 has the highest mean and median weights 
+- in day 21, diet 4 has the least variability in weight
+
+In addition, we note that by day 21, diet 1 lost 4 chicks of 20 that started and diet 4 lost 1 of 10. This could be a sign of unsafe conditions. 
+
+
+## Conclusion
+
+The *R basics*, *R chart basics*, and *R data basics* guides introduced you to some of the basic concepts for using R and the data.table and ggplot2 packages  to manipulate data and create charts. It is only an introduction to what R can do but hopefully you have seen some of the potential of using R for data science.
+
+[Next steps.]{.important} There are plenty of R courses, books, and online resources that you can learn from. Find things that work for you and don't be afraid to make mistakes or ask questions. 
+
+During the MIDFIELD workshops, you will build on what you've learned here, and use the midfieldr package to study student unit records. You can preview that material on the [midfieldr](https://midfieldr.github.io/midfieldr/) website. 
+ 
+
+
+## References

@@ -1,0 +1,24 @@
+---
+title: "Tutorial links"
+---
+
+![Image: *Tutors* by David Power is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode)](figures/tutorial.png)
+
+Collected links to the Institute tutorials. See the [Program](agenda.html) for scheduling. 
+
+**Pre-workshop tutorials**
+
+- [R basics](r-basics.html) 
+- [Chart basics](chart-basics.html) 
+- [Data basics](data-basics.html) 
+
+
+**Workshop case study**
+
+- [Part 1: Goals](https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html)   
+- [Part 2: Data](https://midfieldr.github.io/midfieldr/articles/art-002-case-data.html)  
+- [Part 3: Results](https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html) 
+
+**Working with MIDFIELD research data**
+
+- [From practice data to research data](from-practic-to-research-data.html)
