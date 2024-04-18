@@ -84,39 +84,179 @@
     "text": "Keyboard shortcuts\n\nIf you are working in RStudio, you can see the menu of keyboard shortcuts using the menu Tools &gt; Keyboard Shortcuts Help.\nThe shortcuts we use regularly include\n\n\n\n\n\nWindows / Linux\nAction\nMac OS\n\n\n\n\nctrl shift K\nCompile R Markdown document\ncmd shift K\n\n\nctrl L\nClear the RStudio Console\nctrl L\n\n\nctrl shift C\nComment/uncomment line(s)\ncmd shift C\n\n\nctrl X, C, V\nCut, copy, paste\ncmd X, C, V\n\n\nctrl F\nFind in text\ncmd F\n\n\nctrl I\nIndent or re-indent lines od code\ncmd I\n\n\nalt –\nInsert the assignment operator &lt;-\noption –\n\n\nctrl alt B\nRun from begining to line\ncmd option B\n\n\nctrl alt E\nRun from line to end\ncmd option E\n\n\nctrl Enter\nRun selected line(s)\ncmd Return\n\n\nctrl S\nSave\ncmd S\n\n\nctrl A\nSelect all text\ncmd A\n\n\nctrl Z\nUndo\ncmd Z"
   },
   {
-    "objectID": "introduction.html",
-    "href": "introduction.html",
-    "title": "Introduction",
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "Open source licenses",
     "section": "",
-    "text": "Image: A Cautious Introduction by Carol Blyberg is licensed under CC BY-NC 2.0\nThe MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD). The Institute ia an all-virtual meeting over several days."
+    "text": "Image: License and Registration Please by Thomas Hawk is licensed under CC BY-NC 2.0\n\n\nThe following licenses apply to the text, data, and code in these workshops. Our goal is to minimize legal encumbrances to the dissemination, sharing, use, and re-use of this work.\n\nCC-BY 4.0 for text.\n\nGPL-3 for code.\n\nCC0 for data.\n\nThe existing rights of authors whose text, code, or data are cited are reserved to those authors.\nWhere noted, works adapted under another license are distributed under the same license."
   },
   {
-    "objectID": "introduction.html#about-midfield",
-    "href": "introduction.html#about-midfield",
-    "title": "Introduction",
-    "section": "About MIDFIELD",
-    "text": "About MIDFIELD\nMIDFIELD is a partnership of higher education institutions with engineering programs. Begun in 2004 as an extension of the SUCCEED Longitudinal Database, MIDFIELD contains student-level records for all undergraduate, degree-seeking students at the partner institutions.\nAs of June 2024, MIDFIELD contains student-level records for 2.4 M undergraduates at 21 US institutions."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "2024 MIDFIELD Institute\nLocation: Virtual\nDate: June 11–13\nTime: 1–5 pm Eastern Time (US)\n\n\n\n\n\n\nRegistration. Click here to email us that you are interested in attending the Institute. If the link fails, email Susan Lord (slord@sandiego.edu) with the subject line Register for 2024 MIDFIELD Institute.\n\n\n\nWe welcome faculty, staff, graduate students, and anyone interested in exploring MIDFIELD.\nOur learning objectives can be categorized in two broad classes: qualitative and computational. Qualitatively, by the end of the workshop participants should be able to:\n\nDescribe the data available in MIDFIELD\n\nDescribe how the MIDFIELD data are organized\n\nDescribe key principles of effective data visualization\nDraft a research question that can be addressed using MIDFIELD\n\nComputationally, participants should be able use midfieldr, an R package specifically designed for use with MIDFIELD, to:\n\nSubset MIDFIELD data to obtain a population to study\n\nClassify student records by desired groupings\n\nSummarize the data by groups and display results"
   },
   {
-    "objectID": "introduction.html#facilitators",
-    "href": "introduction.html#facilitators",
-    "title": "Introduction",
-    "section": "Facilitators",
-    "text": "Facilitators\n\nSusan Lord\n\nDirector of the MIDFIELD Institute and Professor and Chair of Integrated Engineering at the University of San Diego. She is a Fellow of the IEEE and the ASEE. Dr. Lord has considerable experience facilitating workshops including the National Effective Teaching Institute (NETI) and special sessions at FIE. (slord@sandiego.edu)\n\nMatthew Ohland\n\nMIDFIELD Director and Principal Investigator. He is Professor and Associate Head of Engineering Education at Purdue University and a Fellow of IEEE, ASEE, and AAAS. Dr. Ohland has considerable experience facilitating workshops including the NETI and CATME training. (ohland@purdue.edu)\n\nMarisa Orr\n\nMIDFIELD Associate Director and Associate Professor in Engineering and Science Education with a joint appointment in Mechanical Engineering at Clemson University. She received the 2009 Helen Plants Award for the best nontraditional session at FIE, “Enhancing Student Learning Using SCALE-UP Format.” (marisak@clemson.edu)\n\nRussell Long\n\nMIDFIELD Managing Director and Data Steward. He developed the stratified data sample for the R packages used in this workshop. Mr. Long is a SAS expert with over twenty years of experience in institutional research and assessment. (ralong@purdue.edu)\n\nRichard Layton\n\nMIDFIELD Data Visualization Specialist and Professor Emeritus of Mechanical Engineering, Rose-Hulman Institute of Technology. He is the lead developer of the R packages used with the MIDFIELD practice data sets and the associated tutorials and workshop activities. (graphdoctor@gmail.com)"
+    "objectID": "chart-basics.html",
+    "href": "chart-basics.html",
+    "title": "R chart basics",
+    "section": "",
+    "text": "Figure from: Richard Layton, Stacked-bar alternatives , https://graphdr.github.io/data-stories/posts/2022-01-14-stacked-bar-alternatives/\nUsing ggplot2 to create charts in R.\nLicense. This material is adapted from Getting started in R: Tinyverse edition by Bashir and Eddelbuettel (2018) which was licensed under CC BY-SA by ilustat. This adaptation and extension, R chart basics by Richard Layton, is licensed under CC BY-SA 2.0."
   },
   {
-    "objectID": "introduction.html#publications",
-    "href": "introduction.html#publications",
-    "title": "Introduction",
-    "section": "Publications",
-    "text": "Publications\nThe MIDFIELD team has been exploring and presenting the stories in the MIDFIELD data for over 10 years. To see a sample of our work, you can follow these links:\n\nLord SM, Ohland MW, Layton RA, and Camacho MM (2019) Beyond pipeline and pathways: Ecosystem metrics. Journal of Engineering Education, 108, 32–56. Wickenden best paper award.\nLord SM, Layton RA, and Ohland MW (2015) Multi-Institution study of student demographics and outcomes in Electrical and Computer Engineering in the USA, IEEE Transactions on Education, 58(3), 141–150. Batchman best paper award.\nBrawner CE, Lord SM, Layton RA, Ohland MW, and Long RA (2015) Factors affecting women’s persistence in chemical engineering, International Journal of Engineering Education 31(6A), 1431–1447.\n\nLink to a comprehensive list of publications by researchers using MIDFIELD."
+    "objectID": "chart-basics.html#preface",
+    "href": "chart-basics.html#preface",
+    "title": "R chart basics",
+    "section": "Preface",
+    "text": "Preface\nThe rationale for using the ggplot2 package instead of other R graphics environments (e.g., lattice, base R, or grid graphics) is nicely summarized by Zumel and Mount—it “excels at combining multiple graphical elements together” even though “its syntax can take some getting used to” (Zumel & Mount, 2020, p. 60). They raise three key points:\n\nGraphs in ggplot2 are defined only on data frames. The variables from the data frame—assigned to the x-axis, the y-axis, or to the color or size of a data marker—are called aesthetics, declared using the aes() function.\nThe ggplot() function declares the graph object; its arguments can include the data frame of interest and the aesthetics. The ggplot() function doesn’t itself produce a visualization; visualizations are produced by layers.\nLayers produce the plots and plot transformations and are added to a graph object using the + operator. Each layer can also take a data frame and aesthetics as arguments, in addition to layer-specific parameters. Example of layers are geom_point() for a scatterplot and geom_line() for a line plot.\n\nBefore starting. Our tutorials assume that you\n\nHave completed the Before you arrive instructions\nHave completed the R basics guide\nStart your R session by launching the RStudio project you created, e.g., midfield-institute-2023.Rproj\n\nIf you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:\nmidfield-institute-2023\\\n    data\\\n    results\\\n    scripts\\\n    midfield-institute-2023.Rproj"
   },
   {
-    "objectID": "introduction.html#acknowledgements",
-    "href": "introduction.html#acknowledgements",
-    "title": "Introduction",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nFunding provided by the National Science Foundation grant numbers 1545667 and 2142087."
+    "objectID": "chart-basics.html#getting-started",
+    "href": "chart-basics.html#getting-started",
+    "title": "R chart basics",
+    "section": "Getting started",
+    "text": "Getting started\nStart a new script. I recommend that you start a new script for this segment.\n\nUse File &gt; New File &gt; R Script to create a new R script\nFile &gt; Save As… to name the file (we suggest 02-chart-basics.R), then save it to the scripts directory\nAt the top of the script, add a minimal header, something like:\n\n\n# R chart basics\n# your name  \n# date \n\n\nUse library() to load packages used in the script.\n\n\n# silently load packages\nsuppressPackageStartupMessages(library(\"ggplot2\"))\nsuppressPackageStartupMessages(library(\"data.table\"))\n\n# set data.table printout options\noptions(\n  datatable.print.nrows = 20,\n  datatable.print.topn = 5,\n  datatable.print.class = TRUE\n)\n\nReminder: In a code chunk like the one above, you can click on the Copy to Clipboard icon  in the upper right corner to enable quick copy and paste from this document to your script.\nUse your script throughout the tutorial. When a new chunk of code is given,\n\nCopy the line(s) of code into your script, save, and run.\n\nCheck your result by comparing it to the result in the tutorial.\nCheck what you’ve learned using the Your turn exercises."
+  },
+  {
+    "objectID": "chart-basics.html#data",
+    "href": "chart-basics.html#data",
+    "title": "R chart basics",
+    "section": "Data",
+    "text": "Data\nIntroduction. R comes with many datasets installed. We’ll use the ChickWeight data set to cover some basic data manipulation to prepare the data for graphing.\nThe help page for ChickWeight summarizes the experiment from which the data were collected,\n\nThe body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21. There were four groups of chicks on different protein diets.”\n\nYou can view the help page by running,\nhelp(\"ChickWeight\")\nThere are 578 observations (rows) and 4 variables (columns). Recall that names are case-sensitive—weight is lowercase, the other variables are capitalized.\n\nChick: unique ID for each chick.\nDiet: one of four protein diets.\nTime: number of days since birth.\nweight: body weight of chick in grams.\n\nThe goal of graphing the data is to investigate the effect of diet on weight over time.\nDownload and save a CSV file. We use the data.table fread() function to read the data set from the workshop repository (an Internet connection is required).\nWe use fwrite() to save the file to the data directory in your project folder.\n# data URL\ndata_url &lt;- \"https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv\"\n\n# download the data\nchick_weight &lt;- fread(data_url)\n\n# write the data to your data directory\nfwrite(chick_weight, \"data/chick_weight.csv\")\nThese lines of code are run only once. After the data are downloaded, these lines can be commented out, e.g.,\n\n# # data URL\n# data_url &lt;- \"https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv\"\n# \n# # download the data\n# chick_weight &lt;- fread(data_url)\n# \n# # write the data to your data directory\n# fwrite(chick_weight, \"data/chick_weight.csv\")\n\nImport a CSV file. We import the data from the local file chick_weight.csv using fread(). This function returns a data.table object. A data.table is a data.frame with additional attributes.\n\ncw &lt;- fread(\"data/chick_weight.csv\")\n\nLook at the data. To look at the data, type the object (dataset) name:\n\n# view the data\ncw\n#&gt;      Chick  Diet  Time weight\n#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n#&gt;   1:    18     1     0     39\n#&gt;   2:    18     1     2     35\n#&gt;   3:    16     1     0     41\n#&gt;   4:    16     1     2     45\n#&gt;   5:    16     1     4     49\n#&gt;  ---                         \n#&gt; 574:    48     4    14    170\n#&gt; 575:    48     4    16    222\n#&gt; 576:    48     4    18    261\n#&gt; 577:    48     4    20    303\n#&gt; 578:    48     4    21    322\n\nSeveral base R functions help us inspect the data. In addition to str() that you used in the previous tutorial, we also have:\n\nsummary() provides a summary\nhead() and tail() display the beginning and end of the data set\n\n\nsummary(cw)\n#&gt;      Chick            Diet            Time           weight     \n#&gt;  Min.   : 1.00   Min.   :1.000   Min.   : 0.00   Min.   : 35.0  \n#&gt;  1st Qu.:13.00   1st Qu.:1.000   1st Qu.: 4.00   1st Qu.: 63.0  \n#&gt;  Median :26.00   Median :2.000   Median :10.00   Median :103.0  \n#&gt;  Mean   :25.75   Mean   :2.235   Mean   :10.72   Mean   :121.8  \n#&gt;  3rd Qu.:38.00   3rd Qu.:3.000   3rd Qu.:16.00   3rd Qu.:163.8  \n#&gt;  Max.   :50.00   Max.   :4.000   Max.   :21.00   Max.   :373.0\n\n\nExercise 2.1Answer\n\n\nUse tail() to examine the last observations in cw and compare to the last observations in the ChickWeight data set provided in base R. Do they agree? Describe the differences, if any.\n\n\nThe variables (columns) are the same but in different order. The observations (rows) are apparently in different order too.\n\n#&gt;    Chick  Diet  Time weight\n#&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n#&gt; 1:    48     4    12    154\n#&gt; 2:    48     4    14    170\n#&gt; 3:    48     4    16    222\n#&gt; 4:    48     4    18    261\n#&gt; 5:    48     4    20    303\n#&gt; 6:    48     4    21    322\n#&gt;     weight Time Chick Diet\n#&gt; 573    155   12    50    4\n#&gt; 574    175   14    50    4\n#&gt; 575    205   16    50    4\n#&gt; 576    234   18    50    4\n#&gt; 577    264   20    50    4\n#&gt; 578    264   21    50    4\n\nAlso, the row numbers in cw (a data.table) are different from the row numbers in ChickWeight.\n\n\n\n\nExercise 2.2Answer\n\n\nUse str() to compare cw to the original ChickWeight in base R. How are they different?\n\n\ncw is a data.frame and a data.table object and the variables are all integers.\n\n#&gt; Classes 'data.table' and 'data.frame':   578 obs. of  4 variables:\n#&gt;  $ Chick : int  18 18 16 16 16 16 16 16 16 15 ...\n#&gt;  $ Diet  : int  1 1 1 1 1 1 1 1 1 1 ...\n#&gt;  $ Time  : int  0 2 0 2 4 6 8 10 12 0 ...\n#&gt;  $ weight: int  39 35 41 45 49 51 57 51 54 41 ...\n#&gt;  - attr(*, \".internal.selfref\")=&lt;externalptr&gt;\n\nChickWeight is a data.frame and a groupedData object (a type of ordered grouping). Two columns are integers but two are factors. We’ll discuss factors in due course.\n\n#&gt; Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   578 obs. of  4 variables:\n#&gt;  $ weight: num  42 51 59 64 76 93 106 125 149 171 ...\n#&gt;  $ Time  : num  0 2 4 6 8 10 12 14 16 18 ...\n#&gt;  $ Chick : Ord.factor w/ 50 levels \"18\"&lt;\"16\"&lt;\"15\"&lt;..: 15 15 15 15 15 15 15 15 15 15 ...\n#&gt;  $ Diet  : Factor w/ 4 levels \"1\",\"2\",\"3\",\"4\": 1 1 1 1 1 1 1 1 1 1 ...\n#&gt;  - attr(*, \"formula\")=Class 'formula'  language weight ~ Time | Chick\n#&gt;   .. ..- attr(*, \".Environment\")=&lt;environment: R_EmptyEnv&gt; \n#&gt;  - attr(*, \"outer\")=Class 'formula'  language ~Diet\n#&gt;   .. ..- attr(*, \".Environment\")=&lt;environment: R_EmptyEnv&gt; \n#&gt;  - attr(*, \"labels\")=List of 2\n#&gt;   ..$ x: chr \"Time\"\n#&gt;   ..$ y: chr \"Body weight\"\n#&gt;  - attr(*, \"units\")=List of 2\n#&gt;   ..$ x: chr \"(days)\"\n#&gt;   ..$ y: chr \"(gm)\""
+  },
+  {
+    "objectID": "chart-basics.html#scatterplot",
+    "href": "chart-basics.html#scatterplot",
+    "title": "R chart basics",
+    "section": "Scatterplot",
+    "text": "Scatterplot\nOur goal is to examine how weight changes over time conditioned by diet.\nDon’t worry too much about the details of the ggplot2 syntax. To learn more, try different things even if you get an error message. No harm is done!\nFirst plot. Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no “geom” (a geometric layer) to encode the data visually.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight))\n\n\n\n\nNext we add the geom_point() layer to encode the data as points in a scatterplot.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight)) + \n  geom_point()\n\n\n\n\n\nExercise 2.3Answer\n\n\n\nSwitch the variables Time and weight in the code chunk.\nWhat do you think of this new plot compared to the original?\n\n\n\nIn a time series, the visual convention (in Latin/Roman-descended societies) is for time to read from left to right, so this chart is not as intuitive as the earlier chart.\n\n\n\n\n\n\n\n\nLocation of +. The + symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate,\n# correct\nggplot(cw, aes(weight, Time)) + geom_point()\n\n# correct\nggplot(cw, aes(weight, Time)) + \n  geom_point()\n\n# incorrect \nggplot(cw, aes(weight, Time)) \n  + geom_point()"
+  },
+  {
+    "objectID": "chart-basics.html#another-variable",
+    "href": "chart-basics.html#another-variable",
+    "title": "R chart basics",
+    "section": "Another variable",
+    "text": "Another variable\nColor encodes a third variable. The graph does not differentiate between the diets. In the next step, we use color to encode Diet, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being “mapped” must be names of variables in the cw data frame.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, color = factor(Diet))) +\n  geom_point()\n\n\n\n\nIt is difficult to conclude anything from this graph as the points are printed on top of one another (with diet 4 overprinting diet 3 which overprints diet 2, etc.)."
+  },
+  {
+    "objectID": "chart-basics.html#faceted-chart",
+    "href": "chart-basics.html#faceted-chart",
+    "title": "R chart basics",
+    "section": "Faceted chart",
+    "text": "Faceted chart\nFactor variables. Before we continue, we make an important change to the cw dataset by transforming Diet and Time into factor variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.\nThe := operator (from data.table) alters variables “in-place”, with no explicit assignment (&lt;-). We revisit the := operator in the R data basics tutorial.\n\n# create factors\ncw[, Diet := factor(Diet)]\ncw[, Time := factor(Time)]\n\n# notice the difference?\nsummary(cw) \n#&gt;      Chick       Diet         Time         weight     \n#&gt;  Min.   : 1.00   1:220   0      : 50   Min.   : 35.0  \n#&gt;  1st Qu.:13.00   2:120   2      : 50   1st Qu.: 63.0  \n#&gt;  Median :26.00   3:120   4      : 49   Median :103.0  \n#&gt;  Mean   :25.75   4:118   6      : 49   Mean   :121.8  \n#&gt;  3rd Qu.:38.00           8      : 49   3rd Qu.:163.8  \n#&gt;  Max.   :50.00           10     : 49   Max.   :373.0  \n#&gt;                          (Other):282\n\nfacet_wrap() function. facet_wrap() is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets.\n\n# create facets by Diet \nggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +\n  geom_point() +\n  facet_wrap(vars(Diet)) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\nExercise 2.4Answer\n\n\n\nTo address “overprinting” (where points print over other points in the same position), replace geom_point() with geom_jitter().\nWhat observations about the data can you make?\n\n\n\n\n\n\n\n\n\nJittering allows a much better view of the full data set.\nDiet 4 has the least variability.\nDiet 3 seems to have the highest weights.\nWe can’t really say anything about the mean effect of each diet.\n\n\n\n\n\nExercise 2.5Answer\n\n\nFor the legend.position argument, try using “top”, “left” and “none”. Do we really need a legend for this plot?\n\n\n\n\n\n\n\nHere, the legend.position argument is “none”. The diet types are in the panel headers, so a legend is unnecessary."
+  },
+  {
+    "objectID": "chart-basics.html#mean-line-chart",
+    "href": "chart-basics.html#mean-line-chart",
+    "title": "R chart basics",
+    "section": "Mean line chart",
+    "text": "Mean line chart\nNext we plot the mean changes over time for each diet using the stat_summary() function. Because we do not have facets this time, we use the default legend.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet)) +\n  stat_summary(fun = \"mean\", geom = \"line\")\n\n\n\n\nWe see that diet 3 has the highest mean weight gain by the end of the experiment but we don’t have any information about the variation (uncertainty) in the data.\n\nExercise 2.6Answer\n\n\n\nWhat happens when you add geom_point() to the plot above? Don’t forget the +.\nDoes it make a difference if you put it before or after stat_summary(...)?\nHint: Look carefully at how the graph is plotted.\n\n\n\n\n\n\n\n\n\nThe chart is the same either way.\nThe underlying idea in ggplot2 is that a chart is assembled in layers, adding a new layer to previous layers using the + operator."
+  },
+  {
+    "objectID": "chart-basics.html#box-whisker-plot",
+    "href": "chart-basics.html#box-whisker-plot",
+    "title": "R chart basics",
+    "section": "Box & whisker plot",
+    "text": "Box & whisker plot\nTo see variation between the different diets we use geom_boxplot() to plot a box & whisker plot. A note of caution—the number of chicks per diet is relatively low to produce this plot.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +\n  facet_wrap(vars(Diet)) +\n  geom_boxplot() +\n  theme(legend.position = \"none\") +\n  ggtitle(\"Changing distributions of chick weight by diet and elapsed time\")\n\n\n\n\n\nDiet 3 seems to have the highest “average” weight gain\nDiet 4 seems to have the least amount of variation\n\n\nExercise 2.7Answer\n\n\nTo the plot above, edit the axis labels using xlab() for the x-axis label and ylab() for the y-axis label. The labels should be,\n\nx-axis: “Time (days)”\ny-axis: “Weight (grams)”\n\nHint: Add a plus symbol (+) at the end of the current last line, then add a the x-label layer using the xlab() function. Repeat for the y-label. You can type help(xlab) in the Console to view its help page."
+  },
+  {
+    "objectID": "chart-basics.html#scatterplot-with-mean-line",
+    "href": "chart-basics.html#scatterplot-with-mean-line",
+    "title": "R chart basics",
+    "section": "Scatterplot with mean line",
+    "text": "Scatterplot with mean line\nLet’s finish with a plot that you might include in a publication\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet)) +\n  facet_wrap(vars(Diet)) +\n  stat_summary(fun = \"mean\", geom = \"line\", colour= \"black\") +\n  geom_jitter() +\n  theme(legend.position = \"none\") +\n  ggtitle(\"Chick weight by diet and elapsed time\") +\n  xlab(\"Time (days)\") +\n  ylab(\"Weight (grams)\")\n\n\n\n\nNote that I printed the line layer first then printed the points over them to let the data be prominent.\n\nExercise 2.8Answer\n\n\n\nRead the help page for the facet_wrap() function\nSee if you can edit the code slightly to make the facets print out row-wise, as in 1 row and 4 columns of charts.\n\nWhat visual advantages does this arrangement provide?\nWhat visual disadvantages?"
+  },
+  {
+    "objectID": "agenda.html",
+    "href": "agenda.html",
+    "title": "Program",
+    "section": "",
+    "text": "Image: Today’s Agenda by Rajiv Patel is licensed under CC BY-NC 2.0"
+  },
+  {
+    "objectID": "agenda.html#pre-workshop",
+    "href": "agenda.html#pre-workshop",
+    "title": "Program",
+    "section": "Pre-workshop",
+    "text": "Pre-workshop\nPre-workshop tutorials\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\n\nR chart basics\nR data basics"
+  },
+  {
+    "objectID": "agenda.html#workshop",
+    "href": "agenda.html#workshop",
+    "title": "Program",
+    "section": "Workshop",
+    "text": "Workshop\nAgenda TBD"
+  },
+  {
+    "objectID": "before-you-arrive.html",
+    "href": "before-you-arrive.html",
+    "title": "Before you arrive",
+    "section": "",
+    "text": "Image: Data Visualization and R Bookshelf by Richard Layton.\nTo get the most out of the workshop, you should have the essential software installed and running on your computer several days before the workshop to give you time to contact us with questions if anything goes amiss.\nIf you are trying R for the first time, it is vital that you attempt to set up your computer with the necessary software in advance or it will be difficult to keep up.\nAs you work your way through this pre-workshop assignment, you will encounter R code chunks to type. Clicking the Copy to Clipboard icon  in the top right corner of the code chunk copies the code to your clipboard, saving some typing time. For example:\n# sample code chunk\nx &lt;- 10"
+  },
+  {
+    "objectID": "before-you-arrive.html#already-use-r",
+    "href": "before-you-arrive.html#already-use-r",
+    "title": "Before you arrive",
+    "section": "Already use R?",
+    "text": "Already use R?\nIf you are already an R and RStudio integrated development environment (IDE) user, this is a great time to check for updates.\nUpdating RStudio\n\nRStudio menu Help &gt; Check for Updates will tell you if you are current or not.\nTo update, close RStudio on your machine, download the new version from Posit).\n\nUpdate your packages\nHow to upgrade all out-of-date packages in What They Forgot to Teach You About R by Jennifer Bryan and Jim Hester.\nUpdating R\nThe easiest way to update R is to simply download the newest version. RStudio will automatically use the latest you’ve installed.\nAlternatively, Windows users can use the installr package:\n\nInstall the installr package\nIf open, close R and RStudio\nNavigate to your most recent Rgui.exe file located in your Programs directory, e.g., C:\\Program Files\\R\\R-4.0.0\\bin\\x64\\Rgui.exe\n\nRight-click on Rgui.exe and run as administrator\nIn the R GUI window that appears, run the commands\n\n    # Windows users only\n    library(\"installr\")\n    updateR()\nUpdating your R library\nHow to transfer your library when updating R also by Bryan and Hester. Requires the fs package."
+  },
+  {
+    "objectID": "before-you-arrive.html#new-to-r",
+    "href": "before-you-arrive.html#new-to-r",
+    "title": "Before you arrive",
+    "section": "New to R?",
+    "text": "New to R?\nThis section is for anyone who has not yet installed R or RStudio.\nThe first steps are to install R and RStudio. Windows users may have to login as an Administrator before installing the software.\n\nInstall R for your operating system (free, open-source)\nInstall RStudio, a user interface for R (free)\n\nOnce the installation is complete, you can take a 2-minute tour of the RStudio interface.\n\nLet’s start (00:57–02:32) by R Ladies Sydney (Richmond, 2018)\n\nThe same video includes a longer (7 minute) tour of the four quadrants (panes) in RStudio if you are interested.\n\nThe RStudio quadrants (07:21–14:40) by R Ladies Sydney (Richmond, 2018)"
+  },
+  {
+    "objectID": "before-you-arrive.html#start-the-setup",
+    "href": "before-you-arrive.html#start-the-setup",
+    "title": "Before you arrive",
+    "section": "Start the setup",
+    "text": "Start the setup\nOnce you have R and RStudio up and running on your system, we have a short set of setup instructions to help prepare you for the workshop R tutorials.\nWe start by creating an RStudio Project file and directory. You can recognize an R project file by its .Rproj suffix.\nIf you prefer your instructions with commentary,\n\nStart with a Project (02:34–04:50) by R Ladies Sydney (Richmond, 2018)\n\nIf you prefer basic written instructions,\n\nRStudio, File &gt; New Project… &gt; New Directory &gt; New Project\nOr, click the New Project button in the Console ribbon,\n\n\nIn the dialog box that appears,\n\nType the workshop name as the directory name, for example, midfield-institute-2023\n\nUse the browse button to select a location on your computer to create the project folder\n\nClick the Create Project button\n\nWhenever you work with the workshop materials, launch the midfield-institute-2023.Rproj file to start the session."
+  },
+  {
+    "objectID": "before-you-arrive.html#add-some-folders",
+    "href": "before-you-arrive.html#add-some-folders",
+    "title": "Before you arrive",
+    "section": "Add some folders",
+    "text": "Add some folders\nWhile file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project midfield-institute-2023, the minimal directory structure has three folders in it plus the .Rproj file at the top level.\nmidfield-institute-2023\\\n    data\\\n    results\\\n    scripts\\\n    midfield-institute-2023.Rproj\nWe use the folders as follows:\n\ndata data files\nresults finished graphs and tabulated data formatted for display\n\nscripts R scripts that operate on data to produce results\n\nTo create folders:\n\nuse your usual method of creating new folders on your machine\nor you can use the New Folder button in the Files pane\n\n\nFor a video guide,\n\nMake some folders (04:50–06:08) by R Ladies Sydney (Richmond, 2018)"
+  },
+  {
+    "objectID": "before-you-arrive.html#install-cran-packages",
+    "href": "before-you-arrive.html#install-cran-packages",
+    "title": "Before you arrive",
+    "section": "Install CRAN packages",
+    "text": "Install CRAN packages\nThe fundamental unit of shareable code in R is the package. For the R novice, an R package is like an “app” for R—a collection of functions, data, and documentation for doing work in R that is easily shared with others (Wickham, 2014).\nMost packages are obtained from the CRAN website (The Comprehensive R Archive Network, 2018-04-22). To install a CRAN package using RStudio:\n\nLaunch RStudio\n\nThe RStudio interface has several panes. We want the Files/Plots/Packages pane.\n\nSelect the Packages tab\n\n\nNext,\n\nClick Install on the ribbon\nIn the dialog box, type the name of the package. For our first package, type data.table to install the data.table package (Dowle & Srinivasan, 2021)\nCheck the Install dependencies box\nClick the Install button\n\n\nDuring the installation, Windows users might get a warning message about Rtools, something like:\nWARNING: Rtools is required to build R packages but is not currently installed. Please download etc.\n\nRtools is needed for packages with C/C++/FORTRAN code from source—which does not apply to us. You may ignore the warning and carry on.\nIn the RStudio Console, you should see a message like this one,\npackage 'data.table' successfully unpacked and MD5 sums checked\nIf successful, the package will appear in the Packages pane, e.g.,\n\nRepeat the process for the following packages:\ncheckmate\nggplot2\nwrapr\ncurl\nAlternatively, you can install them all at once by typing in the Console:\npackages_we_use &lt;- c(\"data.table\", \"ggplot2\", \"checkmate\", \"wrapr\", \"curl\")\ninstall.packages(packages_we_use)"
+  },
+  {
+    "objectID": "before-you-arrive.html#install-midfieldr",
+    "href": "before-you-arrive.html#install-midfieldr",
+    "title": "Before you arrive",
+    "section": "Install midfieldr",
+    "text": "Install midfieldr\nInstall with:\n# type in the RStudio Console \ninstall.packages(\"midfieldr\")\n\n\n\n\n\n\nTip\n\n\n\nIf you get an error message like the one below, it means that the packages in the dependencies list have not been installed.\n\nThe remedy is to install any packages listed in the error message and then install midfieldr again.\n\n\nOnce midfieldr is successfully installed, you can confirm the installation by running the following lines to bring up the package help page in the Help window.\n# type in the RStudio Console \nlibrary(\"midfieldr\")\n? \"midfieldr-package\"\n\n# or, equivalently\nhelp(\"midfieldr-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
+  },
+  {
+    "objectID": "before-you-arrive.html#install-midfielddata",
+    "href": "before-you-arrive.html#install-midfielddata",
+    "title": "Before you arrive",
+    "section": "Install midfielddata",
+    "text": "Install midfielddata\nBecause of its size, the data package is stored in a drat repository instead of CRAN. Installation takes time; please be patient and wait for the Console prompt “&gt;” to reappear.\nType (or copy and paste) the following lines in the RStudio Console.\n# type in the RStudio Console  \ninstall.packages(\"midfielddata\", \n                 repos = \"https://MIDFIELDR.github.io/drat/\", \n                 type = \"source\")\n# be patient\nOnce the Console prompt “&gt;” reappears, you can confirm a successful installation by viewing the package help page. In the Console, run:\n# type in the RStudio Console  \nlibrary(\"midfielddata\")\nhelp(\"midfielddata-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
+  },
+  {
+    "objectID": "before-you-arrive.html#finish-the-setup",
+    "href": "before-you-arrive.html#finish-the-setup",
+    "title": "Before you arrive",
+    "section": "Finish the setup",
+    "text": "Finish the setup\nAs a final task, save your open files and close RStudio.\nIf you get a prompt about saving your workspace image, the answer is No. \nYou can turn this prompt off by reopening RStudio and use the pulldown menu:\n\nTools &gt; Global Options…\nIn the dialog box, Save workspace to .RData on exit: Select “Never”"
+  },
+  {
+    "objectID": "before-you-arrive.html#homework",
+    "href": "before-you-arrive.html#homework",
+    "title": "Before you arrive",
+    "section": "Homework",
+    "text": "Homework\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\nR chart basics\nR data basics\n\nOn Tuesday, July 11—the day before the Institute—we plan to hold online office hours to answer your questions about MIDFIELD and help resolve any problems you might be having using R or midfieldr.\nSee the Agenda for more information, including links for downloading handouts to be used in some of the sessions."
   },
   {
     "objectID": "data-basics.html",
@@ -196,207 +336,88 @@
     "text": "Conclusion\nThe R basics, R chart basics, and R data basics guides introduced you to some of the basic concepts for using R and the data.table and ggplot2 packages to manipulate data and create charts. It is only an introduction to what R can do but hopefully you have seen some of the potential of using R for data science.\nNext steps. There are plenty of R courses, books, and online resources that you can learn from. Find things that work for you and don’t be afraid to make mistakes or ask questions.\nDuring the MIDFIELD workshops, you will build on what you’ve learned here, and use the midfieldr package to study student unit records. You can preview that material on the midfieldr website."
   },
   {
-    "objectID": "before-you-arrive.html",
-    "href": "before-you-arrive.html",
-    "title": "Before you arrive",
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "Introduction",
     "section": "",
-    "text": "Image: Data Visualization and R Bookshelf by Richard Layton.\nTo get the most out of the workshop, you should have the essential software installed and running on your computer several days before the workshop to give you time to contact us with questions if anything goes amiss.\nIf you are trying R for the first time, it is vital that you attempt to set up your computer with the necessary software in advance or it will be difficult to keep up.\nAs you work your way through this pre-workshop assignment, you will encounter R code chunks to type. Clicking the Copy to Clipboard icon  in the top right corner of the code chunk copies the code to your clipboard, saving some typing time. For example:\n# sample code chunk\nx &lt;- 10"
+    "text": "Image: A Cautious Introduction by Carol Blyberg is licensed under CC BY-NC 2.0\nThe MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD). The Institute ia an all-virtual meeting over several days."
   },
   {
-    "objectID": "before-you-arrive.html#already-use-r",
-    "href": "before-you-arrive.html#already-use-r",
-    "title": "Before you arrive",
-    "section": "Already use R?",
-    "text": "Already use R?\nIf you are already an R and RStudio integrated development environment (IDE) user, this is a great time to check for updates.\nUpdating RStudio\n\nRStudio menu Help &gt; Check for Updates will tell you if you are current or not.\nTo update, close RStudio on your machine, download the new version from Posit).\n\nUpdate your packages\nHow to upgrade all out-of-date packages in What They Forgot to Teach You About R by Jennifer Bryan and Jim Hester.\nUpdating R\nThe easiest way to update R is to simply download the newest version. RStudio will automatically use the latest you’ve installed.\nAlternatively, Windows users can use the installr package:\n\nInstall the installr package\nIf open, close R and RStudio\nNavigate to your most recent Rgui.exe file located in your Programs directory, e.g., C:\\Program Files\\R\\R-4.0.0\\bin\\x64\\Rgui.exe\n\nRight-click on Rgui.exe and run as administrator\nIn the R GUI window that appears, run the commands\n\n    # Windows users only\n    library(\"installr\")\n    updateR()\nUpdating your R library\nHow to transfer your library when updating R also by Bryan and Hester. Requires the fs package."
+    "objectID": "introduction.html#about-midfield",
+    "href": "introduction.html#about-midfield",
+    "title": "Introduction",
+    "section": "About MIDFIELD",
+    "text": "About MIDFIELD\nMIDFIELD is a partnership of higher education institutions with engineering programs. Begun in 2004 as an extension of the SUCCEED Longitudinal Database, MIDFIELD contains student-level records for all undergraduate, degree-seeking students at the partner institutions.\nAs of June 2024, MIDFIELD contains student-level records for 2.4 M undergraduates at 21 US institutions."
   },
   {
-    "objectID": "before-you-arrive.html#new-to-r",
-    "href": "before-you-arrive.html#new-to-r",
-    "title": "Before you arrive",
-    "section": "New to R?",
-    "text": "New to R?\nThis section is for anyone who has not yet installed R or RStudio.\nThe first steps are to install R and RStudio. Windows users may have to login as an Administrator before installing the software.\n\nInstall R for your operating system (free, open-source)\nInstall RStudio, a user interface for R (free)\n\nOnce the installation is complete, you can take a 2-minute tour of the RStudio interface.\n\nLet’s start (00:57–02:32) by R Ladies Sydney (Richmond, 2018)\n\nThe same video includes a longer (7 minute) tour of the four quadrants (panes) in RStudio if you are interested.\n\nThe RStudio quadrants (07:21–14:40) by R Ladies Sydney (Richmond, 2018)"
+    "objectID": "introduction.html#facilitators",
+    "href": "introduction.html#facilitators",
+    "title": "Introduction",
+    "section": "Facilitators",
+    "text": "Facilitators\n\nSusan Lord\n\nDirector of the MIDFIELD Institute and Professor and Chair of Integrated Engineering at the University of San Diego. She is a Fellow of the IEEE and the ASEE. Dr. Lord has considerable experience facilitating workshops including the National Effective Teaching Institute (NETI) and special sessions at FIE. (slord@sandiego.edu)\n\nMatthew Ohland\n\nMIDFIELD Director and Principal Investigator. He is Professor and Associate Head of Engineering Education at Purdue University and a Fellow of IEEE, ASEE, and AAAS. Dr. Ohland has considerable experience facilitating workshops including the NETI and CATME training. (ohland@purdue.edu)\n\nMarisa Orr\n\n(On leave.) MIDFIELD Associate Director and Associate Professor in Engineering and Science Education with a joint appointment in Mechanical Engineering at Clemson University. She received the 2009 Helen Plants Award for the best nontraditional session at FIE, “Enhancing Student Learning Using SCALE-UP Format.” (marisak@clemson.edu)\n\nRussell Long\n\nMIDFIELD Managing Director and Data Steward. He developed the stratified data sample for the R packages used in this workshop. Mr. Long is a SAS expert with over twenty years of experience in institutional research and assessment. (ralong@purdue.edu)\n\nRichard Layton\n\nMIDFIELD Data Visualization Specialist and Professor Emeritus of Mechanical Engineering, Rose-Hulman Institute of Technology. He is the lead developer of the R packages used with the MIDFIELD practice data sets and the associated tutorials and workshop activities. (graphdoctor@gmail.com)"
   },
   {
-    "objectID": "before-you-arrive.html#start-the-setup",
-    "href": "before-you-arrive.html#start-the-setup",
-    "title": "Before you arrive",
-    "section": "Start the setup",
-    "text": "Start the setup\nOnce you have R and RStudio up and running on your system, we have a short set of setup instructions to help prepare you for the workshop R tutorials.\nWe start by creating an RStudio Project file and directory. You can recognize an R project file by its .Rproj suffix.\nIf you prefer your instructions with commentary,\n\nStart with a Project (02:34–04:50) by R Ladies Sydney (Richmond, 2018)\n\nIf you prefer basic written instructions,\n\nRStudio, File &gt; New Project… &gt; New Directory &gt; New Project\nOr, click the New Project button in the Console ribbon,\n\n\nIn the dialog box that appears,\n\nType the workshop name as the directory name, for example, midfield-institute-2023\n\nUse the browse button to select a location on your computer to create the project folder\n\nClick the Create Project button\n\nWhenever you work with the workshop materials, launch the midfield-institute-2023.Rproj file to start the session."
+    "objectID": "introduction.html#publications",
+    "href": "introduction.html#publications",
+    "title": "Introduction",
+    "section": "Publications",
+    "text": "Publications\nThe MIDFIELD team has been exploring and presenting the stories in the MIDFIELD data for over 10 years. To see a sample of our work, you can follow these links:\n\nLord SM, Ohland MW, Layton RA, and Camacho MM (2019) Beyond pipeline and pathways: Ecosystem metrics. Journal of Engineering Education, 108, 32–56. Wickenden best paper award.\nLord SM, Layton RA, and Ohland MW (2015) Multi-Institution study of student demographics and outcomes in Electrical and Computer Engineering in the USA, IEEE Transactions on Education, 58(3), 141–150. Batchman best paper award.\nBrawner CE, Lord SM, Layton RA, Ohland MW, and Long RA (2015) Factors affecting women’s persistence in chemical engineering, International Journal of Engineering Education 31(6A), 1431–1447.\n\nLink to a comprehensive list of publications by researchers using MIDFIELD."
   },
   {
-    "objectID": "before-you-arrive.html#add-some-folders",
-    "href": "before-you-arrive.html#add-some-folders",
-    "title": "Before you arrive",
-    "section": "Add some folders",
-    "text": "Add some folders\nWhile file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project midfield-institute-2023, the minimal directory structure has three folders in it plus the .Rproj file at the top level.\nmidfield-institute-2023\\\n    data\\\n    results\\\n    scripts\\\n    midfield-institute-2023.Rproj\nWe use the folders as follows:\n\ndata data files\nresults finished graphs and tabulated data formatted for display\n\nscripts R scripts that operate on data to produce results\n\nTo create folders:\n\nuse your usual method of creating new folders on your machine\nor you can use the New Folder button in the Files pane\n\n\nFor a video guide,\n\nMake some folders (04:50–06:08) by R Ladies Sydney (Richmond, 2018)"
+    "objectID": "introduction.html#acknowledgements",
+    "href": "introduction.html#acknowledgements",
+    "title": "Introduction",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nFunding provided by the National Science Foundation grant numbers 1545667 and 2142087."
   },
   {
-    "objectID": "before-you-arrive.html#install-cran-packages",
-    "href": "before-you-arrive.html#install-cran-packages",
-    "title": "Before you arrive",
-    "section": "Install CRAN packages",
-    "text": "Install CRAN packages\nThe fundamental unit of shareable code in R is the package. For the R novice, an R package is like an “app” for R—a collection of functions, data, and documentation for doing work in R that is easily shared with others (Wickham, 2014).\nMost packages are obtained from the CRAN website (The Comprehensive R Archive Network, 2018-04-22). To install a CRAN package using RStudio:\n\nLaunch RStudio\n\nThe RStudio interface has several panes. We want the Files/Plots/Packages pane.\n\nSelect the Packages tab\n\n\nNext,\n\nClick Install on the ribbon\nIn the dialog box, type the name of the package. For our first package, type data.table to install the data.table package (Dowle & Srinivasan, 2021)\nCheck the Install dependencies box\nClick the Install button\n\n\nDuring the installation, Windows users might get a warning message about Rtools, something like:\nWARNING: Rtools is required to build R packages but is not currently installed. Please download etc.\n\nRtools is needed for packages with C/C++/FORTRAN code from source—which does not apply to us. You may ignore the warning and carry on.\nIn the RStudio Console, you should see a message like this one,\npackage 'data.table' successfully unpacked and MD5 sums checked\nIf successful, the package will appear in the Packages pane, e.g.,\n\nRepeat the process for the following packages:\ncheckmate\nggplot2\nwrapr\ncurl\nAlternatively, you can install them all at once by typing in the Console:\npackages_we_use &lt;- c(\"data.table\", \"ggplot2\", \"checkmate\", \"wrapr\", \"curl\")\ninstall.packages(packages_we_use)"
-  },
-  {
-    "objectID": "before-you-arrive.html#install-midfieldr",
-    "href": "before-you-arrive.html#install-midfieldr",
-    "title": "Before you arrive",
-    "section": "Install midfieldr",
-    "text": "Install midfieldr\nInstall with:\n# type in the RStudio Console \ninstall.packages(\"midfieldr\")\n\n\n\n\n\n\nTip\n\n\n\nIf you get an error message like the one below, it means that the packages in the dependencies list have not been installed.\n\nThe remedy is to install any packages listed in the error message and then install midfieldr again.\n\n\nOnce midfieldr is successfully installed, you can confirm the installation by running the following lines to bring up the package help page in the Help window.\n# type in the RStudio Console \nlibrary(\"midfieldr\")\n? \"midfieldr-package\"\n\n# or, equivalently\nhelp(\"midfieldr-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
-  },
-  {
-    "objectID": "before-you-arrive.html#install-midfielddata",
-    "href": "before-you-arrive.html#install-midfielddata",
-    "title": "Before you arrive",
-    "section": "Install midfielddata",
-    "text": "Install midfielddata\nBecause of its size, the data package is stored in a drat repository instead of CRAN. Installation takes time; please be patient and wait for the Console prompt “&gt;” to reappear.\nType (or copy and paste) the following lines in the RStudio Console.\n# type in the RStudio Console  \ninstall.packages(\"midfielddata\", \n                 repos = \"https://MIDFIELDR.github.io/drat/\", \n                 type = \"source\")\n# be patient\nOnce the Console prompt “&gt;” reappears, you can confirm a successful installation by viewing the package help page. In the Console, run:\n# type in the RStudio Console  \nlibrary(\"midfielddata\")\nhelp(\"midfielddata-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
-  },
-  {
-    "objectID": "before-you-arrive.html#finish-the-setup",
-    "href": "before-you-arrive.html#finish-the-setup",
-    "title": "Before you arrive",
-    "section": "Finish the setup",
-    "text": "Finish the setup\nAs a final task, save your open files and close RStudio.\nIf you get a prompt about saving your workspace image, the answer is No. \nYou can turn this prompt off by reopening RStudio and use the pulldown menu:\n\nTools &gt; Global Options…\nIn the dialog box, Save workspace to .RData on exit: Select “Never”"
-  },
-  {
-    "objectID": "before-you-arrive.html#homework",
-    "href": "before-you-arrive.html#homework",
-    "title": "Before you arrive",
-    "section": "Homework",
-    "text": "Homework\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\nR chart basics\nR data basics\n\nOn Tuesday, July 11—the day before the Institute—we plan to hold online office hours to answer your questions about MIDFIELD and help resolve any problems you might be having using R or midfieldr.\nSee the Agenda for more information, including links for downloading handouts to be used in some of the sessions."
-  },
-  {
-    "objectID": "agenda.html",
-    "href": "agenda.html",
+    "objectID": "manage/agenda.html",
+    "href": "manage/agenda.html",
     "title": "Program",
     "section": "",
     "text": "Image: Today’s Agenda by Rajiv Patel is licensed under CC BY-NC 2.0"
   },
   {
-    "objectID": "agenda.html#pre-workshop",
-    "href": "agenda.html#pre-workshop",
+    "objectID": "manage/agenda.html#pre-workshop",
+    "href": "manage/agenda.html#pre-workshop",
     "title": "Program",
     "section": "Pre-workshop",
     "text": "Pre-workshop\nPre-workshop tutorials\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\n\nR chart basics\nR data basics"
   },
   {
-    "objectID": "agenda.html#tuesday-july-11",
-    "href": "agenda.html#tuesday-july-11",
+    "objectID": "manage/agenda.html#tuesday-july-11",
+    "href": "manage/agenda.html#tuesday-july-11",
     "title": "Program",
     "section": "Tuesday, July 11",
     "text": "Tuesday, July 11\nJoin the online office hours\nOffice hours\n1:00–5:00 pm Eastern Time. We are available for answering questions and resolving problems you encounter installing R or working with R in the three pre-workshop tutorials."
   },
   {
-    "objectID": "agenda.html#wednesday-july-12",
-    "href": "agenda.html#wednesday-july-12",
+    "objectID": "manage/agenda.html#wednesday-july-12",
+    "href": "manage/agenda.html#wednesday-july-12",
     "title": "Program",
     "section": "Wednesday, July 12",
     "text": "Wednesday, July 12\nJoin the online meeting\nIntroductions  slides\n1:00–1:50 Eastern Time\nIntroduce facilitators and participants, objectives, and MIDFIELD.\nBreak\n1:50–2:00\nExploring data structure  slides\n2:00–3:00\nExploring data excerpts manually.\n\nStudent 3 data example\nStudent 4 data example\n\nCIP website NCES Classification of Instructional Programs (CIP)\n\nGuided practice.\n3:00–5:00\nSelf-paced case study using midfieldr and midfielddata. Real-time help.\n\nCase study: Goals A short reading.\n\nCase study: Data A midfieldr tutorial.\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Data” tutorial.\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\nOptional (FYI). Topics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link]."
   },
   {
-    "objectID": "agenda.html#thursday-july-13",
-    "href": "agenda.html#thursday-july-13",
+    "objectID": "manage/agenda.html#thursday-july-13",
+    "href": "manage/agenda.html#thursday-july-13",
     "title": "Program",
     "section": "Thursday, July 13",
     "text": "Thursday, July 13\nJoin the online meeting\nMetaphors and metrics  slides\n1:00–1:30 Eastern Time\nPipelines, pathways, and ecosystems.\nSupplement.  slides. Finding the migration yield metric. A supplemental reference that outlines our iterative process of develop an argument that concludes with a new metric (migration yield) and its chart. Illustrates the iterative interplay between one’s visual rhetoric and one’s verbal rhetoric.\nBreak\n1:30–1:40\nGuided practice\n1:40–2:30\nCase study: Results Continue the case study.\nData visualization session 1  slides  worksheets\n2:30–3:20\nA hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are\n\nImproving perception of stories in the data\nFacilitating quantitative reasoning about the data\nEnhancing credibility of evidence supporting an argument\n\nBreak\n3:20–3:30\nDrafting a research question.  slides\n3:30–5:00\nDefine a problem in the data that interests you with our assistance, form small groups. Report out your research questions and discussion.\nResources\n\n(optional) Getting started (midfieldr article) to inspect the variables and values in the four practice data tables.\n(optional) Data dictionaries\n\nstudent table practice data / research data\nterm table practice data / research data\ncourse table practice data / research data\ndegree table practice data / research data\n\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Results” tutorial.\nRefine your plan for working on your research question.\n\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\nOptional (FYI). Topics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link]."
   },
   {
-    "objectID": "agenda.html#friday-july-14",
-    "href": "agenda.html#friday-july-14",
+    "objectID": "manage/agenda.html#friday-july-14",
+    "href": "manage/agenda.html#friday-july-14",
     "title": "Program",
     "section": "Friday, July 14",
     "text": "Friday, July 14\nJoin the online meeting\nData visualization session 2: Expanding your graphical repertoire  slides  worksheets\n1:00–2:00 Eastern Time\nA hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions.\nGuest speaker  slides Sankey diagram by Erica Ives\n2:00–2:10\nWork on your research question  suggested goals\n2:10–3:30\nConsult with us on your progress, discussion\nData dictionaries for the MIDFIELD research data set.\n\nstudent\nterm\ncourse\ndegree\n\nProgress report\n3:30–4:30\nShare with the group.\nWrap up  slides\n4:40–4:45"
   },
   {
-    "objectID": "agenda.html#after-the-workshop",
-    "href": "agenda.html#after-the-workshop",
+    "objectID": "manage/agenda.html#after-the-workshop",
+    "href": "manage/agenda.html#after-the-workshop",
     "title": "Program",
     "section": "After the workshop",
     "text": "After the workshop\nR resources Additional links and books you might find useful"
-  },
-  {
-    "objectID": "chart-basics.html",
-    "href": "chart-basics.html",
-    "title": "R chart basics",
-    "section": "",
-    "text": "Figure from: Richard Layton, Stacked-bar alternatives , https://graphdr.github.io/data-stories/posts/2022-01-14-stacked-bar-alternatives/\nUsing ggplot2 to create charts in R.\nLicense. This material is adapted from Getting started in R: Tinyverse edition by Bashir and Eddelbuettel (2018) which was licensed under CC BY-SA by ilustat. This adaptation and extension, R chart basics by Richard Layton, is licensed under CC BY-SA 2.0."
-  },
-  {
-    "objectID": "chart-basics.html#preface",
-    "href": "chart-basics.html#preface",
-    "title": "R chart basics",
-    "section": "Preface",
-    "text": "Preface\nThe rationale for using the ggplot2 package instead of other R graphics environments (e.g., lattice, base R, or grid graphics) is nicely summarized by Zumel and Mount—it “excels at combining multiple graphical elements together” even though “its syntax can take some getting used to” (Zumel & Mount, 2020, p. 60). They raise three key points:\n\nGraphs in ggplot2 are defined only on data frames. The variables from the data frame—assigned to the x-axis, the y-axis, or to the color or size of a data marker—are called aesthetics, declared using the aes() function.\nThe ggplot() function declares the graph object; its arguments can include the data frame of interest and the aesthetics. The ggplot() function doesn’t itself produce a visualization; visualizations are produced by layers.\nLayers produce the plots and plot transformations and are added to a graph object using the + operator. Each layer can also take a data frame and aesthetics as arguments, in addition to layer-specific parameters. Example of layers are geom_point() for a scatterplot and geom_line() for a line plot.\n\nBefore starting. Our tutorials assume that you\n\nHave completed the Before you arrive instructions\nHave completed the R basics guide\nStart your R session by launching the RStudio project you created, e.g., midfield-institute-2023.Rproj\n\nIf you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:\nmidfield-institute-2023\\\n    data\\\n    results\\\n    scripts\\\n    midfield-institute-2023.Rproj"
-  },
-  {
-    "objectID": "chart-basics.html#getting-started",
-    "href": "chart-basics.html#getting-started",
-    "title": "R chart basics",
-    "section": "Getting started",
-    "text": "Getting started\nStart a new script. I recommend that you start a new script for this segment.\n\nUse File &gt; New File &gt; R Script to create a new R script\nFile &gt; Save As… to name the file (we suggest 02-chart-basics.R), then save it to the scripts directory\nAt the top of the script, add a minimal header, something like:\n\n\n# R chart basics\n# your name  \n# date \n\n\nUse library() to load packages used in the script.\n\n\n# silently load packages\nsuppressPackageStartupMessages(library(\"ggplot2\"))\nsuppressPackageStartupMessages(library(\"data.table\"))\n\n# set data.table printout options\noptions(\n  datatable.print.nrows = 20,\n  datatable.print.topn = 5,\n  datatable.print.class = TRUE\n)\n\nReminder: In a code chunk like the one above, you can click on the Copy to Clipboard icon  in the upper right corner to enable quick copy and paste from this document to your script.\nUse your script throughout the tutorial. When a new chunk of code is given,\n\nCopy the line(s) of code into your script, save, and run.\n\nCheck your result by comparing it to the result in the tutorial.\nCheck what you’ve learned using the Your turn exercises."
-  },
-  {
-    "objectID": "chart-basics.html#data",
-    "href": "chart-basics.html#data",
-    "title": "R chart basics",
-    "section": "Data",
-    "text": "Data\nIntroduction. R comes with many datasets installed. We’ll use the ChickWeight data set to cover some basic data manipulation to prepare the data for graphing.\nThe help page for ChickWeight summarizes the experiment from which the data were collected,\n\nThe body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21. There were four groups of chicks on different protein diets.”\n\nYou can view the help page by running,\nhelp(\"ChickWeight\")\nThere are 578 observations (rows) and 4 variables (columns). Recall that names are case-sensitive—weight is lowercase, the other variables are capitalized.\n\nChick: unique ID for each chick.\nDiet: one of four protein diets.\nTime: number of days since birth.\nweight: body weight of chick in grams.\n\nThe goal of graphing the data is to investigate the effect of diet on weight over time.\nDownload and save a CSV file. We use the data.table fread() function to read the data set from the workshop repository (an Internet connection is required).\nWe use fwrite() to save the file to the data directory in your project folder.\n# data URL\ndata_url &lt;- \"https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv\"\n\n# download the data\nchick_weight &lt;- fread(data_url)\n\n# write the data to your data directory\nfwrite(chick_weight, \"data/chick_weight.csv\")\nThese lines of code are run only once. After the data are downloaded, these lines can be commented out, e.g.,\n\n# # data URL\n# data_url &lt;- \"https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv\"\n# \n# # download the data\n# chick_weight &lt;- fread(data_url)\n# \n# # write the data to your data directory\n# fwrite(chick_weight, \"data/chick_weight.csv\")\n\nImport a CSV file. We import the data from the local file chick_weight.csv using fread(). This function returns a data.table object. A data.table is a data.frame with additional attributes.\n\ncw &lt;- fread(\"data/chick_weight.csv\")\n\nLook at the data. To look at the data, type the object (dataset) name:\n\n# view the data\ncw\n#&gt;      Chick  Diet  Time weight\n#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n#&gt;   1:    18     1     0     39\n#&gt;   2:    18     1     2     35\n#&gt;   3:    16     1     0     41\n#&gt;   4:    16     1     2     45\n#&gt;   5:    16     1     4     49\n#&gt;  ---                         \n#&gt; 574:    48     4    14    170\n#&gt; 575:    48     4    16    222\n#&gt; 576:    48     4    18    261\n#&gt; 577:    48     4    20    303\n#&gt; 578:    48     4    21    322\n\nSeveral base R functions help us inspect the data. In addition to str() that you used in the previous tutorial, we also have:\n\nsummary() provides a summary\nhead() and tail() display the beginning and end of the data set\n\n\nsummary(cw)\n#&gt;      Chick            Diet            Time           weight     \n#&gt;  Min.   : 1.00   Min.   :1.000   Min.   : 0.00   Min.   : 35.0  \n#&gt;  1st Qu.:13.00   1st Qu.:1.000   1st Qu.: 4.00   1st Qu.: 63.0  \n#&gt;  Median :26.00   Median :2.000   Median :10.00   Median :103.0  \n#&gt;  Mean   :25.75   Mean   :2.235   Mean   :10.72   Mean   :121.8  \n#&gt;  3rd Qu.:38.00   3rd Qu.:3.000   3rd Qu.:16.00   3rd Qu.:163.8  \n#&gt;  Max.   :50.00   Max.   :4.000   Max.   :21.00   Max.   :373.0\n\n\nExercise 2.1Answer\n\n\nUse tail() to examine the last observations in cw and compare to the last observations in the ChickWeight data set provided in base R. Do they agree? Describe the differences, if any.\n\n\nThe variables (columns) are the same but in different order. The observations (rows) are apparently in different order too.\n\n#&gt;    Chick  Diet  Time weight\n#&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n#&gt; 1:    48     4    12    154\n#&gt; 2:    48     4    14    170\n#&gt; 3:    48     4    16    222\n#&gt; 4:    48     4    18    261\n#&gt; 5:    48     4    20    303\n#&gt; 6:    48     4    21    322\n#&gt;     weight Time Chick Diet\n#&gt; 573    155   12    50    4\n#&gt; 574    175   14    50    4\n#&gt; 575    205   16    50    4\n#&gt; 576    234   18    50    4\n#&gt; 577    264   20    50    4\n#&gt; 578    264   21    50    4\n\nAlso, the row numbers in cw (a data.table) are different from the row numbers in ChickWeight.\n\n\n\n\nExercise 2.2Answer\n\n\nUse str() to compare cw to the original ChickWeight in base R. How are they different?\n\n\ncw is a data.frame and a data.table object and the variables are all integers.\n\n#&gt; Classes 'data.table' and 'data.frame':   578 obs. of  4 variables:\n#&gt;  $ Chick : int  18 18 16 16 16 16 16 16 16 15 ...\n#&gt;  $ Diet  : int  1 1 1 1 1 1 1 1 1 1 ...\n#&gt;  $ Time  : int  0 2 0 2 4 6 8 10 12 0 ...\n#&gt;  $ weight: int  39 35 41 45 49 51 57 51 54 41 ...\n#&gt;  - attr(*, \".internal.selfref\")=&lt;externalptr&gt;\n\nChickWeight is a data.frame and a groupedData object (a type of ordered grouping). Two columns are integers but two are factors. We’ll discuss factors in due course.\n\n#&gt; Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   578 obs. of  4 variables:\n#&gt;  $ weight: num  42 51 59 64 76 93 106 125 149 171 ...\n#&gt;  $ Time  : num  0 2 4 6 8 10 12 14 16 18 ...\n#&gt;  $ Chick : Ord.factor w/ 50 levels \"18\"&lt;\"16\"&lt;\"15\"&lt;..: 15 15 15 15 15 15 15 15 15 15 ...\n#&gt;  $ Diet  : Factor w/ 4 levels \"1\",\"2\",\"3\",\"4\": 1 1 1 1 1 1 1 1 1 1 ...\n#&gt;  - attr(*, \"formula\")=Class 'formula'  language weight ~ Time | Chick\n#&gt;   .. ..- attr(*, \".Environment\")=&lt;environment: R_EmptyEnv&gt; \n#&gt;  - attr(*, \"outer\")=Class 'formula'  language ~Diet\n#&gt;   .. ..- attr(*, \".Environment\")=&lt;environment: R_EmptyEnv&gt; \n#&gt;  - attr(*, \"labels\")=List of 2\n#&gt;   ..$ x: chr \"Time\"\n#&gt;   ..$ y: chr \"Body weight\"\n#&gt;  - attr(*, \"units\")=List of 2\n#&gt;   ..$ x: chr \"(days)\"\n#&gt;   ..$ y: chr \"(gm)\""
-  },
-  {
-    "objectID": "chart-basics.html#scatterplot",
-    "href": "chart-basics.html#scatterplot",
-    "title": "R chart basics",
-    "section": "Scatterplot",
-    "text": "Scatterplot\nOur goal is to examine how weight changes over time conditioned by diet.\nDon’t worry too much about the details of the ggplot2 syntax. To learn more, try different things even if you get an error message. No harm is done!\nFirst plot. Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no “geom” (a geometric layer) to encode the data visually.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight))\n\n\n\n\nNext we add the geom_point() layer to encode the data as points in a scatterplot.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight)) + \n  geom_point()\n\n\n\n\n\nExercise 2.3Answer\n\n\n\nSwitch the variables Time and weight in the code chunk.\nWhat do you think of this new plot compared to the original?\n\n\n\nIn a time series, the visual convention (in Latin/Roman-descended societies) is for time to read from left to right, so this chart is not as intuitive as the earlier chart.\n\n\n\n\n\n\n\n\nLocation of +. The + symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate,\n# correct\nggplot(cw, aes(weight, Time)) + geom_point()\n\n# correct\nggplot(cw, aes(weight, Time)) + \n  geom_point()\n\n# incorrect \nggplot(cw, aes(weight, Time)) \n  + geom_point()"
-  },
-  {
-    "objectID": "chart-basics.html#another-variable",
-    "href": "chart-basics.html#another-variable",
-    "title": "R chart basics",
-    "section": "Another variable",
-    "text": "Another variable\nColor encodes a third variable. The graph does not differentiate between the diets. In the next step, we use color to encode Diet, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being “mapped” must be names of variables in the cw data frame.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, color = factor(Diet))) +\n  geom_point()\n\n\n\n\nIt is difficult to conclude anything from this graph as the points are printed on top of one another (with diet 4 overprinting diet 3 which overprints diet 2, etc.)."
-  },
-  {
-    "objectID": "chart-basics.html#faceted-chart",
-    "href": "chart-basics.html#faceted-chart",
-    "title": "R chart basics",
-    "section": "Faceted chart",
-    "text": "Faceted chart\nFactor variables. Before we continue, we make an important change to the cw dataset by transforming Diet and Time into factor variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.\nThe := operator (from data.table) alters variables “in-place”, with no explicit assignment (&lt;-). We revisit the := operator in the R data basics tutorial.\n\n# create factors\ncw[, Diet := factor(Diet)]\ncw[, Time := factor(Time)]\n\n# notice the difference?\nsummary(cw) \n#&gt;      Chick       Diet         Time         weight     \n#&gt;  Min.   : 1.00   1:220   0      : 50   Min.   : 35.0  \n#&gt;  1st Qu.:13.00   2:120   2      : 50   1st Qu.: 63.0  \n#&gt;  Median :26.00   3:120   4      : 49   Median :103.0  \n#&gt;  Mean   :25.75   4:118   6      : 49   Mean   :121.8  \n#&gt;  3rd Qu.:38.00           8      : 49   3rd Qu.:163.8  \n#&gt;  Max.   :50.00           10     : 49   Max.   :373.0  \n#&gt;                          (Other):282\n\nfacet_wrap() function. facet_wrap() is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets.\n\n# create facets by Diet \nggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +\n  geom_point() +\n  facet_wrap(vars(Diet)) +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\nExercise 2.4Answer\n\n\n\nTo address “overprinting” (where points print over other points in the same position), replace geom_point() with geom_jitter().\nWhat observations about the data can you make?\n\n\n\n\n\n\n\n\n\nJittering allows a much better view of the full data set.\nDiet 4 has the least variability.\nDiet 3 seems to have the highest weights.\nWe can’t really say anything about the mean effect of each diet.\n\n\n\n\n\nExercise 2.5Answer\n\n\nFor the legend.position argument, try using “top”, “left” and “none”. Do we really need a legend for this plot?\n\n\n\n\n\n\n\nHere, the legend.position argument is “none”. The diet types are in the panel headers, so a legend is unnecessary."
-  },
-  {
-    "objectID": "chart-basics.html#mean-line-chart",
-    "href": "chart-basics.html#mean-line-chart",
-    "title": "R chart basics",
-    "section": "Mean line chart",
-    "text": "Mean line chart\nNext we plot the mean changes over time for each diet using the stat_summary() function. Because we do not have facets this time, we use the default legend.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet)) +\n  stat_summary(fun = \"mean\", geom = \"line\")\n\n\n\n\nWe see that diet 3 has the highest mean weight gain by the end of the experiment but we don’t have any information about the variation (uncertainty) in the data.\n\nExercise 2.6Answer\n\n\n\nWhat happens when you add geom_point() to the plot above? Don’t forget the +.\nDoes it make a difference if you put it before or after stat_summary(...)?\nHint: Look carefully at how the graph is plotted.\n\n\n\n\n\n\n\n\n\nThe chart is the same either way.\nThe underlying idea in ggplot2 is that a chart is assembled in layers, adding a new layer to previous layers using the + operator."
-  },
-  {
-    "objectID": "chart-basics.html#box-whisker-plot",
-    "href": "chart-basics.html#box-whisker-plot",
-    "title": "R chart basics",
-    "section": "Box & whisker plot",
-    "text": "Box & whisker plot\nTo see variation between the different diets we use geom_boxplot() to plot a box & whisker plot. A note of caution—the number of chicks per diet is relatively low to produce this plot.\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +\n  facet_wrap(vars(Diet)) +\n  geom_boxplot() +\n  theme(legend.position = \"none\") +\n  ggtitle(\"Changing distributions of chick weight by diet and elapsed time\")\n\n\n\n\n\nDiet 3 seems to have the highest “average” weight gain\nDiet 4 seems to have the least amount of variation\n\n\nExercise 2.7Answer\n\n\nTo the plot above, edit the axis labels using xlab() for the x-axis label and ylab() for the y-axis label. The labels should be,\n\nx-axis: “Time (days)”\ny-axis: “Weight (grams)”\n\nHint: Add a plus symbol (+) at the end of the current last line, then add a the x-label layer using the xlab() function. Repeat for the y-label. You can type help(xlab) in the Console to view its help page."
-  },
-  {
-    "objectID": "chart-basics.html#scatterplot-with-mean-line",
-    "href": "chart-basics.html#scatterplot-with-mean-line",
-    "title": "R chart basics",
-    "section": "Scatterplot with mean line",
-    "text": "Scatterplot with mean line\nLet’s finish with a plot that you might include in a publication\n\nggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet)) +\n  facet_wrap(vars(Diet)) +\n  stat_summary(fun = \"mean\", geom = \"line\", colour= \"black\") +\n  geom_jitter() +\n  theme(legend.position = \"none\") +\n  ggtitle(\"Chick weight by diet and elapsed time\") +\n  xlab(\"Time (days)\") +\n  ylab(\"Weight (grams)\")\n\n\n\n\nNote that I printed the line layer first then printed the points over them to let the data be prominent.\n\nExercise 2.8Answer\n\n\n\nRead the help page for the facet_wrap() function\nSee if you can edit the code slightly to make the facets print out row-wise, as in 1 row and 4 columns of charts.\n\nWhat visual advantages does this arrangement provide?\nWhat visual disadvantages?"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "2024 MIDFIELD Institute\nLocation: Virtual\nDate: June 11–13\nTime: 1–5 pm Eastern Time (US)\n\n\n\n\n\n\nRegistration. Click here to email us that you are interested in attending the Institute. If the link fails, email Susan Lord (slord@sandiego.edu) with the subject line Register for 2024 MIDFIELD Institute.\n\n\n\nWe welcome faculty, staff, graduate students, and anyone interested in exploring MIDFIELD.\nOur learning objectives can be categorized in two broad classes: qualitative and computational. Qualitatively, by the end of the workshop participants should be able to:\n\nDescribe the data available in MIDFIELD\n\nDescribe how the MIDFIELD data are organized\n\nDescribe key principles of effective data visualization\nDraft a research question that can be addressed using MIDFIELD\n\nComputationally, participants should be able use midfieldr, an R package specifically designed for use with MIDFIELD, to:\n\nSubset MIDFIELD data to obtain a population to study\n\nClassify student records by desired groupings\n\nSummarize the data by groups and display results"
-  },
-  {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "Open source licenses",
-    "section": "",
-    "text": "Image: License and Registration Please by Thomas Hawk is licensed under CC BY-NC 2.0\n\n\nThe following licenses apply to the text, data, and code in these workshops. Our goal is to minimize legal encumbrances to the dissemination, sharing, use, and re-use of this work.\n\nCC-BY 4.0 for text.\n\nGPL-3 for code.\n\nCC0 for data.\n\nThe existing rights of authors whose text, code, or data are cited are reserved to those authors.\nWhere noted, works adapted under another license are distributed under the same license."
   },
   {
     "objectID": "r-resources.html",
@@ -432,12 +453,5 @@
     "title": "Resources",
     "section": "Data visualization using R",
     "text": "Data visualization using R\n\nHealy (2019) Hands-on introduction to principles and practices of looking at and prsenting data using R and ggplot2.\nMachlis (2019) Especially useful for spreadsheet users who want to “graduate” to a reproducible scripted programming language."
-  },
-  {
-    "objectID": "agenda.html#workshop",
-    "href": "agenda.html#workshop",
-    "title": "Program",
-    "section": "Workshop",
-    "text": "Workshop\nAgenda TBD"
   }
 ]
