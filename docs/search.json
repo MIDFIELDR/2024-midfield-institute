@@ -242,7 +242,7 @@
     "href": "before-you-arrive.html#install-midfieldr",
     "title": "Before you arrive",
     "section": "Install midfieldr",
-    "text": "Install midfieldr\nmidfieldr is not yet available from CRAN. The development version for the Institute is midfieldr 1.0.0.9030. To install from thedrat repository, type in the Console:\n# type in the RStudio Console \ninstall.packages(\"midfieldr\", \n                 repos = \"https://MIDFIELDR.github.io/drat/\", \n                 type = \"source\")\n\n\n\n\n\n\nTip\n\n\n\nIf you get an error message like the one below, it means that the packages in the dependencies list have not been installed.\n\nThe remedy is to install any packages listed in the error message and then install midfieldr again.\n\n\nOnce midfieldr is successfully installed, you can confirm the installation by running the following lines to bring up the package help page in the Help window.\n# type in the RStudio Console \nlibrary(\"midfieldr\")\n? \"midfieldr-package\"\n\n# or, equivalently\nhelp(\"midfieldr-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
+    "text": "Install midfieldr\nInstall with:\n# type in the RStudio Console \ninstall.packages(\"midfieldr\")\n\n\n\n\n\n\nTip\n\n\n\nIf you get an error message like the one below, it means that the packages in the dependencies list have not been installed.\n\nThe remedy is to install any packages listed in the error message and then install midfieldr again.\n\n\nOnce midfieldr is successfully installed, you can confirm the installation by running the following lines to bring up the package help page in the Help window.\n# type in the RStudio Console \nlibrary(\"midfieldr\")\n? \"midfieldr-package\"\n\n# or, equivalently\nhelp(\"midfieldr-package\")\nIf the installation is successful, the code chunk above should produce a view of the help page as shown here."
   },
   {
     "objectID": "before-you-arrive.html#install-midfielddata",
@@ -389,7 +389,7 @@
     "href": "index.html",
     "title": "Welcome",
     "section": "",
-    "text": "2024 MIDFIELD Institute\nLocation: Virtual\nDate: June 10–13\nTime: 1–5 pm Eastern Time (US)\n\n\n\n\n\n\nRegistration. Click here to email us that you are interested in attending the Institute. If the link fails, email Susan Lord (slord@sandiego.edu) with the subject line Register for 2024 MIDFIELD Institute.\n\n\n\nWe welcome faculty, staff, graduate students, and anyone interested in exploring MIDFIELD.\nOur learning objectives can be categorized in two broad classes: qualitative and computational. Qualitatively, by the end of the workshop participants should be able to:\n\nDescribe the data available in MIDFIELD\n\nDescribe how the MIDFIELD data are organized\n\nDescribe key principles of effective data visualization\nDraft a research question that can be addressed using MIDFIELD\n\nComputationally, participants should be able use midfieldr, an R package specifically designed for use with MIDFIELD, to:\n\nSubset MIDFIELD data to obtain a population to study\n\nClassify student records by desired groupings\n\nSummarize the data by groups and display results"
+    "text": "2024 MIDFIELD Institute\nLocation: Virtual\nDate: June 11–13\nTime: 1–5 pm Eastern Time (US)\n\n\n\n\n\n\nRegistration. Click here to email us that you are interested in attending the Institute. If the link fails, email Susan Lord (slord@sandiego.edu) with the subject line Register for 2024 MIDFIELD Institute.\n\n\n\nWe welcome faculty, staff, graduate students, and anyone interested in exploring MIDFIELD.\nOur learning objectives can be categorized in two broad classes: qualitative and computational. Qualitatively, by the end of the workshop participants should be able to:\n\nDescribe the data available in MIDFIELD\n\nDescribe how the MIDFIELD data are organized\n\nDescribe key principles of effective data visualization\nDraft a research question that can be addressed using MIDFIELD\n\nComputationally, participants should be able use midfieldr, an R package specifically designed for use with MIDFIELD, to:\n\nSubset MIDFIELD data to obtain a population to study\n\nClassify student records by desired groupings\n\nSummarize the data by groups and display results"
   },
   {
     "objectID": "license.html",
@@ -432,5 +432,12 @@
     "title": "Resources",
     "section": "Data visualization using R",
     "text": "Data visualization using R\n\nHealy (2019) Hands-on introduction to principles and practices of looking at and prsenting data using R and ggplot2.\nMachlis (2019) Especially useful for spreadsheet users who want to “graduate” to a reproducible scripted programming language."
+  },
+  {
+    "objectID": "agenda.html#workshop",
+    "href": "agenda.html#workshop",
+    "title": "Program",
+    "section": "Workshop",
+    "text": "Workshop\nAgenda TBD"
   }
 ]
