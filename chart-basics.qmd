@@ -28,15 +28,15 @@ The rationale for using the ggplot2 package instead of other R graphics environm
 
 - Have completed the [Before you arrive](before-you-arrive.html) instructions
 - Have completed the [R basics](r-basics.html) guide 
-- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2023.Rproj`
+- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`
 
 If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
 
-    midfield-institute-2023\
+    midfield-institute-2024\
         data\
         results\
         scripts\
-        midfield-institute-2023.Rproj
+        midfield-institute-2024.Rproj
 
 
 ## Getting started 
@@ -105,7 +105,7 @@ We use `fwrite()` to save the file to the `data` directory in your project folde
 
 ```r
 # data URL
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv"
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/chick_weight.csv"
 
 # download the data
 chick_weight <- fread(data_url)
@@ -118,7 +118,7 @@ These lines of code are run only once. After the data are downloaded, these line
 
 ```{r}
 # # data URL
-# data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv"
+# data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/chick_weight.csv"
 # 
 # # download the data
 # chick_weight <- fread(data_url)

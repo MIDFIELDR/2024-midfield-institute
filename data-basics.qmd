@@ -45,15 +45,15 @@ with some intentional similarity to SQL. Here `i` operates on rows, `j` operates
 - Have completed the [Before you arrive](before-you-arrive.html) instructions
 - Have completed the [R basics](r-basics.html) guide 
 - Have completed the [R chart basics](chart-basics.html) guide 
-- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2023.Rproj`
+- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`
 
 If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
 
-    midfield-institute-2023\
+    midfield-institute-2024\
         data\
         results\
         scripts\
-        midfield-institute-2023.Rproj
+        midfield-institute-2024.Rproj
 
 ## Getting started 
 

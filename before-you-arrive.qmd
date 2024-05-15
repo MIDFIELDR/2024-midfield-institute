@@ -94,22 +94,22 @@ If you prefer basic written instructions,
 
 In the dialog box that appears, 
   
-- Type the workshop name as the directory name, for example, `midfield-institute-2023`    
+- Type the workshop name as the directory name, for example, `midfield-institute-2024`    
 - Use the browse button to select a location on your computer to create the project  folder  
 - Click the *Create Project* button  
  
-Whenever you work with the workshop materials, launch the `midfield-institute-2023.Rproj` file to start the session. 
+Whenever you work with the workshop materials, launch the `midfield-institute-2024.Rproj` file to start the session. 
 
 ## Add some folders 
 
-While file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project `midfield-institute-2023`, the minimal directory structure has three folders in it plus the `.Rproj` file at the top level. 
+While file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project `midfield-institute-2024`, the minimal directory structure has three folders in it plus the `.Rproj` file at the top level. 
 
 
-    midfield-institute-2023\
+    midfield-institute-2024\
         data\
         results\
         scripts\
-        midfield-institute-2023.Rproj
+        midfield-institute-2024.Rproj
 
 
 We use the folders as follows: 
