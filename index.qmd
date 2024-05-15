@@ -3,9 +3,10 @@ title: "Welcome"
 ---
 
 **2024 MIDFIELD Institute**  
-Location: Virtual   
-Date: June 12--14 
-Time: 1--5 pm Eastern Time (US)   
+Location: Virtual  
+Dates: June 11 (office hours)  
+$\qquad\ \,$ June 12--14 (workshop)  
+Time: 1--5 pm Eastern Time (US)  
 
 ::: {layout="[[1,3]]"}
 ![](figures/midfield-grad-logo.png)
