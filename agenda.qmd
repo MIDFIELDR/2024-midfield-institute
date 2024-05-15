@@ -23,4 +23,6 @@ If you are new to R (or new to the ggplot2 or data.table packages), we recommend
 
 ## Workshop
 
-Agenda TBD
+June 11: Office hours
+
+June 12--14:  Workshop (agenda TBD)

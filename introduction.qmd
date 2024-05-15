@@ -28,7 +28,7 @@ Susan Lord
 
 Matthew Ohland 
 
-: MIDFIELD Director and Principal Investigator. He is Professor and Associate Head of Engineering Education at Purdue University and a Fellow of IEEE, ASEE, and AAAS. Dr. Ohland has considerable experience facilitating workshops including the NETI and CATME training. (ohland@purdue.edu)
+: MIDFIELD Director and Principal Investigator. He is the the Dale and Suzi Gallagher Professor and Associate Head of Engineering Education at Purdue University and a Fellow of IEEE, ASEE, and AAAS. Dr. Ohland has considerable experience facilitating workshops including the NETI and CATME training. (ohland@purdue.edu)
 
 Marisa Orr
 
@@ -36,11 +36,11 @@ Marisa Orr
 
 Russell Long 
 
-: MIDFIELD Managing Director and Data Steward. He developed the stratified data sample for the R packages used in this workshop. Mr. Long is a SAS expert with over twenty years of experience in institutional research and assessment. (ralong@purdue.edu)
+: (Retired.) MIDFIELD Managing Director and Data Steward. He developed the stratified data sample for the R packages used in this workshop. Mr. Long is a SAS expert with over twenty years of experience in institutional research and assessment. (ralong@purdue.edu)
 
 Richard Layton 
 
-: MIDFIELD  Data Visualization Specialist and Professor Emeritus of Mechanical Engineering, Rose-Hulman Institute of Technology. He is the lead developer of the R packages used with the MIDFIELD practice data sets and the associated tutorials and workshop activities. (graphdoctor@gmail.com) 
+: MIDFIELD Data Visualization Specialist and Professor Emeritus of Mechanical Engineering, Rose-Hulman Institute of Technology. He is the lead developer of the R packages used with the MIDFIELD practice data sets and the associated tutorials and workshop activities. (graphdoctor@gmail.com) 
 
 
 
