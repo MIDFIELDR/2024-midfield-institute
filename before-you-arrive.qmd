@@ -59,10 +59,9 @@ Alternatively, Windows users can use the installr package:
 
 This section is for anyone who has not yet installed R or RStudio. 
 
-The first steps are to install R and RStudio. Windows users may have to login as an Administrator before installing the software. 
+The first steps are to install R and RStudio. Both R and RStudio are free. Windows users may have to login as an Administrator before installing the software. 
 
-- [Install R](https://cloud.r-project.org) for your operating system  (free, open-source)
-- [Install RStudio](https://www.rstudio.com/products/rstudio/download/#download), a user interface for R (free)
+- [Install R and RStudio](https://posit.co/download/rstudio-desktop/#download) from the "Posit" website. Alternatively, you can download R directly from the [R website](https://cloud.r-project.org).
 
 
 Once the installation is complete, you can take a 2-minute tour of the RStudio interface.

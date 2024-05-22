@@ -151,7 +151,7 @@ Please check in with us before leaving the virtual meeting.
 [Link TBD]() Join the online meeting
 
 **Data visualization session 2**    
-<!-- [![](resources/download-icon.png) slides](resources/chart-repertoire-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2023-chart-repertoire-handout.pdf) -->
+<!-- [![](resources/download-icon.png) slides](resources/chart-repertoire-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2024-chart-repertoire-handout.pdf) -->
 *1:00--2:00 Eastern Time*    
 A hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions. 
 
@@ -159,7 +159,7 @@ A hard-copy printout of the worksheet is recommended for our think-share activit
 
 
 **Work on your research question**    
-<!-- [![](resources/download-icon.png) suggested goals](resources/2023-draft-a-research-question.pdf)     -->
+<!-- [![](resources/download-icon.png) suggested goals](resources/2024-draft-a-research-question.pdf)     -->
 *2:00--3:30*    
 Small-group work. Consult with us on your progress, discussion 
 
