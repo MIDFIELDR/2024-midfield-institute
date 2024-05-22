@@ -191,17 +191,47 @@
     "href": "agenda.html#pre-workshop",
     "title": "Program",
     "section": "Pre-workshop",
-    "text": "Pre-workshop\nPre-workshop tutorials\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\n\nR chart basics\nR data basics",
+    "text": "Pre-workshop\nPre-workshop tutorials\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\n\nR chart basics\nR data basics\n\nEach tutorial can be completed in under an hour if you have any experience with procedural programming languages such as MATLAB, R, or Python. Programming novices might need more than an hour each.",
     "crumbs": [
       "Program"
     ]
   },
   {
-    "objectID": "agenda.html#workshop",
-    "href": "agenda.html#workshop",
+    "objectID": "agenda.html#tuesday-june-11",
+    "href": "agenda.html#tuesday-june-11",
     "title": "Program",
-    "section": "Workshop",
-    "text": "Workshop\nJune 11: Office hours\nJune 12–14: Workshop (agenda TBD)",
+    "section": "Tuesday, June 11",
+    "text": "Tuesday, June 11\nLink TBD Join the online office hours\nOffice hours\n1:00–5:00 pm Eastern Time. We are available for answering questions and resolving problems you encounter installing R or working with R in the three pre-workshop tutorials.",
+    "crumbs": [
+      "Program"
+    ]
+  },
+  {
+    "objectID": "agenda.html#wednesday-june-12",
+    "href": "agenda.html#wednesday-june-12",
+    "title": "Program",
+    "section": "Wednesday, June 12",
+    "text": "Wednesday, June 12\nLink TBD Join the online meeting\nIntroductions\n1:00–1:50 Eastern Time\nIntroduce facilitators and participants, objectives, and MIDFIELD.\nBreak\n1:50–2:00\nExploring data structure\n2:00–3:00\nExploring data excerpts manually.\n\nStudent 3 data example\nStudent 4 data example\n\nCIP website NCES Classification of Instructional Programs (CIP)\n\nGuided practice.\n3:00–5:00\nSelf-paced case study using midfieldr and midfielddata. Real-time help.\n\nCase study: Goals A short reading.\n\nCase study: Data A midfieldr tutorial.\n\nWrap-up\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Data” tutorial.\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\n\nOptional resources\n\nTopics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link].",
+    "crumbs": [
+      "Program"
+    ]
+  },
+  {
+    "objectID": "agenda.html#thursday-june-13",
+    "href": "agenda.html#thursday-june-13",
+    "title": "Program",
+    "section": "Thursday, June 13",
+    "text": "Thursday, June 13\nLink TBD Join the online meeting\nMetaphors and metrics\n1:00–1:30 Eastern Time\nPipelines, pathways, and ecosystems.\nBreak\n1:30–1:40\nGuided practice\n1:40–2:30\nCase study: Results Continue the case study.\nData visualization session 1\n 2:30–3:20\nA hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are\n\nImproving perception of stories in the data\nFacilitating quantitative reasoning about the data\nEnhancing credibility of evidence supporting an argument\n\nBreak\n3:20–3:30\nA practice research question\n3:30–5:00\nWe partially define a practice research question to be examined using midfieldr and midfielddata. Working in small groups and given a specific metric, choose programs and student blocs and develop the appropriate data and chart(s) to explore possible stories in your data. Report out your progress by the end of the day.\nResources\n\ndata dictionaries: student practice data / research data\n\ndata dictionaries: term practice data / research data\n\ndata dictionaries: course practice data / research data\n\ndata dictionaries: degree practice data / research data\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Results” tutorial.\nComplete the practice research question to your satisfaction.\nList 2 or 3 research questions you would like to work on during the final day of the workshop.\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\n\nOptional resources\n\nTopics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link].\nDeveloping the migration yield metric.  slides An optional supplement to the metaphors and metrics session that outlines the iterative process between the logic of an argument and the logic of a chart that led us to develop the migration yield metric.",
+    "crumbs": [
+      "Program"
+    ]
+  },
+  {
+    "objectID": "agenda.html#friday-june-14",
+    "href": "agenda.html#friday-june-14",
+    "title": "Program",
+    "section": "Friday, June 14",
+    "text": "Friday, June 14\nLink TBD Join the online meeting\nData visualization session 2\n 1:00–2:00 Eastern Time\nA hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions.\nWork on your research question\n 2:00–3:30\nSmall-group work. Consult with us on your progress, discussion\nResources\n\ndata dictionaries: student practice data / research data\n\ndata dictionaries: term practice data / research data\n\ndata dictionaries: course practice data / research data\n\ndata dictionaries: degree practice data / research data\n\nProgress report\n3:30–4:30\nShare with the group.\nWrap up\n 4:40–4:45",
     "crumbs": [
       "Program"
     ]
@@ -434,50 +464,50 @@
     ]
   },
   {
-    "objectID": "manage/agenda.html",
-    "href": "manage/agenda.html",
+    "objectID": "manage/2023-agenda.html",
+    "href": "manage/2023-agenda.html",
     "title": "Program",
     "section": "",
     "text": "Image: Today’s Agenda by Rajiv Patel is licensed under CC BY-NC 2.0"
   },
   {
-    "objectID": "manage/agenda.html#pre-workshop",
-    "href": "manage/agenda.html#pre-workshop",
+    "objectID": "manage/2023-agenda.html#pre-workshop",
+    "href": "manage/2023-agenda.html#pre-workshop",
     "title": "Program",
     "section": "Pre-workshop",
     "text": "Pre-workshop\nPre-workshop tutorials\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\n\nR chart basics\nR data basics"
   },
   {
-    "objectID": "manage/agenda.html#tuesday-july-11",
-    "href": "manage/agenda.html#tuesday-july-11",
+    "objectID": "manage/2023-agenda.html#tuesday-july-11",
+    "href": "manage/2023-agenda.html#tuesday-july-11",
     "title": "Program",
     "section": "Tuesday, July 11",
     "text": "Tuesday, July 11\nJoin the online office hours\nOffice hours\n1:00–5:00 pm Eastern Time. We are available for answering questions and resolving problems you encounter installing R or working with R in the three pre-workshop tutorials."
   },
   {
-    "objectID": "manage/agenda.html#wednesday-july-12",
-    "href": "manage/agenda.html#wednesday-july-12",
+    "objectID": "manage/2023-agenda.html#wednesday-july-12",
+    "href": "manage/2023-agenda.html#wednesday-july-12",
     "title": "Program",
     "section": "Wednesday, July 12",
     "text": "Wednesday, July 12\nJoin the online meeting\nIntroductions  slides\n1:00–1:50 Eastern Time\nIntroduce facilitators and participants, objectives, and MIDFIELD.\nBreak\n1:50–2:00\nExploring data structure  slides\n2:00–3:00\nExploring data excerpts manually.\n\nStudent 3 data example\nStudent 4 data example\n\nCIP website NCES Classification of Instructional Programs (CIP)\n\nGuided practice.\n3:00–5:00\nSelf-paced case study using midfieldr and midfielddata. Real-time help.\n\nCase study: Goals A short reading.\n\nCase study: Data A midfieldr tutorial.\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Data” tutorial.\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\nOptional (FYI). Topics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link]."
   },
   {
-    "objectID": "manage/agenda.html#thursday-july-13",
-    "href": "manage/agenda.html#thursday-july-13",
+    "objectID": "manage/2023-agenda.html#thursday-july-13",
+    "href": "manage/2023-agenda.html#thursday-july-13",
     "title": "Program",
     "section": "Thursday, July 13",
-    "text": "Thursday, July 13\nJoin the online meeting\nMetaphors and metrics  slides\n1:00–1:30 Eastern Time\nPipelines, pathways, and ecosystems.\nSupplement.  slides. Finding the migration yield metric. A supplemental reference that outlines our iterative process of develop an argument that concludes with a new metric (migration yield) and its chart. Illustrates the iterative interplay between one’s visual rhetoric and one’s verbal rhetoric.\nBreak\n1:30–1:40\nGuided practice\n1:40–2:30\nCase study: Results Continue the case study.\nData visualization session 1  slides  worksheets\n2:30–3:20\nA hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are\n\nImproving perception of stories in the data\nFacilitating quantitative reasoning about the data\nEnhancing credibility of evidence supporting an argument\n\nBreak\n3:20–3:30\nDrafting a research question.  slides\n3:30–5:00\nDefine a problem in the data that interests you with our assistance, form small groups. Report out your research questions and discussion.\nResources\n\n(optional) Getting started (midfieldr article) to inspect the variables and values in the four practice data tables.\n(optional) Data dictionaries\n\nstudent table practice data / research data\nterm table practice data / research data\ncourse table practice data / research data\ndegree table practice data / research data\n\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Results” tutorial.\nRefine your plan for working on your research question.\n\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\nOptional (FYI). Topics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link]."
+    "text": "Thursday, July 13\nJoin the online meeting\nMetaphors and metrics  slides\n1:00–1:30 Eastern Time\nPipelines, pathways, and ecosystems.\nSupplement.  slides. Finding the migration yield metric. A supplemental reference that outlines our iterative process of develop an argument that concludes with a new metric (migration yield) and its chart. Illustrates the iterative interplay between one’s visual rhetoric and one’s verbal rhetoric.\nBreak\n1:30–1:40\nGuided practice\n1:40–2:30\nCase study: Results Continue the case study.\nData visualization session 1  slides  worksheets\n2:30–3:20\nA hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are\n\nImproving perception of stories in the data\nFacilitating quantitative reasoning about the data\nEnhancing credibility of evidence supporting an argument\n\nBreak\n3:20–3:30\nDrafting a research question.\n3:30–5:00\nDefine a problem in the data that interests you with our assistance, form small groups. Report out your research questions and discussion.\nResources\n\n(optional) Getting started (midfieldr article) to inspect the variables and values in the four practice data tables.\n(optional) Data dictionaries\n\nstudent table practice data / research data\nterm table practice data / research data\ncourse table practice data / research data\ndegree table practice data / research data\n\n\nWrap-up.\nbefore 5:00\nPlease check in with us before leaving the virtual meeting.\nHomework\n\nComplete the guided practice “Results” tutorial.\nRefine your plan for working on your research question.\n\nFor our think-share activities in tomorrow’s data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow’s program below.)\nOptional (FYI). Topics from today’s guided practice are developed in greater detail in midfieldr package vignettes [link]."
   },
   {
-    "objectID": "manage/agenda.html#friday-july-14",
-    "href": "manage/agenda.html#friday-july-14",
+    "objectID": "manage/2023-agenda.html#friday-july-14",
+    "href": "manage/2023-agenda.html#friday-july-14",
     "title": "Program",
     "section": "Friday, July 14",
     "text": "Friday, July 14\nJoin the online meeting\nData visualization session 2: Expanding your graphical repertoire  slides  worksheets\n1:00–2:00 Eastern Time\nA hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions.\nGuest speaker  slides Sankey diagram by Erica Ives\n2:00–2:10\nWork on your research question  suggested goals\n2:10–3:30\nConsult with us on your progress, discussion\nData dictionaries for the MIDFIELD research data set.\n\nstudent\nterm\ncourse\ndegree\n\nProgress report\n3:30–4:30\nShare with the group.\nWrap up  slides\n4:40–4:45"
   },
   {
-    "objectID": "manage/agenda.html#after-the-workshop",
-    "href": "manage/agenda.html#after-the-workshop",
+    "objectID": "manage/2023-agenda.html#after-the-workshop",
+    "href": "manage/2023-agenda.html#after-the-workshop",
     "title": "Program",
     "section": "After the workshop",
     "text": "After the workshop\nR resources Additional links and books you might find useful"

@@ -19,10 +19,169 @@ If you are new to R (or new to the ggplot2 or data.table packages), we recommend
 - [R chart basics](chart-basics.html)
 - [R data basics](data-basics.html)
 
+Each tutorial can be completed in under an hour if you have any experience with procedural programming languages such as MATLAB, R, or Python. Programming novices might need more than an hour each. 
 
 
-## Workshop
 
-June 11: Office hours
 
-June 12--14:  Workshop (agenda TBD)
+
+
+## Tuesday, June 11
+
+
+[Link TBD]() Join the online office hours    
+
+
+**Office hours**    
+*1:00--5:00 pm Eastern Time.*  We are available for answering questions and resolving problems you encounter installing R or working with R in the three pre-workshop tutorials. 
+
+
+
+
+
+
+
+## Wednesday, June 12
+
+[Link TBD]() Join the online meeting
+
+**Introductions**    
+*1:00--1:50 Eastern Time*    
+Introduce facilitators and participants, objectives, and  MIDFIELD.  
+
+**Break**    
+*1:50--2:00*    
+
+**Exploring data structure**        
+*2:00--3:00*   
+Exploring data excerpts manually.   
+
+- [Student 3 data example](resources/Example3.pdf) 
+- [Student 4 data example](resources/Example4.pdf)    
+- [CIP website](https://nces.ed.gov/ipeds/cipcode/browse.aspx?y=55) NCES Classification of Instructional Programs (CIP) 
+
+**Guided practice.**    
+*3:00--5:00*    
+Self-paced case study using midfieldr and midfielddata. Real-time help.
+
+- [Case study: Goals](https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html) A short reading.   
+- [Case study: Data](https://midfieldr.github.io/midfieldr/articles/art-002-case-data.html) A midfieldr tutorial. 
+
+
+
+**Wrap-up**    
+*before 5:00*    
+Please check in with us before leaving the virtual meeting.
+
+
+
+**Homework**
+
+- Complete the guided practice "Data" tutorial. 
+- For our think-share activities in tomorrow's data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow's program below.)
+
+[Optional resources]{.important} 
+
+- Topics from today's guided practice are developed in greater detail in midfieldr package vignettes  [[link]](https://midfieldr.github.io/midfieldr/articles/).
+
+
+
+
+
+## Thursday, June 13
+
+[Link TBD]() Join the online meeting
+
+**Metaphors and metrics**  
+*1:00--1:30 Eastern Time*  
+Pipelines, pathways, and ecosystems.  
+
+ 
+
+**Break**    
+*1:30--1:40*  
+
+**Guided practice**  
+*1:40--2:30*  
+[Case study: Results](https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html) Continue the case study.  
+
+**Data visualization session 1**  
+<!-- [![](resources/download-icon.png) slides](resources/effective-charts-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2024-effective-charts-handout.pdf)     -->
+*2:30--3:20*  
+A hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are  
+  
+- Improving **perception** of stories in the data
+- Facilitating quantitative **reasoning** about the data
+- Enhancing **credibility** of evidence supporting an argument
+ 
+ **Break**    
+*3:20--3:30* 
+
+**A practice research question**  
+*3:30--5:00*  
+
+We partially define a practice research question to be examined using midfieldr and midfielddata. Working in small groups and given a specific metric, choose programs and student blocs and develop the appropriate  data and chart(s) to explore possible stories in your data. Report out your progress by the end of the day. 
+
+[Resources]{.important} 
+
+- data dictionaries: student [practice data](https://midfieldr.github.io/midfielddata/reference/student.html) /  [research data](resources/research-variables-student.pdf)  
+- data dictionaries: term [practice data](https://midfieldr.github.io/midfielddata/reference/term.html) /  [research data](resources/research-variables-term.pdf)  
+- data dictionaries: course [practice data](https://midfieldr.github.io/midfielddata/reference/course.html) /  [research data](resources/research-variables-course.pdf)  
+- data dictionaries: degree [practice data](https://midfieldr.github.io/midfielddata/reference/degree.html) /  [research data](resources/research-variables-degree.pdf)  
+
+**Wrap-up.**  
+*before 5:00*  
+Please check in with us before leaving the virtual meeting.
+
+**Homework**
+
+- Complete the guided practice "Results" tutorial. 
+- Complete the practice research question to your satisfaction. 
+- List 2 or 3 research questions you would like to work on during the final day of the workshop.
+- For our think-share activities in tomorrow's data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow's program below.)
+
+[Optional resources]{.important} 
+
+- Topics from today's guided practice are developed in greater detail in midfieldr package vignettes  [[link]](https://midfieldr.github.io/midfieldr/articles/).
+- *Developing the migration yield metric.* [![](resources/download-icon.png) slides  ](resources/Finding-the-migration-yield-metric.pdf) An optional supplement to the metaphors and metrics session that outlines the iterative process between the logic of an argument and the logic of a chart that led us to develop the *migration yield* metric. 
+
+
+## Friday, June 14
+
+[Link TBD]() Join the online meeting
+
+**Data visualization session 2**    
+<!-- [![](resources/download-icon.png) slides](resources/chart-repertoire-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2023-chart-repertoire-handout.pdf) -->
+*1:00--2:00 Eastern Time*    
+A hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions. 
+
+
+
+
+**Work on your research question**    
+<!-- [![](resources/download-icon.png) suggested goals](resources/2023-draft-a-research-question.pdf)     -->
+*2:00--3:30*    
+Small-group work. Consult with us on your progress, discussion 
+
+[Resources]{.important} 
+
+- data dictionaries: student [practice data](https://midfieldr.github.io/midfielddata/reference/student.html) /  [research data](resources/research-variables-student.pdf)  
+- data dictionaries: term [practice data](https://midfieldr.github.io/midfielddata/reference/term.html) /  [research data](resources/research-variables-term.pdf)  
+- data dictionaries: course [practice data](https://midfieldr.github.io/midfielddata/reference/course.html) /  [research data](resources/research-variables-course.pdf)  
+- data dictionaries: degree [practice data](https://midfieldr.github.io/midfielddata/reference/degree.html) /  [research data](resources/research-variables-degree.pdf)  
+
+
+
+
+
+
+**Progress report**    
+*3:30--4:30*    
+Share with the group. 
+
+
+
+
+**Wrap up**    
+<!-- [![](resources/download-icon.png) slides](resources/day-3-wrapup-slides.pdf)     -->
+*4:40--4:45*  
