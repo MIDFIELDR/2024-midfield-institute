@@ -331,7 +331,7 @@
     "href": "before-you-arrive.html#homework",
     "title": "Before you arrive",
     "section": "Homework",
-    "text": "Homework\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below. Completing these tutorials before attending the Institute will make your time with us that much more productive.\n\nR basics\nR chart basics\nR data basics\n\nOn Tuesday, July 11—the day before the Institute—we plan to hold online office hours to answer your questions about MIDFIELD and help resolve any problems you might be having using R or midfieldr.\nSee the Agenda for more information, including links for downloading handouts to be used in some of the sessions.",
+    "text": "Homework\nIf you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three pre-workshop tutorials for an introduction to R including manipulatings data and creating charts.\nCompleting these tutorials before attending the Institute will make your time with us that much more productive.",
     "crumbs": [
       "Before you arrive"
     ]
@@ -418,7 +418,7 @@
     "href": "introduction.html",
     "title": "Introduction",
     "section": "",
-    "text": "Image: A Cautious Introduction by Carol Blyberg is licensed under CC BY-NC 2.0\nThe MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD). The Institute ia an all-virtual meeting over several days.",
+    "text": "Image: A Cautious Introduction by Carol Blyberg is licensed under CC BY-NC 2.0\nThe MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD). The Institute is an all-virtual meeting over several days.",
     "crumbs": [
       "Introduction"
     ]

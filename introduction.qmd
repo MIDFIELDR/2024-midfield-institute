@@ -4,7 +4,7 @@ title: "Introduction"
 
 ![Image: *A Cautious Introduction* by Carol Blyberg is licensed under [CC BY-NC 2.0](https://creativecommons.org/licenses/by-nc/2.0/legalcode)](figures/introduction.png)
 
-The MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD).  The Institute ia an all-virtual meeting over several days.
+The MIDFIELD Institute is a hands-on workshop that helps participants explore using the Multiple-Institution Database for Investigating Longitudinal Development (MIDFIELD).  The Institute is an all-virtual meeting over several days.
 
 
 

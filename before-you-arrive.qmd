@@ -272,12 +272,7 @@ You can turn this prompt off by reopening RStudio and use the pulldown menu:
 ## Homework
 
 
-If you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three introductory tutorials listed below.  Completing these tutorials before attending the Institute will make your time with us that much more productive. 
+If you are new to R (or new to the ggplot2 or data.table packages), we recommend you complete the three [pre-workshop tutorials](agenda.html) for an introduction to R including manipulating data and creating charts. 
 
-- [R basics](r-basics.html)
-- [R chart basics](chart-basics.html)
-- [R data basics](data-basics.html)
+Completing these tutorials before attending the Institute will make your time with us that much more productive. 
 
-On Tuesday, July 11---the day before the Institute---we plan to hold online office hours to answer your questions about MIDFIELD and help resolve any problems you might be having using R or midfieldr. 
-
-See the [Agenda](agenda.html) for more information, including links for downloading handouts to be used in some of the sessions. 

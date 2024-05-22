@@ -70,7 +70,7 @@ Blogs
 
 ## Data visualization using R
 
-- @Healy:2019 Hands-on introduction to principles and practices of looking at and prsenting data using R and ggplot2.
+- @Healy:2019 Hands-on introduction to principles and practices of looking at and presenting data using R and ggplot2.
 
 - @Machlis:2019 Especially useful for spreadsheet users who want to "graduate" to a reproducible scripted programming language. 
 
