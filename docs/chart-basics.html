@@ -291,14 +291,14 @@ div.csl-indent {
 <ul>
 <li>Have completed the <a href="before-you-arrive.html">Before you arrive</a> instructions</li>
 <li>Have completed the <a href="r-basics.html">R basics</a> guide</li>
-<li>Start your R session by launching the RStudio project you created, e.g., <code>midfield-institute-2023.Rproj</code></li>
+<li>Start your R session by launching the RStudio project you created, e.g., <code>midfield-institute-2024.Rproj</code></li>
 </ul>
 <p>If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:</p>
-<pre><code>midfield-institute-2023\
+<pre><code>midfield-institute-2024\
     data\
     results\
     scripts\
-    midfield-institute-2023.Rproj</code></pre>
+    midfield-institute-2024.Rproj</code></pre>
 </section>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
@@ -357,7 +357,7 @@ div.csl-indent {
 <p><span class="important">Download and save a CSV file.</span> We use the data.table <code>fread()</code> function to read the data set from the workshop repository (an Internet connection is required).</p>
 <p>We use <code>fwrite()</code> to save the file to the <code>data</code> directory in your project folder.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data URL</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/chick_weight.csv"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># download the data</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>chick_weight <span class="ot">&lt;-</span> <span class="fu">fread</span>(data_url)</span>
@@ -367,7 +367,7 @@ div.csl-indent {
 <p>These lines of code are run only once. After the data are downloaded, these lines can be commented out, e.g.,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # data URL</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data_url &lt;- "https://raw.githubusercontent.com/MIDFIELDR/2023-midfield-institute/main/data/chick_weight.csv"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data_url &lt;- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/chick_weight.csv"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # download the data</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chick_weight &lt;- fread(data_url)</span></span>
@@ -764,7 +764,7 @@ ggplot(cw, aes(weight, Time))
 </ul>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div class="cell" data-fig.asp="0.4">
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">

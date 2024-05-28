@@ -214,10 +214,7 @@ Once midfieldr is successfully installed, you can confirm the installation by ru
 ``` r
 # type in the RStudio Console 
 library("midfieldr")
-? "midfieldr-package"
-
-# or, equivalently
-help("midfieldr-package")
+?midfieldr
 ```
 
 If the installation is successful, the code chunk above should produce a view of the help page as shown here. 
@@ -244,7 +241,7 @@ Once the Console prompt ">" reappears, you can confirm a successful installation
 ```r
 # type in the RStudio Console  
 library("midfielddata")
-help("midfielddata-package")
+?midfielddata
 ```
 
 If the installation is successful, the code chunk above should produce a view of the help page as shown here.  
