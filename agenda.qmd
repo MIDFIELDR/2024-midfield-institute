@@ -105,8 +105,7 @@ Pipelines, pathways, and ecosystems.
 *1:40--2:30*  
 [Case study: Results](https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html) Continue the case study.  
 
-**Data visualization session 1**  
-<!-- [![](resources/download-icon.png) slides](resources/effective-charts-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2024-effective-charts-handout.pdf)     -->
+**Data visualization session 1** [![](resources/download-icon.png) worksheets](resources/2024-effective-charts-handout.pdf)    
 *2:30--3:20*  
 A hard-copy printout of the worksheet is recommended for our think-share activities. We demonstrate the perceptual limitations of common graph types and suggest more effective alternatives. Our goals in visual rhetoric are  
   
@@ -150,8 +149,7 @@ Please check in with us before leaving the virtual meeting.
 
 [Link TBD]() Join the online meeting
 
-**Data visualization session 2**    
-<!-- [![](resources/download-icon.png) slides](resources/chart-repertoire-slides.pdf) [![](resources/download-icon.png) worksheets](resources/2024-chart-repertoire-handout.pdf) -->
+**Data visualization session 2** [![](resources/download-icon.png) worksheets](resources/2024-chart-repertoire-handout.pdf)    
 *1:00--2:00 Eastern Time*    
 A hard-copy printout of the worksheet is recommended for our think-share activities. We illustrate a repertoire of chart types and how they are suited to specific data structures and answering specific types of questions. 
 
