@@ -40,7 +40,7 @@ Alternatively, Windows users can use the installr package:
 
 - Install the installr package 
 - If open, close R and RStudio 
-- Navigate to your most recent `Rgui.exe` file located in your Programs directory, e.g., `C:\Program Files\R\R-4.0.0\bin\x64\Rgui.exe`  
+- Navigate to your most recent `Rgui.exe` file located in your Programs directory, e.g., `C:\Program Files\R\R-4.3.3\bin\x64\Rgui.exe`  
 - Right-click on `Rgui.exe` and run as administrator
 - In the R GUI window that appears, run the commands
 
@@ -99,6 +99,18 @@ In the dialog box that appears,
  
 Whenever you work with the workshop materials, launch the `midfield-institute-2024.Rproj` file to start the session. 
 
+
+
+
+::: {.callout-tip appearance="default"}
+*Using RStudio projects.* For more information about RStudio projects in general, see the [RStudio Project support  page](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects).  
+::: 
+
+
+
+
+
+
 ## Add some folders 
 
 While file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project `midfield-institute-2024`, the minimal directory structure has three folders in it plus the `.Rproj` file at the top level. 
@@ -113,9 +125,9 @@ While file organization is a matter of personal preference, we ask that you use 
 
 We use the folders as follows: 
 
-- `data` data files 
-- `results` finished graphs and tabulated data formatted for display  
+- `data` data files (for data not included in an R package)
 - `scripts` R scripts that operate on data to produce results  
+- `results` publication-ready graphs and tabulated results  
 
 To create folders: 
 
@@ -128,6 +140,20 @@ To create folders:
 For a video guide, 
 
 - [Make some folders  (04:50--06:08)](https://www.youtube.com/embed/kfcX5DEMAp4?start=290&end=368){target="_blank"} by R Ladies Sydney [@RLadiesSydney:2018:Lesson1] 
+
+::: {.callout-tip appearance="default"}
+*Organizing a computational project.* If you are interested in a comprehensive set of "good enough practices" for scientific computing, we highly recommend [@Wilson+Bryan+others:2017]. The sections on data management, software, collaboration, and project organization are particularly useful to consider at the beginning of a project. 
+:::
+
+
+
+
+
+
+
+
+
+
 
 ## Install CRAN packages
 

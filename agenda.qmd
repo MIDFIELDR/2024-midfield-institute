@@ -80,7 +80,7 @@ Please check in with us before leaving the virtual meeting.
 - Complete the guided practice "Data" tutorial. 
 - For our think-share activities in tomorrow's data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow's program below.)
 
-[Optional resources]{.important} 
+*Optional resources* 
 
 - Topics from today's guided practice are developed in greater detail in midfieldr package vignettes  [[link]](https://midfieldr.github.io/midfieldr/articles/).
 
@@ -121,8 +121,9 @@ A hard-copy printout of the worksheet is recommended for our think-share activit
 
 We partially define a practice research question to be examined using midfieldr and midfielddata. Working in small groups and given a specific metric, choose programs and student blocs and develop the appropriate  data and chart(s) to explore possible stories in your data. Report out your progress by the end of the day. 
 
-[Resources]{.important} 
+*Resources* 
 
+- data dictionary: [CIP codes](https://midfieldr.github.io/midfieldr/reference/cip.html) (data set `cip` included with midfieldr)
 - data dictionaries: student [practice data](https://midfieldr.github.io/midfielddata/reference/student.html) /  [research data](resources/research-variables-student.pdf)  
 - data dictionaries: term [practice data](https://midfieldr.github.io/midfielddata/reference/term.html) /  [research data](resources/research-variables-term.pdf)  
 - data dictionaries: course [practice data](https://midfieldr.github.io/midfielddata/reference/course.html) /  [research data](resources/research-variables-course.pdf)  
@@ -135,11 +136,10 @@ Please check in with us before leaving the virtual meeting.
 **Homework**
 
 - Complete the guided practice "Results" tutorial. 
-- Complete the practice research question to your satisfaction. 
-- List 2 or 3 research questions you would like to work on during the final day of the workshop.
+- Consider what research question you would like to work on during the final day of the workshop. You may continue the practice question you started today or you may develop a new research question.  
 - For our think-share activities in tomorrow's data visualization session, consider printing a hard-copy of the worksheet. (Download link in tomorrow's program below.)
 
-[Optional resources]{.important} 
+*Optional resources*
 
 - Topics from today's guided practice are developed in greater detail in midfieldr package vignettes  [[link]](https://midfieldr.github.io/midfieldr/articles/).
 - *Developing the migration yield metric.* [![](resources/download-icon.png) slides  ](resources/Finding-the-migration-yield-metric.pdf) An optional supplement to the metaphors and metrics session that outlines the iterative process between the logic of an argument and the logic of a chart that led us to develop the *migration yield* metric. 
@@ -161,8 +161,9 @@ A hard-copy printout of the worksheet is recommended for our think-share activit
 *2:00--3:30*    
 Small-group work. Consult with us on your progress, discussion 
 
-[Resources]{.important} 
+*Resources*
 
+- data dictionary: [CIP codes](https://midfieldr.github.io/midfieldr/reference/cip.html) (data set `cip` included with midfieldr)
 - data dictionaries: student [practice data](https://midfieldr.github.io/midfielddata/reference/student.html) /  [research data](resources/research-variables-student.pdf)  
 - data dictionaries: term [practice data](https://midfieldr.github.io/midfielddata/reference/term.html) /  [research data](resources/research-variables-term.pdf)  
 - data dictionaries: course [practice data](https://midfieldr.github.io/midfielddata/reference/course.html) /  [research data](resources/research-variables-course.pdf)  
