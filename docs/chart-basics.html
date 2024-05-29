@@ -287,7 +287,7 @@ div.csl-indent {
 <li>The <code>ggplot()</code> function declares the graph object; its arguments can include the data frame of interest and the aesthetics. The <code>ggplot()</code> function doesn’t itself produce a visualization; visualizations are produced by <em>layers</em>.</li>
 <li>Layers produce the plots and plot transformations and are added to a graph object using the <code>+</code> operator. Each layer can also take a data frame and aesthetics as arguments, in addition to layer-specific parameters. Example of layers are <code>geom_point()</code> for a scatterplot and <code>geom_line()</code> for a line plot.</li>
 </ul>
-<p><em>Before starting.</em> &nbsp; Our tutorials assume that you</p>
+<p><span class="important">Before starting.</span> Our tutorials assume that you</p>
 <ul>
 <li>Have completed the <a href="before-you-arrive.html">Before you arrive</a> instructions</li>
 <li>Have completed the <a href="r-basics.html">R basics</a> guide</li>
@@ -302,7 +302,7 @@ div.csl-indent {
 </section>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p><em>Start a new script.</em> &nbsp; I recommend that you start a new script for this segment.</p>
+<p><span class="important">Start a new script.</span> I recommend that you start a new script for this segment.</p>
 <ul>
 <li>Use <em>File &gt; New File &gt; R Script</em> to create a new R script</li>
 <li><em>File &gt; Save As…</em> to name the file (we suggest <code>02-chart-basics.R</code>), then save it to the <code>scripts</code> directory</li>
@@ -339,7 +339,7 @@ div.csl-indent {
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p><em>Introduction.</em> &nbsp; R comes with many datasets installed. We’ll use the <code>ChickWeight</code> data set to cover some basic data manipulation to prepare the data for graphing.</p>
+<p><span class="important">Introduction.</span> R comes with many datasets installed. We’ll use the <code>ChickWeight</code> data set to cover some basic data manipulation to prepare the data for graphing.</p>
 <p>The help page for <code>ChickWeight</code> summarizes the experiment from which the data were collected,</p>
 <blockquote class="blockquote">
 <p>The body weights of the chicks were measured at birth and every second day thereafter until day 20. They were also measured on day 21. There were four groups of chicks on different protein diets.”</p>
@@ -354,7 +354,7 @@ div.csl-indent {
 <li><code>weight</code>: body weight of chick in grams.</li>
 </ul>
 <p>The goal of graphing the data is to investigate the effect of diet on weight over time.</p>
-<p><em>Download and save a CSV file.</em> &nbsp; We use the data.table <code>fread()</code> function to read the data set from the workshop repository (an Internet connection is required).</p>
+<p><span class="important">Download and save a CSV file.</span> We use the data.table <code>fread()</code> function to read the data set from the workshop repository (an Internet connection is required).</p>
 <p>We use <code>fwrite()</code> to save the file to the <code>data</code> directory in your project folder.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data URL</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/chick_weight.csv"</span></span>
@@ -375,11 +375,11 @@ div.csl-indent {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # write the data to your data directory</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fwrite(chick_weight, "data/chick_weight.csv")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Import a CSV file.</em> &nbsp; We import the data from the local file <code>chick_weight.csv</code> using <code>fread()</code>. This function returns a data.table object. A data.table is a data.frame with additional attributes.</p>
+<p><span class="important">Import a CSV file.</span> We import the data from the local file <code>chick_weight.csv</code> using <code>fread()</code>. This function returns a data.table object. A data.table is a data.frame with additional attributes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cw <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/chick_weight.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Look at the data.</em> &nbsp; To look at the data, type the object (dataset) name:</p>
+<p><span class="important">Look at the data.</span> To look at the data, type the object (dataset) name:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view the data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>cw</span>
@@ -412,6 +412,7 @@ div.csl-indent {
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:38.00   3rd Qu.:3.000   3rd Qu.:16.00   3rd Qu.:163.8  </span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Max.   :50.00   Max.   :4.000   Max.   :21.00   Max.   :373.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><span class="important">Exercises</span> are written such that the question is displayed under the tab to the left; the answer is displayed by clicking on the tab to the right.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><em>Exercise 2.1</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><em>Answer</em></a></li></ul>
 <div class="tab-content">
@@ -483,7 +484,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="scatterplot">Scatterplot</h2>
 <p>Our goal is to examine how weight changes over time conditioned by diet.</p>
 <p>Don’t worry too much about the details of the ggplot2 syntax. To learn more, try different things even if you get an error message. No harm is done!</p>
-<p><em>First plot.</em> &nbsp; Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no “geom” (a geometric layer) to encode the data visually.</p>
+<p><span class="important">First plot.</span> Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no “geom” (a geometric layer) to encode the data visually.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cw, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -529,7 +530,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em>Location of <code>+</code>.</em> &nbsp; The <code>+</code> symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate,</p>
+<p><span class="important">Location of <code>+</code>.</span> The <code>+</code> symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate,</p>
 <pre><code># correct
 ggplot(cw, aes(weight, Time)) + geom_point()
 
@@ -543,7 +544,7 @@ ggplot(cw, aes(weight, Time))
 </section>
 <section id="another-variable" class="level2">
 <h2 class="anchored" data-anchor-id="another-variable">Another variable</h2>
-<p><em>Color encodes a third variable.</em> &nbsp; The graph does not differentiate between the diets. In the next step, we use color to encode <code>Diet</code>, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being “mapped” must be names of variables in the <code>cw</code> data frame.</p>
+<p><span class="important">Color encodes a third variable.</span> The graph does not differentiate between the diets. In the next step, we use color to encode <code>Diet</code>, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being “mapped” must be names of variables in the <code>cw</code> data frame.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cw, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight, <span class="at">color =</span> <span class="fu">factor</span>(Diet))) <span class="sc">+</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -559,7 +560,7 @@ ggplot(cw, aes(weight, Time))
 </section>
 <section id="faceted-chart" class="level2">
 <h2 class="anchored" data-anchor-id="faceted-chart">Faceted chart</h2>
-<p><em>Factor variables.</em> &nbsp; Before we continue, we make an important change to the <code>cw</code> dataset by transforming <code>Diet</code> and <code>Time</code> into <em>factor</em> variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.</p>
+<p><span class="important">Factor variables.</span> Before we continue, we make an important change to the <code>cw</code> dataset by transforming <code>Diet</code> and <code>Time</code> into <em>factor</em> variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.</p>
 <p>The <code>:=</code> operator (from data.table) alters variables “in-place”, with no explicit assignment (<code>&lt;-</code>). We revisit the <code>:=</code> operator in the <em>R data basics</em> tutorial.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create factors</span></span>
@@ -577,7 +578,7 @@ ggplot(cw, aes(weight, Time))
 <span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Max.   :50.00           10     : 49   Max.   :373.0  </span></span>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                          (Other):282</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em><code>facet_wrap()</code> function.</em> &nbsp; <code>facet_wrap()</code> is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets.</p>
+<p><span class="important">facet_wrap() function.</span> <code>facet_wrap()</code> is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create facets by Diet </span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> cw, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> weight, <span class="at">color =</span> Diet)) <span class="sc">+</span></span>

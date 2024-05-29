@@ -274,12 +274,12 @@ div.csl-indent {
 
 <p><img src="figures/logo-R.png" class="img-fluid"></p>
 <p>An introduction to key concepts in R.</p>
-<p><em>License.</em> &nbsp; This material is adapted from <em>Getting started in R: Tinyverse edition</em> by Bashir and Eddelbuettel <span class="citation" data-cites="Bashir+Eddelbuettel:2018">(<a href="#ref-Bashir+Eddelbuettel:2018" role="doc-biblioref">2018</a>)</span> which was licensed under CC BY-SA by <a href="https://ilustat.com/post/writing-real-life-motivated-r-guides/">ilustat</a>. This adaptation and extension, <em>R basics</em> by Richard Layton, is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a>.</p>
+<p><span class="important">License.</span> This material is adapted from <em>Getting started in R: Tinyverse edition</em> by Bashir and Eddelbuettel <span class="citation" data-cites="Bashir+Eddelbuettel:2018">(<a href="#ref-Bashir+Eddelbuettel:2018" role="doc-biblioref">2018</a>)</span> which was licensed under CC BY-SA by <a href="https://ilustat.com/post/writing-real-life-motivated-r-guides/">ilustat</a>. This adaptation and extension, <em>R basics</em> by Richard Layton, is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a>.</p>
 <section id="preface" class="level2">
 <h2 class="anchored" data-anchor-id="preface">Preface</h2>
 <p>This guide gives you a flavor of what R can do for you. To get the most out of this guide, do the examples and exercises as you read along.</p>
-<p><em>Experiment safely.</em> &nbsp; Be brave and experiment with commands and options as it is an essential part of the learning process. Things can and will go “wrong”, like getting error messages or deleting things that you create. You can recover from most situations using “undo” <code>ctrl Z</code> (MacOS <code>cmd Z</code>) or restarting R with the RStudio menu <em>Session &gt; Restart R</em>.</p>
-<p><em>Before starting.</em> &nbsp; Our tutorials assume that you</p>
+<p><span class="important">Experiment safely.</span> Be brave and experiment with commands and options as it is an essential part of the learning process. Things can and will go “wrong”, like getting error messages or deleting things that you create. You can recover from most situations using “undo” <code>ctrl Z</code> (MacOS <code>cmd Z</code>) or restarting R with the RStudio menu <em>Session &gt; Restart R</em>.</p>
+<p><span class="important">Before starting.</span> Our tutorials assume that you</p>
 <ul>
 <li>Have completed the <a href="before-you-arrive.html">Before you arrive</a> instructions<br>
 </li>
@@ -294,7 +294,7 @@ div.csl-indent {
 </section>
 <section id="getting-started" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p><em>Starting R &amp; RStudio.</em> &nbsp; R starts automatically when you open RStudio with a screen similar to <a href="#fig-pane-layout" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p><span class="important">Starting R and RStudio.</span> R starts automatically when you open RStudio with a screen similar to <a href="#fig-pane-layout" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <ul>
 <li>Source: view and edit files, e.g., R scripts<br>
 </li>
@@ -332,7 +332,7 @@ Figure&nbsp;2: Console at startup
 </div>
 </div>
 </div>
-<p><em>Quitting R &amp; RStudio.</em> &nbsp; When you quit RStudio you will be asked whether to <em>Save workspace?</em> with a yes or no option. If you choose <em>Yes</em>, your current workspace is restored the next time you open RStudio. But as long as you save your script, saving the workspace is unnecessary. I recommend you choose <em>No</em>.</p>
+<p><span class="important">Quitting R and RStudio.</span> When you quit RStudio you will be asked whether to <em>Save workspace?</em> with a yes or no option. If you choose <em>Yes</em>, your current workspace is restored the next time you open RStudio. But as long as you save your script, saving the workspace is unnecessary. I recommend you choose <em>No</em>.</p>
 <p>To set <em>No</em> as the default option, from the RStudio menu select <em>Tools &gt; Global Options</em>.</p>
 <ul>
 <li>Un-check the box <em>Restore .RData into workspace at startup</em></li>
@@ -356,14 +356,14 @@ Figure&nbsp;3: RStudio global options default settings.
 <section id="r-help" class="level2">
 <h2 class="anchored" data-anchor-id="r-help">R help</h2>
 <p>R’s built-in help system is an essential part of finding solutions to your R programming problems.</p>
-<p><em><code>help()</code> function.</em> &nbsp; From the R Console you can use the <code>help()</code> function or <code>?</code>. For example, try the following two commands (which give the same result):</p>
+<p><span class="important">help() function.</span> From the R Console you can use the <code>help()</code> function or <code>?</code>. For example, try the following two commands (which give the same result):</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view the function help page</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(mean)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>? mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are asking for the package help page (assuming you have installed the package), type in the Console,</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view a package help page</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"midfieldr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Keyword search.</em> &nbsp; To do a keyword search use the function <code>apropos()</code> with the keyword in double quotes (“keyword”) or single quote (‘keyword’). For example:</p>
+<p><span class="important">Keyword search.</span> To do a keyword search use the function <code>apropos()</code> with the keyword in double quotes (“keyword”) or single quote (‘keyword’). For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keyword search </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">"mean"</span>)</span>
@@ -372,7 +372,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [9] "mean.POSIXct"  "mean.POSIXlt"  "rowMeans"      "weighted.mean"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The lines of R output are labeled—here with <code>[1]</code>, <code>[5]</code> , and <code>[9]</code>. These labels indicate the index or position of the first element in that line within the overall output (here, of length 12). Thus in this output vector, <code>".colMeans"</code> has index 1, <code>"mean"</code> has index 5, and <code>"mean.POSIXct"</code> has index 9.</p>
-<p><em>Help examples.</em> &nbsp; Use the <code>example()</code> function to run the examples at the end of the help for a function:</p>
+<p><span class="important">Help examples.</span> Use the <code>example()</code> function to run the examples at the end of the help for a function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the examples at the end of the help page</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(mean)</span>
@@ -385,9 +385,10 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8.75 5.50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here, the output of the <code>mean()</code> example has length 2 (8.75 5.50). The label <code>[1]</code> indicates that the number 8.75 has index 1.</p>
-<p><em>RStudio help.</em> &nbsp; Rstudio provides search box in the <em>Help</em> tab in the <em>Output pane</em> to make your life easier (see <a href="#fig-pane-layout" class="quarto-xref">Figure&nbsp;1</a>).</p>
-<p><em>Online help.</em> &nbsp; When you search online use [r] in your search terms, for example, “[r] linear regression”. Because we use data.table for data manipulation, I further recommend that you include data.table as a keyword, e.g., “[r][data.table] group and summarize”.</p>
+<p><span class="important">RStudio help.</span> Rstudio provides search box in the <em>Help</em> tab in the <em>Output pane</em> to make your life easier (see <a href="#fig-pane-layout" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p><span class="important">Online help.</span> When you search online use [r] in your search terms, for example, “[r] linear regression”. Because we use data.table for data manipulation, I further recommend that you include data.table as a keyword, e.g., “[r][data.table] group and summarize”.</p>
 <p>There is nearly always more than one solution to your problem—investigate the different options and try to use one whose arguments and logic you can follow. Limiting your browser’s search to the past year can sometimes eliminate out-of-date solutions.</p>
+<p><span class="important">Exercises</span> are written such that the question is displayed under the tab to the left; the answer is displayed by clicking on the tab to the right.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><em>Exercise 1.1</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><em>Answer</em></a></li></ul>
 <div class="tab-content">
@@ -407,14 +408,14 @@ Figure&nbsp;3: RStudio global options default settings.
 </div>
 </div>
 </div>
-<p><em>Warning.</em> &nbsp; If an R command is not complete then R will show a plus sign (<code>+</code>) prompt on second and subsequent lines until the command syntax is correct.</p>
+<p><span class="important">Warning.</span> If an R command is not complete then R will show a plus sign (<code>+</code>) prompt on second and subsequent lines until the command syntax is correct.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Press the escape key (ESC) to break out.</p>
-<p><em>Hint.</em> &nbsp; To recall a previous command, put your cursor in the Console and use the up arrow key (↑). To go between previously typed commands use the up and down arrow (↓) keys. To modify or correct a command use the left (←) and right arrow (→) keys.</p>
+<p><span class="important">Hint.</span> To recall a previous command, put your cursor in the Console and use the up arrow key (↑). To go between previously typed commands use the up and down arrow (↓) keys. To modify or correct a command use the left (←) and right arrow (→) keys.</p>
 </section>
 <section id="r-scripts" class="level2">
 <h2 class="anchored" data-anchor-id="r-scripts">R scripts</h2>
-<p><em>Creating a script</em> &nbsp; I recommend that you write your lines of code in a script. Scripts can saved, edited, and run again and again.</p>
+<p><span class="important">Creating a script.</span> I recommend that you write your lines of code in a script. Scripts can saved, edited, and run again and again.</p>
 <ul>
 <li>Use <em>File &gt; New File &gt; R Script</em> to create a new R script</li>
 <li><em>File &gt; Save As…</em> to name the file (I suggest <code>01-r-basics.R</code>), then save it to the <code>scripts</code> directory</li>
@@ -468,7 +469,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <p>In these notes, everything that comes back to us in the Console as the result of running a script is shown prefaced by <code>#&gt;</code>.</p>
 <p>Objects in your R project workspace are listed in the RStudio Environment pane. At this point, we have three objects in the environment.</p>
 <p><img src="figures/rstudio-environment-x-y.png" class="img-fluid"></p>
-<p><em>Warning: R is case sensitive.</em> &nbsp; <code>age</code> and <code>AgE</code> are different:</p>
+<p><span class="important">Warning.</span> R is case sensitive, <code>age</code> and <code>AgE</code> are different:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># illustrating case-sensitivity </span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -481,7 +482,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>AgE</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>New lines.</em> &nbsp; R commands are usually separated by a new line but they can also be separated by a semicolon (not recommended).</p>
+<p><span class="important">New lines.</span> R commands are usually separated by a new line but they can also be separated by a semicolon (not recommended).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recommended style</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Leo"</span></span>
@@ -505,7 +506,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25</span></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Lisbon"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Comments.</em> &nbsp; It is useful to put comments in your script—especially useful to the future you looking back at your script after several months.</p>
+<p><span class="important">Comments.</span> It is useful to put comments in your script—especially useful to the future you looking back at your script after several months.</p>
 <p>R comments start with a hash sign (<code>#</code>). Everything after the hash to the end of the line is ignored by R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This comment line is ignored when run.</span></span>
@@ -528,7 +529,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span><span class="sc">^</span><span class="dv">3</span> <span class="co"># exponent</span></span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 343</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Other math functions.</em> &nbsp; You can also use standard mathematical functions that are typically found on a scientific calculator.</p>
+<p><span class="important">Other math functions.</span> You can also use standard mathematical functions that are typically found on a scientific calculator.</p>
 <ul>
 <li>trigonometric: <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, etc.</li>
 <li>rounding: <code>abs()</code>, <code>ceiling()</code>, <code>floor()</code>, <code>round()</code>, <code>sign()</code>, <code>signif()</code>, <code>trunc()</code></li>
@@ -588,7 +589,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>room_area</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 49.92</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>On coding style.</em> &nbsp; Summary of commonly used coding styles for naming objects in R include:</p>
+<p><span class="important">On coding style.</span> Summary of commonly used coding styles for naming objects in R include:</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -612,7 +613,7 @@ Figure&nbsp;3: RStudio global options default settings.
 </tbody>
 </table>
 <p>We use <em>snake case</em>, that is, lowercase letters and numbers with words separated by underscores. You may of course use any style you are comfortable with.</p>
-<p><em>Text objects.</em> &nbsp; You can assign text to an object.</p>
+<p><span class="important">Text objects.</span> You can assign text to an object.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign text to an object</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>greeting <span class="ot">&lt;-</span> <span class="st">"Hello world!"</span></span>
@@ -621,7 +622,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>greeting</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Hello world!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Vectors.</em> &nbsp; The objects presented so far have been scalars (single values). Working with vectors is where R shines best as they are the basic building blocks of datasets.</p>
+<p><span class="important">Vectors.</span> The objects presented so far have been scalars (single values). Working with vectors is where R shines best as they are the basic building blocks of datasets.</p>
 <p>We can create a vector using the <code>c()</code> (combine values into a vector) function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a numeric vector</span></span>
@@ -655,7 +656,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>s1</span>
 <span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0  2.5  3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Vector operations.</em> &nbsp; You can do calculations on vectors, for example using <code>x1</code> from above:</p>
+<p><span class="important">Vector operations.</span> You can do calculations on vectors, for example using <code>x1</code> from above:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiply every element by 2</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="sc">*</span> <span class="dv">2</span></span>
@@ -665,7 +666,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(x1 <span class="sc">*</span> <span class="fl">2.6</span>), <span class="dv">2</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  8.22  5.10  3.22  4.27 10.32  7.03</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Missing values.</em> &nbsp; Missing values are coded as <code>NA</code> in R. For example,</p>
+<p><span class="important">Missing values.</span> Missing values are coded as <code>NA</code> in R. For example,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric vector with a missing value</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">7</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -681,7 +682,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>x3</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "rat"     NA        "mouse"   "hamster"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Managing objects.</em> &nbsp; Use function <code>ls()</code> to list the objects in your workspace. The <code>rm()</code> function deletes them.</p>
+<p><span class="important">Managing objects.</span> Use function <code>ls()</code> to list the objects in your workspace. The <code>rm()</code> function deletes them.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view objects in workspace</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
@@ -718,7 +719,7 @@ Figure&nbsp;3: RStudio global options default settings.
 </section>
 <section id="r-functions-and-packages" class="level2">
 <h2 class="anchored" data-anchor-id="r-functions-and-packages">R functions and packages</h2>
-<p><em>R functions.</em> &nbsp; We have already used some R functions (e.g.&nbsp;<code>c()</code>, <code>mean()</code>, <code>rep()</code>, <code>sqrt()</code>, <code>round()</code>). Most computation in R involves functions.</p>
+<p><span class="important">R functions.</span> We have already used some R functions (e.g.&nbsp;<code>c()</code>, <code>mean()</code>, <code>rep()</code>, <code>sqrt()</code>, <code>round()</code>). Most computation in R involves functions.</p>
 <p>A function essentially has a name and a list of arguments separated by commas. For example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># closer look at function arguments</span></span>
@@ -736,8 +737,8 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">5</span>, <span class="at">to =</span> <span class="dv">8</span>, <span class="at">length.out =</span> <span class="dv">16</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 5.0 5.2 5.4 5.6 5.8 6.0 6.2 6.4 6.6 6.8 7.0 7.2 7.4 7.6 7.8 8.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Custom functions.</em> &nbsp; As you gain familiarity with R, you may want to learn how to construct your own custom functions, but that’s not an objective of our “basics” tutorials.</p>
-<p><em>R packages.</em> &nbsp; The basic R installation comes with over 2000 functions, but R can be extended further using contributed <em>packages</em>. Packages are like “apps” for R, containing functions, data, and documentation.</p>
+<p><span class="important">Custom functions.</span> As you gain familiarity with R, you may want to learn how to construct your own custom functions, but that’s not an objective of our “basics” tutorials.</p>
+<p><span class="important">R packages.</span> The basic R installation comes with over 2000 functions, but R can be extended further using contributed <em>packages</em>. Packages are like “apps” for R, containing functions, data, and documentation.</p>
 <p>To see a list of functions and data sets bundled in a package, use the <code>ls()</code> function, e,g,</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">"package:midfieldr"</span>)</span>
@@ -760,7 +761,7 @@ Figure&nbsp;3: RStudio global options default settings.
 </section>
 <section id="about-r-objects" class="level2">
 <h2 class="anchored" data-anchor-id="about-r-objects">About R objects</h2>
-<p><em>Everything in R has class.</em> &nbsp;</p>
+<p><span class="important">Everything in R has class.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(room_area)  <span class="co"># assigned earlier</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "numeric"</span></span>
@@ -781,7 +782,7 @@ Figure&nbsp;3: RStudio global options default settings.
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>By concatenating a number and a character string, R changed the class of room area from “numeric” to “character” because all elements of a vector must have the same class.</p>
-<p><em>Data frames.</em> &nbsp; The most common class of data object we will use is the <em>data frame</em>: a two-dimensional array of rows and columns in R. All values in a column are of the same type (numerical, character, logical, etc.) but columns can be of different types.</p>
+<p><span class="important">Data frames.</span> The most common class of data object we will use is the <em>data frame</em>: a two-dimensional array of rows and columns in R. All values in a column are of the same type (numerical, character, logical, etc.) but columns can be of different types.</p>
 <p>For example, the data frame <code>study_results</code> that is bundled with midfieldr has three character columns and three numerical columns.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a data frame bundled with midfieldr</span></span>
@@ -864,7 +865,7 @@ Figure&nbsp;3: RStudio global options default settings.
 </div>
 </div>
 </div>
-<p><em>Everything in R has structure</em> &nbsp;</p>
+<p><span class="important">Everything in R has structure.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(room_area)  <span class="co"># assigned earlier</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  num 49.9</span></span>

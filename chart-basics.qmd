@@ -24,7 +24,7 @@ The rationale for using the ggplot2 package instead of other R graphics environm
 - The `ggplot()` function declares the graph object; its arguments can include the data frame of interest and the aesthetics. The `ggplot()` function doesn't itself produce a visualization; visualizations are produced by *layers*.
 - Layers produce the plots and plot transformations and are added to a graph object using the `+` operator. Each layer can also take a data frame and aesthetics as arguments, in addition to layer-specific parameters. Example of layers are `geom_point()` for a scatterplot and `geom_line()` for a line plot. 
 
-*Before starting.* &nbsp; Our tutorials assume that you
+[Before starting.]{.important} Our tutorials assume that you
 
 - Have completed the [Before you arrive](before-you-arrive.html) instructions
 - Have completed the [R basics](r-basics.html) guide 
@@ -41,7 +41,7 @@ If you are in an RStudio project, the project name appears in the upper left cor
 
 ## Getting started 
 
-*Start a new script.* &nbsp; I recommend that you start a new script for this segment. 
+[Start a new script.]{.important} I recommend that you start a new script for this segment. 
 
 - Use *File &gt; New File &gt; R Script* to create a new R script
 - *File &gt; Save As...* to name the file (we suggest `02-chart-basics.R`), then save it to the `scripts` directory 
@@ -78,7 +78,7 @@ Use your script throughout the tutorial. When a new chunk of code is given,
 
 ## Data
 
-*Introduction.* &nbsp; R comes with many datasets installed. We'll use the `ChickWeight` data set to cover some basic data manipulation to prepare the data for graphing. 
+[Introduction.]{.important} R comes with many datasets installed. We'll use the `ChickWeight` data set to cover some basic data manipulation to prepare the data for graphing. 
 
 The help page for `ChickWeight` summarizes the experiment from which the data were collected,  
 
@@ -99,7 +99,7 @@ There are 578 observations (rows) and 4 variables (columns). Recall that names a
 
 The goal of graphing the data is to investigate the effect of diet on weight over time.
 
-*Download and save a CSV file.* &nbsp; We use the data.table `fread()` function to read the data set from the workshop repository (an Internet connection is required). 
+[Download and save a CSV file.]{.important} We use the data.table `fread()` function to read the data set from the workshop repository (an Internet connection is required). 
 
 We use `fwrite()` to save the file to the `data` directory in your project folder. 
 
@@ -127,13 +127,13 @@ These lines of code are run only once. After the data are downloaded, these line
 # fwrite(chick_weight, "data/chick_weight.csv")
 ```
 
-*Import a CSV file.* &nbsp; We import the data from the local file  `chick_weight.csv` using `fread()`. This function returns a data.table object.  A data.table is a data.frame with additional attributes.  
+[Import a CSV file.]{.important} We import the data from the local file  `chick_weight.csv` using `fread()`. This function returns a data.table object.  A data.table is a data.frame with additional attributes.  
 
 ```{r}
 cw <- fread("data/chick_weight.csv")
 ```
 
-*Look at the data.* &nbsp; To look at the data, type the object (dataset) name:
+[Look at the data.]{.important} To look at the data, type the object (dataset) name:
 
 ```{r}
 # view the data
@@ -149,9 +149,10 @@ Several base R functions help us inspect the data. In addition to `str()` that y
 summary(cw)
 ```
 
-::: panel-tabset
+[Exercises]{.important} are written such that the question is displayed under the tab to the left; the answer is displayed by clicking on the tab to the right. 
 
-## *Exercise 2.1* 
+::: panel-tabset
+## *Exercise 2.1*
 
 Use `tail()` to examine the last observations in `cw` and compare to the last observations in the `ChickWeight` data set provided in base R. Do they agree? Describe the differences, if any. 
 
@@ -172,7 +173,6 @@ Also, the row numbers in `cw` (a data.table) are different from the row numbers 
 
 
 ::: panel-tabset
-
 ## *Exercise 2.2* 
 
 Use `str()` to compare `cw` to the original `ChickWeight` in base R. How are they different?
@@ -205,7 +205,7 @@ Our goal is to examine how weight changes over time conditioned by diet.
 
 Don't worry too much about the details of the ggplot2 syntax. To learn more, try different things even if you get an error message. No harm is done! 
 
-*First plot.* &nbsp; Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no "geom" (a geometric layer) to encode the data visually. 
+[First plot.]{.important} Let’s plot the weight data (y axis) as a function of time (x axis). The first plot is empty because there is no "geom" (a geometric layer) to encode the data visually. 
 
 ```{r}
 ggplot(data = cw, mapping = aes(x = Time, y = weight))
@@ -220,7 +220,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight)) +
 
 
 ::: panel-tabset
-
 ## *Exercise 2.3* 
 
 - Switch the variables `Time` and `weight` in the code chunk.
@@ -238,7 +237,7 @@ ggplot(data = cw, mapping = aes(x = weight, y = Time)) +
 ```
 :::
 
-*Location of `+`.* &nbsp; The `+` symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate, 
+[Location of `+`.]{.important} The `+` symbol that adds a layer to a ggplot2 object cannot start a new line. Using the code above to illustrate, 
 
 
     # correct
@@ -255,7 +254,7 @@ ggplot(data = cw, mapping = aes(x = weight, y = Time)) +
 
 ## Another variable
 
-*Color encodes a third variable.* &nbsp; The graph does not differentiate between the diets. In the next step, we use color to encode `Diet`, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being "mapped" must be names of variables in the `cw` data frame. 
+[Color encodes a third variable.]{.important} The graph does not differentiate between the diets. In the next step, we use color to encode `Diet`, a categorical variable with four levels: diets 1, 2, 3, and 4. One important thing to notice is that all arguments being "mapped" must be names of variables in the `cw` data frame. 
 
 ```{r}
 ggplot(data = cw, mapping = aes(x = Time, y = weight, color = factor(Diet))) +
@@ -267,7 +266,7 @@ It is difficult to conclude anything from this graph as the points are printed o
 
 ## Faceted chart
 
-*Factor variables.* &nbsp; Before we continue, we make an important change to the `cw` dataset by transforming `Diet` and `Time` into *factor* variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.
+[Factor variables.]{.important} Before we continue, we make an important change to the `cw` dataset by transforming `Diet` and `Time` into *factor* variables. Factors are treated by R as categorical variables instead of continuous variables. It will simplify our coding.
 
 The `:=` operator (from data.table) alters variables “in-place”, with no explicit assignment (`<-`). We revisit the `:=` operator in the *R data basics* tutorial.
 
@@ -280,7 +279,7 @@ cw[, Time := factor(Time)]
 summary(cw) 
 ```
 
-*`facet_wrap()` function.*  &nbsp; `facet_wrap()` is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets. 
+[facet_wrap() function.]{.important} `facet_wrap()` is a ggplot2 function that plots variables in separate facets, or panels. In this case, each facet contains one of the four diets. 
 
 ```{r}
 # create facets by Diet 
@@ -292,7 +291,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +
 
 
 ::: panel-tabset
-
 ## *Exercise 2.4*
 
 - To address "overprinting" (where points print over other points in the same position), replace `geom_point()` with `geom_jitter()`. 
@@ -316,7 +314,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +
 :::
 
 ::: panel-tabset
-
 ## *Exercise 2.5* 
 
 For the `legend.position` argument, try using “top”, “left” and
@@ -348,7 +345,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet
 We see that diet 3 has the highest mean weight gain by the end of the experiment but we don’t have any information about the variation (uncertainty) in the data.
 
 ::: panel-tabset
-
 ## *Exercise 2.6* 
 
 - What happens when you add `geom_point()` to the plot above? Don’t forget the `+`. 
@@ -389,7 +385,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight, color = Diet)) +
 
 
 ::: panel-tabset
-
 ## *Exercise 2.7* 
 
 To the plot above, edit the axis labels using `xlab()` for the x-axis label and `ylab()` for the y-axis label. The labels should be, 
@@ -434,7 +429,6 @@ Note that I printed the line layer first then printed the points over them to le
 
 
 ::: panel-tabset
-
 ## *Exercise 2.8*
 
 - Read the help page for the `facet_wrap()` function 
@@ -458,8 +452,6 @@ ggplot(data = cw, mapping = aes(x = Time, y = weight, group = Diet, color = Diet
   ylab("Weight (grams)")
 ```
 :::
-
-
 
 
 ## References

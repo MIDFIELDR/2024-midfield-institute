@@ -279,7 +279,7 @@ div.csl-indent {
 </figure>
 </div>
 <p>Using data.table to manipulate data in R.</p>
-<p><em>License.</em> &nbsp; This material is adapted from <em>Getting started in R: Tinyverse edition</em> by Bashir and Eddelbuettel <span class="citation" data-cites="Bashir+Eddelbuettel:2018">(<a href="#ref-Bashir+Eddelbuettel:2018" role="doc-biblioref">2018</a>)</span> which was licensed under CC BY-SA by <a href="https://ilustat.com/post/writing-real-life-motivated-r-guides/">ilustat</a>. This adaptation and extension, <em>R data basics</em> by Richard Layton, is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a>.</p>
+<p><span class="important">License.</span> This material is adapted from <em>Getting started in R: Tinyverse edition</em> by Bashir and Eddelbuettel <span class="citation" data-cites="Bashir+Eddelbuettel:2018">(<a href="#ref-Bashir+Eddelbuettel:2018" role="doc-biblioref">2018</a>)</span> which was licensed under CC BY-SA by <a href="https://ilustat.com/post/writing-real-life-motivated-r-guides/">ilustat</a>. This adaptation and extension, <em>R data basics</em> by Richard Layton, is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a>.</p>
 <section id="preface" class="level2">
 <h2 class="anchored" data-anchor-id="preface">Preface</h2>
 <p>MIDFIELD data are curated, that is, organized and integrated from multiple institutions, maintained over time, and available for reuse and preservation. Yet to address any specific research question, the data must be wrangled into a shape useful for analysis.</p>
@@ -287,12 +287,12 @@ div.csl-indent {
 <p>The basic concept of data wrangling is to visualize your data being structured to make your task easier, and then take the steps to add this structure to your data <span class="citation" data-cites="Zumel+Mount:2020">(<a href="#ref-Zumel+Mount:2020" role="doc-biblioref">Zumel &amp; Mount, 2020, p. 113</a>.)</span>.</p>
 </blockquote>
 <p>This tutorial covers basic operations for data shaping with the goal of obtaining a simple “data matrix” where each row is an observation and each column is a measurement type.</p>
-<p><em>Using data.table.</em> &nbsp; The rationale for manipulating data using the data.table package instead of base R or the dplyr package include speed, memory efficiency, and concise transforms via the []-indexing operator (e.g., the “by” grouping notation).</p>
+<p><span class="important">Using data.table</span> The rationale for manipulating data using the data.table package instead of base R or the dplyr package include speed, memory efficiency, and concise transforms via the []-indexing operator (e.g., the “by” grouping notation).</p>
 <p>To mitigate the extra cognitive load for new R users of learning data.table syntax while also learning R, I use a “no-frills” approach as much as possible.</p>
 <p>Conceptually, data.table operations can be viewed as</p>
 <pre><code>    dt[i, j, by]</code></pre>
 <p>with some intentional similarity to SQL. Here <code>i</code> operates on rows, <code>j</code> operates on columns, and <code>by</code> is the grouping operator.</p>
-<p><em>Before starting.</em> &nbsp; Our tutorials assume that you</p>
+<p><span class="important">Before starting.</span> Our tutorials assume that you</p>
 <ul>
 <li>Have completed the <a href="before-you-arrive.html">Before you arrive</a> instructions</li>
 <li>Have completed the <a href="r-basics.html">R basics</a> guide</li>
@@ -308,7 +308,7 @@ div.csl-indent {
 </section>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p><em>Start a new script.</em> &nbsp; I recommend that you start a new script for this segment.</p>
+<p><span class="important">Start a new script.</span> I recommend that you start a new script for this segment.</p>
 <ul>
 <li>Use <em>File &gt; New File &gt; R Script</em> to create a new R script</li>
 <li><em>File &gt; Save As…</em> to name the file (we suggest <code>03-data-basics.R</code>), then save it to the <code>scripts</code> directory</li>
@@ -368,7 +368,7 @@ div.csl-indent {
 </section>
 <section id="changes-in-place" class="level2">
 <h2 class="anchored" data-anchor-id="changes-in-place">Changes in place</h2>
-<p><em>Rename variables.</em> &nbsp; Edit column names “in place.”</p>
+<p><span class="important">Rename variables.</span> Edit column names “in place.”</p>
 <p>By <em>in place</em> we mean that the change is made using data.table <em>reference semantics</em> (or <em>by reference</em>) in which changes are made without assigning the result back to a name, that is, we write</p>
 <pre><code>    setnames(cw, old, new)</code></pre>
 <p>not</p>
@@ -396,6 +396,7 @@ div.csl-indent {
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:       48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There’s much more to reference semantics than dropping the assignment operator—it’s really about speed and memory efficiency with large data sets. However, for our “basics” series, you need to recall only that the <code>:=</code> operator and all data.table functions with names starting with <code>set</code> work by reference.</p>
+<p><span class="important">Exercises</span> are written such that the question is displayed under the tab to the left; the answer is displayed by clicking on the tab to the right.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><em>Exercise 3.1</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><em>Answer</em></a></li></ul>
 <div class="tab-content">
@@ -427,7 +428,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em>Reorder variables.</em> &nbsp; Another example of an operation in-place. The columns listed are moved to the left-hand side of the data frame and other columns appear to the right in their original order. Here we move <code>day</code>and <code>group</code> to the first two column positions.</p>
+<p><span class="important">Reorder variables.</span> Another example of an operation in-place. The columns listed are moved to the left-hand side of the data frame and other columns appear to the right in their original order. Here we move <code>day</code>and <code>group</code> to the first two column positions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reorder column positions in place</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setcolorder</span>(cw, <span class="fu">c</span>(<span class="st">"day"</span>, <span class="st">"group"</span>))</span>
@@ -522,7 +523,7 @@ div.csl-indent {
 </section>
 <section id="column-operations" class="level2">
 <h2 class="anchored" data-anchor-id="column-operations">Column operations</h2>
-<p><em><code>j</code> to transform a variable.</em> &nbsp; Use <code>:=</code> to transform column values in place, here, converting an integer to a double-precision number.</p>
+<p><span class="important">j to transform a variable.</span> Use <code>:=</code> to transform column values in place, here, converting an integer to a double-precision number.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modify values in an existing column</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_g <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(weight_g)]</span>
@@ -595,7 +596,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>j</code> to select variables.</em> &nbsp; Variables not listed are dropped. Here, for example, we drop the <code>chick_id</code> variable by not listing it.</p>
+<p><span class="important">j to select variables.</span> Variables not listed are dropped. Here, for example, we drop the <code>chick_id</code> variable by not listing it.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns </span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> cw[, .(day, group, weight_g)]</span>
@@ -647,7 +648,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>j</code> to add a variable.</em> &nbsp; The new variable is added to the right of the other columns. Here, for example, we add the <code>weight_kg</code> variable.</p>
+<p><span class="important">j to add a variable.</span> The new variable is added to the right of the other columns. Here, for example, we add the <code>weight_kg</code> variable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_kg <span class="sc">:</span><span class="er">=</span> weight_g <span class="sc">/</span> <span class="dv">1000</span>]</span>
@@ -699,7 +700,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>j</code> to delete a variable.</em> &nbsp; Assigning <code>NULL</code> by reference deletes the variable.</p>
+<p><span class="important">j to delete a variable.</span> Assigning <code>NULL</code> by reference deletes the variable.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete a column</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_kg <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
@@ -751,7 +752,7 @@ div.csl-indent {
 </section>
 <section id="row-operations" class="level2">
 <h2 class="anchored" data-anchor-id="row-operations">Row operations</h2>
-<p><em><code>i</code> to filter by values.</em> &nbsp; Use relational operators to compare values.</p>
+<p><span class="important">i to filter by values.</span> Use relational operators to compare values.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset by observation</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[day <span class="sc">==</span> <span class="dv">21</span> <span class="sc">&amp;</span> weight_g <span class="sc">&gt;</span> <span class="dv">300</span>]</span>
@@ -800,7 +801,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>i</code> to arrange rows.</em> &nbsp;</p>
+<p><span class="important">i to arrange rows.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by values in columns</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[<span class="fu">order</span>(weight_g, day)]</span>
@@ -852,7 +853,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>i</code> to filter by index.</em> &nbsp;</p>
+<p><span class="important">i to filter by index.</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset by position</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
@@ -901,7 +902,7 @@ div.csl-indent {
 </section>
 <section id="group-and-summarize" class="level2">
 <h2 class="anchored" data-anchor-id="group-and-summarize">Group and summarize</h2>
-<p><em><code>by</code> to count.</em> &nbsp; <code>.N</code> is a data.table function that yields the number of observations (rows) in a group identified with the <code>by</code> argument.</p>
+<p><span class="important">by to count.</span> <code>.N</code> is a data.table function that yields the number of observations (rows) in a group identified with the <code>by</code> argument.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count number of chicks by diet group</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[, .(<span class="at">N_chicks =</span> .N), by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"group"</span>)]</span>
@@ -947,7 +948,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><em><code>by</code> to summarize.</em> &nbsp; Yields three new variables for count, mean, and standard deviation by the two grouping variables <code>group</code> and <code>day</code>.</p>
+<p><span class="important">by to summarize.</span> Yields three new variables for count, mean, and standard deviation by the two grouping variables <code>group</code> and <code>day</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary statistics grouped by two variables</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[,                                         <span class="co"># i (empty)</span></span>
@@ -1006,7 +1007,7 @@ div.csl-indent {
 </section>
 <section id="combine-operations" class="level2">
 <h2 class="anchored" data-anchor-id="combine-operations">Combine operations</h2>
-<p><em><code>[i, j, by]</code> in combination.</em> &nbsp; In this example, we use <code>i</code> to filter for two specific days, <code>j</code> to create new summary variables grouped <code>by</code> variables <code>group</code> and <code>day</code>. The results are the count <code>N</code> plus weight statistics: mean, standard deviation, median, minimum, and maximum.</p>
+<p><span class="important">[i, j, by] in combination.</span> In this example, we use <code>i</code> to filter for two specific days, <code>j</code> to create new summary variables grouped <code>by</code> variables <code>group</code> and <code>day</code>. The results are the count <code>N</code> plus weight statistics: mean, standard deviation, median, minimum, and maximum.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grouped summaries of specific observations</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>cw_stats <span class="ot">&lt;-</span> cw[day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">21</span>),                         <span class="co"># i</span></span>
@@ -1150,7 +1151,7 @@ div.csl-indent {
 </table>
 </div>
 </div>
-<p><em>Interpretation.</em> &nbsp; This summary table offers similar results to those revealed in the charts,</p>
+<p><span class="important">Interpretation.</span> This summary table offers similar results to those revealed in the charts,</p>
 <ul>
 <li>in day 21, diet 3 has the highest mean and median weights</li>
 <li>in day 21, diet 4 has the least variability in weight</li>
@@ -1160,7 +1161,7 @@ div.csl-indent {
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The <em>R basics</em>, <em>R chart basics</em>, and <em>R data basics</em> guides introduced you to some of the basic concepts for using R and the data.table and ggplot2 packages to manipulate data and create charts. It is only an introduction to what R can do but hopefully you have seen some of the potential of using R for data science.</p>
-<p><em>Next steps.</em> &nbsp; There are plenty of R courses, books, and online resources that you can learn from. Find things that work for you and don’t be afraid to make mistakes or ask questions.</p>
+<p><span class="important">Next steps.</span> There are plenty of R courses, books, and online resources that you can learn from. Find things that work for you and don’t be afraid to make mistakes or ask questions.</p>
 <p>During the MIDFIELD workshops, you will build on what you’ve learned here, and use the midfieldr package to study student unit records. You can preview that material on the <a href="https://midfieldr.github.io/midfieldr/">midfieldr</a> website.</p>
 </section>
 <section id="references" class="level2">

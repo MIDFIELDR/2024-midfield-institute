@@ -33,7 +33,7 @@ If you happen to come across other resources that you find useful, please let us
 
 - [Stackoverflow](https://stackoverflow.com/questions/tagged/r) Searchable, public platform for coding questions and answers. For R-specific Q&A, add `[r]` as a search tag. Additional search tags such as `[ggplot2]` or `[data.table]` will help narrow your searches involving these packages. 
 
-- @R-rstudio-cheatsheets Links to downloadable help summaries (cheat sheets) for ggplot2 and many other packages. For data.table scroll down to the "Contributed cheatsheets" section. 
+- @R-rstudio-cheatsheets (The company "RStudio" was renamed "Posit" in 2022. The ) Links to downloadable help summaries (cheat sheets) for ggplot2 and many other packages. For data.table scroll down to the "Contributed cheatsheets" section. 
 
 - @Zumel+Mount:2020 for data science work with a very good chapter on data manipulation that performs every step three ways: a base R solution,  a data.table solution, and a dplyr solution. 
 

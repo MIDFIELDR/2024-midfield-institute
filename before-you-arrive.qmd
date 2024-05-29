@@ -227,7 +227,6 @@ install.packages("midfieldr")
 ```
 
 :::{.callout-tip appearance="default"}
-
 If you get an error message like the one below, it means that the packages in the dependencies list have not been installed. 
 
 ![](figures/error.png)
