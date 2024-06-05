@@ -56,9 +56,9 @@ If you are in an RStudio project, the project name appears in the upper left cor
 - Use `library()` to load packages used in the script. 
 
 ```{r}
-# silently load packages
-suppressPackageStartupMessages(library("ggplot2"))
-suppressPackageStartupMessages(library("data.table"))
+# load packages
+library("ggplot2")
+library("data.table")
 
 # set data.table printout options
 options(
