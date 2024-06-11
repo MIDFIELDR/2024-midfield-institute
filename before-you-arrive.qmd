@@ -113,21 +113,10 @@ Whenever you work with the workshop materials, launch the `midfield-institute-20
 
 ## Add some folders 
 
-While file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project `midfield-institute-2024`, the minimal directory structure has three folders in it plus the `.Rproj` file at the top level. 
+While file organization is a matter of personal preference, we ask that you use the folder structure shown here for your work in the Institute workshop: 
 
+![](figures/rproj-directory.png){width=70%}
 
-    midfield-institute-2024\
-        data\
-        results\
-        scripts\
-        midfield-institute-2024.Rproj
-
-
-We use the folders as follows: 
-
-- `data` data files (for data not included in an R package)
-- `scripts` R scripts that operate on data to produce results  
-- `results` publication-ready graphs and tabulated results  
 
 To create folders: 
 
@@ -137,15 +126,28 @@ To create folders:
 ![](figures/rstudio-new-folder.png){fig-alt="rstudio new folder"}
 
 
+
+
+
+
+We use the folders as follows: 
+
+- `data` data files (for data not included in an R package)
+- `scripts` R scripts that operate on data to produce results  
+- `results` publication-ready graphs and tabulated results 
+
+
 For a video guide, 
 
 - [Make some folders  (04:50--06:08)](https://www.youtube.com/embed/kfcX5DEMAp4?start=290&end=368){target="_blank"} by R Ladies Sydney [@RLadiesSydney:2018:Lesson1] 
+
 
 ::: {.callout-tip appearance="default"}
 *Organizing a computational project.* If you are interested in a comprehensive set of "good enough practices" for scientific computing, we highly recommend [@Wilson+Bryan+others:2017]. The sections on data management, software, collaboration, and project organization are particularly useful to consider at the beginning of a project. 
 :::
 
 
+ 
 
 
 

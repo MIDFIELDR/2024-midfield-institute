@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -367,12 +367,14 @@ Tip
 </section>
 <section id="add-some-folders" class="level2">
 <h2 class="anchored" data-anchor-id="add-some-folders">Add some folders</h2>
-<p>While file organization is a matter of personal preference, we ask that you use the directory structure shown here for your work in the workshop. Assuming we called our project <code>midfield-institute-2024</code>, the minimal directory structure has three folders in it plus the <code>.Rproj</code> file at the top level.</p>
-<pre><code>midfield-institute-2024\
-    data\
-    results\
-    scripts\
-    midfield-institute-2024.Rproj</code></pre>
+<p>While file organization is a matter of personal preference, we ask that you use the folder structure shown here for your work in the Institute workshop:</p>
+<p><img src="figures/rproj-directory.png" class="img-fluid" style="width:70.0%"></p>
+<p>To create folders:</p>
+<ul>
+<li>use your usual method of creating new folders on your machine</li>
+<li>or you can use the <em>New Folder</em> button in the Files pane</li>
+</ul>
+<p><img src="figures/rstudio-new-folder.png" class="img-fluid" alt="rstudio new folder"></p>
 <p>We use the folders as follows:</p>
 <ul>
 <li><code>data</code> data files (for data not included in an R package)</li>
@@ -380,12 +382,6 @@ Tip
 </li>
 <li><code>results</code> publication-ready graphs and tabulated results</li>
 </ul>
-<p>To create folders:</p>
-<ul>
-<li>use your usual method of creating new folders on your machine</li>
-<li>or you can use the <em>New Folder</em> button in the Files pane</li>
-</ul>
-<p><img src="figures/rstudio-new-folder.png" class="img-fluid" alt="rstudio new folder"></p>
 <p>For a video guide,</p>
 <ul>
 <li><a href="https://www.youtube.com/embed/kfcX5DEMAp4?start=290&amp;end=368" target="_blank">Make some folders (04:50–06:08)</a> by R Ladies Sydney <span class="citation" data-cites="RLadiesSydney:2018:Lesson1">(<a href="#ref-RLadiesSydney:2018:Lesson1" role="doc-biblioref">Richmond, 2018</a>)</span></li>
@@ -429,7 +425,7 @@ Tip
 </blockquote>
 <p>Rtools is needed for packages with C/C++/FORTRAN code from source—which does not apply to us. You may ignore the warning and carry on.</p>
 <p>In the RStudio Console, you should see a message like this one,</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>package <span class="st">'data.table'</span> successfully unpacked and MD5 sums checked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>package <span class="st">'data.table'</span> successfully unpacked and MD5 sums checked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If successful, the package will appear in the Packages pane, e.g.,</p>
 <p><img src="figures/rstudio-packages-3.png" class="img-fluid" alt="rstudio packages pane"></p>
 <p>Repeat the process for the following packages:</p>
@@ -438,14 +434,14 @@ ggplot2
 wrapr
 curl</code></pre>
 <p>Alternatively, you can install them all at once by typing in the Console:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>packages_we_use <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"ggplot2"</span>, <span class="st">"checkmate"</span>, <span class="st">"wrapr"</span>, <span class="st">"curl"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(packages_we_use)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>packages_we_use <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"data.table"</span>, <span class="st">"ggplot2"</span>, <span class="st">"checkmate"</span>, <span class="st">"wrapr"</span>, <span class="st">"curl"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(packages_we_use)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="install-midfieldr" class="level2">
 <h2 class="anchored" data-anchor-id="install-midfieldr">Install midfieldr</h2>
 <p>Install with:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"midfieldr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"midfieldr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -462,9 +458,9 @@ Tip
 </div>
 </div>
 <p>Once midfieldr is successfully installed, you can confirm the installation by running the following lines to bring up the package help page in the Help window.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfieldr"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>?midfieldr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfieldr"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>?midfieldr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the installation is successful, the code chunk above should produce a view of the help page as shown here.</p>
 <p><img src="figures/README-midfieldr-help-page-2.png" class="img-fluid" alt="midfiedr help page pane"></p>
 </section>
@@ -472,15 +468,15 @@ Tip
 <h2 class="anchored" data-anchor-id="install-midfielddata">Install midfielddata</h2>
 <p>Because of its size, the data package is stored in a <code>drat</code> repository instead of CRAN. Installation takes time; please be patient and wait for the Console prompt “&gt;” to reappear.</p>
 <p>Type (or copy and paste) the following lines in the RStudio Console.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console  </span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"midfielddata"</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">"https://MIDFIELDR.github.io/drat/"</span>, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">type =</span> <span class="st">"source"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># be patient</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console  </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"midfielddata"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">repos =</span> <span class="st">"https://MIDFIELDR.github.io/drat/"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">type =</span> <span class="st">"source"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># be patient</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once the Console prompt “&gt;” reappears, you can confirm a successful installation by viewing the package help page. In the Console, run:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console  </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfielddata"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>?midfielddata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type in the RStudio Console  </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfielddata"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>?midfielddata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If the installation is successful, the code chunk above should produce a view of the help page as shown here.</p>
 <p><img src="figures/README-midfielddata-help-page-2.png" class="img-fluid" alt="midfiedldata help page pane"></p>
 </section>
