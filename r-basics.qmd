@@ -25,16 +25,15 @@ This guide gives you a flavor of what R can do for you. To get the most out of t
 
 [Before starting.]{.important} Our tutorials assume that you
 
-- Have completed the [Before you arrive](before-you-arrive.html) instructions\
-- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`
+- Have completed the [Before you arrive](before-you-arrive.html) instructions
 
-If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
+Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`. If you are in your RStudio project, the project name appears in the upper left corner of the RStudio window, e.g., 
 
-    midfield-institute-2024\
-        data\
-        results\
-        scripts\
-        midfield-institute-2024.Rproj
+![](figures/rstudio-upper-left.png){width=40%}
+
+And based on the work you did in the *Before you arrive* session, your project directory should have three folders: 
+
+![](figures/rproj-directory-2.png){width=40%}
 
 ## Getting started
 

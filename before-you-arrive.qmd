@@ -79,12 +79,12 @@ Once you have R and RStudio up and running on your system, we have a short set o
 
 We start by creating an RStudio *Project* file and directory. You can recognize an R project file by its *.Rproj* suffix. 
 
-If you prefer your instructions with commentary, 
+(Optional) If you prefer your instructions with commentary, 
 
 - [Start with a Project (02:34--04:50)](https://www.youtube.com/embed/kfcX5DEMAp4?start=154&end=290){target="_blank"} by R Ladies Sydney [@RLadiesSydney:2018:Lesson1] 
+- If you follow the instructions on the video, then when finished, use *File > Close* to close any open projects you created. Then create a new project for the Institute as follows. 
 
-
-If you prefer basic written instructions, 
+Create an RStudio Project for the MIDFIELD Institute:  
 
 - RStudio, *File &gt; New Project... &gt; New Directory &gt; New Project* 
 - Or, click the *New Project* button in the Console ribbon, 
@@ -97,7 +97,7 @@ In the dialog box that appears,
 - Use the browse button to select a location on your computer to create the project  folder  
 - Click the *Create Project* button  
  
-Whenever you work with the workshop materials, launch the `midfield-institute-2024.Rproj` file to start the session. 
+You now have the RStudio Project for the MIDFIELD Institute up and running. If you happen to close the project, simply click on the `midfield-institute-2024.Rproj` file to re-open your work. 
 
 
 
@@ -113,20 +113,16 @@ Whenever you work with the workshop materials, launch the `midfield-institute-20
 
 ## Add some folders 
 
-While file organization is a matter of personal preference, we ask that you use the folder structure shown here for your work in the Institute workshop: 
+If your Institute Project is still open, the "Files" pane should show one item in your project directory. If not, click on the `midfield-institute-2024.Rproj` file to re-open your work.
 
-![](figures/rproj-directory.png){width=70%}
+![](figures/rproj-directory-0.png){width=50%}
 
-
-To create folders: 
+Add three folders to the main project folder. To create folders: 
 
 - use your usual method of creating new folders on your machine 
 - or you can use the *New Folder* button in the Files pane 
 
-![](figures/rstudio-new-folder.png){fig-alt="rstudio new folder"}
-
-
-
+![](figures/rproj-directory-4.png){width=50%}
 
 
 

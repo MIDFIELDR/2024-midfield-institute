@@ -44,15 +44,15 @@ with some intentional similarity to SQL. Here `i` operates on rows, `j` operates
 - Have completed the [Before you arrive](before-you-arrive.html) instructions
 - Have completed the [R basics](r-basics.html) guide 
 - Have completed the [R chart basics](chart-basics.html) guide 
-- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`
 
-If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
 
-    midfield-institute-2024\
-        data\
-        results\
-        scripts\
-        midfield-institute-2024.Rproj
+Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`. If you are in your RStudio project, the project name appears in the upper left corner of the RStudio window, e.g., 
+
+![](figures/rstudio-upper-left.png){width=40%}
+
+And based on the work you did in the *Before you arrive* session, your project directory should have three folders: 
+
+![](figures/rproj-directory-2.png){width=40%}
 
 ## Getting started 
 

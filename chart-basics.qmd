@@ -28,15 +28,14 @@ The rationale for using the ggplot2 package instead of other R graphics environm
 
 - Have completed the [Before you arrive](before-you-arrive.html) instructions
 - Have completed the [R basics](r-basics.html) guide 
-- Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`
 
-If you are in an RStudio project, the project name appears in the upper left corner of the RStudio window. Your project directory (folder) should look something like this:
+Start your R session by launching the RStudio project you created, e.g., `midfield-institute-2024.Rproj`. If you are in your RStudio project, the project name appears in the upper left corner of the RStudio window, e.g., 
 
-    midfield-institute-2024\
-        data\
-        results\
-        scripts\
-        midfield-institute-2024.Rproj
+![](figures/rstudio-upper-left.png){width=40%}
+
+And based on the work you did in the *Before you arrive* session, your project directory should have three folders: 
+
+![](figures/rproj-directory-2.png){width=40%}
 
 
 ## Getting started 
