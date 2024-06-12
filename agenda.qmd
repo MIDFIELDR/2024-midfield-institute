@@ -45,7 +45,7 @@ Each tutorial can be completed in under an hour if you have any experience with 
 
 [Join the online meeting](https://purdue-edu.zoom.us/j/98641259224?pwd=c3FIU2p0U0FKd1htMHVCcnJZWUJ3dz09) 
 
-**Introductions**    
+**Introductions** [![](resources/download-icon.png) slides](resources/2024-introduction.pdf)    
 *1:00--1:50 Eastern Time*    
 Introduce facilitators and participants, objectives, and  MIDFIELD.  
 
