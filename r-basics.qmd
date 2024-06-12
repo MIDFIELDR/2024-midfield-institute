@@ -614,6 +614,7 @@ df <- wrapr::build_frame(
   "Windows / Linux", "Action", "Mac OS"|
     "`ctrl L`"       , "Clear the RStudio Console"  , "`ctrl L`" |
     "`ctrl Enter`"   , "Run selected line(s)"        , "`cmd Return`" |
+  	"`ctrl shift Enter`" , "Run complete script"     , "`cmd shift Return`" |
     "`ctrl alt B`"   , "Run from  begining to line"  , "`cmd option B`" |
     "`ctrl alt E`"   , "Run from line to end"        , "`cmd option E`" |
     "`alt` --"       , "Insert the assignment operator `<-`", "`option` --" |
@@ -627,7 +628,6 @@ df <- wrapr::build_frame(
     "`ctrl shift K`" , " Compile R Markdown document", "`cmd shift K`"
 )
 setDT(df)
-setkey(df, Action)
 knitr::kable(df)
 ```
 
