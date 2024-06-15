@@ -19,3 +19,21 @@ Collected links to the Institute tutorials. See the [Program](agenda.html) for s
 - [Part 3: Results](https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html) 
 
 
+
+
+**Post-workshop tutorials**
+
+The following articles from the midfieldr website provide a deeper dive into the process of working with student-level data. 
+
+- [Planning](https://midfieldr.github.io/midfieldr/articles/art-010-planning.html)
+- [Data sufficiency](https://midfieldr.github.io/midfieldr/articles/art-020-data-sufficiency.html)
+- [Degree seeking](https://midfieldr.github.io/midfieldr/articles/art-030-degree-seeking.html)
+- [Programs](https://midfieldr.github.io/midfieldr/articles/art-040-programs.html)
+- [Blocs](https://midfieldr.github.io/midfieldr/articles/art-050-blocs.html)
+- [FYE proxies](https://midfieldr.github.io/midfieldr/articles/art-060-fye-proxies.html)
+- [Starters](https://midfieldr.github.io/midfieldr/articles/art-070-starters.html)
+- [Graduates](https://midfieldr.github.io/midfieldr/articles/art-080-graduates.html)
+- [Groupings](https://midfieldr.github.io/midfieldr/articles/art-090-groupings.html)
+- [Gradation rate](https://midfieldr.github.io/midfieldr/articles/art-100-grad-rate.html)
+- [Stickiness](https://midfieldr.github.io/midfieldr/articles/art-110-stickiness.html)
+- [Multiway data and charts](https://midfieldr.github.io/midfieldr/articles/art-120-multiway.html)

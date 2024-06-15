@@ -92,7 +92,7 @@ Please check in with us before leaving the virtual meeting.
 
 [Join the online meeting](https://purdue-edu.zoom.us/j/98641259224?pwd=c3FIU2p0U0FKd1htMHVCcnJZWUJ3dz09) 
 
-**Metaphors and metrics**  
+**Metaphors and metrics** [![](resources/download-icon.png) slides](resources/2024-metaphors-and-metrics-slides.pdf)    
 *1:00--1:30 Eastern Time*  
 Pipelines, pathways, and ecosystems.  
 
