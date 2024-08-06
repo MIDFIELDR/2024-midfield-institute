@@ -10,17 +10,17 @@ website:
       - text: "License"
         href: license.qmd
   reader-mode: true
-  repo-url: https://github.com/MIDFIELDR/2023-midfield-institute
+  repo-url: https://github.com/MIDFIELDR/2024-midfield-institute
   repo-actions: [issue]
   favicon: figures/logo.png
   navbar:
     background: primary
     right:
       - icon: git
-        href: https://github.com/MIDFIELDR/2023-midfield-institute
+        href: https://github.com/MIDFIELDR/2024-midfield-institute
   comments:
     utterances:
-      repo: https://github.com/MIDFIELDR/2023-midfield-institute
+      repo: https://github.com/MIDFIELDR/2024-midfield-institute
   sidebar:
     style: "floating"
     search: true
