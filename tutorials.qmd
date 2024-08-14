@@ -4,15 +4,20 @@ title: "Tutorial links"
 
 ![Image: *Tutors* by David Power is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode)](figures/tutorial.png)
 
-Collected links to the Institute tutorials. See the [Program](agenda.html) for scheduling. 
 
-**Pre-workshop tutorials**
+
+
+## Pre-workshop tutorials
 
 - [R basics](r-basics.html) 
 - [Chart basics](chart-basics.html) 
 - [Data basics](data-basics.html) 
 
-**Workshop case study**
+
+
+
+
+## Workshop case study
 
 - [Part 1: Goals](https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html)   
 - [Part 2: Data](https://midfieldr.github.io/midfieldr/articles/art-002-case-data.html)  
@@ -21,7 +26,7 @@ Collected links to the Institute tutorials. See the [Program](agenda.html) for s
 
 
 
-**Post-workshop tutorials**
+## Post-workshop midfieldr tutorials
 
 The following articles from the midfieldr website provide a deeper dive into the process of working with student-level data. 
 
@@ -37,3 +42,14 @@ The following articles from the midfieldr website provide a deeper dive into the
 - [Gradation rate](https://midfieldr.github.io/midfieldr/articles/art-100-grad-rate.html)
 - [Stickiness](https://midfieldr.github.io/midfieldr/articles/art-110-stickiness.html)
 - [Multiway data and charts](https://midfieldr.github.io/midfieldr/articles/art-120-multiway.html)
+
+## Shaping MIDFIELD data three ways
+
+A post-workshop set of tutorials to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. 
+
+- [Introduction](data-shaping-00-introduction.html)
+- [Data selection](data-shaping-01-data-selection.html)
+- [Basic transforms](data-shaping-02-basic-transforms.html)
+- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
+- [Multi-table transforms](data-shaping-04-multitable-transforms.html)
+- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)

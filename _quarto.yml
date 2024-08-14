@@ -13,6 +13,7 @@ website:
   repo-url: https://github.com/MIDFIELDR/2024-midfield-institute
   repo-actions: [issue]
   favicon: figures/logo.png
+  back-to-top-navigation: true
   navbar:
     background: primary
     right:
@@ -46,6 +47,17 @@ website:
       - text: "License"
         file: license.qmd
 
+      - section: "Shaping data 3 ways"
+        contents:
+          - text: "Introduction"
+            file: data-shaping-00-introduction.qmd
+          - data-shaping-01-data-selection.qmd
+          - data-shaping-02-basic-transforms.qmd
+          - data-shaping-03-aggregating-transforms.qmd
+          - data-shaping-04-multitable-transforms.qmd
+          - data-shaping-05-reshaping-transforms.qmd
+
+
 
 
 format:
@@ -54,6 +66,7 @@ format:
     css: styles.css
     toc: true
     code-copy: true
+    code-overflow: wrap
 
 
 

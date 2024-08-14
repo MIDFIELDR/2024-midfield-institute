@@ -1,0 +1,138 @@
+---
+title: "Shaping MIDFIELD data three ways"
+format:
+  html:
+    css: styles.css
+---
+
+![Image: *Workshop* by Daniel Mee is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)](figures/data-shaping-0.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis. 
+
+- [Introduction](data-shaping-00-introduction.html)  &#9665; *You are here.*
+- [Data selection](data-shaping-01-data-selection.html)
+- [Basic transforms](data-shaping-02-basic-transforms.html)
+- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
+- [Multi-table transforms](data-shaping-04-multitable-transforms.html)
+- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+
+In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.  
+
+Sources for translating among the three systems include [@Atrebas:2019; @Gimond:2019; @Hajnala:2018; @Mercer:2020; and @Vaughan:2023]. In particular, our outline is roughly based on Chapter 5 of [@Zumel+Mount:2020]. 
+
+
+
+
+
+
+
+## Getting started
+
+*Start.* &nbsp;   If you are writing your own script to follow along, we use these packages in the data-shaping articles:
+
+```{r}
+library(midfielddata) # datasets
+library(data.table) # data manipulation system
+library(dplyr) # data manipulation system
+library(tidyr) # drop_na()
+```
+
+*Load.* &nbsp;  Practice datasets. View data dictionaries via `?student` and `?term`.
+
+```{r}
+data(student, term)
+```
+
+We construct a different version of these data tables for each system (base R, data.table, and dplyr). 
+
+```{r}
+#| echo: false
+wrapr::build_frame(
+  "system", "name", "class" |
+    "base R", "`student_base`, `term_base`", "`data.frame`" |
+    "data.table", "`student_DT`, `term_DT`", "`data.frame, data.table`" |
+    "dplyr", "`student_dplyr`, `term_dplyr`", "`data.frame, tbl_df, tbl`"
+) %>%
+  knitr::kable(caption = "Table 1: Data-preparation data frame names and classes")
+```
+
+<br>
+
+Equivalent code chunks for the three systems are color-coded. 
+
+```{r}
+#| class: base
+# base R
+student_base <- data.frame(student)
+term_base <- data.frame(term)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_DT <- copy(student)
+term_DT <- copy(term)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_dplyr <- tibble(student)
+term_dplyr <- tibble(term)
+```
+
+### Usage notes
+
+1. For clarity, we generally write a line of code to do one thing, avoiding combined or nested operations. Thus we often introduce intermediate or temporary variables that get overwritten before reaching a desired result. Our goal is to make each operation as transparent as possible for the R novice. 
+
+1. We also show only one approach per task per system---other resources are available for comprehensive development of these systems.   
+
+1. It is traditional to chain dplyr steps with the magrittr pipe `%>%` (though assigning temporary variables would work just as well).
+
+1. In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using `all.equal()` with arguments sometimes set to ignore attributes, row order, or column order. 
+
+```{r}
+all.equal(student_DT, data.table(student_base), check.attributes = FALSE)
+all.equal(term_DT, data.table(term_dplyr))
+```
+
+
+
+### Practice data
+
+It's always a good idea to review the data structure before starting.  
+
+```{r}
+str(student)
+```
+
+```{r}
+str(term)
+```
+
+
+
+
+## References 
+
+<div id="refs"></div>
+
+
+
+## Appendix
+
+The R and package version numbers (as of this writing) are: 
+
+```{r}
+R.version$version.string
+packageVersion("midfielddata")
+packageVersion("data.table")
+packageVersion("dplyr")
+packageVersion("tidyr")
+```

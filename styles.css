@@ -1,5 +1,43 @@
 /* css styles */
 .important {
-  color: #35978f;
+  color: #1b9e77;
   font-weight: bold;
+}
+.base {
+    line-height: 1.15em;
+    width: 95%;
+    border-radius: 5px;
+    outline: 5px solid #1b9e77;
+    margin: 3mm;
+}
+.dtbl {
+    line-height: 1.15em;
+    width: 95%;
+    border-radius: 5px;
+    outline: 5px solid  #d95f02;
+    margin: 3mm;
+}
+.dplyr {
+    line-height: 1.15em;
+    width: 95%;
+    border-radius: 5px;
+    outline: 5px solid #7570b3;
+    margin: 3mm;
+}
+.output {
+    border-left: #AAAAAA solid;
+}
+h3 {
+  border-bottom: 2px solid #f7f7f7;
+  padding-top: 10px;
+  font-size: 110%;
+  font-style: italic;
+}
+/* unvisited link */
+a:link {
+  color: #01665e;
+}
+/* visited link */
+a:visited {
+  color: #01665e;
 }

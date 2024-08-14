@@ -1,0 +1,31 @@
+---
+title: "Reshaping transforms"
+format:
+  html:
+    css: styles.css
+---
+
+![Image: *SAREC field day 2018* by Univ Wyoming Extension CT is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-5.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
+
+- [Introduction](data-shaping-00-introduction.html)
+- [Data selection](data-shaping-01-data-selection.html)
+- [Basic transforms](data-shaping-02-basic-transforms.html)
+- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
+- [Multitable transforms](data-shaping-04-multitable-transforms.html)
+- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)  &#9665; *You are here.*
+
+In this section, ...
+
+
+## References 
+
+<div id="refs"></div>
+

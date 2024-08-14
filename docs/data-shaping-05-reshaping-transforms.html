@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MIDFIELD Institute - Tutorial links</title>
+<title>MIDFIELD Institute - Reshaping transforms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +49,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./r-resources.html" rel="next">
-<link href="./agenda.html" rel="prev">
+<link href="./data-shaping-04-multitable-transforms.html" rel="prev">
 <link href="./figures/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -112,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorials.html">Tutorial links</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Shaping data 3 ways</a></li><li class="breadcrumb-item"><a href="./data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tutorials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial links</span></a>
   </div>
 </li>
@@ -215,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-shaping-05-reshaping-transforms.html" class="sidebar-item-text sidebar-link">
+  <a href="./data-shaping-05-reshaping-transforms.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Reshaping transforms</span></a>
   </div>
 </li>
@@ -231,19 +249,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#pre-workshop-tutorials" id="toc-pre-workshop-tutorials" class="nav-link active" data-scroll-target="#pre-workshop-tutorials">Pre-workshop tutorials</a></li>
-  <li><a href="#workshop-case-study" id="toc-workshop-case-study" class="nav-link" data-scroll-target="#workshop-case-study">Workshop case study</a></li>
-  <li><a href="#post-workshop-midfieldr-tutorials" id="toc-post-workshop-midfieldr-tutorials" class="nav-link" data-scroll-target="#post-workshop-midfieldr-tutorials">Post-workshop midfieldr tutorials</a></li>
-  <li><a href="#shaping-midfield-data-three-ways" id="toc-shaping-midfield-data-three-ways" class="nav-link" data-scroll-target="#shaping-midfield-data-three-ways">Shaping MIDFIELD data three ways</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Shaping data 3 ways</a></li><li class="breadcrumb-item"><a href="./data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Tutorial links</h1>
+<h1 class="title">Reshaping transforms</h1>
 </div>
 
 
@@ -262,57 +277,25 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/tutorial.png" class="img-fluid figure-img"></p>
-<figcaption>Image: <em>Tutors</em> by David Power is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode">CC BY-NC-ND 2.0</a></figcaption>
+<p><img src="figures/data-shaping-5.png" class="img-fluid figure-img"></p>
+<figcaption>Image: <em>SAREC field day 2018</em> by Univ Wyoming Extension CT is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a></figcaption>
 </figure>
 </div>
-<section id="pre-workshop-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="pre-workshop-tutorials">Pre-workshop tutorials</h2>
-<ul>
-<li><a href="r-basics.html">R basics</a></li>
-<li><a href="chart-basics.html">Chart basics</a></li>
-<li><a href="data-basics.html">Data basics</a></li>
-</ul>
-</section>
-<section id="workshop-case-study" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-case-study">Workshop case study</h2>
-<ul>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html">Part 1: Goals</a><br>
-</li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-002-case-data.html">Part 2: Data</a><br>
-</li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html">Part 3: Results</a></li>
-</ul>
-</section>
-<section id="post-workshop-midfieldr-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="post-workshop-midfieldr-tutorials">Post-workshop midfieldr tutorials</h2>
-<p>The following articles from the midfieldr website provide a deeper dive into the process of working with student-level data.</p>
-<ul>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-010-planning.html">Planning</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-020-data-sufficiency.html">Data sufficiency</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-030-degree-seeking.html">Degree seeking</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-040-programs.html">Programs</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-050-blocs.html">Blocs</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-060-fye-proxies.html">FYE proxies</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-070-starters.html">Starters</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-080-graduates.html">Graduates</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-090-groupings.html">Groupings</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-100-grad-rate.html">Gradation rate</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-110-stickiness.html">Stickiness</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-120-multiway.html">Multiway data and charts</a></li>
-</ul>
-</section>
-<section id="shaping-midfield-data-three-ways" class="level2">
-<h2 class="anchored" data-anchor-id="shaping-midfield-data-three-ways">Shaping MIDFIELD data three ways</h2>
-<p>A post-workshop set of tutorials to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr.</p>
+<p>Using <strong>base R</strong>, <strong>data.table</strong>, and <strong>dplyr</strong> to transform MIDFIELD data as needed for your analysis.</p>
 <ul>
 <li><a href="data-shaping-00-introduction.html">Introduction</a></li>
 <li><a href="data-shaping-01-data-selection.html">Data selection</a></li>
 <li><a href="data-shaping-02-basic-transforms.html">Basic transforms</a></li>
 <li><a href="data-shaping-03-aggregating-transforms.html">Aggregating transforms</a></li>
-<li><a href="data-shaping-04-multitable-transforms.html">Multi-table transforms</a></li>
-<li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
+<li><a href="data-shaping-04-multitable-transforms.html">Multitable transforms</a></li>
+<li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a> ◁ <em>You are here.</em></li>
 </ul>
+<p>In this section, …</p>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" role="list">
+
+</div>
 
 
 </section>
@@ -731,14 +714,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./agenda.html" class="pagination-link" aria-label="Program">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Program</span>
+      <a href="./data-shaping-04-multitable-transforms.html" class="pagination-link" aria-label="Multitable transforms">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Multitable transforms</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./r-resources.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

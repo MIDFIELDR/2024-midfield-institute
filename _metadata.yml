@@ -2,7 +2,7 @@
 bibliography: references.bib
 csl: information-science-and-technology.csl
 title-block-banner: false
-freeze: true
+freeze: auto
 toc-depth: 2
 toc: true
 # citation: true # wait for bug fix

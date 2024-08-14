@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MIDFIELD Institute - Tutorial links</title>
+<title>MIDFIELD Institute - Shaping MIDFIELD data three ways</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +84,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./r-resources.html" rel="next">
-<link href="./agenda.html" rel="prev">
+<link href="./data-shaping-01-data-selection.html" rel="next">
+<link href="./license.html" rel="prev">
 <link href="./figures/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -112,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorials.html">Tutorial links</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Shaping data 3 ways</a></li><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials.html" class="sidebar-item-text sidebar-link active">
+  <a href="./tutorials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial links</span></a>
   </div>
 </li>
@@ -185,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-shaping-00-introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="./data-shaping-00-introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -231,19 +285,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#pre-workshop-tutorials" id="toc-pre-workshop-tutorials" class="nav-link active" data-scroll-target="#pre-workshop-tutorials">Pre-workshop tutorials</a></li>
-  <li><a href="#workshop-case-study" id="toc-workshop-case-study" class="nav-link" data-scroll-target="#workshop-case-study">Workshop case study</a></li>
-  <li><a href="#post-workshop-midfieldr-tutorials" id="toc-post-workshop-midfieldr-tutorials" class="nav-link" data-scroll-target="#post-workshop-midfieldr-tutorials">Post-workshop midfieldr tutorials</a></li>
-  <li><a href="#shaping-midfield-data-three-ways" id="toc-shaping-midfield-data-three-ways" class="nav-link" data-scroll-target="#shaping-midfield-data-three-ways">Shaping MIDFIELD data three ways</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Shaping data 3 ways</a></li><li class="breadcrumb-item"><a href="./data-shaping-00-introduction.html">Introduction</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Tutorial links</h1>
+<h1 class="title">Shaping MIDFIELD data three ways</h1>
 </div>
 
 
@@ -262,57 +315,178 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="figures/tutorial.png" class="img-fluid figure-img"></p>
-<figcaption>Image: <em>Tutors</em> by David Power is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode">CC BY-NC-ND 2.0</a></figcaption>
+<p><img src="figures/data-shaping-0.png" class="img-fluid figure-img"></p>
+<figcaption>Image: <em>Workshop</em> by Daniel Mee is licensed under <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></figcaption>
 </figure>
 </div>
-<section id="pre-workshop-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="pre-workshop-tutorials">Pre-workshop tutorials</h2>
+<p>Using <strong>base R</strong>, <strong>data.table</strong>, and <strong>dplyr</strong> to transform MIDFIELD data as needed for your analysis.</p>
 <ul>
-<li><a href="r-basics.html">R basics</a></li>
-<li><a href="chart-basics.html">Chart basics</a></li>
-<li><a href="data-basics.html">Data basics</a></li>
-</ul>
-</section>
-<section id="workshop-case-study" class="level2">
-<h2 class="anchored" data-anchor-id="workshop-case-study">Workshop case study</h2>
-<ul>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html">Part 1: Goals</a><br>
-</li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-002-case-data.html">Part 2: Data</a><br>
-</li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-003-case-results.html">Part 3: Results</a></li>
-</ul>
-</section>
-<section id="post-workshop-midfieldr-tutorials" class="level2">
-<h2 class="anchored" data-anchor-id="post-workshop-midfieldr-tutorials">Post-workshop midfieldr tutorials</h2>
-<p>The following articles from the midfieldr website provide a deeper dive into the process of working with student-level data.</p>
-<ul>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-010-planning.html">Planning</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-020-data-sufficiency.html">Data sufficiency</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-030-degree-seeking.html">Degree seeking</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-040-programs.html">Programs</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-050-blocs.html">Blocs</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-060-fye-proxies.html">FYE proxies</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-070-starters.html">Starters</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-080-graduates.html">Graduates</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-090-groupings.html">Groupings</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-100-grad-rate.html">Gradation rate</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-110-stickiness.html">Stickiness</a></li>
-<li><a href="https://midfieldr.github.io/midfieldr/articles/art-120-multiway.html">Multiway data and charts</a></li>
-</ul>
-</section>
-<section id="shaping-midfield-data-three-ways" class="level2">
-<h2 class="anchored" data-anchor-id="shaping-midfield-data-three-ways">Shaping MIDFIELD data three ways</h2>
-<p>A post-workshop set of tutorials to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr.</p>
-<ul>
-<li><a href="data-shaping-00-introduction.html">Introduction</a></li>
+<li><a href="data-shaping-00-introduction.html">Introduction</a> ◁ <em>You are here.</em></li>
 <li><a href="data-shaping-01-data-selection.html">Data selection</a></li>
 <li><a href="data-shaping-02-basic-transforms.html">Basic transforms</a></li>
 <li><a href="data-shaping-03-aggregating-transforms.html">Aggregating transforms</a></li>
 <li><a href="data-shaping-04-multitable-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
+<p>In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.</p>
+<p>Sources for translating among the three systems include <span class="citation" data-cites="Atrebas:2019 Gimond:2019 Hajnala:2018 Mercer:2020 Vaughan:2023">(<a href="#ref-Atrebas:2019" role="doc-biblioref">atrebas, 2019</a>; <a href="#ref-Gimond:2019" role="doc-biblioref">Gimond, 2019</a>; <a href="#ref-Hajnala:2018" role="doc-biblioref">Hajnala, 2018</a>; <a href="#ref-Mercer:2020" role="doc-biblioref">Mercer, 2020</a>; and <a href="#ref-Vaughan:2023" role="doc-biblioref">Vaughan, 2023</a>)</span>. In particular, our outline is roughly based on Chapter 5 of <span class="citation" data-cites="Zumel+Mount:2020">(<a href="#ref-Zumel+Mount:2020" role="doc-biblioref">Zumel &amp; Mount, 2020</a>)</span>.</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p><em>Start.</em> &nbsp; If you are writing your own script to follow along, we use these packages in the data-shaping articles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midfielddata) <span class="co"># datasets</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># data manipulation system</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># data manipulation system</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># drop_na()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Load.</em> &nbsp; Practice datasets. View data dictionaries via <code>?student</code> and <code>?term</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(student, term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We construct a different version of these data tables for each system (base R, data.table, and dplyr).</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 1: Data-preparation data frame names and classes</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">system</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">base R</td>
+<td style="text-align: left;"><code>student_base</code>, <code>term_base</code></td>
+<td style="text-align: left;"><code>data.frame</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">data.table</td>
+<td style="text-align: left;"><code>student_DT</code>, <code>term_DT</code></td>
+<td style="text-align: left;"><code>data.frame, data.table</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;"><code>student_dplyr</code>, <code>term_dplyr</code></td>
+<td style="text-align: left;"><code>data.frame, tbl_df, tbl</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
+<p>Equivalent code chunks for the three systems are color-coded.</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>student_base <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>term_base <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>student_DT <span class="ot">&lt;-</span> <span class="fu">copy</span>(student)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>term_DT <span class="ot">&lt;-</span> <span class="fu">copy</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>student_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(student)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>term_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="usage-notes" class="level3">
+<h3 class="anchored" data-anchor-id="usage-notes">Usage notes</h3>
+<ol type="1">
+<li><p>For clarity, we generally write a line of code to do one thing, avoiding combined or nested operations. Thus we often introduce intermediate or temporary variables that get overwritten before reaching a desired result. Our goal is to make each operation as transparent as possible for the R novice.</p></li>
+<li><p>We also show only one approach per task per system—other resources are available for comprehensive development of these systems.</p></li>
+<li><p>It is traditional to chain dplyr steps with the magrittr pipe <code>%&gt;%</code> (though assigning temporary variables would work just as well).</p></li>
+<li><p>In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using <code>all.equal()</code> with arguments sometimes set to ignore attributes, row order, or column order.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(student_DT, <span class="fu">data.table</span>(student_base), <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(term_DT, <span class="fu">data.table</span>(term_dplyr))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="practice-data" class="level3">
+<h3 class="anchored" data-anchor-id="practice-data">Practice data</h3>
+<p>It’s always a good idea to review the data structure before starting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(student)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   97555 obs. of  13 variables:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ mcid          : chr  "MCID3111142225" "MCID3111142283" "MCID3111142290" "MCID3111142294" ...</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ institution   : chr  "Institution B" "Institution J" "Institution J" "Institution J" ...</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ transfer      : chr  "First-Time Transfer" "First-Time Transfer" "First-Time Transfer" "First-Time Transfer" ...</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_transfer: num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ race          : chr  "Asian" "Asian" "Asian" "Asian" ...</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sex           : chr  "Male" "Female" "Male" "Male" ...</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ age_desc      : chr  "Under 25" "Under 25" "Under 25" "Under 25" ...</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ us_citizen    : chr  "Yes" "Yes" "Yes" "Yes" ...</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ home_zip      : chr  NA "22020" "23233" "20853" ...</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ high_school   : chr  NA NA "471872" NA ...</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sat_math      : num  NA 560 510 640 600 570 480 NA NA NA ...</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sat_verbal    : num  NA 230 380 460 500 530 530 NA NA NA ...</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ act_comp      : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, "index")= int(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(term)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   639915 obs. of  13 variables:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ mcid               : chr  "MCID3111142225" "MCID3111142283" "MCID3111142283" "MCID3111142283" ...</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ institution        : chr  "Institution B" "Institution J" "Institution J" "Institution J" ...</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ term               : chr  "19881" "19881" "19883" "19885" ...</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ cip6               : chr  "140901" "240102" "240102" "190601" ...</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ level              : chr  "01 First-year" "01 First-year" "01 First-year" "01 First-year" ...</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ standing           : chr  "Good Standing" "Academic Probation" "Academic Probation" "Academic Probation" ...</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ coop               : chr  "No" "No" "No" "No" ...</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_term         : num  7 6 12 6 6 6 6 18 15 14 ...</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_term_attempt : num  7 6 12 6 6 6 6 18 18 14 ...</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_cumul        : num  7 6 18 24 30 36 42 63 78 14 ...</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_cumul_attempt: num  7 6 18 24 30 36 42 63 81 14 ...</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gpa_term           : num  2.56 1.85 1.93 2.15 1.85 1.2 1.85 2.33 2.32 2.15 ...</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gpa_cumul          : num  2.56 1.85 1.9 1.96 1.94 1.82 1.82 1.98 2.04 2.15 ...</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Atrebas:2019" class="csl-entry" role="listitem">
+atrebas. (2019). <em><span class="nocase">A data.table and dplyr tour</span></em>. <a href="https://atrebas.github.io/post/2019-03-03-datatable-dplyr/">https://atrebas.github.io/post/2019-03-03-datatable-dplyr/</a>
+</div>
+<div id="ref-Gimond:2019" class="csl-entry" role="listitem">
+Gimond, M. (2019). <em><span class="nocase">base vs. tidyverse vs. data.table</span></em>. <a href="https://mgimond.github.io/rug_2019_12/Index.html">https://mgimond.github.io/rug_2019_12/Index.html</a>
+</div>
+<div id="ref-Hajnala:2018" class="csl-entry" role="listitem">
+Hajnala, J. (2018). <em><span class="nocase">Data subsetting and manipulation with base R</span></em>. <a href="https://jozef.io/r002-data-manipulation/">https://jozef.io/r002-data-manipulation/</a>
+</div>
+<div id="ref-Mercer:2020" class="csl-entry" role="listitem">
+Mercer, J. (2020). <em><span class="nocase">Base R, the tidyverse, and data.table: A comparison of R dialects to wrangle your data</span></em>. <a href="https://tinyurl.com/yy544udn">https://tinyurl.com/yy544udn</a>
+</div>
+<div id="ref-Vaughan:2023" class="csl-entry" role="listitem">
+Vaughan, D. (2023). <em><span class="nocase">dplyr &lt;=&gt; base R</span></em>. <a href="https://dplyr.tidyverse.org/articles/base.html">https://dplyr.tidyverse.org/articles/base.html</a>
+</div>
+<div id="ref-Zumel+Mount:2020" class="csl-entry" role="listitem">
+Zumel, N., &amp; Mount, J. (2020). <em><span class="nocase">Practical Data Science with R</span></em> (2nd ed.). Manning Publications Co.
+</div>
+</div>
+</section>
+<section id="appendix" class="level2">
+<h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
+<p>The R and package version numbers (as of this writing) are:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>R.version<span class="sc">$</span>version.string</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "R version 4.4.1 (2024-06-14 ucrt)"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"midfielddata"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '0.2.1'</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"data.table"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.15.4'</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.1.4'</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyr"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.3.1'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
@@ -731,13 +905,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./agenda.html" class="pagination-link" aria-label="Program">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Program</span>
+      <a href="./license.html" class="pagination-link" aria-label="License">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">License</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./r-resources.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-shaping-01-data-selection.html" class="pagination-link" aria-label="Data selection">
+        <span class="nav-page-text">Data selection</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

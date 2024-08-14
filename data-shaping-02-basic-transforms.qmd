@@ -1,0 +1,334 @@
+---
+title: "Basic transforms"
+format:
+  html:
+    css: styles.css
+---
+
+![Image: *Transformers* by danjo paluska is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)](figures/data-shaping-2.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
+
+- [Introduction](data-shaping-00-introduction.html) 
+- [Data selection](data-shaping-01-data-selection.html) 
+- [Basic transforms](data-shaping-02-basic-transforms.html) &#9665; *You are here.*
+- [Aggregating transforms](data-shaping-03-aggregating-transforms.html) 
+- [Multitable transforms](data-shaping-04-multitable-transforms.html) 
+- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+
+In this section we demonstrate adding and removing columns, editing column names, creating two new columns by splitting a character column, converting the class of a column, and recoding the values in a column. 
+
+## Getting started
+
+Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html) to data shaping.
+
+```{r}
+library(midfielddata) # datasets
+library(data.table) # data manipulation system
+library(dplyr) # data manipulation system
+library(tidyr) # drop_na()
+
+data(student, term)
+
+student_base <- data.frame(student)
+student_DT <- copy(student)
+student_dplyr <- tibble(student)
+
+term_base <- data.frame(term)
+term_DT <- copy(term)
+term_dplyr <- tibble(term)
+```
+
+## Adding columns
+
+*Task.* &nbsp; Add a column to the student table for total SAT score. 
+
+```{r}
+columns_we_want <- c("mcid", "sat_math", "sat_verbal", "act_comp")
+```
+
+```{r}
+#| class: base
+# base R
+result_base <- student_base[, columns_we_want, drop = FALSE]
+result_base$sat_total <- result_base$sat_math + result_base$sat_verbal
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_DT <- student_DT[, ..columns_we_want]
+result_DT[, sat_total := sat_math + sat_verbal]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- student_dplyr %>%
+  select(all_of(columns_we_want)) %>%
+  mutate(sat_total = sat_math + sat_verbal)
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* `df$new_col` creates the new column.  
+
+- *data.table.* `:=` alters or creates columns "in place". The `data.table` at hand gets altered instead of a new one being created.  
+
+- *dplyr.* New columns are created with `mutate()`. 
+
+## Removing columns
+
+In previous examples, when selecting some columns we have implicitly removed every column not selected (if any). Here we explicitly select the columns to be removed.  
+
+*Task.* &nbsp; Using the results from the previous example, remove the SAT math and verbal columns. 
+
+```{r}
+#| class: base
+# base R
+result_base$sat_math <- NULL
+result_base$sat_verbal <- NULL
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_DT[, c("sat_math", "sat_verbal") := NULL]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- result_dplyr %>%
+  select(-sat_math, -sat_verbal)
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* 
+
+- *data.table.*  Use a vector of column names and `:=` to remove the columns "in place". 
+
+- *dplyr.* Use `select()` with minus signs. 
+
+## Editing column names
+
+*Task.* &nbsp; Using the results from the previous example, rename the columns. 
+
+In each case, we take care to explicitly match old and new names.  
+
+```{r}
+#| class: base
+# base R
+names(result_base)[names(result_base) == "mcid"] <- "Student"
+names(result_base)[names(result_base) == "sat_total"] <- "SAT"
+names(result_base)[names(result_base) == "act_comp"] <- "ACT"
+```
+
+```{r}
+#| class: dtbl
+# data.table
+setnames(result_DT,
+  old = c("mcid", "sat_total", "act_comp"),
+  new = c("Student", "SAT", "ACT")
+)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- result_dplyr %>%
+	rename(Student = mcid, SAT = sat_total, ACT = act_comp)
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* While other approaches work too, this approach ensures that old and new names are explicitly matched. 
+
+- *data.table.*  `setnames()` edits the column names in place. 
+
+- *dplyr.* `rename()` uses `new_name = old_name` syntax.  
+
+## Split a character column
+
+*Task.* &nbsp; In the `term` data, create new columns for year `YYYY` and term code `T` by splitting the character `term` column. 
+
+In each system, we use the base R `substr()` function to split the `term` character value into a 4-character year in one new column and a 1-character term-code in a new second column. We also drop rows with missing values (if any). 
+ 
+```{r}
+columns_we_want <- c("mcid", "term")
+```
+
+```{r}
+#| class: base
+# base R
+DF <- term_base[, columns_we_want, drop = FALSE]
+DF$year <- substr(DF$term, 1, 4)
+DF$term_code <- substr(DF$term, 5, 5)
+result_base <- na.omit(DF)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+DT <- term_DT[, ..columns_we_want]
+DT[, c("year", "term_code") := .(substr(term, 1, 4), substr(term, 5, 5))]
+result_DT <- na.omit(DT)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- term_dplyr %>%
+  select(mcid, term) %>%
+  mutate(year = substr(term, 1, 4), term_code = substr(term, 5, 5)) %>%
+  drop_na()
+```
+
+```{r}
+options(datatable.print.topn = 5)
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* 
+
+- *data.table.*  
+
+- *dplyr.* 
+
+## Convert column class
+
+*Task.* &nbsp; Using the results from the previous example, convert character year to numerical class.
+
+```{r}
+#| class: base
+# base R
+result_base$year <- as.double(result_base$year)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_DT[, year := as.double(year)]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- result_dplyr %>%
+  mutate(year = as.double(year))
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* 
+
+- *data.table.*  
+
+- *dplyr.* 
+
+## Recode column values
+
+*Task.* &nbsp; Using the results from the previous example, recode the term-codes from numbers to academic terms "Fall", "Winter", etc.
+
+"Recoding" typically entails replacing existing values in a column with new, recoded values. For the sake of clarity in this example we assign the new encodings to a new column---not strictly necessary but it makes it easier to check the results. The existing column is `term_code`; the new column is `term_name`. 
+
+```{r}
+#| class: base
+# base R
+result_base <- within(result_base, {
+	term_name <- NA
+	term_name[term_code == "1"] <- "Fall"
+	term_name[term_code == "2"] <- "Winter"
+	term_name[term_code == "3"] <- "Spring"
+	term_name[term_code == "4"] <- "Summer 1"
+	term_name[term_code == "5"] <- "Summer 2"
+	term_name[term_code == "6"] <- "Summer 3"
+})
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_DT[, term_name := fcase(
+  term_code == "1", "Fall",
+  term_code == "2", "Winter",
+  term_code == "3", "Spring",
+  term_code == "4", "Summer 1",
+  term_code == "5", "Summer 2",
+  term_code == "6", "Summer 3"
+)]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- result_dplyr %>%
+  mutate(term_name = case_match(
+    term_code,
+    "1" ~ "Fall",
+    "2" ~ "Winter",
+    "3" ~ "Spring",
+    "4" ~ "Summer 1",
+    "5" ~ "Summer 2",
+    "6" ~ "Summer 3"
+  ))
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* `within()` is similar to `with()` but allows us to modify a data frame. We create the new column with `term_name <- NA` then systematically edit its values based on the values in `term_code`. 
+
+- *data.table.* `term_name` is created using `:=` then `fcase()` assigns its  values based on logical expressions operating on `term_code`. 
+
+- *dplyr.* `term_name` is created using `mutate()` then `case_match()` assigns its values by finding matches to the `term_code` values. 
+
+## References 
+
+<div id="refs"></div>

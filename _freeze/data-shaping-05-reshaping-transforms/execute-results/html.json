@@ -1,0 +1,17 @@
+{
+  "hash": "73bb17795b1d818eb90e4fa7bea3f993",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Reshaping transforms\"\nformat:\n  html:\n    css: styles.css\n---\n\n\n![Image: *SAREC field day 2018* by Univ Wyoming Extension CT is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-5.png)\n\n\n\n\n\nUsing **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.\n\n- [Introduction](data-shaping-00-introduction.html)\n- [Data selection](data-shaping-01-data-selection.html)\n- [Basic transforms](data-shaping-02-basic-transforms.html)\n- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)\n- [Multitable transforms](data-shaping-04-multitable-transforms.html)\n- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)  &#9665; *You are here.*\n\nIn this section, ...\n\n\n## References \n\n<div id=\"refs\"></div>\n\n",
+    "supporting": [
+      "data-shaping-05-reshaping-transforms_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
