@@ -19,7 +19,7 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Data selection](data-shaping-01-data-selection.html)  &#9665; *You are here.*
 - [Basic transforms](data-shaping-02-basic-transforms.html)
 - [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
-- [Multitable transforms](data-shaping-04-multitable-transforms.html)
+- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
 In this section we demonstrate subsetting rows and columns in various configurations, removing records with incomplete data, and reordering rows. 
@@ -54,7 +54,7 @@ A common task when working with data is selecting a subset of rows,  columns, or
 
 ### Indirect indexing
 
-Using intermediate variables that refer to the values used to subset rows and columns.  We often construct intermediate variables `columns_we_want` and `rows_we_want` as indices for column and row subsetting to be used in more than one system example. The extra clarity is often worth the extra lines of code.  
+Using intermediate variables `columns_we_want` and `rows_we_want` that refer to the values used to subset rows and columns.
 
 *Task.* &nbsp; Prepare data to summarize domestic students by race, sex, and institution.
 
@@ -94,7 +94,6 @@ result_DT
 all.equal(result_DT, data.table(result_base))
 all.equal(result_DT, data.table(result_dplyr))
 ```
-
 
 *Comments*
 
@@ -184,7 +183,7 @@ result_dplyr <- student_dplyr %>%
   select(mcid, transfer, hours_transfer) %>%
   filter(transfer == "First-Time Transfer" & hours_transfer >= 15)
 ```
-
+ 
 ```{r}
 result_DT
 
@@ -202,7 +201,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ### Subset one column as a vector
 
-*Task.* &nbsp; Obtain a vector of unique IDs in the `term` dataset.
+*Task.* &nbsp; Obtain a vector ('V') of unique IDs in the `term` dataset.
 
 ```{r}
 #| class: base
@@ -375,11 +374,11 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ## Ordering rows
 
-In some instances, it is important for us to control the order of rows in our data. 
+We sometimes using the intermediate variables `order_index` (integer vector) or `order_cols` (character vector) to emphasize the steps of the ordering process. 
 
 ### Ascending 
 
-In all three systems, the default sort order is increasing (ascending) from row 1 to row N. 
+In all three systems, the default sort order is increasing (ascending) from rows 1 to *N*. 
 
 *Task.* &nbsp; Suppose we want to know a student's level and declared major in their first term at their institution. We use the `term` dataset.  
 
@@ -484,8 +483,50 @@ all.equal(result_DT, data.table(result_dplyr))
 
 - *dplyr.* In `arrange()` apply `desc()` to the descending variable. 
 
+## Ordering columns
 
+Whenever we've subset columns using indirect or direct indexing, the placement of column names implicitly orders those columns. For example, using 
 
+        columns_we_want <- c("institution", "race", "sex", "us_citizen")
+
+as a column index yields a data frame with the columns in the order given. Sometimes however we want to move one or more columns to the left in a data frame. 
+
+*Task.* &nbsp; Using the result from the previous example, move transfer hours to the leftmost column followed by ID. 
+
+```{r}
+#| class: base
+# base R
+column_order <- union(c("hours_transfer", "mcid"), names(result_base))
+result_base <- result_base[, column_order, drop = FALSE]
+```
+
+```{r}
+#| class: dtbl
+# data.table
+setcolorder(result_DT, c("hours_transfer", "mcid"))
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_dplyr <- result_dplyr %>%
+  relocate(hours_transfer, mcid)
+```
+
+```{r}
+result_DT
+
+all.equal(result_DT, data.table(result_base))
+all.equal(result_DT, data.table(result_dplyr))
+```
+
+*Comments*
+
+- *base R.* `union()` is a set operation that discards duplicated values. The resulting character vector contains all the column names, reordered, and sorting is performed by `[`.   
+
+- *data.table.* `setcolorder()` changes the position of columns in a data frame, by reference, moving the specified columns to the "front". 
+
+- *dplyr.*  `relocate()` changes the position of columns in a data frame moving the specified columns to the "front". 
 
 
 

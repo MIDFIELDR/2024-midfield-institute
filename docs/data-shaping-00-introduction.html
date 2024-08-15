@@ -263,8 +263,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-shaping-04-multitable-transforms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multitable transforms</span></a>
+  <a href="./data-shaping-04-multi-table-transforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi-table transforms</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -325,14 +325,14 @@ div.csl-indent {
 <li><a href="data-shaping-01-data-selection.html">Data selection</a></li>
 <li><a href="data-shaping-02-basic-transforms.html">Basic transforms</a></li>
 <li><a href="data-shaping-03-aggregating-transforms.html">Aggregating transforms</a></li>
-<li><a href="data-shaping-04-multitable-transforms.html">Multi-table transforms</a></li>
+<li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
 <p>In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.</p>
 <p>Sources for translating among the three systems include <span class="citation" data-cites="Atrebas:2019 Gimond:2019 Hajnala:2018 Mercer:2020 Vaughan:2023">(<a href="#ref-Atrebas:2019" role="doc-biblioref">atrebas, 2019</a>; <a href="#ref-Gimond:2019" role="doc-biblioref">Gimond, 2019</a>; <a href="#ref-Hajnala:2018" role="doc-biblioref">Hajnala, 2018</a>; <a href="#ref-Mercer:2020" role="doc-biblioref">Mercer, 2020</a>; and <a href="#ref-Vaughan:2023" role="doc-biblioref">Vaughan, 2023</a>)</span>. In particular, our outline is roughly based on Chapter 5 of <span class="citation" data-cites="Zumel+Mount:2020">(<a href="#ref-Zumel+Mount:2020" role="doc-biblioref">Zumel &amp; Mount, 2020</a>)</span>.</p>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p><em>Start.</em> &nbsp; If you are writing your own script to follow along, we use these packages in the data-shaping articles:</p>
+<p><em>Start.</em> &nbsp; If you are writing your own script to follow along, we use the following packages in the data-shaping articles. Click on the “Copy to Clipboard” icon <img src="figures/clipboard-icon.png" class="img-fluid"> to copy a code chunk for pasting into your own script if desired.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midfielddata) <span class="co"># datasets</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># data manipulation system</span></span>
@@ -395,10 +395,11 @@ div.csl-indent {
 <section id="usage-notes" class="level3">
 <h3 class="anchored" data-anchor-id="usage-notes">Usage notes</h3>
 <ol type="1">
-<li><p>For clarity, we generally write a line of code to do one thing, avoiding combined or nested operations. Thus we often introduce intermediate or temporary variables that get overwritten before reaching a desired result. Our goal is to make each operation as transparent as possible for the R novice.</p></li>
-<li><p>We also show only one approach per task per system—other resources are available for comprehensive development of these systems.</p></li>
-<li><p>It is traditional to chain dplyr steps with the magrittr pipe <code>%&gt;%</code> (though assigning temporary variables would work just as well).</p></li>
-<li><p>In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using <code>all.equal()</code> with arguments sometimes set to ignore attributes, row order, or column order.</p></li>
+<li><p>We want to make each operation as transparent as possible for the R novice. Hence we generally write a line of code to do one thing, avoiding combined or nested operations and introducing intermediate or temporary variables that get overwritten before reaching a desired result, e.g., <code>DF</code> for an intermediate data.frame, <code>DT</code> for an intermediate data.table, <code>vec</code> for an intermediate vector, etc.</p></li>
+<li><p>In the same vein, we sometimes use intermediate variables for indexing, e.g.&nbsp;<code>rows_we_want</code>, <code>columns_we_want</code>, <code>order_index</code>, etc.</p></li>
+<li><p>In general, we show only one approach per task per system, offering what we think is the best choice for our audience. In R there are usually multiple approaches for the same task and resources for exploring other methods are readily available.</p></li>
+<li><p>It is traditional to chain dplyr steps with the magrittr pipe <code>%&gt;%</code> (though assigning temporary variables would work just as well). Piping or chaining operations are available in base R and data.table, but they have less currency than with dplyr users.</p></li>
+<li><p>In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using <code>all.equal()</code> with arguments sometimes set to ignore attributes, row order, or column order. For example,</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(student_DT, <span class="fu">data.table</span>(student_base), <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>

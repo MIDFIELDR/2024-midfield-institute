@@ -19,7 +19,7 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Data selection](data-shaping-01-data-selection.html) 
 - [Basic transforms](data-shaping-02-basic-transforms.html) &#9665; *You are here.*
 - [Aggregating transforms](data-shaping-03-aggregating-transforms.html) 
-- [Multitable transforms](data-shaping-04-multitable-transforms.html) 
+- [Multi-table transforms](data-shaping-04-multi-table-transforms.html) 
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
 In this section we demonstrate adding and removing columns, editing column names, creating two new columns by splitting a character column, converting the class of a column, and recoding the values in a column. 

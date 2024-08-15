@@ -54,7 +54,7 @@ website:
           - data-shaping-01-data-selection.qmd
           - data-shaping-02-basic-transforms.qmd
           - data-shaping-03-aggregating-transforms.qmd
-          - data-shaping-04-multitable-transforms.qmd
+          - data-shaping-04-multi-table-transforms.qmd
           - data-shaping-05-reshaping-transforms.qmd
 
 

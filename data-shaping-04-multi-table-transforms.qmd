@@ -1,0 +1,100 @@
+---
+title: "Multi-table transforms"
+format:
+  html:
+    css: styles.css
+---
+
+![Image: *Merge* by Steve Walser is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-4.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+```
+
+Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
+
+- [Introduction](data-shaping-00-introduction.html)
+- [Data selection](data-shaping-01-data-selection.html)
+- [Basic transforms](data-shaping-02-basic-transforms.html)
+- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
+- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)  &#9665; *You are here.*
+- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+
+In this section, ...
+
+
+
+## Getting started
+
+Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html). 
+
+```{r}
+library(midfielddata) # datasets
+library(data.table) # data manipulation system
+library(dplyr) # data manipulation system
+library(tidyr) # drop_na()
+
+data(student, term)
+
+student_base  <- data.frame(student)
+student_DT    <- copy(student)
+student_dplyr <- tibble(student)
+
+term_base  <- data.frame(term)
+term_DT    <- copy(term)
+term_dplyr <- tibble(term)
+```
+
+
+## Appending rows
+
+If two data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. 
+
+Two data frames have been prepared for this task, saved in the `data` directory of the Institute website. Read them in as follows:
+
+```{r}
+# data URL
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/ever_enrolled.csv"
+
+# download the data
+ever_enrolled <- fread(data_url)
+
+# write the data to your data directory
+fwrite(ever_enrolled, "data/ever_enrolled.csv")git add .
+git commit -m "data-shaping-05"
+```
+
+
+
+
+## Splitting tables
+
+
+
+
+
+## Appending columns 
+
+
+
+
+
+
+## Left join
+
+
+
+
+
+## Inner join 
+
+
+
+
+
+## References 
+
+<div id="refs"></div>
+

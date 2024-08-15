@@ -263,8 +263,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-shaping-04-multitable-transforms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multitable transforms</span></a>
+  <a href="./data-shaping-04-multi-table-transforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi-table transforms</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -289,6 +289,7 @@ div.csl-indent {
   <li><a href="#subsetting-rows-and-columns" id="toc-subsetting-rows-and-columns" class="nav-link" data-scroll-target="#subsetting-rows-and-columns">Subsetting rows and columns</a></li>
   <li><a href="#removing-records-with-incomplete-data" id="toc-removing-records-with-incomplete-data" class="nav-link" data-scroll-target="#removing-records-with-incomplete-data">Removing records with incomplete data</a></li>
   <li><a href="#ordering-rows" id="toc-ordering-rows" class="nav-link" data-scroll-target="#ordering-rows">Ordering rows</a></li>
+  <li><a href="#ordering-columns" id="toc-ordering-columns" class="nav-link" data-scroll-target="#ordering-columns">Ordering columns</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -327,7 +328,7 @@ div.csl-indent {
 <li><a href="data-shaping-01-data-selection.html">Data selection</a> ◁ <em>You are here.</em></li>
 <li><a href="data-shaping-02-basic-transforms.html">Basic transforms</a></li>
 <li><a href="data-shaping-03-aggregating-transforms.html">Aggregating transforms</a></li>
-<li><a href="data-shaping-04-multitable-transforms.html">Multitable transforms</a></li>
+<li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
 <p>In this section we demonstrate subsetting rows and columns in various configurations, removing records with incomplete data, and reordering rows.</p>
@@ -356,7 +357,7 @@ div.csl-indent {
 <p>A common task when working with data is selecting a subset of rows, columns, or both.</p>
 <section id="indirect-indexing" class="level3">
 <h3 class="anchored" data-anchor-id="indirect-indexing">Indirect indexing</h3>
-<p>Using intermediate variables that refer to the values used to subset rows and columns. We often construct intermediate variables <code>columns_we_want</code> and <code>rows_we_want</code> as indices for column and row subsetting to be used in more than one system example. The extra clarity is often worth the extra lines of code.</p>
+<p>Using intermediate variables <code>columns_we_want</code> and <code>rows_we_want</code> that refer to the values used to subset rows and columns.</p>
 <p><em>Task.</em> &nbsp; Prepare data to summarize domestic students by race, sex, and institution.</p>
 <p>Our first step might be to subset columns (institution, race, sex, and us_citizen) and subset rows such that US citizenship is true.</p>
 <div class="cell">
@@ -514,7 +515,7 @@ div.csl-indent {
 </section>
 <section id="subset-one-column-as-a-vector" class="level3">
 <h3 class="anchored" data-anchor-id="subset-one-column-as-a-vector">Subset one column as a vector</h3>
-<p><em>Task.</em> &nbsp; Obtain a vector of unique IDs in the <code>term</code> dataset.</p>
+<p><em>Task.</em> &nbsp; Obtain a vector (‘V’) of unique IDs in the <code>term</code> dataset.</p>
 <div class="cell base">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">&lt;-</span> term_base[, <span class="st">"mcid"</span>]</span>
@@ -722,10 +723,10 @@ div.csl-indent {
 </section>
 <section id="ordering-rows" class="level2">
 <h2 class="anchored" data-anchor-id="ordering-rows">Ordering rows</h2>
-<p>In some instances, it is important for us to control the order of rows in our data.</p>
+<p>We sometimes using the intermediate variables <code>order_index</code> (integer vector) or <code>order_cols</code> (character vector) to emphasize the steps of the ordering process.</p>
 <section id="ascending" class="level3">
 <h3 class="anchored" data-anchor-id="ascending">Ascending</h3>
-<p>In all three systems, the default sort order is increasing (ascending) from row 1 to row N.</p>
+<p>In all three systems, the default sort order is increasing (ascending) from rows 1 to <em>N</em>.</p>
 <p><em>Task.</em> &nbsp; Suppose we want to know a student’s level and declared major in their first term at their institution. We use the <code>term</code> dataset.</p>
 <p>We decide to order the rows first by institution, then by ID, then by term. In each case, we select columns in a separate operation so we can highlight the row-ordering operation.</p>
 <div class="cell">
@@ -833,6 +834,54 @@ div.csl-indent {
 <li><p><em>dplyr.</em> In <code>arrange()</code> apply <code>desc()</code> to the descending variable.</p></li>
 </ul>
 </section>
+</section>
+<section id="ordering-columns" class="level2">
+<h2 class="anchored" data-anchor-id="ordering-columns">Ordering columns</h2>
+<p>Whenever we’ve subset columns using indirect or direct indexing, the placement of column names implicitly orders those columns. For example, using</p>
+<pre><code>    columns_we_want &lt;- c("institution", "race", "sex", "us_citizen")</code></pre>
+<p>as a column index yields a data frame with the columns in the order given. Sometimes however we want to move one or more columns to the left in a data frame.</p>
+<p><em>Task.</em> &nbsp; Using the result from the previous example, move transfer hours to the leftmost column followed by ID.</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>column_order <span class="ot">&lt;-</span> <span class="fu">union</span>(<span class="fu">c</span>(<span class="st">"hours_transfer"</span>, <span class="st">"mcid"</span>), <span class="fu">names</span>(result_base))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>result_base <span class="ot">&lt;-</span> result_base[, column_order, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setcolorder</span>(result_DT, <span class="fu">c</span>(<span class="st">"hours_transfer"</span>, <span class="st">"mcid"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>result_dplyr <span class="ot">&lt;-</span> result_dplyr <span class="sc">%&gt;%</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(hours_transfer, mcid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>result_DT</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        hours_transfer           mcid   institution</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 &lt;num&gt;         &lt;char&gt;        &lt;char&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1:            278 MCID3112694097 Institution B</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2:            271 MCID3112788655 Institution B</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3:            238 MCID3112693474 Institution B</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4:            229 MCID3112500991 Institution B</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5:            228 MCID3112879516 Institution B</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                            </span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13925:              1 MCID3112785098 Institution C</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13926:              1 MCID3112785144 Institution C</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13927:              1 MCID3112785478 Institution C</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13928:              1 MCID3112785480 Institution C</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13929:              1 MCID3112785484 Institution C</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(result_DT, <span class="fu">data.table</span>(result_base))</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(result_DT, <span class="fu">data.table</span>(result_dplyr))</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Comments</em></p>
+<ul>
+<li><p><em>base R.</em> <code>union()</code> is a set operation that discards duplicated values. The resulting character vector contains all the column names, reordered, and sorting is performed by <code>[</code>.</p></li>
+<li><p><em>data.table.</em> <code>setcolorder()</code> changes the position of columns in a data frame, by reference, moving the specified columns to the “front”.</p></li>
+<li><p><em>dplyr.</em> <code>relocate()</code> changes the position of columns in a data frame moving the specified columns to the “front”.</p></li>
+</ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

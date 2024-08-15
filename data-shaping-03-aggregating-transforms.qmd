@@ -19,7 +19,7 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Data selection](data-shaping-01-data-selection.html)
 - [Basic transforms](data-shaping-02-basic-transforms.html)
 - [Aggregating transforms](data-shaping-03-aggregating-transforms.html)  &#9665; *You are here.*
-- [Multitable transforms](data-shaping-04-multitable-transforms.html)
+- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
 In this section we demonstrate aggregating many observations of a variable into a set of summary observations, typically grouped by one or more grouping variables. Summaries include counts as well as means, medians, quartiles, etc. 
@@ -144,7 +144,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 Statistical summaries are commonly encountered to help describe trends in data, e.g., mean, median, standard deviation, minima, maxima, etc.  
 
-Of the several summarizing options available in base R, `by()` seems the simplest to provide here. It generalizes easily to multiple and different summaries and the only cognitive overhead is the need to know about anonymous functions, `do.call()`, and `rbind()`. 
+Of the several summarizing options available in base R, `by()` seems the simplest to provide here. It generalizes easily to multiple and different summaries and the only cognitive overhead is the need to know about `do.call()`, `rbind()`, and anonymous functions. 
 
 ### With one grouping variable
 

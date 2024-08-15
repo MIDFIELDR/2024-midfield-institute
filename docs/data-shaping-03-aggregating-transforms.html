@@ -83,7 +83,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-shaping-04-multitable-transforms.html" rel="next">
+<link href="./data-shaping-04-multi-table-transforms.html" rel="next">
 <link href="./data-shaping-02-basic-transforms.html" rel="prev">
 <link href="./figures/logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -262,8 +262,8 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-shaping-04-multitable-transforms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multitable transforms</span></a>
+  <a href="./data-shaping-04-multi-table-transforms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multi-table transforms</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -325,7 +325,7 @@ div.csl-indent {
 <li><a href="data-shaping-01-data-selection.html">Data selection</a></li>
 <li><a href="data-shaping-02-basic-transforms.html">Basic transforms</a></li>
 <li><a href="data-shaping-03-aggregating-transforms.html">Aggregating transforms</a> ◁ <em>You are here.</em></li>
-<li><a href="data-shaping-04-multitable-transforms.html">Multitable transforms</a></li>
+<li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
 <p>In this section we demonstrate aggregating many observations of a variable into a set of summary observations, typically grouped by one or more grouping variables. Summaries include counts as well as means, medians, quartiles, etc.</p>
@@ -457,7 +457,7 @@ div.csl-indent {
 <section id="summarizing" class="level2">
 <h2 class="anchored" data-anchor-id="summarizing">Summarizing</h2>
 <p>Statistical summaries are commonly encountered to help describe trends in data, e.g., mean, median, standard deviation, minima, maxima, etc.</p>
-<p>Of the several summarizing options available in base R, <code>by()</code> seems the simplest to provide here. It generalizes easily to multiple and different summaries and the only cognitive overhead is the need to know about anonymous functions, <code>do.call()</code>, and <code>rbind()</code>.</p>
+<p>Of the several summarizing options available in base R, <code>by()</code> seems the simplest to provide here. It generalizes easily to multiple and different summaries and the only cognitive overhead is the need to know about <code>do.call()</code>, <code>rbind()</code>, and anonymous functions.</p>
 <section id="with-one-grouping-variable-1" class="level3">
 <h3 class="anchored" data-anchor-id="with-one-grouping-variable-1">With one grouping variable</h3>
 <p><em>Task.</em> &nbsp; determine the 10% quantile, median, and 90% quantile of term GPA by academic standing (good standing, academic warning, etc.) plus the number of observations used in the summary. In all systems, we use the base R <code>quanitile()</code> function to determine the 10% and 90% quantiles.</p>
@@ -1020,8 +1020,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-shaping-04-multitable-transforms.html" class="pagination-link" aria-label="Multitable transforms">
-        <span class="nav-page-text">Multitable transforms</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-shaping-04-multi-table-transforms.html" class="pagination-link" aria-label="Multi-table transforms">
+        <span class="nav-page-text">Multi-table transforms</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

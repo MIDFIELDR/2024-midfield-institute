@@ -19,7 +19,7 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Data selection](data-shaping-01-data-selection.html)
 - [Basic transforms](data-shaping-02-basic-transforms.html)
 - [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
-- [Multi-table transforms](data-shaping-04-multitable-transforms.html)
+- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
 In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.  
@@ -34,7 +34,7 @@ Sources for translating among the three systems include [@Atrebas:2019; @Gimond:
 
 ## Getting started
 
-*Start.* &nbsp;   If you are writing your own script to follow along, we use these packages in the data-shaping articles:
+*Start.* &nbsp;   If you are writing your own script to follow along, we use the following packages in the data-shaping articles. Click on the "Copy to Clipboard" icon ![](figures/clipboard-icon.png) to copy a code chunk for pasting into your own script if desired. 
 
 ```{r}
 library(midfielddata) # datasets
@@ -89,13 +89,15 @@ term_dplyr <- tibble(term)
 
 ### Usage notes
 
-1. For clarity, we generally write a line of code to do one thing, avoiding combined or nested operations. Thus we often introduce intermediate or temporary variables that get overwritten before reaching a desired result. Our goal is to make each operation as transparent as possible for the R novice. 
+1. We want to make each operation as transparent as possible for the R novice. Hence we generally write a line of code to do one thing, avoiding combined or nested operations and introducing intermediate or temporary variables that get overwritten before reaching a desired result, e.g., `DF` for an intermediate data.frame, `DT` for an intermediate data.table, `vec` for an intermediate vector, etc.  
 
-1. We also show only one approach per task per system---other resources are available for comprehensive development of these systems.   
+1. In the same vein, we sometimes use intermediate variables for indexing, e.g. `rows_we_want`, `columns_we_want`, `order_index`, etc. 
 
-1. It is traditional to chain dplyr steps with the magrittr pipe `%>%` (though assigning temporary variables would work just as well).
+1. In general, we show only one approach per task per system, offering what we think is the best choice for our audience. In R there are usually multiple approaches for the same task and resources for exploring other methods are readily available. 
 
-1. In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using `all.equal()` with arguments sometimes set to ignore attributes, row order, or column order. 
+1. It is traditional to chain dplyr steps with the magrittr pipe `%>%` (though assigning temporary variables would work just as well). Piping or chaining operations are available in base R and data.table, but they have less currency than with dplyr users. 
+
+1. In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using `all.equal()` with arguments sometimes set to ignore attributes, row order, or column order. For example, 
 
 ```{r}
 all.equal(student_DT, data.table(student_base), check.attributes = FALSE)

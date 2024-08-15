@@ -1,0 +1,15 @@
+{
+  "hash": "2022faa0ed07fb9e374411e46c142533",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Multi-table transforms\"\nformat:\n  html:\n    css: styles.css\n---\n\n\n![Image: *Merge* by Steve Walser is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-4.png)\n\n\n\n\n\nUsing **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.\n\n- [Introduction](data-shaping-00-introduction.html)\n- [Data selection](data-shaping-01-data-selection.html)\n- [Basic transforms](data-shaping-02-basic-transforms.html)\n- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)\n- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)  &#9665; *You are here.*\n- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)\n\nIn this section, ...\n\n\n\n## Getting started\n\nPackages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html). \n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(midfielddata) # datasets\nlibrary(data.table) # data manipulation system\nlibrary(dplyr) # data manipulation system\nlibrary(tidyr) # drop_na()\n\ndata(student, term)\n\nstudent_base  <- data.frame(student)\nstudent_DT    <- copy(student)\nstudent_dplyr <- tibble(student)\n\nterm_base  <- data.frame(term)\nterm_DT    <- copy(term)\nterm_dplyr <- tibble(term)\n```\n:::\n\n::: {.cell}\n\n:::\n\n\n\n\n## Appending rows\n\nIf two data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. \n\n\n\n\n\n## Splitting tables\n\n\n\n\n\n## Appending columns \n\n\n\n\n\n\n## Left join\n\n\n\n\n\n## Inner join \n\n\n\n\n\n## References \n\n<div id=\"refs\"></div>\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
