@@ -10,7 +10,9 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
 ```
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
@@ -22,60 +24,180 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Multi-table transforms](data-shaping-04-multi-table-transforms.html)  &#9665; *You are here.*
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
-In this section, ...
+In this section, we split a data frame into a family of data frames, we concatenate tables row-wise, and we join tables.  
 
 
 
-## Getting started
-
-Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html). 
+[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-library(midfielddata) # datasets
-library(data.table) # data manipulation system
-library(dplyr) # data manipulation system
-library(tidyr) # drop_na()
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("wrapr")
 
-data(student, term)
-
-student_base  <- data.frame(student)
-student_DT    <- copy(student)
-student_dplyr <- tibble(student)
-
-term_base  <- data.frame(term)
-term_DT    <- copy(term)
-term_dplyr <- tibble(term)
+data(student, degree)
+cohort <- fread("data/three_blocs.csv")
 ```
 
-
-## Appending rows
-
-If two data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. 
-
-Two data frames have been prepared for this task, saved in the `data` directory of the Institute website. Read them in as follows:
+A quick look at the cohort data:
 
 ```{r}
-# data URL
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/ever_enrolled.csv"
-
-# download the data
-ever_enrolled <- fread(data_url)
-
-# write the data to your data directory
-fwrite(ever_enrolled, "data/ever_enrolled.csv")git add .
-git commit -m "data-shaping-05"
+cohort
 ```
 
+```{r}
+#| class: base
+# base R
+student_df <- data.frame(student)
+degree_df <- data.frame(degree)
+cohort_df <- data.frame(cohort)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_dt <- copy(student)
+degree_dt <- copy(degree)
+cohort_dt <- copy(cohort)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_tbl <- tibble(student)
+degree_tbl <- tibble(degree)
+cohort_tbl <- tibble(cohort)
+```
+
+<br>
 
 
 
 ## Splitting tables
+
+*Splitting* is an operation that separates a data frame row-wise based on values in specified columns. Splitting is an inherent part of the grouping and summarizing operations described in [Aggregating transforms: Summarizing](data-shaping-03-aggregating-transforms.html#summarizing) such as base R `by()`, data.table `[, , by]`, and dplyr `group_by()`. 
+
+However, splitting can be performed as a stand-alone operation as well. Base R `split()` creates a list of data frames and wrapr `unpack()` can be used to extract the data frames from the list and bind a variable name to each. 
+
+[Task.]{.important} Split the `cohort` data frame by peer groups.  
+
+```{r}
+#| class: base
+# base R
+DF_split <- split(cohort_df, cohort_df$peer_group)
+start_df <- DF_split$starters
+ever_df <- DF_split$ever_enrolled
+grad_df <- DF_split$graduates
+```
+
+```{r}
+#| class: dtbl
+# data.table
+DT_split <- split(cohort_dt, by = "peer_group")
+wrapr::unpack(DT_split, 
+              start_dt = starters,
+              ever_dt = ever_enrolled,
+              grad_dt = graduates)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+TBL_split <- split(cohort_tbl, cohort_tbl$peer_group)
+wrapr::unpack(TBL_split, 
+              start_tbl = starters,
+              ever_tbl = ever_enrolled,
+              grad_tbl = graduates)
+```
+
+```{r}
+# Display/check one representative result
+start_dt
+
+check_equiv_frames(start_df, start_dt)
+check_equiv_frames(start_dt, start_tbl)
+```
+
+
+[Comments]{.important} 
+
+- *base R.*  The data frames are extracted from the `DF_split` list using `$`. 
+
+- *data.table.* `split()` has a method for data.tables using the `by` argument. 
+
+- *dplyr* does not have its own splitting function, though tidyr `nest()` is similar---but requires additional housekeeping to unpack the resulting data frames. It seems easier in this case to use base R `split()` and wrapr `unpack()`.
+
+
+
+
+
+
+## Appending rows
+
+Appending rows is the inverse of splitting a data frame. 
+
+If two or more data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. We confirm that both objects are data frames and then verify the column names and positions.  
+
+```{r}
+class(start_df)
+class(ever_df)
+class(grad_df)
+
+
+colnames(start_df)
+colnames(ever_df)
+colnames(grad_df)
+```
+
+```{r}
+#| class: base
+# base R
+result_df <- rbind(start_df, ever_df, grad_df)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_dt <- rbindlist(list(start_df, ever_dt, grad_dt))
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_tbl <- bind_rows(start_tbl, ever_tbl, grad_tbl)
+```
+
+```{r}
+result_dt
+ 
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
+[Comments]{.important} 
+
+- *base R.* `rbind()` acts on the data frames listed.
+
+- *data.table.*  `rbindlist()`, argument must be a *list* of data frames.
+
+- *dplyr.* `bind_rows()` acts on the data frames listed. Can be a list of data frames. 
+
+
+
+
+
+
+
+
 
 
 
 
 
 ## Appending columns 
+
+Columns can be appended to a data frame using `cbind()` and `bind_cols()`---the column-wise equivalents to `rbind()` and `bind_rows()`---but we rarely use them. Instead, appending new columns is nearly always accomplished in our work using [joins]{.important}. The most common joins in midfieldr work are the *left join* and the *inner join*, described next. 
 
 
 
@@ -84,11 +206,128 @@ git commit -m "data-shaping-05"
 
 ## Left join
 
+A *left join* is a merge operation between two data frames that returns all observations (rows) of the “left” data frame `x` and all the matching rows in the “right” data frame `y`. 
+
+The general forms of the left join are:
+
+```r
+  # base R
+  merge(x, y, by, all.x = TRUE)
+
+  # data.table
+  y[x, j, on]
+
+  # dplyr
+  left_join(x, y, by)
+```
+
+where 
+
+- `x` is the “left” data frame, all rows returned
+- `y` is the “right” data frame, matching rows returned
+- `by` and `on` are the vectors of shared column names to merge by
+- `j` (if used) selects columns from the joined data frame to retain 
+
+[Task.]{.important} Join student race and sex to the data frame of graduates by ID. 
+
+We use intermediate variables `x` and `y` in each system to help clarify the join operation. 
+
+```{r}
+#| class: base
+# base R
+x <- grad_df[, c("mcid", "program"), drop = FALSE]
+y <- student_df[, c("mcid", "race", "sex"), drop = FALSE]
+result_df <- merge(x, y, by = c("mcid"), all.x = TRUE)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+x <- grad_dt[, .(mcid, program)]
+y <- student_dt[, .(mcid, race, sex)]
+result_dt <- y[x, , on = c("mcid")]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+x <- select(grad_tbl, mcid, program)
+y <- select(student_tbl, mcid, race, sex)
+result_tbl <- left_join(x, y, by = c("mcid"))
+```
+
+```{r}
+result_dt
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
 
 
 
 
 ## Inner join 
+
+An *inner join* is a merge operation between two data frames that returns all observations (rows) from two data frames that match specified conditions in both. 
+
+The general forms of the inner join are:
+
+```r
+  # base R
+  merge(x, y, by, all = FALSE)
+
+  # data.table
+  y[x, j, on, nomatch = NULL]
+
+  # dplyr
+  inner_join(x, y, by)
+```
+
+where 
+
+- `x` is a data frame, matching rows returned
+- `y` is a data frame, matching rows returned
+- `by` and `on` are the vectors of shared column names to merge by
+- `j` (if used) selects columns from the joined data frame to retain 
+
+[Task.]{.important} Join the CIP column from the `degree` data to the ever-enrolled dataset by ID, retaining only those students who completed a degree, i.e., IDs common to both data sets (inner join).
+
+```{r}
+#| class: base
+# base R
+x <- ever_df[, c("mcid"), drop = FALSE]
+x <- unique(x)
+y <- degree_df[, c("mcid", "cip6"), drop = FALSE]
+names(y)[names(y) == "cip6"] <- "degree_CIP"
+result_df <- merge(x, y, by = c("mcid"), all = FALSE)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+x <- ever_dt[, .(mcid)]
+x <- unique(x)
+y <- degree_dt[, .(mcid, degree_CIP = cip6)]
+result_dt <- y[x, , on = "mcid", nomatch = NULL]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+x <- select(ever_tbl, mcid) %>%
+  distinct()
+y <- select(degree_tbl, mcid, cip6) %>%
+  rename(degree_CIP = cip6)
+result_tbl <- inner_join(x, y, by = join_by(mcid))
+```
+
+```{r}
+result_dt
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
 
 
 

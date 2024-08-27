@@ -20,10 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -87,6 +122,10 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -249,7 +288,13 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#references" id="toc-references" class="nav-link active" data-scroll-target="#references">References</a></li>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link active" data-scroll-target="#terminology">Terminology</a></li>
+  <li><a href="#why-transform" id="toc-why-transform" class="nav-link" data-scroll-target="#why-transform">Why transform?</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#blocks-to-row-records" id="toc-blocks-to-row-records" class="nav-link" data-scroll-target="#blocks-to-row-records">Blocks to row-records</a></li>
+  <li><a href="#row-records-to-blocks" id="toc-row-records-to-blocks" class="nav-link" data-scroll-target="#row-records-to-blocks">Row-records to blocks</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -281,7 +326,7 @@ div.csl-indent {
 <figcaption>Image: <em>SAREC field day 2018</em> by Univ Wyoming Extension CT is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY-NC-ND 2.0</a></figcaption>
 </figure>
 </div>
-<p>Using <strong>base R</strong>, <strong>data.table</strong>, and <strong>dplyr</strong> to transform MIDFIELD data as needed for your analysis.</p>
+<p>Using <strong>cdata</strong>, <strong>data.table</strong>, and <strong>tidyr</strong> to transform MIDFIELD data as needed for your analysis (no base R transforms in this section).</p>
 <ul>
 <li><a href="data-shaping-00-introduction.html">Introduction</a></li>
 <li><a href="data-shaping-01-data-selection.html">Data selection</a></li>
@@ -290,11 +335,458 @@ div.csl-indent {
 <li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a> ◁ <em>You are here.</em></li>
 </ul>
-<p>In this section, …</p>
+<p>In this section, we cover reshaping data frames by moving data between rows and columns, often called <em>pivoting</em>.</p>
+<section id="terminology" class="level2">
+<h2 class="anchored" data-anchor-id="terminology">Terminology</h2>
+<p>Pivoting operations go by a number of different names, as listed in Table 1 <span class="citation" data-cites="Mount+Zumel:2019:fluid-data">(<a href="#ref-Mount+Zumel:2019:fluid-data" role="doc-biblioref">Mount &amp; Zumel, 2019</a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 1: Various names of reshaping operations by system</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">System</th>
+<th style="text-align: left;">Pivot “wider”</th>
+<th style="text-align: left;">Pivot “longer”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">colloquially called</td>
+<td style="text-align: left;">“tall to wide”</td>
+<td style="text-align: left;">“wide to tall”</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Microsoft Excel</td>
+<td style="text-align: left;">pivot</td>
+<td style="text-align: left;">un-pivot</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">databases</td>
+<td style="text-align: left;">pivot</td>
+<td style="text-align: left;">anti-pivot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">databases</td>
+<td style="text-align: left;">crosstab</td>
+<td style="text-align: left;">shred</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">unstack</td>
+<td style="text-align: left;">stack</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reshape, reshape2</td>
+<td style="text-align: left;">cast</td>
+<td style="text-align: left;">melt</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
+<p>Pivoting is possible in base R but the package versions in data.table, tidyr, and cdata are significantly better tools. Table 2 lists the reshaping functions we use in this work.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Table 2: The reshaping operations we use in this tutorial.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">R package</th>
+<th style="text-align: left;">Pivot “wider”</th>
+<th style="text-align: left;">Pivot “longer”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">data.table</td>
+<td style="text-align: left;"><code>dcast()</code></td>
+<td style="text-align: left;"><code>melt()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tidyr</td>
+<td style="text-align: left;"><code>pivot_wider()</code></td>
+<td style="text-align: left;"><code>pivot_longer()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cdata</td>
+<td style="text-align: left;"><code>pivot_to_rowrecs()</code></td>
+<td style="text-align: left;"><code>unpivot_to_blocks()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><br></p>
+<p><span class="important">Defining our terms.</span> The data set we use in this section is shown below, where “starters” is the number of students starting in an engineering program, “ever enrolled” is the number who were enrolled at least one term in the program, and “graduates” is the number graduating from that program.</p>
+<p>These data are in “wide” format, with one row per program.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table" style="font-size: 12px; width: auto !important; ">
+<caption style="font-size: initial !important;">Table 3. Row-records example</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> program </th>
+   <th style="text-align:right;"> starters </th>
+   <th style="text-align:right;"> ever_enrolled </th>
+   <th style="text-align:right;"> graduates </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Civil </td>
+   <td style="text-align:right;"> 983 </td>
+   <td style="text-align:right;"> 1504 </td>
+   <td style="text-align:right;"> 936 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Electrical </td>
+   <td style="text-align:right;"> 1080 </td>
+   <td style="text-align:right;"> 1490 </td>
+   <td style="text-align:right;"> 736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Industrial </td>
+   <td style="text-align:right;"> 285 </td>
+   <td style="text-align:right;"> 353 </td>
+   <td style="text-align:right;"> 238 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mechanical </td>
+   <td style="text-align:right;"> 1705 </td>
+   <td style="text-align:right;"> 2306 </td>
+   <td style="text-align:right;"> 1354 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><br></p>
+<p>Transformed to its “tall” format, the dataset has three rows per program. The names of three columns in Table 3 are now values in the peer-group column in Table 4 and all counts of students are collected in the N column.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table" style="font-size: 12px; width: auto !important; ">
+<caption style="font-size: initial !important;">Table 4. Block-records example</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> program </th>
+   <th style="text-align:left;"> peer_group </th>
+   <th style="text-align:right;"> N </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Civil </td>
+   <td style="text-align:left;"> ever_enrolled </td>
+   <td style="text-align:right;"> 1504 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Civil </td>
+   <td style="text-align:left;"> starters </td>
+   <td style="text-align:right;"> 983 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Civil </td>
+   <td style="text-align:left;"> graduates </td>
+   <td style="text-align:right;"> 936 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Electrical </td>
+   <td style="text-align:left;"> ever_enrolled </td>
+   <td style="text-align:right;"> 1490 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Electrical </td>
+   <td style="text-align:left;"> starters </td>
+   <td style="text-align:right;"> 1080 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Electrical </td>
+   <td style="text-align:left;"> graduates </td>
+   <td style="text-align:right;"> 736 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Industrial </td>
+   <td style="text-align:left;"> ever_enrolled </td>
+   <td style="text-align:right;"> 353 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Industrial </td>
+   <td style="text-align:left;"> starters </td>
+   <td style="text-align:right;"> 285 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Industrial </td>
+   <td style="text-align:left;"> graduates </td>
+   <td style="text-align:right;"> 238 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mechanical </td>
+   <td style="text-align:left;"> ever_enrolled </td>
+   <td style="text-align:right;"> 2306 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mechanical </td>
+   <td style="text-align:left;"> starters </td>
+   <td style="text-align:right;"> 1705 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mechanical </td>
+   <td style="text-align:left;"> graduates </td>
+   <td style="text-align:right;"> 1354 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><br></p>
+<p>You can see why “wide” and “tall” are commonly used to describe these two formats. Yet “wider” implies having more columns, and (while true here) that is not always the case.</p>
+<p>What <em>is</em> always true is that the first format comprises <strong><em>row records</em></strong>, or one row per primary key, and the second format comprises <strong><em>block records</em></strong>, or multiple rows per primary key <span class="citation" data-cites="Mount+Zumel:2021:block+row+records">(<a href="#ref-Mount+Zumel:2021:block+row+records" role="doc-biblioref">Mount &amp; Zumel, 2021</a>)</span>.</p>
+<p>In our opinion, <em>block records</em> and <em>row records</em> describe these data formats more memorably than the alternatives, so we use them to define our transforms as well:</p>
+<ul>
+<li><p><em>blocks to row-records</em> (i.e., pivoting or “tall to wide”)</p></li>
+<li><p><em>row-records to blocks</em> (i.e., un-pivoting or “wide to tall”)</p></li>
+</ul>
+</section>
+<section id="why-transform" class="level2">
+<h2 class="anchored" data-anchor-id="why-transform">Why transform?</h2>
+<p>We transform data between block records and row records to meet specific needs. For example, one of the first things to do when learning a new graphing package in R is to understand the data shape the package requires—some, like <a href="https://CRAN.R-project.org/package=ggplot2">ggplot2</a>, require block records; others, like the <a href="https://CRAN.R-project.org/package=likert">likert</a> package, require row records if the survey data is in summary form (frequencies counted) but requires block records if not summarized, i.e., one row per respondent, one column per question.</p>
+<p>For row-records, another common application is preparing a data table, as in Table 3. Row records also support analytical tasks. For example, the academic program metric “stickiness” is the ratio of the number of graduates from a program to the number ever enrolled in the program. With a data frame <code>df</code> organized like the Table 3 data, computing stickiness requires one line of code operating on values in the same row, e.g.,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>stickiness <span class="ot">&lt;-</span> df<span class="sc">$</span>graduates <span class="sc">/</span> df<span class="sc">$</span>ever_enrolled</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Block records, on the other hand, are convenient for grouping and summarizing operations and, as stated earlier, required for making charts with ggplot2. For example, with a data frame <code>blocks</code> organized like the Table 4 data, we can graph <em>N</em> as a function of program and peer group. The three column names of the block-record formatted data are arguments in the <code>aes()</code> function and then appear on the horizontal scale (N), the vertical scale (programs), and the legend (peer groups).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blocks, <span class="fu">aes</span>(<span class="at">x =</span> N, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> program, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">color =</span> peer_group, </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">shape =</span> peer_group)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-shaping-05-reshaping-transforms_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p><span class="important">Load packages and format data</span> as described in the <a href="data-shaping-00-introduction.html">Introduction</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"data.table"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyr"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"cdata"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cohort <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/three_blocs.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cohort_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cohort_dt <span class="ot">&lt;-</span> <span class="fu">copy</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cohort_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cohort_dt</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  mcid    program peer_group</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;     &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: MCID3111142965 Electrical   starters</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: MCID3111145102 Electrical   starters</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: MCID3111150194 Industrial   starters</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: MCID3111156083 Electrical   starters</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: MCID3111156325 Electrical   starters</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                     </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12966: MCID3112618553 Mechanical  graduates</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12967: MCID3112618574 Mechanical  graduates</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12968: MCID3112618976 Mechanical  graduates</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12969: MCID3112619484 Electrical  graduates</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12970: MCID3112641535 Mechanical  graduates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p><span class="important">Count</span> by program and peer group as described in <a href="data-shaping-03-aggregating-transforms.html#counting">Aggregating transforms</a>. The result is in block-records format.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>key_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"program"</span>, <span class="st">"peer_group"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>freq_table <span class="ot">&lt;-</span> <span class="fu">table</span>(cohort_df<span class="sc">$</span>program,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                    cohort_df<span class="sc">$</span>peer_group,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dnn =</span> key_columns)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>blocks_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(freq_table, </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">responseName =</span> <span class="st">"N"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>blocks_dt <span class="ot">&lt;-</span> cohort_dt[, .N, by <span class="ot">=</span> key_columns]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setorder</span>(blocks_dt, program, <span class="sc">-</span>N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>blocks_tbl <span class="ot">&lt;-</span> cohort_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">count</span>(program, peer_group, <span class="at">name =</span> <span class="st">"N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>blocks_dt</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        program    peer_group     N</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;        &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:      Civil ever_enrolled  1504</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:      Civil      starters   983</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:      Civil     graduates   936</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: Electrical ever_enrolled  1490</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: Electrical      starters  1080</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: Electrical     graduates   736</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: Industrial ever_enrolled   353</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: Industrial      starters   285</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: Industrial     graduates   238</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: Mechanical ever_enrolled  2306</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: Mechanical      starters  1705</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: Mechanical     graduates  1354</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(blocks_df, blocks_dt)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(blocks_dt, blocks_tbl)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="blocks-to-row-records" class="level2">
+<h2 class="anchored" data-anchor-id="blocks-to-row-records">Blocks to row-records</h2>
+<p>In this transform, we group a set of rows that go together (matching on keys) and combine them into one row by adding columns. The result is in <em>row-records</em> form, with one row per program.</p>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>rowrecs_dt <span class="ot">&lt;-</span> <span class="fu">dcast</span>(blocks_dt, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                    program <span class="sc">~</span> peer_group, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">value.var =</span> <span class="st">"N"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">setkey</span>(rowrecs_dt, <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyr</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>rowrecs_tbl <span class="ot">&lt;-</span> blocks_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> program, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> peer_group, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell other">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cdata</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>rowrecs_df <span class="ot">&lt;-</span> <span class="fu">pivot_to_rowrecs</span>(blocks_df,  </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">rowKeyColumns =</span> <span class="st">"program"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">columnToTakeKeysFrom =</span> <span class="st">"peer_group"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                               <span class="at">columnToTakeValuesFrom =</span> <span class="st">"N"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rowrecs_dt</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       program ever_enrolled graduates starters</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;char&gt;         &lt;int&gt;     &lt;int&gt;    &lt;int&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:      Civil          1504       936      983</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: Electrical          1490       736     1080</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: Industrial           353       238      285</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: Mechanical          2306      1354     1705</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(rowrecs_df, rowrecs_dt)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(rowrecs_dt, rowrecs_tbl)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="important">Comments</span></p>
+<ul>
+<li><p>In all cases, the same transformation occurs: column <code>program</code> remains a <em>row key</em> column; the values of the <code>peer_group</code> column (<code>ever_enrolled</code>, <code>graduates</code>, <code>starters</code>) become new key column <em>names</em> with <em>values</em> taken from the <code>N</code> column.</p></li>
+<li><p><em>data.table.</em> <code>dcast()</code> uses a formula <code>LHS ~ RHS</code></p></li>
+<li><p><em>tidyr</em> <code>pivot_wider()</code>, an updated approach to <code>spread()</code>.</p></li>
+<li><p><em>cdata.</em> <code>pivot_to_rowrecs()</code>, a special case of the more general function <code>blocks_to_rowrecs()</code>.</p></li>
+</ul>
+</section>
+<section id="row-records-to-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="row-records-to-blocks">Row-records to blocks</h2>
+<p>In this transform—the inverse of blocks to row-records—each row is disassembled and used to make a block of many rows. Each block of records in the new data frame has as many rows per record as there are columns we take measurements from.</p>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>blocks_dt <span class="ot">&lt;-</span> <span class="fu">melt</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  rowrecs_dt, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">measure.vars =</span> <span class="fu">c</span>(<span class="st">"ever_enrolled"</span>, <span class="st">"graduates"</span>, <span class="st">"starters"</span>), </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable.name =</span> <span class="st">"peer_group"</span>, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name =</span> <span class="st">"N"</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable.factor =</span> <span class="cn">FALSE</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">setorderv</span>(blocks_dt, <span class="fu">c</span>(<span class="st">"program"</span>, <span class="st">"peer_group"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyr</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>blocks_tbl <span class="ot">&lt;-</span> rowrecs_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"ever_enrolled"</span>, <span class="st">"graduates"</span>, <span class="st">"starters"</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"peer_group"</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"N"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell other">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cdata</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>blocks_df <span class="ot">&lt;-</span> <span class="fu">unpivot_to_blocks</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  rowrecs_df, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnsToTakeFrom =</span> <span class="fu">c</span>(<span class="st">"ever_enrolled"</span>, <span class="st">"graduates"</span>, <span class="st">"starters"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nameForNewKeyColumn =</span> <span class="st">"peer_group"</span>, </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nameForNewValueColumn =</span> <span class="st">"N"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>blocks_dt</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        program    peer_group     N</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;char&gt;        &lt;char&gt; &lt;int&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:      Civil ever_enrolled  1504</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:      Civil     graduates   936</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:      Civil      starters   983</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: Electrical ever_enrolled  1490</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: Electrical     graduates   736</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6: Electrical      starters  1080</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7: Industrial ever_enrolled   353</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8: Industrial     graduates   238</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9: Industrial      starters   285</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10: Mechanical ever_enrolled  2306</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11: Mechanical     graduates  1354</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12: Mechanical      starters  1705</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(blocks_df, blocks_dt)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(blocks_dt, blocks_tbl)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="important">Comments</span></p>
+<ul>
+<li><p>In all cases, the same transformation occurs: column names are identified (<code>ever_enrolled</code>, <code>graduates</code>, <code>starters</code>) and collected in a new key column (<code>peer_group</code>); the values from these columns are collected in a new payload column (<code>N</code>); and column names not selected (<code>program</code>) are treated as keys, copied to each record row in the result.</p></li>
+<li><p><em>data.table</em> <code>melt()</code></p></li>
+<li><p><em>tidyr</em> <code>pivot_longer()</code>, an updated approach to <code>gather()</code></p></li>
+<li><p><em>cdata</em> <code>unpivot_to_blocks()</code> a special case of the more general function <code>rowrecs_to_blocks()</code>.</p></li>
+</ul>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<p>Reshaping transforms can also be applied to more than one column, though we don’t cover that use case here. For those interested:</p>
+<ul>
+<li><p>data.table’s <code>dcast()</code> allows more complicated transforms, such as casting to multiple variables and aggregations at the same time.</p></li>
+<li><p>cdata has simple methods for conversions of many columns at once using <code>blocks_to_rowrecs()</code> and <code>rowrecs_to_blocs()</code> plus a “control table”. See, for example, <a href="https://win-vector.com/2018/10/21/faceted-graphs-with-cdata-and-ggplot2/">Faceted graphs with cdata and ggplot2</a></p></li>
+<li><p>tidyr has similar functions, inspired by cdata, using <code>pivot_longer_spec()</code> and <code>pivot_wider_spec()</code>. See <a href="https://tidyr.tidyverse.org/reference/pivot_wider_spec.html">Pivot data from long to wide using a spec</a>.</p></li>
+</ul>
+</section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<div id="refs" role="list">
-
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Mount+Zumel:2019:fluid-data" class="csl-entry" role="listitem">
+Mount, J., &amp; Zumel, N. (2019). <em><span class="nocase">Coordinatized data: A fluid data specification</span></em>. <span>Win Vector LLC</span>. <a href="http://winvector.github.io/FluidData/RowsAndColumns.html">http://winvector.github.io/FluidData/RowsAndColumns.html</a>
+</div>
+<div id="ref-Mount+Zumel:2021:block+row+records" class="csl-entry" role="listitem">
+Mount, J., &amp; Zumel, N. (2021). <em><span class="nocase">Block records and row records</span></em>. <span>Win Vector LLC</span>. <a href="https://winvector.github.io/cdata/articles/blocksrecs.html">https://winvector.github.io/cdata/articles/blocksrecs.html</a>
+</div>
 </div>
 
 

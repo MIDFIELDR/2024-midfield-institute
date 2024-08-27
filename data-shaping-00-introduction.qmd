@@ -10,7 +10,9 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
 ```
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis. 
@@ -22,7 +24,7 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
-In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.  
+In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. We illustrate common data shaping tasks three ways: using base R, data.table, and dplyr systems. 
 
 Sources for translating among the three systems include [@Atrebas:2019; @Gimond:2019; @Hajnala:2018; @Mercer:2020; and @Vaughan:2023]. In particular, our outline is roughly based on Chapter 5 of [@Zumel+Mount:2020]. 
 
@@ -30,93 +32,134 @@ Sources for translating among the three systems include [@Atrebas:2019; @Gimond:
 
 
 
-
-
 ## Getting started
 
-*Start.* &nbsp;   If you are writing your own script to follow along, we use the following packages in the data-shaping articles. Click on the "Copy to Clipboard" icon ![](figures/clipboard-icon.png) to copy a code chunk for pasting into your own script if desired. 
+[Project organization.]{.important} If you are writing your own scripts to follow along, our tutorials assume that you:
+
+- Are working within an [RStudio Project](before-you-arrive.html#start-the-setup)
+- Have set up a directory structure with folders for [data, scripts,  results](before-you-arrive.html#add-some-folders).
+
+[Packages.]{.important}  We use the following packages in the data-shaping articles. You can copy a code chunk by clicking on the "Copy to clipboard" icon ![](figures/clipboard-icon.png).
 
 ```{r}
-library(midfielddata) # datasets
-library(data.table) # data manipulation system
-library(dplyr) # data manipulation system
-library(tidyr) # drop_na()
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("tidyr")
+library("wrapr")
 ```
 
-*Load.* &nbsp;  Practice datasets. View data dictionaries via `?student` and `?term`.
+[Download and save CSV files.]{.important} In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). To download the CSV files and save to the `data` directory in your RStudio project folder, run the following lines *once.*  
+
+```r
+# ever-enrolled data frame
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/ever_enrolled.csv"
+ever_enrolled <- fread(data_url)
+fwrite(ever_enrolled, "data/ever_enrolled.csv")
+
+# graduates data frame
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/graduates.csv"
+graduates <- fread(data_url)
+fwrite(graduates, "data/graduates.csv")
+```
+
+
+
+
+## Data 
+
+Import the CSV files we just downloaded. 
+
+```{r}
+ever <- fread("data/ever_enrolled.csv")
+grad <- fread("data/graduates.csv")
+```
+
+Load the datasets from midfielddata. View data dictionaries via `?student` and `?term`.
 
 ```{r}
 data(student, term)
 ```
 
-We construct a different version of these data tables for each system (base R, data.table, and dplyr). 
+Have a quick look at each one using dplyr `glimpse()`. 
 
 ```{r}
-#| echo: false
-wrapr::build_frame(
-  "system", "name", "class" |
-    "base R", "`student_base`, `term_base`", "`data.frame`" |
-    "data.table", "`student_DT`, `term_DT`", "`data.frame, data.table`" |
-    "dplyr", "`student_dplyr`, `term_dplyr`", "`data.frame, tbl_df, tbl`"
-) %>%
-  knitr::kable(caption = "Table 1: Data-preparation data frame names and classes")
+glimpse(ever)
+
+glimpse(grad)
+
+glimpse(student)
+
+glimpse(term)
 ```
 
-<br>
 
-Equivalent code chunks for the three systems are color-coded. 
+
+
+
+## Three systems
+
+For every data frame we use, we construct a separate version for each system. For example, the three versions of the `student` table are prepared using:  
 
 ```{r}
 #| class: base
 # base R
-student_base <- data.frame(student)
-term_base <- data.frame(term)
+student_df <- data.frame(student)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-student_DT <- copy(student)
-term_DT <- copy(term)
+student_dt <- copy(student)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-student_dplyr <- tibble(student)
-term_dplyr <- tibble(term)
+student_tbl <- tibble(student)
 ```
 
-### Usage notes
+Lines of code for each system are in separate, color-coded blocks. Data-frame names are assigned to identify the system as well, as outlined in Table 1.  
+
+```{r}
+#| echo: false
+wrapr::build_frame(
+  "system", "suffix", "example", "class" |
+    "base R", "`_df`", "`student_df`",  "`data.frame`" |
+    "data.table", "`_dt`", "`student_dt`", "`data.frame, data.table`" |
+    "dplyr", "`_tbl`", "`student_tbl`", "`data.frame, tbl_df, tbl`"
+) %>%
+  knitr::kable(caption = "Table 1: Name and class of data frames by system")
+```
+
+
+
+
+
+## Method
 
 1. We want to make each operation as transparent as possible for the R novice. Hence we generally write a line of code to do one thing, avoiding combined or nested operations and introducing intermediate or temporary variables that get overwritten before reaching a desired result, e.g., `DF` for an intermediate data.frame, `DT` for an intermediate data.table, `vec` for an intermediate vector, etc.  
 
-1. In the same vein, we sometimes use intermediate variables for indexing, e.g. `rows_we_want`, `columns_we_want`, `order_index`, etc. 
+2. In the same vein, we sometimes use intermediate variables for indexing, e.g. `rows_we_want`, `columns_we_want`, `order_index`, etc. 
 
-1. In general, we show only one approach per task per system, offering what we think is the best choice for our audience. In R there are usually multiple approaches for the same task and resources for exploring other methods are readily available. 
+3. In general, we show only one approach per task per system, offering what we think is the best choice for our audience. In R there are usually multiple approaches for the same task and resources for exploring other methods are readily available. 
 
-1. It is traditional to chain dplyr steps with the magrittr pipe `%>%` (though assigning temporary variables would work just as well). Piping or chaining operations are available in base R and data.table, but they have less currency than with dplyr users. 
+4. We follow the convention of chaining dplyr steps with the magrittr pipe `%>%` (though assigning temporary variables would work just as well). We do not generally use the piping or chaining operations available in base R and data.table.  
 
-1. In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using `all.equal()` with arguments sometimes set to ignore attributes, row order, or column order. For example, 
-
-```{r}
-all.equal(student_DT, data.table(student_base), check.attributes = FALSE)
-all.equal(term_DT, data.table(term_dplyr))
-```
-
-
-
-### Practice data
-
-It's always a good idea to review the data structure before starting.  
+5. In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. In most cases, we compare data frame equivalence with  `wrapr::check_equiv_frames()` which converts its arguments to data.frame class and reorders columns and rows. 
 
 ```{r}
-str(student)
+check_equiv_frames(student_df, student_dt)
+check_equiv_frames(student_dt, student_tbl)
 ```
 
+6. In cases where re-ordering ows or columns is part of the task, we compare results by using base R `all.equal()` instead of `check_equiv_frames()`. By setting the `check.attributes` argument to FALSE, data frame attributes (other than column names) are ignored, for example, row.names (if any) and class (e.g., `tbl` or `data.table`).
+
 ```{r}
-str(term)
+all.equal(student_df, student_dt, check.attributes = FALSE)
+all.equal(student_dt, student_tbl, check.attributes = FALSE)
 ```
+
 
 
 
@@ -124,6 +167,8 @@ str(term)
 ## References 
 
 <div id="refs"></div>
+
+
 
 
 
@@ -137,4 +182,5 @@ packageVersion("midfielddata")
 packageVersion("data.table")
 packageVersion("dplyr")
 packageVersion("tidyr")
+packageVersion("wrapr")
 ```

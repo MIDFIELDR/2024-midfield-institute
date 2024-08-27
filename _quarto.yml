@@ -67,6 +67,7 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
+    html-table-processing: none
 
 
 

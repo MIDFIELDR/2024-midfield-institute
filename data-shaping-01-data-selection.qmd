@@ -10,7 +10,9 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
 ```
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
@@ -22,28 +24,43 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 - [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
 - [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
 
-In this section we demonstrate subsetting rows and columns in various configurations, removing records with incomplete data, and reordering rows. 
+In this section we demonstrate subsetting rows and columns in various configurations, removing records with incomplete data, and reordering rows and columns.  
 
-## Getting started
-
-Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html) to data shaping.
+[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-library(midfielddata) # datasets
-library(data.table) # data manipulation system
-library(dplyr) # data manipulation system
-library(tidyr) # drop_na()
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("tidyr")
+library("wrapr")
 
 data(student, term)
-
-student_base <- data.frame(student)
-student_DT <- copy(student)
-student_dplyr <- tibble(student)
-
-term_base <- data.frame(term)
-term_DT <- copy(term)
-term_dplyr <- tibble(term)
 ```
+
+```{r}
+#| class: base
+# base R
+student_df <- data.frame(student)
+term_df <- data.frame(term)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_dt <- copy(student)
+term_dt <- copy(term)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_tbl <- tibble(student)
+term_tbl <- tibble(term)
+```
+
+<br>
+
 
 ## Subsetting rows and columns
 
@@ -56,7 +73,7 @@ A common task when working with data is selecting a subset of rows,  columns, or
 
 Using intermediate variables `columns_we_want` and `rows_we_want` that refer to the values used to subset rows and columns.
 
-*Task.* &nbsp; Prepare data to summarize domestic students by race, sex, and institution.
+[Task.]{.important} Prepare data to summarize domestic students by race, sex, and institution.
 
 Our first step might be to subset columns (institution, race, sex, and us_citizen) and subset rows such that US citizenship is true. 
 
@@ -68,34 +85,34 @@ columns_we_want <- c("institution", "race", "sex", "us_citizen")
 ```{r}
 #| class: base
 # base R
-rows_we_want <- student_base$us_citizen == "Yes"
-result_base <- student_base[rows_we_want, columns_we_want, drop = FALSE]
+rows_we_want <- student_df$us_citizen == "Yes"
+result_df <- student_df[rows_we_want, columns_we_want, drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-rows_we_want <- student_DT$us_citizen == "Yes"
-result_DT <- student_DT[rows_we_want, ..columns_we_want]
+rows_we_want <- student_dt$us_citizen == "Yes"
+result_dt <- student_dt[rows_we_want, ..columns_we_want]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-rows_we_want <- student_dplyr$us_citizen == "Yes"
-result_dplyr <- student_dplyr %>%
+rows_we_want <- student_tbl$us_citizen == "Yes"
+result_tbl <- student_tbl %>%
   select(all_of(columns_we_want)) %>%
   filter(rows_we_want)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important}
 
 - *base R.* Base R's default behavior when selecting a single column is to return a vector. Thus, when working with `[,]` always add a third argument `drop = FALSE` to ensure a data frame is returned. 
 
@@ -107,12 +124,12 @@ all.equal(result_DT, data.table(result_dplyr))
 
 Column and row selection that is typed directly into the subsetting operators `[,]` or `filter()` and `select()` without using intermediate variables. 
 
-*Task.* &nbsp; Same as previous example. 
+[Task.]{.important} Same as previous example. 
 
 ```{r}
 #| class: base
 # base R
-result_base <- student_base[student_base$us_citizen == "Yes",
+result_df <- student_df[student_df$us_citizen == "Yes",
   c("institution", "race", "sex", "us_citizen"),
   drop = FALSE
 ]
@@ -121,25 +138,25 @@ result_base <- student_base[student_base$us_citizen == "Yes",
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- student_DT[us_citizen == "Yes", .(institution, race, sex, us_citizen)]
+result_dt <- student_dt[us_citizen == "Yes", .(institution, race, sex, us_citizen)]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   select(institution, race, sex, us_citizen) %>%
   filter(us_citizen == "Yes")
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important}
 
 - *base R.* For direct indexing, intermediate variable names in `[,]` are replaced verbatim by their values. 
 
@@ -151,7 +168,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 Multiple logical conditions are combined with operators such as & (and), | (or), ! (not), etc.  
 
-*Task.* &nbsp; Find IDs of transfer students with 15 or more credit hours transferred.   
+[Task.]{.important} Find IDs of transfer students with 15 or more credit hours transferred.   
 
 When a variable is overwritten multiple times to get to a result, we will sometimes employ the variable `DF` as an intermediate variable. 
 
@@ -162,36 +179,36 @@ columns_we_want <- c("mcid", "transfer", "hours_transfer")
 ```{r}
 #| class: base
 # base R
-rows_we_want <- student_base$transfer == "First-Time Transfer" & student_base$hours_transfer >= 15
-DF <- student_base[rows_we_want, columns_we_want, drop = FALSE]
+rows_we_want <- student_df$transfer == "First-Time Transfer" & student_df$hours_transfer >= 15
+DF <- student_df[rows_we_want, columns_we_want, drop = FALSE]
 
 # remove rows with NA in every column
 rows_we_want <- rowSums(is.na(DF)) < ncol(DF)
-result_base <- DF[rows_we_want, , drop = FALSE]
+result_df <- DF[rows_we_want, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- student_DT[transfer == "First-Time Transfer" & hours_transfer >= 15, ..columns_we_want]
+result_dt <- student_dt[transfer == "First-Time Transfer" & hours_transfer >= 15, ..columns_we_want]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   select(mcid, transfer, hours_transfer) %>%
   filter(transfer == "First-Time Transfer" & hours_transfer >= 15)
 ```
  
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important}
 
 - *base R.* Two steps required. Subset rows by the original logical conditions; then subset to remove rows with NA across all columns. `rowSums()` assigns 1 to TRUE and 0 to FALSE. If the number of NAs in a row is less than the number of columns, then that row contains non-NA data and we keep it.
 
@@ -201,170 +218,124 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ### Subset one column as a vector
 
-*Task.* &nbsp; Obtain a vector ('V') of unique IDs in the `term` dataset.
+[Task.]{.important} Obtain a vector (`vec`) of unique IDs in the `term` dataset.
+
+Because results are vectors, we compare using `all.equal()` instead of `check_equiv_frames()`. 
 
 ```{r}
 #| class: base
 # base R
-vec <- term_base[, "mcid"]
-result_base <- unique(vec)
+vec_base <- term_df[, "mcid"]
+vec_base <- unique(vec_base)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-vec <- term_DT[, mcid]
-result_DT <- unique(vec)
+vec_dtbl <- term_dt[, mcid]
+vec_dtbl <- unique(vec_dtbl)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- term_dplyr %>%
-  pull(.data$mcid) %>%
+vec_dplyr <- term_tbl %>%
+  pull(mcid) %>%
   unique()
 ```
 
 ```{r}
-str(result_DT)
+str(vec_dtbl)
 
-all.equal(result_DT, result_base)
-all.equal(result_DT, result_dplyr)
+all.equal(vec_base, vec_dtbl)
+all.equal(vec_dtbl, vec_dplyr)
 ```
 
-*Comments*
+[Comments]{.important}
 
-- *base R.* For clarity, we deliberately write these steps in two lines of code. One could just as easily write the single line `result_base <- unique(term_base[, "mcid"])`.
+- *base R.* For clarity, we deliberately write these steps in two lines of code. One could just as easily write the single line `result_df <- unique(term_df[, "mcid"])`.
 
 - *data.table.* 
 
-- *dplyr.* The conventional syntax would be `pull(mcid)` except for a subtle flaw in the current version of `pull()`. For details, see [@Layton:2024]. The dplyr function `distinct()` isn't used here because it applies to data frames, not vectors. 
+- *dplyr.* `pull(mcid)` is safe as long as the `mcid` column exists in the data frame from which it is pulled. Safer to use `pull(.data$mcid)` as described in [@Layton:2024]. 
 
 ## Removing records with incomplete data
 
 An important variation of subsetting data is removing rows of data that have missing values. If appropriate, limit the dropped rows to those with missing values in specific columns. 
 
-*Task.* &nbsp; We are asked to compare SAT scores by institution. Before doing any analysis, we first remove rows with missing SAT scores. 
+[Task.]{.important} We are asked to compare SAT scores by institution. Before doing any analysis, we first remove rows with missing SAT scores. 
 
-
-
-
-### Using complete.cases
-
-We select three columns, then obtain a logical vector with one entry per row of the data frame: TRUE if a row has no missing entries, FALSE otherwise. 
+### Delete rows with a missing value in any column. 
 
 ```{r}
 #| class: base
 # base R
-DF <- student_base[, c("institution", "sat_math", "sat_verbal"), drop = FALSE]
-result_base <- DF[complete.cases(DF), , drop = FALSE]
+DF <- student_df[, c("institution", "sat_math", "sat_verbal"), drop = FALSE]
+result_df <- na.omit(DF)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-DT <- student_DT[, .(institution, sat_math, sat_verbal)]
-result_DT <- DT[complete.cases(DT), ]
+DT <- student_dt[, .(institution, sat_math, sat_verbal)]
+result_dt <- na.omit(DT)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
-  select(institution, sat_math, sat_verbal) %>%
-  filter(complete.cases(.))
-```
-
-```{r}
-result_DT
-
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
-```
-
-*Comments*
-
-- *base R.* Where before we used the name `columns_we_want` to reference a character vector of column names, here we use the character vector itself. 
-
-- *data.table.* 
-
-- *dplyr.* In magrittr pipe notation a dot `.` is taken to mean the item being piped. Here for example, the output of `select()` is piped to `filter()` then to `complete.cases(.)` --- the latter requiring the dot.  
-
-### Using na.omit or equivalent
-
-We can perform the same task without explicit Boolean row-selection in any of the systems. 
-
-```{r}
-#| class: base
-# base R
-DF <- student_base[, c("institution", "sat_math", "sat_verbal"), drop = FALSE]
-result_base <- na.omit(DF)
-```
-
-```{r}
-#| class: dtbl
-# data.table
-DT <- student_DT[, .(institution, sat_math, sat_verbal)]
-result_DT <- na.omit(DT)
-```
-
-```{r}
-#| class: dplyr
-# dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   select(institution, sat_math, sat_verbal) %>%
   drop_na()
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
-- *base R.* 
+- *base R.* Where before we used the name `columns_we_want` to reference a character vector of column names, here we use the character vector itself. 
 
 - *data.table.*  
 
 - *dplyr.* `drop_na()` is from the tidyr package. 
 
-### Incomplete rows in specified columns
-
-Delete rows with missing values in specified columns but retain all columns. Note that the number of rows matches the number in the previous example.  
+### Delete rows with a missing value in specified colums.
 
 ```{r}
 #| class: base
 # base R
-rows_we_want <- !(is.na(student_base$institution) |
-  is.na(student_base$sat_math) |
-  is.na(student_base$sat_verbal))
-result_base <- student_base[rows_we_want, , drop = FALSE]
+rows_we_want <- !(is.na(student_df$institution) |
+  is.na(student_df$sat_math) |
+  is.na(student_df$sat_verbal))
+result_df <- student_df[rows_we_want, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- na.omit(student_DT, cols = c("institution", "sat_math", "sat_verbal"))
+result_dt <- na.omit(student_dt, cols = c("institution", "sat_math", "sat_verbal"))
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   drop_na(institution, sat_math, sat_verbal)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* Using logical operators `!` NOT and `|` OR to create a logical vector used as a row index. 
 
@@ -372,16 +343,15 @@ all.equal(result_DT, data.table(result_dplyr))
 
 - *dplyr.* Similarly, `drop_na()` drops rows with missing values in  specified columns, retaining all columns. 
 
-## Ordering rows
+## Ordering rows or columns
 
 We sometimes using the intermediate variables `order_index` (integer vector) or `order_cols` (character vector) to emphasize the steps of the ordering process. 
 
-### Ascending 
+### Ascending rows
 
 In all three systems, the default sort order is increasing (ascending) from rows 1 to *N*. 
 
-*Task.* &nbsp; Suppose we want to know a student's level and declared major in their first term at their institution. We use the `term` dataset.  
-
+[Task.]{.important} Suppose we want to know a student's level and declared major in their first term at their institution. We use the `term` dataset.  
 We decide to order the rows first by institution, then by ID, then by term. In each case, we select columns in a separate operation so we can highlight the row-ordering operation.  
 
 ```{r}
@@ -391,35 +361,35 @@ columns_we_want <- c("institution", "mcid", "term", "level", "cip6")
 ```{r}
 #| class: base
 # base R
-DF <- term_base[, columns_we_want, drop = FALSE]
+DF <- term_df[, columns_we_want, drop = FALSE]
 order_index <- with(DF, order(institution, mcid, term))
-result_base <- DF[order_index, , drop = FALSE]
+result_df <- DF[order_index, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- term_DT[, ..columns_we_want]
+result_dt <- term_dt[, ..columns_we_want]
 order_cols <- c("institution", "mcid", "term")
-setorderv(result_DT, order_cols)
+setorderv(result_dt, order_cols)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- term_dplyr %>%
+result_tbl <- term_tbl %>%
   select(institution, mcid, term, level, cip6) %>%
   arrange(institution, mcid, term)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+all.equal(result_df, result_dt, check.attributes = FALSE)
+all.equal(result_dt, result_tbl, check.attributes = FALSE)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* Using `with()`, we can list the variables to order by without using the `$` operator. 
 
@@ -431,7 +401,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 
 
-### Descending
+### Descending rows 
 
 When we want a decreasing (descending) row order, it is typically  needed for some but not all of our columns. 
 
@@ -444,38 +414,38 @@ columns_we_want <- c("institution", "mcid", "hours_transfer")
 ```{r}
 #| class: base
 # base R
-DF <- student_base[, columns_we_want, drop = FALSE]
+DF <- student_df[, columns_we_want, drop = FALSE]
 DF <- na.omit(DF)
 order_index <- with(DF, order(institution, -hours_transfer, mcid))
-result_base <- DF[order_index, , drop = FALSE]
+result_df <- DF[order_index, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-DT <- student_DT[, ..columns_we_want]
-result_DT <- na.omit(DT)
+DT <- student_dt[, ..columns_we_want]
+result_dt <- na.omit(DT)
 order_cols <- c("institution", "hours_transfer", "mcid")
-setorderv(result_DT, order_cols, order = c(1, -1, 1))
+setorderv(result_dt, order_cols, order = c(1, -1, 1))
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   select(institution, mcid, hours_transfer) %>%
   drop_na() %>%
   arrange(institution, desc(hours_transfer), mcid)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+all.equal(result_df, result_dt, check.attributes = FALSE)
+all.equal(result_dt, result_tbl, check.attributes = FALSE)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* Base R does not provide a general way to sort individual variables in descending order, but a minus sign works with numerical variables. The `decreasing` argument, if used, applies to all variables. 
 
@@ -483,7 +453,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 - *dplyr.* In `arrange()` apply `desc()` to the descending variable. 
 
-## Ordering columns
+### Ordering columns
 
 Whenever we've subset columns using indirect or direct indexing, the placement of column names implicitly orders those columns. For example, using 
 
@@ -491,71 +461,42 @@ Whenever we've subset columns using indirect or direct indexing, the placement o
 
 as a column index yields a data frame with the columns in the order given. Sometimes however we want to move one or more columns to the left in a data frame. 
 
-*Task.* &nbsp; Using the result from the previous example, move transfer hours to the leftmost column followed by ID. 
+[Task.]{.important} Using the result from the previous example, move transfer hours to the leftmost column followed by ID. 
 
 ```{r}
 #| class: base
 # base R
-column_order <- union(c("hours_transfer", "mcid"), names(result_base))
-result_base <- result_base[, column_order, drop = FALSE]
+column_order <- union(c("hours_transfer", "mcid"), names(result_df))
+result_df <- result_df[, column_order, drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-setcolorder(result_DT, c("hours_transfer", "mcid"))
+setcolorder(result_dt, c("hours_transfer", "mcid"))
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- result_dplyr %>%
+result_tbl <- result_tbl %>%
   relocate(hours_transfer, mcid)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+all.equal(result_df, result_dt, check.attributes = FALSE)
+all.equal(result_dt, result_tbl, check.attributes = FALSE)
 ```
 
-*Comments*
+[Comments]{.important}
 
 - *base R.* `union()` is a set operation that discards duplicated values. The resulting character vector contains all the column names, reordered, and sorting is performed by `[`.   
 
 - *data.table.* `setcolorder()` changes the position of columns in a data frame, by reference, moving the specified columns to the "front". 
 
 - *dplyr.*  `relocate()` changes the position of columns in a data frame moving the specified columns to the "front". 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## References 

@@ -284,9 +284,8 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#splitting-tables" id="toc-splitting-tables" class="nav-link active" data-scroll-target="#splitting-tables">Splitting tables</a></li>
   <li><a href="#appending-rows" id="toc-appending-rows" class="nav-link" data-scroll-target="#appending-rows">Appending rows</a></li>
-  <li><a href="#splitting-tables" id="toc-splitting-tables" class="nav-link" data-scroll-target="#splitting-tables">Splitting tables</a></li>
   <li><a href="#appending-columns" id="toc-appending-columns" class="nav-link" data-scroll-target="#appending-columns">Appending columns</a></li>
   <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join">Left join</a></li>
   <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join">Inner join</a></li>
@@ -331,42 +330,299 @@ div.csl-indent {
 <li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a> ◁ <em>You are here.</em></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
-<p>In this section, …</p>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p>Packages and datasets, as shown in the <a href="data-shaping-00-introduction.html">Introduction</a>.</p>
+<p>In this section, we split a data frame into a family of data frames, we concatenate tables row-wise, and we join tables.</p>
+<p><span class="important">Load packages and format data</span> as described in the <a href="data-shaping-00-introduction.html">Introduction</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midfielddata) <span class="co"># datasets</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># data manipulation system</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># data manipulation system</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># drop_na()</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfielddata"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"data.table"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"wrapr"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(student, term)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>student_base  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>student_DT    <span class="ot">&lt;-</span> <span class="fu">copy</span>(student)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>student_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(student)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>term_base  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(term)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>term_DT    <span class="ot">&lt;-</span> <span class="fu">copy</span>(term)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>term_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(student, degree)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>cohort <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/three_blocs.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>A quick look at the cohort data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cohort</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  mcid    program peer_group</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;     &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: MCID3111142965 Electrical   starters</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: MCID3111145102 Electrical   starters</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: MCID3111150194 Industrial   starters</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: MCID3111156083 Electrical   starters</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: MCID3111156325 Electrical   starters</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                     </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12966: MCID3112618553 Mechanical  graduates</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12967: MCID3112618574 Mechanical  graduates</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12968: MCID3112618976 Mechanical  graduates</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12969: MCID3112619484 Electrical  graduates</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12970: MCID3112641535 Mechanical  graduates</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>student_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>degree_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(degree)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>cohort_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>student_dt <span class="ot">&lt;-</span> <span class="fu">copy</span>(student)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>degree_dt <span class="ot">&lt;-</span> <span class="fu">copy</span>(degree)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>cohort_dt <span class="ot">&lt;-</span> <span class="fu">copy</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>student_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(student)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>degree_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(degree)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cohort_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(cohort)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<section id="splitting-tables" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-tables">Splitting tables</h2>
+<p><em>Splitting</em> is an operation that separates a data frame row-wise based on values in specified columns. Splitting is an inherent part of the grouping and summarizing operations described in <a href="data-shaping-03-aggregating-transforms.html#summarizing">Aggregating transforms: Summarizing</a> such as base R <code>by()</code>, data.table <code>[, , by]</code>, and dplyr <code>group_by()</code>.</p>
+<p>However, splitting can be performed as a stand-alone operation as well. Base R <code>split()</code> creates a list of data frames and wrapr <code>unpack()</code> can be used to extract the data frames from the list and bind a variable name to each.</p>
+<p><span class="important">Task.</span> Split the <code>cohort</code> data frame by peer groups.</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>DF_split <span class="ot">&lt;-</span> <span class="fu">split</span>(cohort_df, cohort_df<span class="sc">$</span>peer_group)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>start_df <span class="ot">&lt;-</span> DF_split<span class="sc">$</span>starters</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ever_df <span class="ot">&lt;-</span> DF_split<span class="sc">$</span>ever_enrolled</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>grad_df <span class="ot">&lt;-</span> DF_split<span class="sc">$</span>graduates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>DT_split <span class="ot">&lt;-</span> <span class="fu">split</span>(cohort_dt, <span class="at">by =</span> <span class="st">"peer_group"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wrapr<span class="sc">::</span><span class="fu">unpack</span>(DT_split, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">start_dt =</span> starters,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ever_dt =</span> ever_enrolled,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">grad_dt =</span> graduates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>TBL_split <span class="ot">&lt;-</span> <span class="fu">split</span>(cohort_tbl, cohort_tbl<span class="sc">$</span>peer_group)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>wrapr<span class="sc">::</span><span class="fu">unpack</span>(TBL_split, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">start_tbl =</span> starters,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ever_tbl =</span> ever_enrolled,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">grad_tbl =</span> graduates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display/check one representative result</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>start_dt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 mcid    program peer_group</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;     &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: MCID3111142965 Electrical   starters</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: MCID3111145102 Electrical   starters</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: MCID3111150194 Industrial   starters</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: MCID3111156083 Electrical   starters</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: MCID3111156325 Electrical   starters</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                     </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4049: MCID3112618572 Mechanical   starters</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4050: MCID3112618976 Mechanical   starters</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4051: MCID3112619118 Electrical   starters</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4052: MCID3112619484 Electrical   starters</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4053: MCID3112619666 Mechanical   starters</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(start_df, start_dt)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(start_dt, start_tbl)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="important">Comments</span></p>
+<ul>
+<li><p><em>base R.</em> The data frames are extracted from the <code>DF_split</code> list using <code>$</code>.</p></li>
+<li><p><em>data.table.</em> <code>split()</code> has a method for data.tables using the <code>by</code> argument.</p></li>
+<li><p><em>dplyr</em> does not have its own splitting function, though tidyr <code>nest()</code> is similar—but requires additional housekeeping to unpack the resulting data frames. It seems easier in this case to use base R <code>split()</code> and wrapr <code>unpack()</code>.</p></li>
+</ul>
 </section>
 <section id="appending-rows" class="level2">
 <h2 class="anchored" data-anchor-id="appending-rows">Appending rows</h2>
-<p>If two data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other.</p>
-</section>
-<section id="splitting-tables" class="level2">
-<h2 class="anchored" data-anchor-id="splitting-tables">Splitting tables</h2>
+<p>Appending rows is the inverse of splitting a data frame.</p>
+<p>If two or more data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. We confirm that both objects are data frames and then verify the column names and positions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(start_df)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "data.frame"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ever_df)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "data.frame"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(grad_df)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "data.frame"</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(start_df)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "mcid"       "program"    "peer_group"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ever_df)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "mcid"       "program"    "peer_group"</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(grad_df)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "mcid"       "program"    "peer_group"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(start_df, ever_df, grad_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>result_dt <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(<span class="fu">list</span>(start_df, ever_dt, grad_dt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>result_tbl <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(start_tbl, ever_tbl, grad_tbl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>result_dt</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  mcid    program peer_group</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                &lt;char&gt;     &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     1: MCID3111142965 Electrical   starters</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     2: MCID3111145102 Electrical   starters</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     3: MCID3111150194 Industrial   starters</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     4: MCID3111156083 Electrical   starters</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     5: MCID3111156325 Electrical   starters</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ---                                     </span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12966: MCID3112618553 Mechanical  graduates</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12967: MCID3112618574 Mechanical  graduates</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12968: MCID3112618976 Mechanical  graduates</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12969: MCID3112619484 Electrical  graduates</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12970: MCID3112641535 Mechanical  graduates</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_df, result_dt)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_dt, result_tbl)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="important">Comments</span></p>
+<ul>
+<li><p><em>base R.</em> <code>rbind()</code> acts on the data frames listed.</p></li>
+<li><p><em>data.table.</em> <code>rbindlist()</code>, argument must be a <em>list</em> of data frames.</p></li>
+<li><p><em>dplyr.</em> <code>bind_rows()</code> acts on the data frames listed. Can be a list of data frames.</p></li>
+</ul>
 </section>
 <section id="appending-columns" class="level2">
 <h2 class="anchored" data-anchor-id="appending-columns">Appending columns</h2>
+<p>Columns can be appended to a data frame using <code>cbind()</code> and <code>bind_cols()</code>—the column-wise equivalents to <code>rbind()</code> and <code>bind_rows()</code>—but we rarely use them. Instead, appending new columns is nearly always accomplished in our work using <span class="important">joins</span>. The most common joins in midfieldr work are the <em>left join</em> and the <em>inner join</em>, described next.</p>
 </section>
 <section id="left-join" class="level2">
 <h2 class="anchored" data-anchor-id="left-join">Left join</h2>
+<p>A <em>left join</em> is a merge operation between two data frames that returns all observations (rows) of the “left” data frame <code>x</code> and all the matching rows in the “right” data frame <code>y</code>.</p>
+<p>The general forms of the left join are:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># base R</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">merge</span>(x, y, by, <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data.table</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  y[x, j, on]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dplyr</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(x, y, by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where</p>
+<ul>
+<li><code>x</code> is the “left” data frame, all rows returned</li>
+<li><code>y</code> is the “right” data frame, matching rows returned</li>
+<li><code>by</code> and <code>on</code> are the vectors of shared column names to merge by</li>
+<li><code>j</code> (if used) selects columns from the joined data frame to retain</li>
+</ul>
+<p><span class="important">Task.</span> Join student race and sex to the data frame of graduates by ID.</p>
+<p>We use intermediate variables <code>x</code> and <code>y</code> in each system to help clarify the join operation.</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> grad_df[, <span class="fu">c</span>(<span class="st">"mcid"</span>, <span class="st">"program"</span>), drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> student_df[, <span class="fu">c</span>(<span class="st">"mcid"</span>, <span class="st">"race"</span>, <span class="st">"sex"</span>), drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>result_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"mcid"</span>), <span class="at">all.x =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> grad_dt[, .(mcid, program)]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> student_dt[, .(mcid, race, sex)]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>result_dt <span class="ot">&lt;-</span> y[x, , on <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"mcid"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">select</span>(grad_tbl, mcid, program)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">select</span>(student_tbl, mcid, race, sex)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>result_tbl <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"mcid"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>result_dt</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 mcid          race    sex    program</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;        &lt;char&gt; &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: MCID3111142965 International   Male Electrical</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: MCID3111145102         White   Male Electrical</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: MCID3111146537         Asian Female Electrical</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: MCID3111146674         Asian   Male Electrical</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: MCID3111150194         Black   Male Industrial</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                                               </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3260: MCID3112618553 International   Male Mechanical</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3261: MCID3112618574 International   Male Mechanical</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3262: MCID3112618976         White   Male Mechanical</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3263: MCID3112619484         White   Male Electrical</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3264: MCID3112641535         White   Male Mechanical</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_df, result_dt)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_dt, result_tbl)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="inner-join" class="level2">
 <h2 class="anchored" data-anchor-id="inner-join">Inner join</h2>
+<p>An <em>inner join</em> is a merge operation between two data frames that returns all observations (rows) from two data frames that match specified conditions in both.</p>
+<p>The general forms of the inner join are:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># base R</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">merge</span>(x, y, by, <span class="at">all =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># data.table</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  y[x, j, on, nomatch <span class="ot">=</span> <span class="cn">NULL</span>]</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># dplyr</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(x, y, by)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where</p>
+<ul>
+<li><code>x</code> is a data frame, matching rows returned</li>
+<li><code>y</code> is a data frame, matching rows returned</li>
+<li><code>by</code> and <code>on</code> are the vectors of shared column names to merge by</li>
+<li><code>j</code> (if used) selects columns from the joined data frame to retain</li>
+</ul>
+<p><span class="important">Task.</span> Join the CIP column from the <code>degree</code> data to the ever-enrolled dataset by ID, retaining only those students who completed a degree, i.e., IDs common to both data sets (inner join).</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ever_df[, <span class="fu">c</span>(<span class="st">"mcid"</span>), drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unique</span>(x)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> degree_df[, <span class="fu">c</span>(<span class="st">"mcid"</span>, <span class="st">"cip6"</span>), drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(y)[<span class="fu">names</span>(y) <span class="sc">==</span> <span class="st">"cip6"</span>] <span class="ot">&lt;-</span> <span class="st">"degree_CIP"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>result_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(x, y, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"mcid"</span>), <span class="at">all =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ever_dt[, .(mcid)]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unique</span>(x)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> degree_dt[, .(mcid, <span class="at">degree_CIP =</span> cip6)]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>result_dt <span class="ot">&lt;-</span> y[x, , on <span class="ot">=</span> <span class="st">"mcid"</span>, nomatch <span class="ot">=</span> <span class="cn">NULL</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">select</span>(ever_tbl, mcid) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">select</span>(degree_tbl, mcid, cip6) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">degree_CIP =</span> cip6)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>result_tbl <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(x, y, <span class="at">by =</span> <span class="fu">join_by</span>(mcid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>result_dt</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                 mcid degree_CIP</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               &lt;char&gt;     &lt;char&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    1: MCID3111142965     141001</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    2: MCID3111145102     141001</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    3: MCID3111146537     141001</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    4: MCID3111146674     141001</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    5: MCID3111150194     143501</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   ---                          </span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4194: MCID3112618976     141901</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4195: MCID3112619484     141001</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4196: MCID3112641399     270301</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4197: MCID3112641535     141901</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4198: MCID3112698681     110701</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_df, result_dt)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(result_dt, result_tbl)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

@@ -10,7 +10,9 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
 ```
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
@@ -24,30 +26,44 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 
 In this section we demonstrate adding and removing columns, editing column names, creating two new columns by splitting a character column, converting the class of a column, and recoding the values in a column. 
 
-## Getting started
-
-Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html) to data shaping.
+[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-library(midfielddata) # datasets
-library(data.table) # data manipulation system
-library(dplyr) # data manipulation system
-library(tidyr) # drop_na()
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("tidyr")
+library("wrapr")
 
 data(student, term)
-
-student_base <- data.frame(student)
-student_DT <- copy(student)
-student_dplyr <- tibble(student)
-
-term_base <- data.frame(term)
-term_DT <- copy(term)
-term_dplyr <- tibble(term)
 ```
+
+```{r}
+#| class: base
+# base R
+student_df <- data.frame(student)
+term_df <- data.frame(term)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_dt <- copy(student)
+term_dt <- copy(term)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_tbl <- tibble(student)
+term_tbl <- tibble(term)
+```
+
+<br>
 
 ## Adding columns
 
-*Task.* &nbsp; Add a column to the student table for total SAT score. 
+[Task.]{.important}  Add a column to the student table for total SAT score. 
 
 ```{r}
 columns_we_want <- c("mcid", "sat_math", "sat_verbal", "act_comp")
@@ -56,33 +72,33 @@ columns_we_want <- c("mcid", "sat_math", "sat_verbal", "act_comp")
 ```{r}
 #| class: base
 # base R
-result_base <- student_base[, columns_we_want, drop = FALSE]
-result_base$sat_total <- result_base$sat_math + result_base$sat_verbal
+result_df <- student_df[, columns_we_want, drop = FALSE]
+result_df$sat_total <- result_df$sat_math + result_df$sat_verbal
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- student_DT[, ..columns_we_want]
-result_DT[, sat_total := sat_math + sat_verbal]
+result_dt <- student_dt[, ..columns_we_want]
+result_dt[, sat_total := sat_math + sat_verbal]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
   select(all_of(columns_we_want)) %>%
   mutate(sat_total = sat_math + sat_verbal)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* `df$new_col` creates the new column.  
 
@@ -94,36 +110,35 @@ all.equal(result_DT, data.table(result_dplyr))
 
 In previous examples, when selecting some columns we have implicitly removed every column not selected (if any). Here we explicitly select the columns to be removed.  
 
-*Task.* &nbsp; Using the results from the previous example, remove the SAT math and verbal columns. 
+[Task.]{.important}  Using the results from the previous example, remove the SAT math and verbal columns. 
 
 ```{r}
 #| class: base
 # base R
-result_base$sat_math <- NULL
-result_base$sat_verbal <- NULL
+result_df[c("sat_math", "sat_verbal")] <- NULL
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT[, c("sat_math", "sat_verbal") := NULL]
+result_dt[, c("sat_math", "sat_verbal") := NULL]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- result_dplyr %>%
+result_tbl <- result_tbl %>%
   select(-sat_math, -sat_verbal)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* 
 
@@ -133,22 +148,22 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ## Editing column names
 
-*Task.* &nbsp; Using the results from the previous example, rename the columns. 
+[Task.]{.important}  Using the results from the previous example, rename the columns. 
 
 In each case, we take care to explicitly match old and new names.  
 
 ```{r}
 #| class: base
 # base R
-names(result_base)[names(result_base) == "mcid"] <- "Student"
-names(result_base)[names(result_base) == "sat_total"] <- "SAT"
-names(result_base)[names(result_base) == "act_comp"] <- "ACT"
+names(result_df)[names(result_df) == "mcid"] <- "Student"
+names(result_df)[names(result_df) == "sat_total"] <- "SAT"
+names(result_df)[names(result_df) == "act_comp"] <- "ACT"
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-setnames(result_DT,
+setnames(result_dt,
   old = c("mcid", "sat_total", "act_comp"),
   new = c("Student", "SAT", "ACT")
 )
@@ -157,18 +172,18 @@ setnames(result_DT,
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- result_dplyr %>%
+result_tbl <- result_tbl %>%
 	rename(Student = mcid, SAT = sat_total, ACT = act_comp)
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* While other approaches work too, this approach ensures that old and new names are explicitly matched. 
 
@@ -178,7 +193,7 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ## Split a character column
 
-*Task.* &nbsp; In the `term` data, create new columns for year `YYYY` and term code `T` by splitting the character `term` column. 
+[Task.]{.important}  In the `term` data, create new columns for year `YYYY` and term code `T` by splitting the character `term` column. 
 
 In each system, we use the base R `substr()` function to split the `term` character value into a 4-character year in one new column and a 1-character term-code in a new second column. We also drop rows with missing values (if any). 
  
@@ -189,24 +204,24 @@ columns_we_want <- c("mcid", "term")
 ```{r}
 #| class: base
 # base R
-DF <- term_base[, columns_we_want, drop = FALSE]
+DF <- term_df[, columns_we_want, drop = FALSE]
 DF$year <- substr(DF$term, 1, 4)
 DF$term_code <- substr(DF$term, 5, 5)
-result_base <- na.omit(DF)
+result_df <- na.omit(DF)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-DT <- term_DT[, ..columns_we_want]
+DT <- term_dt[, ..columns_we_want]
 DT[, c("year", "term_code") := .(substr(term, 1, 4), substr(term, 5, 5))]
-result_DT <- na.omit(DT)
+result_dt <- na.omit(DT)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- term_dplyr %>%
+result_tbl <- term_tbl %>%
   select(mcid, term) %>%
   mutate(year = substr(term, 1, 4), term_code = substr(term, 5, 5)) %>%
   drop_na()
@@ -214,13 +229,13 @@ result_dplyr <- term_dplyr %>%
 
 ```{r}
 options(datatable.print.topn = 5)
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* 
 
@@ -230,35 +245,35 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ## Convert column class
 
-*Task.* &nbsp; Using the results from the previous example, convert character year to numerical class.
+[Task.]{.important}  Using the results from the previous example, convert character year to numerical class.
 
 ```{r}
 #| class: base
 # base R
-result_base$year <- as.double(result_base$year)
+result_df$year <- as.double(result_df$year)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT[, year := as.double(year)]
+result_dt[, year := as.double(year)]
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- result_dplyr %>%
+result_tbl <- result_tbl %>%
   mutate(year = as.double(year))
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* 
 
@@ -268,14 +283,14 @@ all.equal(result_DT, data.table(result_dplyr))
 
 ## Recode column values
 
-*Task.* &nbsp; Using the results from the previous example, recode the term-codes from numbers to academic terms "Fall", "Winter", etc.
+[Task.]{.important}  Using the results from the previous example, recode the term-codes from numbers to academic terms "Fall", "Winter", etc.
 
 "Recoding" typically entails replacing existing values in a column with new, recoded values. For the sake of clarity in this example we assign the new encodings to a new column---not strictly necessary but it makes it easier to check the results. The existing column is `term_code`; the new column is `term_name`. 
 
 ```{r}
 #| class: base
 # base R
-result_base <- within(result_base, {
+result_df <- within(result_df, {
 	term_name <- NA
 	term_name[term_code == "1"] <- "Fall"
 	term_name[term_code == "2"] <- "Winter"
@@ -289,7 +304,7 @@ result_base <- within(result_base, {
 ```{r}
 #| class: dtbl
 # data.table
-result_DT[, term_name := fcase(
+result_dt[, term_name := fcase(
   term_code == "1", "Fall",
   term_code == "2", "Winter",
   term_code == "3", "Spring",
@@ -302,7 +317,7 @@ result_DT[, term_name := fcase(
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- result_dplyr %>%
+result_tbl <- result_tbl %>%
   mutate(term_name = case_match(
     term_code,
     "1" ~ "Fall",
@@ -315,13 +330,13 @@ result_dplyr <- result_dplyr %>%
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* `within()` is similar to `with()` but allows us to modify a data frame. We create the new column with `term_name <- NA` then systematically edit its values based on the values in `term_code`. 
 

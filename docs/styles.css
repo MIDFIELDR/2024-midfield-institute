@@ -1,27 +1,34 @@
 /* css styles */
 .important {
-  color: #1b9e77;
+  color: #9A2EFE;
   font-weight: bold;
 }
 .base {
     line-height: 1.15em;
     width: 95%;
     border-radius: 5px;
-    outline: 5px solid #1b9e77;
+    outline: 5px solid #999933;
     margin: 3mm;
 }
 .dtbl {
     line-height: 1.15em;
     width: 95%;
     border-radius: 5px;
-    outline: 5px solid  #d95f02;
+    outline: 5px solid  #CC6677;
     margin: 3mm;
 }
 .dplyr {
     line-height: 1.15em;
     width: 95%;
     border-radius: 5px;
-    outline: 5px solid #7570b3;
+    outline: 5px solid #44AA99;
+    margin: 3mm;
+}
+.other {
+    line-height: 1.15em;
+    width: 95%;
+    border-radius: 5px;
+    outline: 5px solid #88CCEE;
     margin: 3mm;
 }
 .output {
@@ -35,9 +42,9 @@ h3 {
 }
 /* unvisited link */
 a:link {
-  color: #01665e;
+  color: #777777;
 }
 /* visited link */
 a:visited {
-  color: #01665e;
+  color: #777777;
 }

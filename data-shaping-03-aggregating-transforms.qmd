@@ -10,7 +10,9 @@ format:
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
 ```
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
@@ -24,38 +26,52 @@ Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as ne
 
 In this section we demonstrate aggregating many observations of a variable into a set of summary observations, typically grouped by one or more grouping variables. Summaries include counts as well as means, medians, quartiles, etc. 
 
-## Getting started
-
-Packages and datasets, as shown in the  [Introduction](data-shaping-00-introduction.html) to data shaping. 
+[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-library(midfielddata) # datasets
-library(data.table) # data manipulation system
-library(dplyr) # data manipulation system
-library(tidyr) # drop_na()
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("tidyr")
+library("wrapr")
 
 data(student, term)
-
-student_base  <- data.frame(student)
-student_DT    <- copy(student)
-student_dplyr <- tibble(student)
-
-term_base  <- data.frame(term)
-term_DT    <- copy(term)
-term_dplyr <- tibble(term)
 ```
+
+```{r}
+#| class: base
+# base R
+student_df <- data.frame(student)
+term_df <- data.frame(term)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_dt <- copy(student)
+term_dt <- copy(term)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_tbl <- tibble(student)
+term_tbl <- tibble(term)
+```
+
+<br>
 
 ## Counting
 
-Base R offers several approaches to the task of counting by groups, for example, `by()`, `aggregate()`, `table()`, or a split-apply-combine strategy. For counting, I think `table()` requires the least amount of cognitive overhead. 
+Base R offers several approaches to the task of counting by groups, for example, `by()`, `aggregate()`, `table()`, `tapply()`, or a split-apply-combine strategy. For counting, I think `table()` requires the least amount of cognitive overhead when the desired result is a data frame. 
 
 ### With one grouping variable
 
 ```{r}
 #| class: base
 # base R
-freq_table <- table(student_base$race, dnn = "race")
-result_base <- as.data.frame(freq_table,
+freq_table <- table(student_df$race, dnn = "race")
+result_df <- as.data.frame(freq_table,
                            responseName = "N", 
                            stringsAsFactors = FALSE)
 ```
@@ -63,29 +79,29 @@ result_base <- as.data.frame(freq_table,
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- student_DT[, .N, by = c("race")]
-setorderv(result_DT, "race")
+result_dt <- student_dt[, .N, by = c("race")]
+setorderv(result_dt, "race")
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
  count(race, name = "N")
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base))
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* `table()` creates a contingency table---counts of every  combination of the grouping variables---that we convert to a data frame. Column names are assigned using the `dnn` and `responseName` arguments.  
 
-- *data.table.* The `.N` function is an integer containing the number of rows in each group, with grouping variables assigned using the `by` argument. `setorderv()` is optional, matching the data.table row order with the other two systems. 
+- *data.table.* The `.N` function is an integer containing the number of rows in each group, with grouping variables assigned using the `by` argument. `setorderv()` is optional. 
 
 - *dplyr.* `count()` counts the number of unique values in a group. The response column name is assigned using the `name` argument (default is lower case `n`).  
 
@@ -100,39 +116,39 @@ grouping_variables <- c("institution", "sex", "transfer")
 ```{r}
 #| class: base
 # base R
-freq_table <- table(student_base$institution,
-                    student_base$sex,
-                    student_base$transfer,
+freq_table <- table(student_df$institution,
+                    student_df$sex,
+                    student_df$transfer,
                     dnn = grouping_variables)
-result_base <- as.data.frame(freq_table, 
+result_df <- as.data.frame(freq_table, 
                            responseName = "N", 
                            stringsAsFactors = FALSE)
-result_base <- result_base[result_base$N > 0, , drop = FALSE]
+result_df <- result_df[result_df$N > 0, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-result_DT <- student_DT[, .N, by = grouping_variables]
-setorderv(result_DT, c("institution", "N"), order = c(1, -1))
+result_dt <- student_dt[, .N, by = grouping_variables]
+setorderv(result_dt, c("institution", "N"), order = c(1, -1))
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- student_dplyr %>%
+result_tbl <- student_tbl %>%
  count(institution, sex, transfer, name = "N") %>%
  arrange(institution, desc(N))
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base), ignore.row.order = TRUE)
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* Similar to the previous case with more grouping variables plus dropping rows with a count of zero to match the other systems' outputs. 
 
@@ -148,12 +164,12 @@ Of the several summarizing options available in base R, `by()` seems the simples
 
 ### With one grouping variable
 
-*Task.* &nbsp; determine the 10% quantile, median, and 90% quantile of term GPA by academic standing (good standing, academic warning, etc.) plus the number of observations used in the summary. In all systems, we use the base R `quanitile()` function to determine the 10% and 90% quantiles. 
+[Task.]{.important} determine the 10% quantile, median, and 90% quantile of term GPA by academic standing (good standing, academic warning, etc.) plus the number of observations used in the summary. In all systems, we use the base R `quanitile()` function to determine the 10% and 90% quantiles. 
 
 ```{r}
 #| class: base
 # base R
-DF <- term_base[!is.na(term_base$gpa_term), , drop = FALSE]
+DF <- term_df[!is.na(term_df$gpa_term), , drop = FALSE]
 DF_by <- by(DF, list(DF$standing), function(df) {
   data.frame(standing = unique(df$standing), 
              N = nrow(df), 
@@ -161,26 +177,25 @@ DF_by <- by(DF, list(DF$standing), function(df) {
              median_gpa = median(df$gpa_term), 
              quant_90 = quantile(df$gpa_term, 0.90))
   })
-result_base <- do.call(rbind, DF_by)
-rownames(result_base) <- NULL
+result_df <- do.call(rbind, DF_by)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-DT <- na.omit(term_DT, "gpa_term")
-result_DT <- DT[, .(.N, 
+DT <- na.omit(term_dt, "gpa_term")
+result_dt <- DT[, .(.N, 
                     quant_10 = quantile(gpa_term, 0.10), 
                     median_gpa = median(gpa_term), 
                     quant_90 = quantile(gpa_term, 0.90)), 
                 by = c("standing")]
-setorder(result_DT, -median_gpa)
+setorder(result_dt, -median_gpa)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- term_dplyr %>%
+result_tbl <- term_tbl %>%
   drop_na(gpa_term) %>%
   group_by(standing) %>%
   summarise(N = n(),
@@ -191,13 +206,13 @@ result_dplyr <- term_dplyr %>%
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base), ignore.row.order = TRUE)
-all.equal(result_DT, data.table(result_dplyr))
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* `by()` is an implementation of `split() + lapply()` (the first two parts of the well-known split-apply-combine method) that yields a list of data frames, one per each combination the grouping variables. `rbind()` combines those results into a single data frame. `function(df)` is an anonymous function, that is, a function used without assigning it a name in the workspace. 
 
@@ -212,7 +227,7 @@ all.equal(result_DT, data.table(result_dplyr))
 ```{r}
 #| class: base
 # base R
-DF <- term_base[!is.na(term_base$gpa_term), , drop = FALSE]
+DF <- term_df[!is.na(term_df$gpa_term), , drop = FALSE]
 DF_by <- by(DF, list(DF$standing, DF$level), FUN = function(df) {
   data.frame(standing = unique(df$standing), 
              level = unique(df$level),
@@ -221,43 +236,44 @@ DF_by <- by(DF, list(DF$standing, DF$level), FUN = function(df) {
              median_gpa = median(df$gpa_term), 
              quant_90 = quantile(df$gpa_term, 0.90))
   })
-result_base <- do.call(rbind, DF_by)
-rownames(result_base) <- NULL
+result_df <- do.call(rbind, DF_by)
+order_index <- order(-result_df$median_gpa, -result_df$quant_90)
+result_df <- result_df[order_index, , drop = FALSE]
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-DT <- na.omit(term_DT, "gpa_term")
-result_DT <- DT[, .(.N, 
+DT <- na.omit(term_dt, "gpa_term")
+result_dt <- DT[, .(.N, 
                     quant_10 = quantile(gpa_term, 0.10), 
                     median_gpa = median(gpa_term), 
                     quant_90 = quantile(gpa_term, 0.90)), 
                 by = c("standing", "level")]
-setorder(result_DT, -median_gpa, -quant_90)
+setorder(result_dt, -median_gpa, -quant_90)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-result_dplyr <- term_dplyr %>%
+result_tbl <- term_tbl %>%
   drop_na(gpa_term) %>%
   group_by(standing, level) %>%
   summarise(N = n(),
          quant_10 = quantile(gpa_term, 0.10), 
          median_gpa = median(gpa_term), 
          quant_90 = quantile(gpa_term, 0.90)) %>%
-  arrange(-median_gpa, -quant_90)
+  arrange(desc(median_gpa), desc(quant_90))
 ```
 
 ```{r}
-result_DT
+result_dt
 
-all.equal(result_DT, data.table(result_base), ignore.row.order = TRUE)
-all.equal(result_DT, data.table(result_dplyr))
+all.equal(result_df, result_dt, check.attributes = FALSE)
+all.equal(result_dt, result_tbl, check.attributes = FALSE)
 ```
 
-*Comments*
+[Comments]{.important} 
 
 - *base R.* Add the second grouping variable `level` in two places. 
 

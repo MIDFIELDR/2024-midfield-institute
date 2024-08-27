@@ -286,6 +286,9 @@ div.csl-indent {
    
   <ul class="collapse">
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#three-systems" id="toc-three-systems" class="nav-link" data-scroll-target="#three-systems">Three systems</a></li>
+  <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a></li>
   </ul>
@@ -328,127 +331,170 @@ div.csl-indent {
 <li><a href="data-shaping-04-multi-table-transforms.html">Multi-table transforms</a></li>
 <li><a href="data-shaping-05-reshaping-transforms.html">Reshaping transforms</a></li>
 </ul>
-<p>In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. Many of these methods appear in other midfieldr vignettes, but only as needed to achieve the specific task at hand and only using the data.table system. Here we approach the tasks more systematically and include all three systems.</p>
+<p>In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. We illustrate common data shaping tasks three ways: using base R, data.table, and dplyr systems.</p>
 <p>Sources for translating among the three systems include <span class="citation" data-cites="Atrebas:2019 Gimond:2019 Hajnala:2018 Mercer:2020 Vaughan:2023">(<a href="#ref-Atrebas:2019" role="doc-biblioref">atrebas, 2019</a>; <a href="#ref-Gimond:2019" role="doc-biblioref">Gimond, 2019</a>; <a href="#ref-Hajnala:2018" role="doc-biblioref">Hajnala, 2018</a>; <a href="#ref-Mercer:2020" role="doc-biblioref">Mercer, 2020</a>; and <a href="#ref-Vaughan:2023" role="doc-biblioref">Vaughan, 2023</a>)</span>. In particular, our outline is roughly based on Chapter 5 of <span class="citation" data-cites="Zumel+Mount:2020">(<a href="#ref-Zumel+Mount:2020" role="doc-biblioref">Zumel &amp; Mount, 2020</a>)</span>.</p>
 <section id="getting-started" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
-<p><em>Start.</em> &nbsp; If you are writing your own script to follow along, we use the following packages in the data-shaping articles. Click on the “Copy to Clipboard” icon <img src="figures/clipboard-icon.png" class="img-fluid"> to copy a code chunk for pasting into your own script if desired.</p>
+<p><span class="important">Project organization.</span> If you are writing your own scripts to follow along, our tutorials assume that you:</p>
+<ul>
+<li>Are working within an <a href="before-you-arrive.html#start-the-setup">RStudio Project</a></li>
+<li>Have set up a directory structure with folders for <a href="before-you-arrive.html#add-some-folders">data, scripts, results</a>.</li>
+</ul>
+<p><span class="important">Packages.</span> We use the following packages in the data-shaping articles. You can copy a code chunk by clicking on the “Copy to clipboard” icon <img src="figures/clipboard-icon.png" class="img-fluid">.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(midfielddata) <span class="co"># datasets</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># data manipulation system</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># data manipulation system</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr) <span class="co"># drop_na()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"midfielddata"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"data.table"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyr"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"wrapr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Load.</em> &nbsp; Practice datasets. View data dictionaries via <code>?student</code> and <code>?term</code>.</p>
+<p><span class="important">Download and save CSV files.</span> In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). To download the CSV files and save to the <code>data</code> directory in your RStudio project folder, run the following lines <em>once.</em></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ever-enrolled data frame</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/ever_enrolled.csv"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ever_enrolled <span class="ot">&lt;-</span> <span class="fu">fread</span>(data_url)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(ever_enrolled, <span class="st">"data/ever_enrolled.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># graduates data frame</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/graduates.csv"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>graduates <span class="ot">&lt;-</span> <span class="fu">fread</span>(data_url)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(graduates, <span class="st">"data/graduates.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Import the CSV files we just downloaded.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(student, term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ever <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/ever_enrolled.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grad <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/graduates.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We construct a different version of these data tables for each system (base R, data.table, and dplyr).</p>
+<p>Load the datasets from midfielddata. View data dictionaries via <code>?student</code> and <code>?term</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(student, term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Have a quick look at each one using dplyr <code>glimpse()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ever)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 5,653</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 2</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mcid    &lt;chr&gt; "MCID3111142965", "MCID3111145102", "MCID3111146537", "MCID311…</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ program &lt;chr&gt; "EE", "EE", "EE", "EE", "ISE", "ME", "CE", "EE", "EE", "ISE", …</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(grad)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 3,264</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 2</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mcid    &lt;chr&gt; "MCID3111142965", "MCID3111145102", "MCID3111146537", "MCID311…</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ program &lt;chr&gt; "EE", "EE", "EE", "EE", "ISE", "ME", "CE", "EE", "EE", "ISE", …</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(student)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 97,555</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 13</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mcid           &lt;chr&gt; "MCID3111142225", "MCID3111142283", "MCID3111142290", "…</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ institution    &lt;chr&gt; "Institution B", "Institution J", "Institution J", "Ins…</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ transfer       &lt;chr&gt; "First-Time Transfer", "First-Time Transfer", "First-Ti…</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ hours_transfer &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ race           &lt;chr&gt; "Asian", "Asian", "Asian", "Asian", "Asian", "Asian", "…</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ sex            &lt;chr&gt; "Male", "Female", "Male", "Male", "Male", "Male", "Male…</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ age_desc       &lt;chr&gt; "Under 25", "Under 25", "Under 25", "Under 25", "Under …</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ us_citizen     &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes",…</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ home_zip       &lt;chr&gt; NA, "22020", "23233", "20853", "22003", "23234", "24148…</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ high_school    &lt;chr&gt; NA, NA, "471872", NA, "470080", "471877", NA, NA, NA, N…</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ sat_math       &lt;dbl&gt; NA, 560, 510, 640, 600, 570, 480, NA, NA, NA, 520, 430,…</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ sat_verbal     &lt;dbl&gt; NA, 230, 380, 460, 500, 530, 530, NA, NA, NA, 490, 490,…</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ act_comp       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(term)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 639,915</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 13</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mcid                &lt;chr&gt; "MCID3111142225", "MCID3111142283", "MCID311114228…</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ institution         &lt;chr&gt; "Institution B", "Institution J", "Institution J",…</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ term                &lt;chr&gt; "19881", "19881", "19883", "19885", "19891", "1989…</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ cip6                &lt;chr&gt; "140901", "240102", "240102", "190601", "190601", …</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ level               &lt;chr&gt; "01 First-year", "01 First-year", "01 First-year",…</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ standing            &lt;chr&gt; "Good Standing", "Academic Probation", "Academic P…</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ coop                &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "N…</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ hours_term          &lt;dbl&gt; 7, 6, 12, 6, 6, 6, 6, 18, 15, 14, 13, 3, 13, 3, 3,…</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ hours_term_attempt  &lt;dbl&gt; 7, 6, 12, 6, 6, 6, 6, 18, 18, 14, 13, 3, 13, 3, 3,…</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ hours_cumul         &lt;dbl&gt; 7, 6, 18, 24, 30, 36, 42, 63, 78, 14, 27, 60, 82, …</span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ hours_cumul_attempt &lt;dbl&gt; 7, 6, 18, 24, 30, 36, 42, 63, 81, 14, 27, 60, 82, …</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gpa_term            &lt;dbl&gt; 2.56, 1.85, 1.93, 2.15, 1.85, 1.20, 1.85, 2.33, 2.…</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gpa_cumul           &lt;dbl&gt; 2.56, 1.85, 1.90, 1.96, 1.94, 1.82, 1.82, 1.98, 2.…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="three-systems" class="level2">
+<h2 class="anchored" data-anchor-id="three-systems">Three systems</h2>
+<p>For every data frame we use, we construct a separate version for each system. For example, the three versions of the <code>student</code> table are prepared using:</p>
+<div class="cell base">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>student_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>student_dt <span class="ot">&lt;-</span> <span class="fu">copy</span>(student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>student_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lines of code for each system are in separate, color-coded blocks. Data-frame names are assigned to identify the system as well, as outlined in Table 1.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
-<caption>Table 1: Data-preparation data frame names and classes</caption>
+<caption>Table 1: Name and class of data frames by system</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">system</th>
-<th style="text-align: left;">name</th>
+<th style="text-align: left;">suffix</th>
+<th style="text-align: left;">example</th>
 <th style="text-align: left;">class</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">base R</td>
-<td style="text-align: left;"><code>student_base</code>, <code>term_base</code></td>
+<td style="text-align: left;"><code>_df</code></td>
+<td style="text-align: left;"><code>student_df</code></td>
 <td style="text-align: left;"><code>data.frame</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">data.table</td>
-<td style="text-align: left;"><code>student_DT</code>, <code>term_DT</code></td>
+<td style="text-align: left;"><code>_dt</code></td>
+<td style="text-align: left;"><code>student_dt</code></td>
 <td style="text-align: left;"><code>data.frame, data.table</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;"><code>student_dplyr</code>, <code>term_dplyr</code></td>
+<td style="text-align: left;"><code>_tbl</code></td>
+<td style="text-align: left;"><code>student_tbl</code></td>
 <td style="text-align: left;"><code>data.frame, tbl_df, tbl</code></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><br></p>
-<p>Equivalent code chunks for the three systems are color-coded.</p>
-<div class="cell base">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># base R</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>student_base <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(student)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>term_base <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell dtbl">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data.table</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>student_DT <span class="ot">&lt;-</span> <span class="fu">copy</span>(student)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>term_DT <span class="ot">&lt;-</span> <span class="fu">copy</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell dplyr">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>student_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(student)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>term_dplyr <span class="ot">&lt;-</span> <span class="fu">tibble</span>(term)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="usage-notes" class="level3">
-<h3 class="anchored" data-anchor-id="usage-notes">Usage notes</h3>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method</h2>
 <ol type="1">
 <li><p>We want to make each operation as transparent as possible for the R novice. Hence we generally write a line of code to do one thing, avoiding combined or nested operations and introducing intermediate or temporary variables that get overwritten before reaching a desired result, e.g., <code>DF</code> for an intermediate data.frame, <code>DT</code> for an intermediate data.table, <code>vec</code> for an intermediate vector, etc.</p></li>
 <li><p>In the same vein, we sometimes use intermediate variables for indexing, e.g.&nbsp;<code>rows_we_want</code>, <code>columns_we_want</code>, <code>order_index</code>, etc.</p></li>
 <li><p>In general, we show only one approach per task per system, offering what we think is the best choice for our audience. In R there are usually multiple approaches for the same task and resources for exploring other methods are readily available.</p></li>
-<li><p>It is traditional to chain dplyr steps with the magrittr pipe <code>%&gt;%</code> (though assigning temporary variables would work just as well). Piping or chaining operations are available in base R and data.table, but they have less currency than with dplyr users.</p></li>
-<li><p>In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. We convert results to data.table format and compare using <code>all.equal()</code> with arguments sometimes set to ignore attributes, row order, or column order. For example,</p></li>
+<li><p>We follow the convention of chaining dplyr steps with the magrittr pipe <code>%&gt;%</code> (though assigning temporary variables would work just as well). We do not generally use the piping or chaining operations available in base R and data.table.</p></li>
+<li><p>In each example, results are manipulated such that base R, data.table, and dplyr yield the same form (usually a data frame) with the same variables and observations. In most cases, we compare data frame equivalence with <code>wrapr::check_equiv_frames()</code> which converts its arguments to data.frame class and reorders columns and rows.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(student_DT, <span class="fu">data.table</span>(student_base), <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(term_DT, <span class="fu">data.table</span>(term_dplyr))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(student_df, student_dt)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">check_equiv_frames</span>(student_dt, student_tbl)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="practice-data" class="level3">
-<h3 class="anchored" data-anchor-id="practice-data">Practice data</h3>
-<p>It’s always a good idea to review the data structure before starting.</p>
+<ol start="6" type="1">
+<li>In cases where re-ordering ows or columns is part of the task, we compare results by using base R <code>all.equal()</code> instead of <code>check_equiv_frames()</code>. By setting the <code>check.attributes</code> argument to FALSE, data frame attributes (other than column names) are ignored, for example, row.names (if any) and class (e.g., <code>tbl</code> or <code>data.table</code>).</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(student)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   97555 obs. of  13 variables:</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ mcid          : chr  "MCID3111142225" "MCID3111142283" "MCID3111142290" "MCID3111142294" ...</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ institution   : chr  "Institution B" "Institution J" "Institution J" "Institution J" ...</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ transfer      : chr  "First-Time Transfer" "First-Time Transfer" "First-Time Transfer" "First-Time Transfer" ...</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_transfer: num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ race          : chr  "Asian" "Asian" "Asian" "Asian" ...</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sex           : chr  "Male" "Female" "Male" "Male" ...</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ age_desc      : chr  "Under 25" "Under 25" "Under 25" "Under 25" ...</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ us_citizen    : chr  "Yes" "Yes" "Yes" "Yes" ...</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ home_zip      : chr  NA "22020" "23233" "20853" ...</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ high_school   : chr  NA NA "471872" NA ...</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sat_math      : num  NA 560 510 640 600 570 480 NA NA NA ...</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ sat_verbal    : num  NA 230 380 460 500 530 530 NA NA NA ...</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ act_comp      : num  NA NA NA NA NA NA NA NA NA NA ...</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt; </span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, "index")= int(0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(student_df, student_dt, <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(student_dt, student_tbl, <span class="at">check.attributes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(term)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Classes 'data.table' and 'data.frame':   639915 obs. of  13 variables:</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ mcid               : chr  "MCID3111142225" "MCID3111142283" "MCID3111142283" "MCID3111142283" ...</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ institution        : chr  "Institution B" "Institution J" "Institution J" "Institution J" ...</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ term               : chr  "19881" "19881" "19883" "19885" ...</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ cip6               : chr  "140901" "240102" "240102" "190601" ...</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ level              : chr  "01 First-year" "01 First-year" "01 First-year" "01 First-year" ...</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ standing           : chr  "Good Standing" "Academic Probation" "Academic Probation" "Academic Probation" ...</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ coop               : chr  "No" "No" "No" "No" ...</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_term         : num  7 6 12 6 6 6 6 18 15 14 ...</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_term_attempt : num  7 6 12 6 6 6 6 18 18 14 ...</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_cumul        : num  7 6 18 24 30 36 42 63 78 14 ...</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ hours_cumul_attempt: num  7 6 18 24 30 36 42 63 81 14 ...</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gpa_term           : num  2.56 1.85 1.93 2.15 1.85 1.2 1.85 2.33 2.32 2.15 ...</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ gpa_cumul          : num  2.56 1.85 1.9 1.96 1.94 1.82 1.82 1.98 2.04 2.15 ...</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  - attr(*, ".internal.selfref")=&lt;externalptr&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -477,16 +523,18 @@ Zumel, N., &amp; Mount, J. (2020). <em><span class="nocase">Practical Data Scien
 <h2 class="anchored" data-anchor-id="appendix">Appendix</h2>
 <p>The R and package version numbers (as of this writing) are:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>R.version<span class="sc">$</span>version.string</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "R version 4.4.1 (2024-06-14 ucrt)"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"midfielddata"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '0.2.1'</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"data.table"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.15.4'</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.1.4'</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyr"</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.3.1'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>R.version<span class="sc">$</span>version.string</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "R version 4.4.1 (2024-06-14 ucrt)"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"midfielddata"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '0.2.1'</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"data.table"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.15.4'</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.1.4'</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyr"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '1.3.1'</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"wrapr"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] '2.1.0'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

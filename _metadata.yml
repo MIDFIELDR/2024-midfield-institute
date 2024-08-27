@@ -10,7 +10,7 @@ toc: true
 # knitr chunk options
 execute:
    message: false
-   warning: false
+   warning: true
    echo: true
 
 # note, tips, etc., my summaries at the top of a post
