@@ -65,9 +65,12 @@ format:
     theme: flatly
     css: styles.css
     toc: true
+    code-link: true
     code-copy: true
     code-overflow: wrap
-    html-table-processing: none
+    fig-cap-location: bottom
+    tbl-cap-location: top
+
 
 
 

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.4.555">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>MIDFIELD Institute - R data basics</title>
 <style>
 code{white-space: pre-wrap;}
@@ -76,7 +73,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -93,8 +89,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -120,18 +115,12 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
-<link rel="stylesheet" href="styles.css">
+}</script><link rel="stylesheet" href="styles.css">
 </head>
-
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">MIDFIELD Institute</span>
@@ -143,13 +132,13 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+<li class="nav-item compact">
     <a class="nav-link" href="https://github.com/MIDFIELDR/2024-midfield-institute"> <i class="bi bi-git" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -158,9 +147,7 @@ div.csl-indent {
 </a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -171,20 +158,16 @@ div.csl-indent {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
@@ -234,8 +217,8 @@ div.csl-indent {
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-shaping-00-introduction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -272,18 +255,16 @@ div.csl-indent {
   </div>
 </li>
       </ul>
-  </li>
+</li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+<li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
   <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data">Import data</a></li>
   <li><a href="#changes-in-place" id="toc-changes-in-place" class="nav-link" data-scroll-target="#changes-in-place">Changes in place</a></li>
@@ -294,14 +275,10 @@ div.csl-indent {
   <li><a href="#create-a-table" id="toc-create-a-table" class="nav-link" data-scroll-target="#create-a-table">Create a table</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+  </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">R data basics</h1>
 </div>
 
@@ -316,19 +293,13 @@ div.csl-indent {
   
 
 
-</header>
-
-
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figures/data-basics.png" class="img-fluid figure-img"></p>
-<figcaption>Image: <em>US Route 60 Large Array</em> by Mobilus In Mobili is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a></figcaption>
-</figure>
+</header><div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="figures/data-basics.png" class="img-fluid figure-img"></p>
+<figcaption>Image: <em>US Route 60 Large Array</em> by Mobilus In Mobili is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a></figcaption></figure>
 </div>
 <p>Using data.table to manipulate data in R.</p>
 <p><span class="important">License.</span> This material is adapted from <em>Getting started in R: Tinyverse edition</em> by Bashir and Eddelbuettel <span class="citation" data-cites="Bashir+Eddelbuettel:2018">(<a href="#ref-Bashir+Eddelbuettel:2018" role="doc-biblioref">2018</a>)</span> which was licensed under CC BY-SA by <a href="https://ilustat.com/post/writing-real-life-motivated-r-guides/">ilustat</a>. This adaptation and extension, <em>R data basics</em> by Richard Layton, is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/legalcode">CC BY-SA 2.0</a>.</p>
-<section id="preface" class="level2">
-<h2 class="anchored" data-anchor-id="preface">Preface</h2>
+<section id="preface" class="level2"><h2 class="anchored" data-anchor-id="preface">Preface</h2>
 <p>MIDFIELD data are curated, that is, organized and integrated from multiple institutions, maintained over time, and available for reuse and preservation. Yet to address any specific research question, the data must be wrangled into a shape useful for analysis.</p>
 <blockquote class="blockquote">
 <p>The basic concept of data wrangling is to visualize your data being structured to make your task easier, and then take the steps to add this structure to your data <span class="citation" data-cites="Zumel+Mount:2020">(<a href="#ref-Zumel+Mount:2020" role="doc-biblioref">Zumel &amp; Mount, 2020, p. 113</a>.)</span>.</p>
@@ -349,33 +320,32 @@ div.csl-indent {
 <p><img src="figures/rstudio-upper-left.png" class="img-fluid" style="width:40.0%"></p>
 <p>And based on the work you did in the <em>Before you arrive</em> session, your project directory should have three folders:</p>
 <p><img src="figures/rproj-directory-2.png" class="img-fluid" style="width:40.0%"></p>
-</section>
-<section id="getting-started" class="level2">
-<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+</section><section id="getting-started" class="level2"><h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
 <p><span class="important">Start a new script.</span> I recommend that you start a new script for this segment.</p>
 <ul>
 <li>Use <em>File &gt; New File &gt; R Script</em> to create a new R script</li>
-<li><em>File &gt; Save As…</em> to name the file (we suggest <code>03-data-basics.R</code>), then save it to the <code>scripts</code> directory</li>
+<li>
+<em>File &gt; Save As…</em> to name the file (we suggest <code>03-data-basics.R</code>), then save it to the <code>scripts</code> directory</li>
 <li>At the top of the script, add a minimal header, something like:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R data basics</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># your name  </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># date </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># R data basics</span></span>
+<span><span class="co"># your name  </span></span>
+<span><span class="co"># date </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Use <code>library()</code> to load packages used in the script.</li>
+<li>Use <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> to load packages used in the script.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"data.table"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set data.table printout options</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">datatable.print.nrows =</span> <span class="dv">20</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">datatable.print.topn =</span> <span class="dv">5</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">datatable.print.class =</span> <span class="cn">TRUE</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://r-datatable.com">"data.table"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># set data.table printout options</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span></span>
+<span>  datatable.print.nrows <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  datatable.print.topn <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  datatable.print.class <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reminder: In a code chunk like the one above, you can click on the “Copy to clipboard” icon in the upper right corner to enable quick copy and paste from this document to your script.</p>
 <p>Use your script throughout the tutorial. When a new chunk of code is given,</p>
@@ -384,34 +354,29 @@ div.csl-indent {
 </li>
 <li>Check your result by comparing it to the result in the tutorial.</li>
 <li>Check what you’ve learned using the <strong>Your turn</strong> exercises.</li>
-</ul>
-</section>
-<section id="import-data" class="level2">
-<h2 class="anchored" data-anchor-id="import-data">Import data</h2>
+</ul></section><section id="import-data" class="level2"><h2 class="anchored" data-anchor-id="import-data">Import data</h2>
 <p>Read the same data file we used in the previous tutorial. The data set is in block-record (or “data matrix”) form, that is, variables are columns and observations are rows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>cw <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"data/chick_weight.csv"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Chick  Diet  Time weight</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    18     1     0     39</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    18     1     2     35</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    16     1     0     41</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    16     1     2     45</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    16     1     4     49</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                         </span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    48     4    14    170</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    48     4    16    222</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    48     4    18    261</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    48     4    20    303</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    48     4    21    322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># import data</span></span>
+<span><span class="va">cw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"data/chick_weight.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;      Chick  Diet  Time weight</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:    18     1     0     39</span></span>
+<span><span class="co">#&gt;   2:    18     1     2     35</span></span>
+<span><span class="co">#&gt;   3:    16     1     0     41</span></span>
+<span><span class="co">#&gt;   4:    16     1     2     45</span></span>
+<span><span class="co">#&gt;   5:    16     1     4     49</span></span>
+<span><span class="co">#&gt;  ---                         </span></span>
+<span><span class="co">#&gt; 574:    48     4    14    170</span></span>
+<span><span class="co">#&gt; 575:    48     4    16    222</span></span>
+<span><span class="co">#&gt; 576:    48     4    18    261</span></span>
+<span><span class="co">#&gt; 577:    48     4    20    303</span></span>
+<span><span class="co">#&gt; 578:    48     4    21    322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="changes-in-place" class="level2">
-<h2 class="anchored" data-anchor-id="changes-in-place">Changes in place</h2>
+</section><section id="changes-in-place" class="level2"><h2 class="anchored" data-anchor-id="changes-in-place">Changes in place</h2>
 <p><span class="important">Rename variables.</span> Edit column names “in place.”</p>
 <p>By <em>in place</em> we mean that the change is made using data.table <em>reference semantics</em> (or <em>by reference</em>) in which changes are made without assigning the result back to a name, that is, we write</p>
 <pre><code>    setnames(cw, old, new)</code></pre>
@@ -419,713 +384,745 @@ div.csl-indent {
 <pre><code>    cw &lt;- setnames(cw, old, new)</code></pre>
 <p>For example, changing the variable names in the <code>cw</code> data frame,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names in place</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(cw, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">old =</span> <span class="fu">c</span>(<span class="st">"Chick"</span>, <span class="st">"Diet"</span>, <span class="st">"Time"</span>, <span class="st">"weight"</span>), </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">new =</span> <span class="fu">c</span>(<span class="st">"chick_id"</span>, <span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"weight_g"</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      chick_id group   day weight_g</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:       18     1     0       39</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:       18     1     2       35</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:       16     1     0       41</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:       16     1     2       45</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:       16     1     4       49</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:       48     4    14      170</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:       48     4    16      222</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:       48     4    18      261</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:       48     4    20      303</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:       48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># change column names in place</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setattr.html">setnames</a></span><span class="op">(</span><span class="va">cw</span>, </span>
+<span>         old <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chick"</span>, <span class="st">"Diet"</span>, <span class="st">"Time"</span>, <span class="st">"weight"</span><span class="op">)</span>, </span>
+<span>         new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chick_id"</span>, <span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"weight_g"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;      chick_id group   day weight_g</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:       18     1     0       39</span></span>
+<span><span class="co">#&gt;   2:       18     1     2       35</span></span>
+<span><span class="co">#&gt;   3:       16     1     0       41</span></span>
+<span><span class="co">#&gt;   4:       16     1     2       45</span></span>
+<span><span class="co">#&gt;   5:       16     1     4       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:       48     4    14      170</span></span>
+<span><span class="co">#&gt; 575:       48     4    16      222</span></span>
+<span><span class="co">#&gt; 576:       48     4    18      261</span></span>
+<span><span class="co">#&gt; 577:       48     4    20      303</span></span>
+<span><span class="co">#&gt; 578:       48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There’s much more to reference semantics than dropping the assignment operator—it’s really about speed and memory efficiency with large data sets. However, for our “basics” series, you need to recall only that the <code>:=</code> operator and all data.table functions with names starting with <code>set</code> work by reference.</p>
 <p><span class="important">Exercises</span> are written such that the question is displayed under the tab to the left; the answer is displayed by clicking on the tab to the right.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><em>Exercise 3.1</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><em>Exercise 3.1</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>In <code>x</code>, rename the ID variable to <code>ID</code>.</li>
 </ul>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(x, <span class="at">old =</span> <span class="fu">c</span>(<span class="st">"chick_id"</span>), <span class="at">new =</span> <span class="fu">c</span>(<span class="st">"ID"</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         ID group   day weight_g</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:    18     1     0       39</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:    18     1     2       35</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:    16     1     0       41</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:    16     1     2       45</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:    16     1     4       49</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                           </span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    48     4    14      170</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    48     4    16      222</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    48     4    18      261</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    48     4    20      303</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setattr.html">setnames</a></span><span class="op">(</span><span class="va">x</span>, old <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chick_id"</span><span class="op">)</span>, new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ID"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;         ID group   day weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:    18     1     0       39</span></span>
+<span><span class="co">#&gt;   2:    18     1     2       35</span></span>
+<span><span class="co">#&gt;   3:    16     1     0       41</span></span>
+<span><span class="co">#&gt;   4:    16     1     2       45</span></span>
+<span><span class="co">#&gt;   5:    16     1     4       49</span></span>
+<span><span class="co">#&gt;  ---                           </span></span>
+<span><span class="co">#&gt; 574:    48     4    14      170</span></span>
+<span><span class="co">#&gt; 575:    48     4    16      222</span></span>
+<span><span class="co">#&gt; 576:    48     4    18      261</span></span>
+<span><span class="co">#&gt; 577:    48     4    20      303</span></span>
+<span><span class="co">#&gt; 578:    48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">Reorder variables.</span> Another example of an operation in-place. The columns listed are moved to the left-hand side of the data frame and other columns appear to the right in their original order. Here we move <code>day</code>and <code>group</code> to the first two column positions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reorder column positions in place</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setcolorder</span>(cw, <span class="fu">c</span>(<span class="st">"day"</span>, <span class="st">"group"</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day group chick_id weight_g</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0     1       18       39</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2     1       18       35</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0     1       16       41</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2     1       16       45</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4     1       16       49</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14     4       48      170</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16     4       48      222</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18     4       48      261</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20     4       48      303</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># reorder column positions in place</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setcolorder.html">setcolorder</a></span><span class="op">(</span><span class="va">cw</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"day"</span>, <span class="st">"group"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:     0     1       18       39</span></span>
+<span><span class="co">#&gt;   2:     2     1       18       35</span></span>
+<span><span class="co">#&gt;   3:     0     1       16       41</span></span>
+<span><span class="co">#&gt;   4:     2     1       16       45</span></span>
+<span><span class="co">#&gt;   5:     4     1       16       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:    14     4       48      170</span></span>
+<span><span class="co">#&gt; 575:    16     4       48      222</span></span>
+<span><span class="co">#&gt; 576:    18     4       48      261</span></span>
+<span><span class="co">#&gt; 577:    20     4       48      303</span></span>
+<span><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you want to make a change without affecting the source data frame, assign a copy of the data frame to a new name with the <code>copy()</code> function. Assignment to a new name is not enough; you have to deliberately use the <code>copy()</code> function.</p>
+<p>If you want to make a change without affecting the source data frame, assign a copy of the data frame to a new name with the <code><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy()</a></code> function. Assignment to a new name is not enough; you have to deliberately use the <code><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy()</a></code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an new object in memory</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># edit in place</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setcolorder</span>(x, <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"day"</span>))</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      group   day chick_id weight_g</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     1     0       18       39</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     1     2       18       35</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     1     0       16       41</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     1     2       16       45</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     1     4       16       49</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:     4    14       48      170</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:     4    16       48      222</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:     4    18       48      261</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:     4    20       48      303</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:     4    21       48      322</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># source remains unchanged</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day group chick_id weight_g</span></span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0     1       18       39</span></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2     1       18       35</span></span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0     1       16       41</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2     1       16       45</span></span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4     1       16       49</span></span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14     4       48      170</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16     4       48      222</span></span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18     4       48      261</span></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20     4       48      303</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># create an new object in memory</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># edit in place</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setcolorder.html">setcolorder</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group"</span>, <span class="st">"day"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;      group   day chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:     1     0       18       39</span></span>
+<span><span class="co">#&gt;   2:     1     2       18       35</span></span>
+<span><span class="co">#&gt;   3:     1     0       16       41</span></span>
+<span><span class="co">#&gt;   4:     1     2       16       45</span></span>
+<span><span class="co">#&gt;   5:     1     4       16       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:     4    14       48      170</span></span>
+<span><span class="co">#&gt; 575:     4    16       48      222</span></span>
+<span><span class="co">#&gt; 576:     4    18       48      261</span></span>
+<span><span class="co">#&gt; 577:     4    20       48      303</span></span>
+<span><span class="co">#&gt; 578:     4    21       48      322</span></span>
+<span></span>
+<span><span class="co"># source remains unchanged</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:     0     1       18       39</span></span>
+<span><span class="co">#&gt;   2:     2     1       18       35</span></span>
+<span><span class="co">#&gt;   3:     0     1       16       41</span></span>
+<span><span class="co">#&gt;   4:     2     1       16       45</span></span>
+<span><span class="co">#&gt;   5:     4     1       16       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:    14     4       48      170</span></span>
+<span><span class="co">#&gt; 575:    16     4       48      222</span></span>
+<span><span class="co">#&gt; 576:    18     4       48      261</span></span>
+<span><span class="co">#&gt; 577:    20     4       48      303</span></span>
+<span><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><em>Exercise 3.2</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><em>Exercise 3.2</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>In <code>x</code>, reorder the columns from left to right ID, group, day, weight.</li>
 </ul>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setcolorder</span>(x, <span class="fu">c</span>(<span class="st">"chick_id"</span>, <span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"weight_g"</span>))</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      chick_id group   day weight_g</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:       18     1     0       39</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:       18     1     2       35</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:       16     1     0       41</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:       16     1     2       45</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:       16     1     4       49</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:       48     4    14      170</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:       48     4    16      222</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:       48     4    18      261</span></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:       48     4    20      303</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:       48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setcolorder.html">setcolorder</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"chick_id"</span>, <span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"weight_g"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;      chick_id group   day weight_g</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt;   1:       18     1     0       39</span></span>
+<span><span class="co">#&gt;   2:       18     1     2       35</span></span>
+<span><span class="co">#&gt;   3:       16     1     0       41</span></span>
+<span><span class="co">#&gt;   4:       16     1     2       45</span></span>
+<span><span class="co">#&gt;   5:       16     1     4       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:       48     4    14      170</span></span>
+<span><span class="co">#&gt; 575:       48     4    16      222</span></span>
+<span><span class="co">#&gt; 576:       48     4    18      261</span></span>
+<span><span class="co">#&gt; 577:       48     4    20      303</span></span>
+<span><span class="co">#&gt; 578:       48     4    21      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="column-operations" class="level2">
-<h2 class="anchored" data-anchor-id="column-operations">Column operations</h2>
+</section><section id="column-operations" class="level2"><h2 class="anchored" data-anchor-id="column-operations">Column operations</h2>
 <p><span class="important">j to transform a variable.</span> Use <code>:=</code> to transform column values in place, here, converting an integer to a double-precision number.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modify values in an existing column</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_g <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(weight_g)]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day group chick_id weight_g</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0     1       18       39</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2     1       18       35</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0     1       16       41</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2     1       16       45</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4     1       16       49</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                              </span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14     4       48      170</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16     4       48      222</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18     4       48      261</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20     4       48      303</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># modify values in an existing column</span></span>
+<span><span class="va">cw</span><span class="op">[</span>, <span class="va">weight_g</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;int&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0     1       18       39</span></span>
+<span><span class="co">#&gt;   2:     2     1       18       35</span></span>
+<span><span class="co">#&gt;   3:     0     1       16       41</span></span>
+<span><span class="co">#&gt;   4:     2     1       16       45</span></span>
+<span><span class="co">#&gt;   5:     4     1       16       49</span></span>
+<span><span class="co">#&gt;  ---                              </span></span>
+<span><span class="co">#&gt; 574:    14     4       48      170</span></span>
+<span><span class="co">#&gt; 575:    16     4       48      222</span></span>
+<span><span class="co">#&gt; 576:    18     4       48      261</span></span>
+<span><span class="co">#&gt; 577:    20     4       48      303</span></span>
+<span><span class="co">#&gt; 578:    21     4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here we use <code>paste0()</code> to add a prefix to the group number, converting the variable to a character type at the same time.</p>
+<p>Here we use <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code> to add a prefix to the group number, converting the variable to a character type at the same time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modify values in an existing column</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>cw[, group <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(<span class="st">"diet "</span>, group)]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       18       35</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       16       41</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       16       45</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       16       49</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                               </span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4       48      170</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4       48      222</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4       48      261</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4       48      303</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># modify values in an existing column</span></span>
+<span><span class="va">cw</span><span class="op">[</span>, <span class="va">group</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"diet "</span>, <span class="va">group</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       18       35</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       16       41</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       16       45</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       16       49</span></span>
+<span><span class="co">#&gt;  ---                               </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4       48      170</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4       48      222</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4       48      261</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4       48      303</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><em>Exercise 3.3</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><em>Exercise 3.3</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>In <code>x</code>, add the prefix “day” to the day number, converting the variable to type character.</li>
 </ul>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x[, day <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(<span class="st">"day "</span>, day)]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         day  group chick_id weight_g</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:  day 0 diet 1       18       39</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:  day 2 diet 1       18       35</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:  day 0 diet 1       16       41</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:  day 2 diet 1       16       45</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:  day 4 diet 1       16       49</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                </span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574: day 14 diet 4       48      170</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575: day 16 diet 4       48      222</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576: day 18 diet 4       48      261</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577: day 20 diet 4       48      303</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578: day 21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span>, <span class="va">day</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"day "</span>, <span class="va">day</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;         day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;char&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:  day 0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;   2:  day 2 diet 1       18       35</span></span>
+<span><span class="co">#&gt;   3:  day 0 diet 1       16       41</span></span>
+<span><span class="co">#&gt;   4:  day 2 diet 1       16       45</span></span>
+<span><span class="co">#&gt;   5:  day 4 diet 1       16       49</span></span>
+<span><span class="co">#&gt;  ---                                </span></span>
+<span><span class="co">#&gt; 574: day 14 diet 4       48      170</span></span>
+<span><span class="co">#&gt; 575: day 16 diet 4       48      222</span></span>
+<span><span class="co">#&gt; 576: day 18 diet 4       48      261</span></span>
+<span><span class="co">#&gt; 577: day 20 diet 4       48      303</span></span>
+<span><span class="co">#&gt; 578: day 21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">j to select variables.</span> Variables not listed are dropped. Here, for example, we drop the <code>chick_id</code> variable by not listing it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns </span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> cw[, .(day, group, weight_g)]</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group weight_g</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;num&gt;</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       39</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       35</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       41</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       45</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       49</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                      </span></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4      170</span></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4      222</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4      261</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4      303</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># select columns </span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">day</span>, <span class="va">group</span>, <span class="va">weight_g</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;        day  group weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       39</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       35</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       41</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       45</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       49</span></span>
+<span><span class="co">#&gt;  ---                      </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4      170</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4      222</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4      261</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4      303</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><em>Exercise 3.4</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><em>Exercise 3.4</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>In <code>x</code>, select all columns except <code>day</code>.</li>
 </ul>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[, .(chick_id, group, weight_g)]</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      chick_id  group weight_g</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt; &lt;char&gt;    &lt;num&gt;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:       18 diet 1       39</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:       18 diet 1       35</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:       16 diet 1       41</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:       16 diet 1       45</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:       16 diet 1       49</span></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                         </span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:       48 diet 4      170</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:       48 diet 4      222</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:       48 diet 4      261</span></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:       48 diet 4      303</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:       48 diet 4      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">chick_id</span>, <span class="va">group</span>, <span class="va">weight_g</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;      chick_id  group weight_g</span></span>
+<span><span class="co">#&gt;         &lt;int&gt; &lt;char&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:       18 diet 1       39</span></span>
+<span><span class="co">#&gt;   2:       18 diet 1       35</span></span>
+<span><span class="co">#&gt;   3:       16 diet 1       41</span></span>
+<span><span class="co">#&gt;   4:       16 diet 1       45</span></span>
+<span><span class="co">#&gt;   5:       16 diet 1       49</span></span>
+<span><span class="co">#&gt;  ---                         </span></span>
+<span><span class="co">#&gt; 574:       48 diet 4      170</span></span>
+<span><span class="co">#&gt; 575:       48 diet 4      222</span></span>
+<span><span class="co">#&gt; 576:       48 diet 4      261</span></span>
+<span><span class="co">#&gt; 577:       48 diet 4      303</span></span>
+<span><span class="co">#&gt; 578:       48 diet 4      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">j to add a variable.</span> The new variable is added to the right of the other columns. Here, for example, we add the <code>weight_kg</code> variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a column</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_kg <span class="sc">:</span><span class="er">=</span> weight_g <span class="sc">/</span> <span class="dv">1000</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g weight_kg</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;     &lt;num&gt;</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       39     0.039</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       18       35     0.035</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       16       41     0.041</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       16       45     0.045</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       16       49     0.049</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                         </span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4       48      170     0.170</span></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4       48      222     0.222</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4       48      261     0.261</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4       48      303     0.303</span></span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      322     0.322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add a column</span></span>
+<span><span class="va">cw</span><span class="op">[</span>, <span class="va">weight_kg</span> <span class="op">:=</span> <span class="va">weight_g</span> <span class="op">/</span> <span class="fl">1000</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g weight_kg</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;     &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       39     0.039</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       18       35     0.035</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       16       41     0.041</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       16       45     0.045</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       16       49     0.049</span></span>
+<span><span class="co">#&gt;  ---                                         </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4       48      170     0.170</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4       48      222     0.222</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4       48      261     0.261</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4       48      303     0.303</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      322     0.322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><em>Exercise 3.5</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><em>Exercise 3.5</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>In <code>x</code>, add a weight variable <code>weight_oz</code> in ounces (28.35 grams per ounce). Round the answer to the nearest tenth.</li>
 </ul>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x[, weight_oz <span class="sc">:</span><span class="er">=</span> <span class="fu">round</span>(weight_g <span class="sc">/</span> <span class="fl">28.35</span>, <span class="dv">1</span>)]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g weight_kg weight_oz</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;     &lt;num&gt;     &lt;num&gt;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       39     0.039       1.4</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       18       35     0.035       1.2</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       16       41     0.041       1.4</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       16       45     0.045       1.6</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       16       49     0.049       1.7</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                                   </span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4       48      170     0.170       6.0</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4       48      222     0.222       7.8</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4       48      261     0.261       9.2</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4       48      303     0.303      10.7</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      322     0.322      11.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">[</span>, <span class="va">weight_oz</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">weight_g</span> <span class="op">/</span> <span class="fl">28.35</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g weight_kg weight_oz</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;     &lt;num&gt;     &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       39     0.039       1.4</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       18       35     0.035       1.2</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       16       41     0.041       1.4</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       16       45     0.045       1.6</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       16       49     0.049       1.7</span></span>
+<span><span class="co">#&gt;  ---                                                   </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4       48      170     0.170       6.0</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4       48      222     0.222       7.8</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4       48      261     0.261       9.2</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4       48      303     0.303      10.7</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      322     0.322      11.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">j to delete a variable.</span> Assigning <code>NULL</code> by reference deletes the variable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># delete a column</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cw[, weight_kg <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>cw</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       18       35</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       16       41</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       16       45</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       16       49</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                               </span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4       48      170</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4       48      222</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4       48      261</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4       48      303</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># delete a column</span></span>
+<span><span class="va">cw</span><span class="op">[</span>, <span class="va">weight_kg</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       18       35</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       16       41</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       16       45</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       16       49</span></span>
+<span><span class="co">#&gt;  ---                               </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4       48      170</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4       48      222</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4       48      261</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4       48      303</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><em>Exercise 3.6</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><em>Exercise 3.6</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <p>Using the <code>x</code> data frame from the previous exercise, delete the weight variables in grams and kilograms.</p>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x[, weight_g <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>x[, weight_kg <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_oz</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;     &lt;num&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       1.4</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     2 diet 1       18       1.2</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       16       1.4</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     2 diet 1       16       1.6</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     4 diet 1       16       1.7</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                                </span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    14 diet 4       48       6.0</span></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    16 diet 4       48       7.8</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    18 diet 4       48       9.2</span></span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 4       48      10.7</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      11.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span>, <span class="va">weight_g</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
+<span><span class="va">x</span><span class="op">[</span>, <span class="va">weight_kg</span> <span class="op">:=</span> <span class="cn">NULL</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_oz</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;     &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       1.4</span></span>
+<span><span class="co">#&gt;   2:     2 diet 1       18       1.2</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       16       1.4</span></span>
+<span><span class="co">#&gt;   4:     2 diet 1       16       1.6</span></span>
+<span><span class="co">#&gt;   5:     4 diet 1       16       1.7</span></span>
+<span><span class="co">#&gt;  ---                                </span></span>
+<span><span class="co">#&gt; 574:    14 diet 4       48       6.0</span></span>
+<span><span class="co">#&gt; 575:    16 diet 4       48       7.8</span></span>
+<span><span class="co">#&gt; 576:    18 diet 4       48       9.2</span></span>
+<span><span class="co">#&gt; 577:    20 diet 4       48      10.7</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      11.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="row-operations" class="level2">
-<h2 class="anchored" data-anchor-id="row-operations">Row operations</h2>
+</section><section id="row-operations" class="level2"><h2 class="anchored" data-anchor-id="row-operations">Row operations</h2>
 <p><span class="important">i to filter by values.</span> Use relational operators to compare values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset by observation</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[day <span class="sc">==</span> <span class="dv">21</span> <span class="sc">&amp;</span> weight_g <span class="sc">&gt;</span> <span class="dv">300</span>]</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      day  group chick_id weight_g</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1:    21 diet 1        7      305</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2:    21 diet 2       29      309</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3:    21 diet 2       21      331</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4:    21 diet 3       32      305</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5:    21 diet 3       40      321</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6:    21 diet 3       34      341</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7:    21 diet 3       35      373</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># subset by observation</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span><span class="va">day</span> <span class="op">==</span> <span class="fl">21</span> <span class="op">&amp;</span> <span class="va">weight_g</span> <span class="op">&gt;</span> <span class="fl">300</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">y</span></span>
+<span><span class="co">#&gt;      day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;    &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1:    21 diet 1        7      305</span></span>
+<span><span class="co">#&gt; 2:    21 diet 2       29      309</span></span>
+<span><span class="co">#&gt; 3:    21 diet 2       21      331</span></span>
+<span><span class="co">#&gt; 4:    21 diet 3       32      305</span></span>
+<span><span class="co">#&gt; 5:    21 diet 3       40      321</span></span>
+<span><span class="co">#&gt; 6:    21 diet 3       34      341</span></span>
+<span><span class="co">#&gt; 7:    21 diet 3       35      373</span></span>
+<span><span class="co">#&gt; 8:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>For comparing values in vectors use: <code>&lt;</code> (less than), <code>&gt;</code> (greater than), <code>&lt;=</code> (less than or equal to), <code>&gt;=</code> (greater than or equal to), <code>==</code> (equal to), and <code>!=</code> (not equal to). These can be combined logically using <code>&amp;</code> (and) and <code>|</code> (or).</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><em>Exercise 3.7</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><em>Exercise 3.7</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>Filter <code>x</code> to retain all observations on day 4, diet 3</li>
 </ul>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[day <span class="sc">==</span> <span class="dv">4</span> <span class="sc">&amp;</span> group <span class="sc">==</span> <span class="st">"diet 3"</span>]</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       day  group chick_id weight_g</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:     4 diet 3       33       63</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:     4 diet 3       37       56</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:     4 diet 3       36       61</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:     4 diet 3       31       62</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:     4 diet 3       39       61</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:     4 diet 3       38       61</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:     4 diet 3       32       65</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:     4 diet 3       40       66</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:     4 diet 3       34       63</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:     4 diet 3       35       64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="va">day</span> <span class="op">==</span> <span class="fl">4</span> <span class="op">&amp;</span> <span class="va">group</span> <span class="op">==</span> <span class="st">"diet 3"</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;       day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;  1:     4 diet 3       33       63</span></span>
+<span><span class="co">#&gt;  2:     4 diet 3       37       56</span></span>
+<span><span class="co">#&gt;  3:     4 diet 3       36       61</span></span>
+<span><span class="co">#&gt;  4:     4 diet 3       31       62</span></span>
+<span><span class="co">#&gt;  5:     4 diet 3       39       61</span></span>
+<span><span class="co">#&gt;  6:     4 diet 3       38       61</span></span>
+<span><span class="co">#&gt;  7:     4 diet 3       32       65</span></span>
+<span><span class="co">#&gt;  8:     4 diet 3       40       66</span></span>
+<span><span class="co">#&gt;  9:     4 diet 3       34       63</span></span>
+<span><span class="co">#&gt; 10:     4 diet 3       35       64</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">i to arrange rows.</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order rows by values in columns</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[<span class="fu">order</span>(weight_g, day)]</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     2 diet 1       18       35</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     0 diet 1       18       39</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 2       27       39</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     0 diet 2       28       39</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     0 diet 2       29       39</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                               </span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    21 diet 2       21      331</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    18 diet 3       35      332</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    21 diet 3       34      341</span></span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    20 diet 3       35      361</span></span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 3       35      373</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># order rows by values in columns</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">weight_g</span>, <span class="va">day</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">y</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     2 diet 1       18       35</span></span>
+<span><span class="co">#&gt;   2:     0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;   3:     0 diet 2       27       39</span></span>
+<span><span class="co">#&gt;   4:     0 diet 2       28       39</span></span>
+<span><span class="co">#&gt;   5:     0 diet 2       29       39</span></span>
+<span><span class="co">#&gt;  ---                               </span></span>
+<span><span class="co">#&gt; 574:    21 diet 2       21      331</span></span>
+<span><span class="co">#&gt; 575:    18 diet 3       35      332</span></span>
+<span><span class="co">#&gt; 576:    21 diet 3       34      341</span></span>
+<span><span class="co">#&gt; 577:    20 diet 3       35      361</span></span>
+<span><span class="co">#&gt; 578:    21 diet 3       35      373</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true"><em>Exercise 3.8</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true"><em>Exercise 3.8</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
 <li>Arrange rows of <code>x</code> by group and day</li>
 </ul>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="fu">order</span>(group, day)]</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        day  group chick_id weight_g</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     0 diet 1       16       41</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     0 diet 1       15       41</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     0 diet 1       13       41</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     0 diet 1        9       42</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ---                               </span></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 574:    21 diet 4       49      237</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 575:    21 diet 4       46      238</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 576:    21 diet 4       50      264</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 577:    21 diet 4       42      281</span></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">day</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;        day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;   1:     0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;   2:     0 diet 1       16       41</span></span>
+<span><span class="co">#&gt;   3:     0 diet 1       15       41</span></span>
+<span><span class="co">#&gt;   4:     0 diet 1       13       41</span></span>
+<span><span class="co">#&gt;   5:     0 diet 1        9       42</span></span>
+<span><span class="co">#&gt;  ---                               </span></span>
+<span><span class="co">#&gt; 574:    21 diet 4       49      237</span></span>
+<span><span class="co">#&gt; 575:    21 diet 4       46      238</span></span>
+<span><span class="co">#&gt; 576:    21 diet 4       50      264</span></span>
+<span><span class="co">#&gt; 577:    21 diet 4       42      281</span></span>
+<span><span class="co">#&gt; 578:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">i to filter by index.</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset by position</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       day  group chick_id weight_g</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:     0 diet 1       18       39</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:     2 diet 1       18       35</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:     0 diet 1       16       41</span></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:     2 diet 1       16       45</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:     4 diet 1       16       49</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:     6 diet 1       16       51</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:     8 diet 1       16       57</span></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    10 diet 1       16       51</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    12 diet 1       16       54</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:     0 diet 1       15       41</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># subset by position</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">y</span></span>
+<span><span class="co">#&gt;       day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;  1:     0 diet 1       18       39</span></span>
+<span><span class="co">#&gt;  2:     2 diet 1       18       35</span></span>
+<span><span class="co">#&gt;  3:     0 diet 1       16       41</span></span>
+<span><span class="co">#&gt;  4:     2 diet 1       16       45</span></span>
+<span><span class="co">#&gt;  5:     4 diet 1       16       49</span></span>
+<span><span class="co">#&gt;  6:     6 diet 1       16       51</span></span>
+<span><span class="co">#&gt;  7:     8 diet 1       16       57</span></span>
+<span><span class="co">#&gt;  8:    10 diet 1       16       51</span></span>
+<span><span class="co">#&gt;  9:    12 diet 1       16       54</span></span>
+<span><span class="co">#&gt; 10:     0 diet 1       15       41</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><em>Exercise 3.9</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><em>Exercise 3.9</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
 <p>Using the <code>x</code> data frame from the previous exercise, filter to retain the last 10 rows.</p>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="dv">569</span><span class="sc">:</span><span class="dv">578</span>]</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       day  group chick_id weight_g</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:    20 diet 4       48      303</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:    21 diet 4       45      196</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:    21 diet 4       43      200</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:    21 diet 4       41      204</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:    21 diet 4       47      205</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    21 diet 4       49      237</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    21 diet 4       46      238</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    21 diet 4       50      264</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    21 diet 4       42      281</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">569</span><span class="op">:</span><span class="fl">578</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;       day  group chick_id weight_g</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;char&gt;    &lt;int&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt;  1:    20 diet 4       48      303</span></span>
+<span><span class="co">#&gt;  2:    21 diet 4       45      196</span></span>
+<span><span class="co">#&gt;  3:    21 diet 4       43      200</span></span>
+<span><span class="co">#&gt;  4:    21 diet 4       41      204</span></span>
+<span><span class="co">#&gt;  5:    21 diet 4       47      205</span></span>
+<span><span class="co">#&gt;  6:    21 diet 4       49      237</span></span>
+<span><span class="co">#&gt;  7:    21 diet 4       46      238</span></span>
+<span><span class="co">#&gt;  8:    21 diet 4       50      264</span></span>
+<span><span class="co">#&gt;  9:    21 diet 4       42      281</span></span>
+<span><span class="co">#&gt; 10:    21 diet 4       48      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="group-and-summarize" class="level2">
-<h2 class="anchored" data-anchor-id="group-and-summarize">Group and summarize</h2>
+</section><section id="group-and-summarize" class="level2"><h2 class="anchored" data-anchor-id="group-and-summarize">Group and summarize</h2>
 <p><span class="important">by to count.</span> <code>.N</code> is a data.table function that yields the number of observations (rows) in a group identified with the <code>by</code> argument.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count number of chicks by diet group</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[, .(<span class="at">N_chicks =</span> .N), by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"group"</span>)]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     group N_chicks</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt;    &lt;int&gt;</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: diet 1      220</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: diet 2      120</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: diet 3      120</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: diet 4      118</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># count number of chicks by diet group</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>N_chicks <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group"</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">y</span></span>
+<span><span class="co">#&gt;     group N_chicks</span></span>
+<span><span class="co">#&gt;    &lt;char&gt;    &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1: diet 1      220</span></span>
+<span><span class="co">#&gt; 2: diet 2      120</span></span>
+<span><span class="co">#&gt; 3: diet 3      120</span></span>
+<span><span class="co">#&gt; 4: diet 4      118</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><em>Exercise 3.10</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><em>Exercise 3.10</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
-<li>Count the number of observations by day. Name the variable <code>count</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
+<li>Count the number of observations by day. Name the variable <code>count</code>
+</li>
 </ul>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[, .(<span class="at">count =</span> .N), by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"day"</span>)]</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       day count</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1:     0    50</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2:     2    50</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3:     4    49</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4:     6    49</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5:     8    49</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6:    10    49</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7:    12    49</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8:    14    48</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9:    16    47</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10:    18    47</span></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11:    20    46</span></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12:    21    45</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>count <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"day"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;       day count</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1:     0    50</span></span>
+<span><span class="co">#&gt;  2:     2    50</span></span>
+<span><span class="co">#&gt;  3:     4    49</span></span>
+<span><span class="co">#&gt;  4:     6    49</span></span>
+<span><span class="co">#&gt;  5:     8    49</span></span>
+<span><span class="co">#&gt;  6:    10    49</span></span>
+<span><span class="co">#&gt;  7:    12    49</span></span>
+<span><span class="co">#&gt;  8:    14    48</span></span>
+<span><span class="co">#&gt;  9:    16    47</span></span>
+<span><span class="co">#&gt; 10:    18    47</span></span>
+<span><span class="co">#&gt; 11:    20    46</span></span>
+<span><span class="co">#&gt; 12:    21    45</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
 <p><span class="important">by to summarize.</span> Yields three new variables for count, mean, and standard deviation by the two grouping variables <code>group</code> and <code>day</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary statistics grouped by two variables</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> cw[,                                         <span class="co"># i (empty)</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        .(<span class="at">N_chicks =</span> .N,                          <span class="co"># j</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean_wt_g =</span> <span class="fu">round</span>(<span class="fu">mean</span>(weight_g), <span class="dv">1</span>),   <span class="co"># j (cont.)</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">std_dev_wt_g =</span> <span class="fu">round</span>(<span class="fu">sd</span>(weight_g), <span class="dv">1</span>)), <span class="co"># j (cont.)</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"day"</span>)]                   <span class="co"># by</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>y</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      group   day N_chicks mean_wt_g std_dev_wt_g</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt; &lt;int&gt;    &lt;int&gt;     &lt;num&gt;        &lt;num&gt;</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1: diet 1     0       20      41.4          1.0</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2: diet 1     2       20      47.2          4.3</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: diet 1     4       19      56.5          4.1</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: diet 1     6       19      66.8          7.8</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: diet 1     8       19      79.7         13.8</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                                             </span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 44: diet 4    14       10     161.8         15.7</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45: diet 4    16       10     182.0         25.3</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 46: diet 4    18       10     202.9         33.6</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47: diet 4    20        9     233.9         37.6</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 48: diet 4    21        9     238.6         43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># compute summary statistics grouped by two variables</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span>,                                         <span class="co"># i (empty)</span></span>
+<span>        <span class="fu">.</span><span class="op">(</span>N_chicks <span class="op">=</span> <span class="va">.N</span>,                          <span class="co"># j</span></span>
+<span>          mean_wt_g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,   <span class="co"># j (cont.)</span></span>
+<span>          std_dev_wt_g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="co"># j (cont.)</span></span>
+<span>        by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group"</span>, <span class="st">"day"</span><span class="op">)</span><span class="op">]</span>                   <span class="co"># by</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">y</span></span>
+<span><span class="co">#&gt;      group   day N_chicks mean_wt_g std_dev_wt_g</span></span>
+<span><span class="co">#&gt;     &lt;char&gt; &lt;int&gt;    &lt;int&gt;     &lt;num&gt;        &lt;num&gt;</span></span>
+<span><span class="co">#&gt;  1: diet 1     0       20      41.4          1.0</span></span>
+<span><span class="co">#&gt;  2: diet 1     2       20      47.2          4.3</span></span>
+<span><span class="co">#&gt;  3: diet 1     4       19      56.5          4.1</span></span>
+<span><span class="co">#&gt;  4: diet 1     6       19      66.8          7.8</span></span>
+<span><span class="co">#&gt;  5: diet 1     8       19      79.7         13.8</span></span>
+<span><span class="co">#&gt; ---                                             </span></span>
+<span><span class="co">#&gt; 44: diet 4    14       10     161.8         15.7</span></span>
+<span><span class="co">#&gt; 45: diet 4    16       10     182.0         25.3</span></span>
+<span><span class="co">#&gt; 46: diet 4    18       10     202.9         33.6</span></span>
+<span><span class="co">#&gt; 47: diet 4    20        9     233.9         37.6</span></span>
+<span><span class="co">#&gt; 48: diet 4    21        9     238.6         43.3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true"><em>Exercise 3.11</em></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false"><em>Answer</em></a></li></ul>
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true"><em>Exercise 3.11</em></a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false"><em>Answer</em></a></li>
+</ul>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
 <ul>
-<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code></li>
-<li>Count the number of chicks in <code>x</code> by group and day. Name the variable <code>count</code></li>
+<li>Create a copy of <code>cw</code> using <code>x &lt;- copy(cw)</code>
+</li>
+<li>Count the number of chicks in <code>x</code> by group and day. Name the variable <code>count</code>
+</li>
 </ul>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">copy</span>(cw)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[, .(<span class="at">count =</span> .N), by <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"day"</span>)]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      group   day count</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1: diet 1     0    20</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2: diet 1     2    20</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3: diet 1     4    19</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4: diet 1     6    19</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5: diet 1     8    19</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---                   </span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 44: diet 4    14    10</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 45: diet 4    16    10</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 46: diet 4    18    10</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 47: diet 4    20     9</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 48: diet 4    21     9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html">copy</a></span><span class="op">(</span><span class="va">cw</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span>count <span class="op">=</span> <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group"</span>, <span class="st">"day"</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">x</span></span>
+<span><span class="co">#&gt;      group   day count</span></span>
+<span><span class="co">#&gt;     &lt;char&gt; &lt;int&gt; &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1: diet 1     0    20</span></span>
+<span><span class="co">#&gt;  2: diet 1     2    20</span></span>
+<span><span class="co">#&gt;  3: diet 1     4    19</span></span>
+<span><span class="co">#&gt;  4: diet 1     6    19</span></span>
+<span><span class="co">#&gt;  5: diet 1     8    19</span></span>
+<span><span class="co">#&gt; ---                   </span></span>
+<span><span class="co">#&gt; 44: diet 4    14    10</span></span>
+<span><span class="co">#&gt; 45: diet 4    16    10</span></span>
+<span><span class="co">#&gt; 46: diet 4    18    10</span></span>
+<span><span class="co">#&gt; 47: diet 4    20     9</span></span>
+<span><span class="co">#&gt; 48: diet 4    21     9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="combine-operations" class="level2">
-<h2 class="anchored" data-anchor-id="combine-operations">Combine operations</h2>
+</section><section id="combine-operations" class="level2"><h2 class="anchored" data-anchor-id="combine-operations">Combine operations</h2>
 <p><span class="important">[i, j, by] in combination.</span> In this example, we use <code>i</code> to filter for two specific days, <code>j</code> to create new summary variables grouped <code>by</code> variables <code>group</code> and <code>day</code>. The results are the count <code>N</code> plus weight statistics: mean, standard deviation, median, minimum, and maximum.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grouped summaries of specific observations</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cw_stats <span class="ot">&lt;-</span> cw[day <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">21</span>),                         <span class="co"># i</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>               .(<span class="at">N =</span> .N,                                  <span class="co"># j</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">mean_wt_g    =</span> <span class="fu">round</span>(<span class="fu">mean</span>(weight_g), <span class="dv">0</span>), <span class="co"># j (cont.)</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">std_dev_wt_g =</span> <span class="fu">round</span>(<span class="fu">sd</span>(weight_g), <span class="dv">1</span>),   <span class="co"># j (cont.)</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">median_wt_g  =</span> <span class="fu">median</span>(weight_g),         <span class="co"># j (cont.)</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">min_wt_g     =</span> <span class="fu">min</span>(weight_g),            <span class="co"># j (cont.)</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">max_wt_g     =</span> <span class="fu">max</span>(weight_g)),           <span class="co"># j (cont.)</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>               by <span class="ot">=</span> .(group, day)]                        <span class="co"># by</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>cw_stats</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     group   day     N mean_wt_g std_dev_wt_g median_wt_g min_wt_g max_wt_g</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;     &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;num&gt;    &lt;num&gt;</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: diet 1     0    20        41          1.0        41.0       39       43</span></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: diet 1    21    16       178         58.7       166.0       96      305</span></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: diet 2     0    10        41          1.5        40.5       39       43</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: diet 2    21    10       215         78.1       212.5       74      331</span></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: diet 3     0    10        41          1.0        41.0       39       42</span></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6: diet 3    21    10       270         71.6       281.0      147      373</span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7: diet 4     0    10        41          1.1        41.0       39       42</span></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8: diet 4    21     9       239         43.3       237.0      196      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># grouped summaries of specific observations</span></span>
+<span><span class="va">cw_stats</span> <span class="op">&lt;-</span> <span class="va">cw</span><span class="op">[</span><span class="va">day</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">21</span><span class="op">)</span>,                         <span class="co"># i</span></span>
+<span>               <span class="fu">.</span><span class="op">(</span>N <span class="op">=</span> <span class="va">.N</span>,                                  <span class="co"># j</span></span>
+<span>                 mean_wt_g    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>, <span class="fl">0</span><span class="op">)</span>, <span class="co"># j (cont.)</span></span>
+<span>                 std_dev_wt_g <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>,   <span class="co"># j (cont.)</span></span>
+<span>                 median_wt_g  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>,         <span class="co"># j (cont.)</span></span>
+<span>                 min_wt_g     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span>,            <span class="co"># j (cont.)</span></span>
+<span>                 max_wt_g     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">weight_g</span><span class="op">)</span><span class="op">)</span>,           <span class="co"># j (cont.)</span></span>
+<span>               by <span class="op">=</span> <span class="fu">.</span><span class="op">(</span><span class="va">group</span>, <span class="va">day</span><span class="op">)</span><span class="op">]</span>                        <span class="co"># by</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw_stats</span></span>
+<span><span class="co">#&gt;     group   day     N mean_wt_g std_dev_wt_g median_wt_g min_wt_g max_wt_g</span></span>
+<span><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;     &lt;num&gt;        &lt;num&gt;       &lt;num&gt;    &lt;num&gt;    &lt;num&gt;</span></span>
+<span><span class="co">#&gt; 1: diet 1     0    20        41          1.0        41.0       39       43</span></span>
+<span><span class="co">#&gt; 2: diet 1    21    16       178         58.7       166.0       96      305</span></span>
+<span><span class="co">#&gt; 3: diet 2     0    10        41          1.5        40.5       39       43</span></span>
+<span><span class="co">#&gt; 4: diet 2    21    10       215         78.1       212.5       74      331</span></span>
+<span><span class="co">#&gt; 5: diet 3     0    10        41          1.0        41.0       39       42</span></span>
+<span><span class="co">#&gt; 6: diet 3    21    10       270         71.6       281.0      147      373</span></span>
+<span><span class="co">#&gt; 7: diet 4     0    10        41          1.1        41.0       39       42</span></span>
+<span><span class="co">#&gt; 8: diet 4    21     9       239         43.3       237.0      196      322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="create-a-table" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-table">Create a table</h2>
+</section><section id="create-a-table" class="level2"><h2 class="anchored" data-anchor-id="create-a-table">Create a table</h2>
 <p>Finally, we can make the summaries “prettier” for a possible report or publication where we format the numeric values as text and edit the column names for readability just before printing.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine mean and std dev into a single character column</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>cw_stats[, mean_sd <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(mean_wt_g, <span class="st">" ("</span>, std_dev_wt_g, <span class="st">")"</span>)]</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># combine min and max into a range column</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>cw_stats[, range <span class="sc">:</span><span class="er">=</span> <span class="fu">paste0</span>(min_wt_g, <span class="st">"--"</span>, max_wt_g)]</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># retain specific columns</span></span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>cw_stats <span class="ot">&lt;-</span> cw_stats[ , .(group, day, N, mean_sd, median_wt_g, range)]</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="co"># order the rows</span></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>cw_stats <span class="ot">&lt;-</span> cw_stats[<span class="fu">order</span>(group, day)]</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="co"># edit the column names for readability </span></span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(cw_stats,</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">old =</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"median_wt_g"</span>,<span class="st">"mean_sd"</span>, <span class="st">"range"</span>),</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">new =</span> <span class="fu">c</span>(<span class="st">"Group"</span>, <span class="st">"Day"</span>, <span class="st">"Median"</span>, <span class="st">"Mean [SD]"</span>, <span class="st">"Range"</span>))</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>cw_stats</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Group   Day     N  Mean [SD] Median    Range</span></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;     &lt;char&gt;  &lt;num&gt;   &lt;char&gt;</span></span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: diet 1     0    20     41 (1)   41.0   39--43</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2: diet 1    21    16 178 (58.7)  166.0  96--305</span></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3: diet 2     0    10   41 (1.5)   40.5   39--43</span></span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4: diet 2    21    10 215 (78.1)  212.5  74--331</span></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5: diet 3     0    10     41 (1)   41.0   39--42</span></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6: diet 3    21    10 270 (71.6)  281.0 147--373</span></span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7: diet 4     0    10   41 (1.1)   41.0   39--42</span></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8: diet 4    21     9 239 (43.3)  237.0 196--322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># combine mean and std dev into a single character column</span></span>
+<span><span class="va">cw_stats</span><span class="op">[</span>, <span class="va">mean_sd</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">mean_wt_g</span>, <span class="st">" ("</span>, <span class="va">std_dev_wt_g</span>, <span class="st">")"</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># combine min and max into a range column</span></span>
+<span><span class="va">cw_stats</span><span class="op">[</span>, <span class="va">range</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">min_wt_g</span>, <span class="st">"--"</span>, <span class="va">max_wt_g</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># retain specific columns</span></span>
+<span><span class="va">cw_stats</span> <span class="op">&lt;-</span> <span class="va">cw_stats</span><span class="op">[</span> , <span class="fu">.</span><span class="op">(</span><span class="va">group</span>, <span class="va">day</span>, <span class="va">N</span>, <span class="va">mean_sd</span>, <span class="va">median_wt_g</span>, <span class="va">range</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># order the rows</span></span>
+<span><span class="va">cw_stats</span> <span class="op">&lt;-</span> <span class="va">cw_stats</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">group</span>, <span class="va">day</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># edit the column names for readability </span></span>
+<span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setattr.html">setnames</a></span><span class="op">(</span><span class="va">cw_stats</span>,</span>
+<span>         old <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"group"</span>, <span class="st">"day"</span>, <span class="st">"median_wt_g"</span>,<span class="st">"mean_sd"</span>, <span class="st">"range"</span><span class="op">)</span>,</span>
+<span>         new <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Group"</span>, <span class="st">"Day"</span>, <span class="st">"Median"</span>, <span class="st">"Mean [SD]"</span>, <span class="st">"Range"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># view</span></span>
+<span><span class="va">cw_stats</span></span>
+<span><span class="co">#&gt;     Group   Day     N  Mean [SD] Median    Range</span></span>
+<span><span class="co">#&gt;    &lt;char&gt; &lt;int&gt; &lt;int&gt;     &lt;char&gt;  &lt;num&gt;   &lt;char&gt;</span></span>
+<span><span class="co">#&gt; 1: diet 1     0    20     41 (1)   41.0   39--43</span></span>
+<span><span class="co">#&gt; 2: diet 1    21    16 178 (58.7)  166.0  96--305</span></span>
+<span><span class="co">#&gt; 3: diet 2     0    10   41 (1.5)   40.5   39--43</span></span>
+<span><span class="co">#&gt; 4: diet 2    21    10 215 (78.1)  212.5  74--331</span></span>
+<span><span class="co">#&gt; 5: diet 3     0    10     41 (1)   41.0   39--42</span></span>
+<span><span class="co">#&gt; 6: diet 3    21    10 270 (71.6)  281.0 147--373</span></span>
+<span><span class="co">#&gt; 7: diet 4     0    10   41 (1.1)   41.0   39--42</span></span>
+<span><span class="co">#&gt; 8: diet 4    21     9 239 (43.3)  237.0 196--322</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Eventually you should be able to produce a publication-ready version such as the following table, using Rmarkdown and the knitr package. Full details are available in other sources.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <caption>Table 1. Chick weight summary statistics (grams).</caption>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Group</th>
 <th style="text-align: right;">Day</th>
 <th style="text-align: right;">N</th>
 <th style="text-align: right;">Mean [SD]</th>
 <th style="text-align: right;">Median</th>
 <th style="text-align: right;">Range</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">diet 1</td>
@@ -1201,21 +1198,15 @@ div.csl-indent {
 <li>in day 21, diet 4 has the least variability in weight</li>
 </ul>
 <p>In addition, we note that by day 21, diet 1 lost 4 chicks of 20 that started and diet 4 lost 1 of 10. This could be a sign of unsafe conditions.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>The <em>R basics</em>, <em>R chart basics</em>, and <em>R data basics</em> guides introduced you to some of the basic concepts for using R and the data.table and ggplot2 packages to manipulate data and create charts. It is only an introduction to what R can do but hopefully you have seen some of the potential of using R for data science.</p>
 <p><span class="important">Next steps.</span> There are plenty of R courses, books, and online resources that you can learn from. Find things that work for you and don’t be afraid to make mistakes or ask questions.</p>
 <p>During the MIDFIELD workshops, you will build on what you’ve learned here, and use the midfieldr package to study student unit records. You can preview that material on the <a href="https://midfieldr.github.io/midfieldr/">midfieldr</a> website.</p>
-</section>
-<section id="references" class="level2">
+</section><section id="references" class="level2">
 
 
 
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-Bashir+Eddelbuettel:2018" class="csl-entry" role="listitem">
 Bashir, S., &amp; Eddelbuettel, D. (2018). <em><span class="nocase">Getting started in R: Tinyverse edition</span></em>. <a href="https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf">https://eddelbuettel.github.io/gsir-te/Getting-Started-in-R.pdf</a>
 </div>
@@ -1225,8 +1216,7 @@ Dowle, M., &amp; Srinivasan, A. (2021). <em>Data.table: Extension of ‘data.fra
 <div id="ref-Zumel+Mount:2020" class="csl-entry" role="listitem">
 Zumel, N., &amp; Mount, J. (2020). <em><span class="nocase">Practical Data Science with R</span></em> (2nd ed.). Manning Publications Co.
 </div>
-</div></section></div></main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1634,31 +1624,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-<script src="https://utteranc.es/client.js" repo="https://github.com/MIDFIELDR/2024-midfield-institute" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script><script src="https://utteranc.es/client.js" repo="https://github.com/MIDFIELDR/2024-midfield-institute" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="./license.html">
 <p>License</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
   </div>
 </footer>
-
-
 
 
 </body></html>

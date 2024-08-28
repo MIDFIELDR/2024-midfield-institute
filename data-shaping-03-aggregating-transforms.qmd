@@ -15,18 +15,13 @@ knitr::opts_chunk$set(comment = "#>",
                       message = FALSE)
 ```
 
-Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
-
-- [Introduction](data-shaping-00-introduction.html)
-- [Data selection](data-shaping-01-data-selection.html)
-- [Basic transforms](data-shaping-02-basic-transforms.html)
-- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)  &#9665; *You are here.*
-- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
-- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+Using **base R**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis.
 
 In this section we demonstrate aggregating many observations of a variable into a set of summary observations, typically grouped by one or more grouping variables. Summaries include counts as well as means, medians, quartiles, etc. 
 
-[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
+## Setup
+
+*Load* packages.  
 
 ```{r}
 library("midfielddata")
@@ -34,7 +29,11 @@ library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("tidyr")
 library("wrapr")
+```
 
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
+
+```{r}
 data(student, term)
 ```
 
@@ -66,6 +65,8 @@ term_tbl <- tibble(term)
 Base R offers several approaches to the task of counting by groups, for example, `by()`, `aggregate()`, `table()`, `tapply()`, or a split-apply-combine strategy. For counting, I think `table()` requires the least amount of cognitive overhead when the desired result is a data frame. 
 
 ### With one grouping variable
+
+[Task.]{.important} Count the number of students in the `student` dataset grouped by race. 
 
 ```{r}
 #| class: base
@@ -108,6 +109,8 @@ check_equiv_frames(result_dt, result_tbl)
 ### With two or more grouping variables
 
 Data.table and dplyr count the frequency of each grouping-variable combination  present in the data;  base R counts the frequencies of all combinations, inserting counts of zero as needed. 
+
+[Task.]{.important} Count the number of students in the `student` dataset grouped by institution, sex, and transfer status. 
 
 ```{r}
 grouping_variables <- c("institution", "sex", "transfer")
@@ -164,7 +167,7 @@ Of the several summarizing options available in base R, `by()` seems the simples
 
 ### With one grouping variable
 
-[Task.]{.important} determine the 10% quantile, median, and 90% quantile of term GPA by academic standing (good standing, academic warning, etc.) plus the number of observations used in the summary. In all systems, we use the base R `quanitile()` function to determine the 10% and 90% quantiles. 
+[Task.]{.important} Using the `term` data table, determine the 10% quantile, median, and 90% quantile of term GPA by academic standing (good standing, academic warning, etc.) plus the number of observations used in the summary. In all systems, we use the base R `quanitile()` function to determine the 10% and 90% quantiles. 
 
 ```{r}
 #| class: base
@@ -223,6 +226,8 @@ check_equiv_frames(result_dt, result_tbl)
 
 
 ### With two or more grouping variables
+
+[Task.]{.important}  Same as the previous example except grouped by academic standing and level. 
 
 ```{r}
 #| class: base

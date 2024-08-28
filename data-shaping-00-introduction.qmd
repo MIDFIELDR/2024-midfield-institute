@@ -1,8 +1,5 @@
 ---
 title: "Shaping MIDFIELD data three ways"
-format:
-  html:
-    css: styles.css
 ---
 
 ![Image: *Workshop* by Daniel Mee is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)](figures/data-shaping-0.png)
@@ -13,18 +10,12 @@ format:
 knitr::opts_chunk$set(comment = "#>", 
                       collapse = TRUE, 
                       message = FALSE)
+library(gt)
 ```
 
-Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis. 
+Using **base R**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis. 
 
-- [Introduction](data-shaping-00-introduction.html)  &#9665; *You are here.*
-- [Data selection](data-shaping-01-data-selection.html)
-- [Basic transforms](data-shaping-02-basic-transforms.html)
-- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
-- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
-- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
-
-In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr. We illustrate common data shaping tasks three ways: using base R, data.table, and dplyr systems. 
+In this series of articles, we hope to address the needs of users who would prefer to use base R or dplyr syntax in lieu of the data.table syntax that appears everywhere else in midfieldr tutorials. We illustrate common data shaping tasks three ways: using base R, data.table, and dplyr systems. 
 
 Sources for translating among the three systems include [@Atrebas:2019; @Gimond:2019; @Hajnala:2018; @Mercer:2020; and @Vaughan:2023]. In particular, our outline is roughly based on Chapter 5 of [@Zumel+Mount:2020]. 
 
@@ -37,30 +28,46 @@ Sources for translating among the three systems include [@Atrebas:2019; @Gimond:
 [Project organization.]{.important} If you are writing your own scripts to follow along, our tutorials assume that you:
 
 - Are working within an [RStudio Project](before-you-arrive.html#start-the-setup)
-- Have set up a directory structure with folders for [data, scripts,  results](before-you-arrive.html#add-some-folders).
+- Have set up a directory structure with folders for [data and scripts](before-you-arrive.html#add-some-folders).
 
-[Packages.]{.important}  We use the following packages in the data-shaping articles. You can copy a code chunk by clicking on the "Copy to clipboard" icon ![](figures/clipboard-icon.png).
+<br> 
+
+[Packages.]{.important} The table lists the packages used in the data shaping articles overall. You may wish to [install](before-you-arrive.html#install-cran-packages) these packages before starting. 
+
+```{r}
+#| echo: false
+wrapr::build_frame(
+    "packages"     , "used for" |
+    "midfielddata", "student records practice data"|
+    "data.table"  , "manipulating data"|
+    "dplyr"       , "manipulating data"|
+    "tidyr"       , "manipulating data"|
+    "wrapr"       , "confirming two dataframes are equivalent"|
+    "cdata"       , "pivoting"|
+    "ggplot2"     , "creating charts"
+) |>
+  gt() |>
+  tab_caption("Table 1: Packages used for data shaping") |>
+  tab_options(table.font.size = "small") |>
+  opt_stylize(style = 1, color = "cyan")
+```
+
+We load the packages used in an article as one of the first code chunks, as shown below. You can copy any code chunk by clicking on the "Copy to clipboard" icon ![](figures/clipboard-icon.png).
 
 ```{r}
 library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
-library("tidyr")
 library("wrapr")
 ```
 
 [Download and save CSV files.]{.important} In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). To download the CSV files and save to the `data` directory in your RStudio project folder, run the following lines *once.*  
 
 ```r
-# ever-enrolled data frame
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/ever_enrolled.csv"
-ever_enrolled <- fread(data_url)
-fwrite(ever_enrolled, "data/ever_enrolled.csv")
-
-# graduates data frame
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/graduates.csv"
-graduates <- fread(data_url)
-fwrite(graduates, "data/graduates.csv")
+# three blocs of students: starters, ever-enrolled, and graduates
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/three_blocs.csv"
+three_blocs <- fread(data_url)
+fwrite(three_blocs, "data/three_blocs.csv")
 ```
 
 
@@ -68,29 +75,28 @@ fwrite(graduates, "data/graduates.csv")
 
 ## Data 
 
-Import the CSV files we just downloaded. 
+*Import* the CSV file we just downloaded. 
 
 ```{r}
-ever <- fread("data/ever_enrolled.csv")
-grad <- fread("data/graduates.csv")
+cohort <- fread("data/three_blocs.csv")
 ```
 
-Load the datasets from midfielddata. View data dictionaries via `?student` and `?term`.
+*Load* the datasets from midfielddata. View data dictionaries via `?student` and `?term`.
 
 ```{r}
-data(student, term)
+data(student, term, degree)
 ```
 
 Have a quick look at each one using dplyr `glimpse()`. 
 
 ```{r}
-glimpse(ever)
-
-glimpse(grad)
+glimpse(cohort)
 
 glimpse(student)
 
 glimpse(term)
+
+glimpse(degree)
 ```
 
 
@@ -99,7 +105,7 @@ glimpse(term)
 
 ## Three systems
 
-For every data frame we use, we construct a separate version for each system. For example, the three versions of the `student` table are prepared using:  
+For every data frame we use, we construct a separate version for each system. For example, the three versions of the `student` table are prepared as shown below. Code chunks are color-coded by system. 
 
 ```{r}
 #| class: base
@@ -119,17 +125,22 @@ student_dt <- copy(student)
 student_tbl <- tibble(student)
 ```
 
-Lines of code for each system are in separate, color-coded blocks. Data-frame names are assigned to identify the system as well, as outlined in Table 1.  
+<br> 
+
+The data frame names include a suffix to indicate the system as well. 
 
 ```{r}
 #| echo: false
 wrapr::build_frame(
-  "system", "suffix", "example", "class" |
-    "base R", "`_df`", "`student_df`",  "`data.frame`" |
-    "data.table", "`_dt`", "`student_dt`", "`data.frame, data.table`" |
-    "dplyr", "`_tbl`", "`student_tbl`", "`data.frame, tbl_df, tbl`"
-) %>%
-  knitr::kable(caption = "Table 1: Name and class of data frames by system")
+  "system"    , "suffix", "example"    , "class" |
+  "base R"    , "_df"   , "student_df" , "data.frame" |
+  "data.table", "_dt"   , "student_dt" , "data.frame, data.table" |
+  "dplyr"     , "_tbl"  , "student_tbl", "data.frame, tbl_df, tbl"
+) |>
+  gt() |>
+  tab_caption("Table 2: Dataset naming convention") |>
+  tab_options(table.font.size = "small") |>
+  opt_stylize(style = 1, color = "cyan")
 ```
 
 
@@ -153,7 +164,7 @@ check_equiv_frames(student_df, student_dt)
 check_equiv_frames(student_dt, student_tbl)
 ```
 
-6. In cases where re-ordering ows or columns is part of the task, we compare results by using base R `all.equal()` instead of `check_equiv_frames()`. By setting the `check.attributes` argument to FALSE, data frame attributes (other than column names) are ignored, for example, row.names (if any) and class (e.g., `tbl` or `data.table`).
+6. In cases where re-ordering rows or columns is part of the task, we compare results by using base R `all.equal()` instead of `check_equiv_frames()`. By setting the `check.attributes` argument to FALSE, data frame attributes (other than column names) are ignored, for example, row.names (if any) and class (e.g., `tbl` or `data.table`).
 
 ```{r}
 all.equal(student_df, student_dt, check.attributes = FALSE)
@@ -183,4 +194,6 @@ packageVersion("data.table")
 packageVersion("dplyr")
 packageVersion("tidyr")
 packageVersion("wrapr")
+packageVersion("cdata")
+packageVersion("ggplot2")
 ```

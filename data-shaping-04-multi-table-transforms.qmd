@@ -17,33 +17,24 @@ knitr::opts_chunk$set(comment = "#>",
 
 Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
 
-- [Introduction](data-shaping-00-introduction.html)
-- [Data selection](data-shaping-01-data-selection.html)
-- [Basic transforms](data-shaping-02-basic-transforms.html)
-- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
-- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)  &#9665; *You are here.*
-- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
-
 In this section, we split a data frame into a family of data frames, we concatenate tables row-wise, and we join tables.  
 
+## Setup
 
-
-[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
+*Load* packages.
 
 ```{r}
 library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("wrapr")
-
-data(student, degree)
-cohort <- fread("data/three_blocs.csv")
 ```
 
-A quick look at the cohort data:
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-cohort
+data(student, degree)
+cohort <- fread("data/three_blocs.csv")
 ```
 
 ```{r}
@@ -80,7 +71,13 @@ cohort_tbl <- tibble(cohort)
 
 However, splitting can be performed as a stand-alone operation as well. Base R `split()` creates a list of data frames and wrapr `unpack()` can be used to extract the data frames from the list and bind a variable name to each. 
 
-[Task.]{.important} Split the `cohort` data frame by peer groups.  
+A quick look at the cohort data before splitting.
+
+```{r}
+cohort
+```
+
+[Task.]{.important} Split the `cohort` data frame by peer groups.
 
 ```{r}
 #| class: base
@@ -129,6 +126,15 @@ check_equiv_frames(start_dt, start_tbl)
 - *dplyr* does not have its own splitting function, though tidyr `nest()` is similar---but requires additional housekeeping to unpack the resulting data frames. It seems easier in this case to use base R `split()` and wrapr `unpack()`.
 
 
+Confirm that the number of rows in the new tables adds up to the expected total.
+
+```{r}
+(x <- nrow(start_df))
+(y <- nrow(ever_df))
+(z <- nrow(grad_df))
+sum(c(x, y, z))
+nrow(cohort)
+```
 
 
 
@@ -139,12 +145,12 @@ Appending rows is the inverse of splitting a data frame.
 
 If two or more data frames have the same number of columns, with the same names, in the same order, one set of rows is easily appended to the other. We confirm that both objects are data frames and then verify the column names and positions.  
 
+[Task.]{.important} Append the three tables from the previous example into a single data frame (row-wise). 
+
 ```{r}
 class(start_df)
 class(ever_df)
 class(grad_df)
-
-
 colnames(start_df)
 colnames(ever_df)
 colnames(grad_df)
@@ -183,6 +189,11 @@ check_equiv_frames(result_dt, result_tbl)
 
 - *dplyr.* `bind_rows()` acts on the data frames listed. Can be a list of data frames. 
 
+Confirm that the reassembled data frame is equivalent to the original. 
+
+```{r}
+check_equiv_frames(cohort, result_dt)
+```
 
 
 
@@ -263,7 +274,13 @@ check_equiv_frames(result_df, result_dt)
 check_equiv_frames(result_dt, result_tbl)
 ```
 
+[Comments]{.important} 
 
+- *base R.* 
+
+- *data.table.*  
+
+- *dplyr.* 
 
 
 
@@ -329,7 +346,13 @@ check_equiv_frames(result_df, result_dt)
 check_equiv_frames(result_dt, result_tbl)
 ```
 
+[Comments]{.important} 
 
+- *base R.* 
+
+- *data.table.*  
+
+- *dplyr.* 
 
 
 

@@ -1,8 +1,5 @@
 ---
 title: "Data selection"
-format:
-  html:
-    css: styles.css
 ---
 
 ![Image: *Select* by Mike Lawrence is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)](figures/data-shaping-1.png)
@@ -15,18 +12,14 @@ knitr::opts_chunk$set(comment = "#>",
                       message = FALSE)
 ```
 
-Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
-
-- [Introduction](data-shaping-00-introduction.html)
-- [Data selection](data-shaping-01-data-selection.html)  &#9665; *You are here.*
-- [Basic transforms](data-shaping-02-basic-transforms.html)
-- [Aggregating transforms](data-shaping-03-aggregating-transforms.html)
-- [Multi-table transforms](data-shaping-04-multi-table-transforms.html)
-- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+Using **base R**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis.
 
 In this section we demonstrate subsetting rows and columns in various configurations, removing records with incomplete data, and reordering rows and columns.  
 
-[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
+
+## Setup
+
+*Load* packages.
 
 ```{r}
 library("midfielddata")
@@ -34,7 +27,11 @@ library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("tidyr")
 library("wrapr")
+```
 
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
+
+```{r}
 data(student, term)
 ```
 
@@ -306,6 +303,8 @@ check_equiv_frames(result_dt, result_tbl)
 
 ### Delete rows with a missing value in specified colums.
 
+[Task.]{.important} 
+
 ```{r}
 #| class: base
 # base R
@@ -405,7 +404,7 @@ all.equal(result_dt, result_tbl, check.attributes = FALSE)
 
 When we want a decreasing (descending) row order, it is typically  needed for some but not all of our columns. 
 
-Suppose we wanted to sort students by institution and descending transfer hours. 
+[Task.]{.important}  Sort students by institution and descending transfer hours. 
 
 ```{r}
 columns_we_want <- c("institution", "mcid", "hours_transfer")

@@ -15,18 +15,13 @@ knitr::opts_chunk$set(comment = "#>",
                       message = FALSE)
 ```
 
-Using **base R**, **data.table**, and **dplyr** to transform MIDFIELD data as needed for your analysis.
-
-- [Introduction](data-shaping-00-introduction.html) 
-- [Data selection](data-shaping-01-data-selection.html) 
-- [Basic transforms](data-shaping-02-basic-transforms.html) &#9665; *You are here.*
-- [Aggregating transforms](data-shaping-03-aggregating-transforms.html) 
-- [Multi-table transforms](data-shaping-04-multi-table-transforms.html) 
-- [Reshaping transforms](data-shaping-05-reshaping-transforms.html)
+Using **base R**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis.
 
 In this section we demonstrate adding and removing columns, editing column names, creating two new columns by splitting a character column, converting the class of a column, and recoding the values in a column. 
 
-[Load packages and format data]{.important} as described in the  [Introduction](data-shaping-00-introduction.html).
+## Setup
+
+*Load* packages.
 
 ```{r}
 library("midfielddata")
@@ -34,7 +29,11 @@ library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("tidyr")
 library("wrapr")
+```
 
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
+
+```{r}
 data(student, term)
 ```
 
