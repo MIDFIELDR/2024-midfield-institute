@@ -238,7 +238,7 @@ blocks |>
  
 You can see why "wide" and  "tall" are commonly used to describe these two formats.  Yet "wider" implies having more columns, and (while true here) that is not always the case. 
 
-What *is* always true is that the first format comprises ***row records***, or one row per primary key, and the second format comprises ***blocks***, or multiple rows per primary key [@Mount+Zumel:2021:block+row+records].
+What *is* always true is that the first format comprises ***row records***, or one row per primary key, and the second format comprises ***blocks***, or multiple rows per primary key [@Mount+Zumel:2021:block+row+records]. As long as the data are properly "coordinatized", the transformations are invertible.
 
 In our opinion, *blocks* and *row records* describe these data formats more memorably than the alternatives, so we use them to define our transforms as well: 
 
@@ -248,12 +248,12 @@ In our opinion, *blocks* and *row records* describe these data formats more memo
 
 
 
-
+Many algorithms are sensitive to how data is arranged in rows and columns, so there is a need to convert between representations.
 
 
 ## Why transform?
 
-We transform data between blocks and row records to meet specific needs. For example, one of the first things to do when learning a new graphing package in R is to understand the data shape the package requires---some, like [ggplot2](https://CRAN.R-project.org/package=ggplot2), require blocks; others, like the [likert](https://CRAN.R-project.org/package=likert) package, require row records if the survey data is in summary form (frequencies counted) but requires blocks if not summarized, i.e., one row per respondent, one column per question.
+We transform data between blocks and row records to meet specific needs. Most data processing steps, for example, have a preferred format for how data is arranged in rows and columns. Some packages, like [ggplot2](https://CRAN.R-project.org/package=ggplot2), require blocks; others, like the [likert](https://CRAN.R-project.org/package=likert) package, require row records if the survey data is in summary form (frequencies counted) but requires blocks if not summarized, i.e., one row per respondent, one column per question.
 
 Row records are generally preferred for publishing a data table such as Table 3 and they support analytical tasks as well. For example, the academic program metric "stickiness" is the ratio of the number of graduates from a program to the number ever enrolled in the program. With a data frame `df` organized like the Table 3 data, computing stickiness requires one line of code operating on values in the same row, e.g., 
 
