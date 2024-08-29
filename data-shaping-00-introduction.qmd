@@ -42,14 +42,14 @@ wrapr::build_frame(
     "data.table"  , "manipulating data"|
     "dplyr"       , "manipulating data"|
     "tidyr"       , "manipulating data"|
-    "wrapr"       , "confirming two dataframes are equivalent"|
-    "cdata"       , "pivoting"|
+    "wrapr"       , "tools for writing and debugging R code"|
+    "cdata"       , "reshaping transforms"|
     "ggplot2"     , "creating charts"
 ) |>
   gt() |>
   tab_caption("Table 1: Packages used for data shaping") |>
   tab_options(table.font.size = "small") |>
-  opt_stylize(style = 1, color = "cyan")
+  opt_stylize(style = 1, color = "gray")
 ```
 
 We load the packages used in an article as one of the first code chunks, as shown below. You can copy any code chunk by clicking on the "Copy to clipboard" icon ![](figures/clipboard-icon.png).
@@ -140,7 +140,7 @@ wrapr::build_frame(
   gt() |>
   tab_caption("Table 2: Dataset naming convention") |>
   tab_options(table.font.size = "small") |>
-  opt_stylize(style = 1, color = "cyan")
+  opt_stylize(style = 1, color = "gray")
 ```
 
 
@@ -185,7 +185,7 @@ all.equal(student_dt, student_tbl, check.attributes = FALSE)
 
 ## Appendix
 
-The R and package version numbers (as of this writing) are: 
+The R and package version numbers (as of the most recent update) are: 
 
 ```{r}
 R.version$version.string

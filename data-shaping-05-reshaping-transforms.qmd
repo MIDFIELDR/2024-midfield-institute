@@ -134,6 +134,7 @@ rowrecs |>
   )
 ```
 
+
 <br>
 
 These data are in "wide" format, with one row per program. In this form, the "coordinates" of a measurement (a count of students) are the value of the primary key (`program`) and a column name.^[We refer again to Mount & Zumel  (2019) for the concept of *coordinatized data*.]
@@ -291,9 +292,11 @@ ggplot(blocks, aes(x = N,
 *Load* packages.
 
 ```{r}
+library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("tidyr")
+library("wrapr")
 library("cdata")
 ```
 
@@ -487,6 +490,46 @@ Confirm that the result is equivalent to the original blocks form.
 
 ```{r}
 check_equiv_frames(blocks_dt, blocks_dt_2)
+```
+
+
+
+
+
+
+## MIDFIELD data keys
+
+The previous sections have focused our attention on the importance of *keys*, that is, variables that alone or in combination uniquely identify a row of data. 
+Here we use  `wrapr::checkColsFormUniqueKeys()` to check if rows of data are uniquely addressable by the columns named. For example, for the Table 3 data in row records form, `program` is such a key:
+
+```{r}
+checkColsFormUniqueKeys(rowrecs_dt, c("program"))
+```
+
+For the Table 4 data in blocks form, two columns are required:
+
+```{r}
+checkColsFormUniqueKeys(blocks_dt, c("program", "peer_group"))
+```
+
+For the midfielddata practice data, the keys are:
+
+```r
+data(student)
+checkColsFormUniqueKeys(student, c("mcid"))
+#> [1] TRUE
+
+data(term)
+checkColsFormUniqueKeys(term, c("mcid", "term"))
+#> [1] TRUE
+
+data(course)
+checkColsFormUniqueKeys(course, c("mcid", "term_course", "abbrev", "number"))
+#> [1] TRUE
+
+data(degree)
+checkColsFormUniqueKeys(degree, c("mcid", "degree"))
+#> [1] TRUE
 ```
 
 
