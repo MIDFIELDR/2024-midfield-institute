@@ -185,9 +185,10 @@ library("midfieldr")
 
 Note: In a code chunk like the one above, you can click on the "Copy to clipboard" icon in the upper right corner to enable quick copy and paste from this document to your script.
 
-**Running a script**
+[Running a script]{.important} 
 
 - Run the script by clicking the *Source* button. Some participants report that this does not always work. The workaround is to: 
+
 - Select the lines you want to run  then *ctrl Enter* (MacOS *cmd Return*). Use the keyboard shortcuts *ctrl A* (MacOS *cmd A*) to select all lines. (See the appendices for a table of useful keyboard shortcuts.)
 
 If you see an error like this one, 
@@ -207,7 +208,7 @@ Use your script throughout the tutorial. When a new chunk of code is given,
 
 ## R concepts
 
-In R speak, scalars, vectors, variables and datasets are called *objects.* To create objects (things) we use the assignment operator (`<-`). 
+[Objects.]{.important}  In R speak, scalars, vectors, variables and datasets are called *objects.* To create objects (things) we use the assignment operator (`<-`). 
 
 For example, the object `height` is assigned a value of 173 as follows,
 
@@ -276,7 +277,7 @@ city # text after "#" is ignored.
 
 ## R as a calculator
 
-You can use R as a calculator by typing in the Console. Try the following:
+[In the console]{.important}  You can use R as a calculator by typing in the Console. Try the following:
 
 ```{r}
 # type in the console
@@ -330,7 +331,7 @@ What do the following pairs of examples do?
 
 From this point, please type the R code chunks in your script, save and run, and compare your results to those shown. 
 
-You can do some useful things using the assignment operator (`<-`), for example, 
+[Assignment.]{.important}  You can do some useful things using the assignment operator (`<-`), for example, 
 
 ```{r}
 # assign dimensions
@@ -600,7 +601,7 @@ str(add_timely_term)
 
 
 
-## Keyboard shortcuts {.appendix}
+## Keyboard shortcuts
 
 If you are working in RStudio, you can see the menu of keyboard shortcuts using the menu *Tools \> Keyboard Shortcuts Help*.
 

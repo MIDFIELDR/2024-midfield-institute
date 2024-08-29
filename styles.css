@@ -48,7 +48,7 @@ a:link {
 a:visited {
   color: #777777;
 }
-/* no stripes in table */
+/* using gt package, no stripes in table */
 .no-stripe .gt_table tr.odd {
   --bs-table-striped-bg: transparent;
 }

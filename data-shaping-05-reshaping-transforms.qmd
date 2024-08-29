@@ -1,9 +1,5 @@
 ---
 title: "Reshaping transforms"
-format:
-  html:
-    css: styles.css
-    reference-location: margin
 ---
 
 ![Image: *SAREC field day 2018* by Univ Wyoming Extension CT is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-5.png)
@@ -36,6 +32,7 @@ setcolorder(rowrecs, c("program", "starters", "ever_enrolled", "graduates"))
 Using **cdata**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis (no base R transforms in this section). 
 
 In this section, we cover reshaping data frames by moving data between rows and columns, often called *pivoting*. 
+
 
 
 
@@ -248,7 +245,8 @@ In our opinion, *blocks* and *row records* describe these data formats more memo
 
 
 
-Many algorithms are sensitive to how data is arranged in rows and columns, so there is a need to convert between representations.
+
+
 
 
 ## Why transform?
@@ -369,6 +367,9 @@ check_equiv_frames(blocks_dt, blocks_tbl)
 
 
 
+
+
+
 ## Blocks to row-records
 
 In this transform, we group a set of rows that go together (matching on keys) and combine them into one row by adding columns. The result is in *row-records* form, with one row per program. 
@@ -418,6 +419,7 @@ check_equiv_frames(rowrecs_dt, rowrecs_tbl)
 - *tidyr* `pivot_wider()`, an updated approach to `spread()`. 
 
 - *cdata.* `pivot_to_rowrecs()`, a special case of the more general function `blocks_to_rowrecs()`.
+
 
 
 
@@ -486,6 +488,9 @@ Confirm that the result is equivalent to the original blocks form.
 ```{r}
 check_equiv_frames(blocks_dt, blocks_dt_2)
 ```
+
+
+
 
 
 

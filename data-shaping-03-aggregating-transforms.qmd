@@ -1,8 +1,5 @@
 ---
 title: "Aggregating transforms"
-format:
-  html:
-    css: styles.css
 ---
 
 ![Image: *Our daily challenge: Too many to count* by Sue Thompson is licensed under [CC BY-ND 2.0](https://creativecommons.org/licenses/by-nd/2.0/)](figures/data-shaping-3.png)
