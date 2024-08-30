@@ -56,7 +56,8 @@ website:
       - section: "Shaping data 3 ways"
         contents:
           - text: "Introduction"
-            file: data-shaping-01-data-selection.qmd
+            file: data-shaping-00-introduction.qmd
+          - data-shaping-01-data-selection.qmd
           - data-shaping-02-basic-transforms.qmd
           - data-shaping-03-aggregating-transforms.qmd
           - data-shaping-04-multi-table-transforms.qmd
