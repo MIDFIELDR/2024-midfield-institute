@@ -54,10 +54,9 @@ website:
             url: https://midfieldr.github.io/midfieldr/articles/
 
       - section: "Shaping data 3 ways"
-        file: data-shaping-00-introduction.qmd
         contents:
           - text: "Introduction"
-          - data-shaping-01-data-selection.qmd
+            file: data-shaping-01-data-selection.qmd
           - data-shaping-02-basic-transforms.qmd
           - data-shaping-03-aggregating-transforms.qmd
           - data-shaping-04-multi-table-transforms.qmd
