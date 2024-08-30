@@ -16,7 +16,7 @@ knitr::opts_chunk$set(comment = "#>",
 #| echo: false
 # prepare two data sets for display
 library(data.table)
-cohort <- fread("data/three_blocs.csv")
+cohort <- fread("data/start_ever_grad.csv")
 key_columns <- c("program", "peer_group") 
 blocks <- cohort[, .N, by = key_columns]
 blocks$peer_group <- factor(blocks$peer_group, levels = c("ever_enrolled", "starters", "graduates"))
@@ -303,7 +303,7 @@ library("cdata")
 *Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-cohort <- fread("data/three_blocs.csv")
+cohort <- fread("data/start_ever_grad.csv")
 ```
 
 ```{r}

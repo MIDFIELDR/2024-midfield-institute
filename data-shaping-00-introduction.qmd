@@ -37,51 +37,42 @@ Sources for translating among the three systems include [@Atrebas:2019; @Gimond:
 ```{r}
 #| echo: false
 wrapr::build_frame(
-    "packages"     , "used for" |
-    "midfielddata", "student records practice data"|
-    "data.table"  , "manipulating data"|
-    "dplyr"       , "manipulating data"|
-    "tidyr"       , "manipulating data"|
+    "packages"    , "used for" |
+    "midfielddata", "student records practice data" |
+    "data.table"  , "manipulating data" |
+    "dplyr"       , "manipulating data" |
+    "tidyr"       , "manipulating data" |
+    "readr"       , "import data" |
     "wrapr"       , "tools for writing and debugging R code"|
     "cdata"       , "reshaping transforms"|
     "ggplot2"     , "creating charts"
 ) |>
   gt() |>
-  tab_caption("Table 1: Packages used for data shaping") |>
+  tab_caption("Table 1: Packages in the data shaping articles") |>
   tab_options(table.font.size = "small") |>
   opt_stylize(style = 1, color = "gray")
 ```
 
+<br>
+
 We load the packages used in an article as one of the first code chunks, as shown below. You can copy any code chunk by clicking on the "Copy to clipboard" icon ![](figures/clipboard-icon.png).
 
 ```{r}
+# packages used in this article
 library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
+library("readr")
 library("wrapr")
 ```
 
-[Download and save CSV files.]{.important} In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). To download the CSV files and save to the `data` directory in your RStudio project folder, run the following lines *once.*  
-
-```r
-# three blocs of students: starters, ever-enrolled, and graduates
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/three_blocs.csv"
-three_blocs <- fread(data_url)
-fwrite(three_blocs, "data/three_blocs.csv")
-```
 
 
 
 
 ## Data 
 
-*Import* the CSV file we just downloaded. 
-
-```{r}
-cohort <- fread("data/three_blocs.csv")
-```
-
-*Load* the datasets from midfielddata. View data dictionaries via `?student` and `?term`.
+*Load* the datasets from midfielddata. View data dictionaries via `?student`, `?term`, and `?degree`. 
 
 ```{r}
 data(student, term, degree)
@@ -90,8 +81,6 @@ data(student, term, degree)
 Have a quick look at each one using dplyr `glimpse()`. 
 
 ```{r}
-glimpse(cohort)
-
 glimpse(student)
 
 glimpse(term)
@@ -170,6 +159,88 @@ check_equiv_frames(student_dt, student_tbl)
 all.equal(student_df, student_dt, check.attributes = FALSE)
 all.equal(student_dt, student_tbl, check.attributes = FALSE)
 ```
+
+
+
+
+
+
+
+
+## Download and write CSV files
+
+In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). 
+
+*Download and write* a CSV file to your RStudio project data directory. 
+
+```{r}
+# run me first
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/three_blocs.csv"
+```
+
+One of these code chunks can be copied and run in your Console window as these lines only have to be run once. 
+
+```{r}
+#| class: base
+#| eval: false
+# base R
+start_ever_grad <- read.csv(data_url)
+write.csv(start_ever_grad, "data/start_ever_grad.csv", row.names = FALSE)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+start_ever_grad <- fread(data_url)
+fwrite(start_ever_grad, "data/start_ever_grad.csv")
+```
+
+```{r}
+#| class: dplyr
+#| eval: false
+# readr
+start_ever_grad <- read_csv(data_url, show_col_types = FALSE)
+write_csv(start_ever_grad, "data/start_ever_grad.csv")
+```
+
+
+
+
+
+
+## Read CSV files
+
+*Import* the file you just saved. 
+
+```{r}
+#| class: base
+# base R
+start_ever_grad_df <- read.csv("data/start_ever_grad.csv")
+```
+
+```{r}
+#| class: dtbl
+# data.table
+start_ever_grad_dt <- fread("data/start_ever_grad.csv")
+```
+
+```{r}
+#| class: dplyr
+# readr
+start_ever_grad_tbl <- read_csv("data/start_ever_grad.csv", show_col_types = FALSE)
+```
+
+```{r}
+start_ever_grad_dt
+
+check_equiv_frames(start_ever_grad_df, start_ever_grad_dt)
+check_equiv_frames(start_ever_grad_dt, start_ever_grad_tbl)
+```
+
+
+
+
+
 
 
 
