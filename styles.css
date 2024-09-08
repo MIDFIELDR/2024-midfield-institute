@@ -49,3 +49,6 @@ a:visited {
 .no-stripe .gt_table tr.odd {
   --bs-table-striped-bg: transparent;
 }
+.gt_table {
+  background-color: ;
+}

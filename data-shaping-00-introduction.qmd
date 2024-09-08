@@ -7,9 +7,8 @@ title: "Shaping MIDFIELD data three ways"
 ```{r}
 #| label: setup
 #| include: false
-knitr::opts_chunk$set(comment = "#>", 
-                      collapse = TRUE, 
-                      message = FALSE)
+knitr::opts_chunk$set(comment = "#>",  
+                      collapse = TRUE) 
 library(gt)
 ```
 
@@ -59,11 +58,11 @@ We load the packages used in an article as one of the first code chunks, as show
 
 ```{r}
 # packages used in this article
-library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
+library("midfielddata")
 library("readr")
-library("wrapr")
+library("wrapr", warn.conflicts = FALSE)
 ```
 
 
@@ -175,7 +174,7 @@ In addition to the student record data in the midfielddata package, we have some
 
 ```{r}
 # run me first
-data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/three_blocs.csv"
+data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/case_blocs.csv"
 ```
 
 One of these code chunks can be copied and run in your Console window as these lines only have to be run once. 
@@ -184,23 +183,23 @@ One of these code chunks can be copied and run in your Console window as these l
 #| class: base
 #| eval: false
 # base R
-start_ever_grad <- read.csv(data_url)
-write.csv(start_ever_grad, "data/start_ever_grad.csv", row.names = FALSE)
+case_blocs <- read.csv(data_url)
+write.csv(case_blocs, "data/case_blocs.csv", row.names = FALSE)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-start_ever_grad <- fread(data_url)
-fwrite(start_ever_grad, "data/start_ever_grad.csv")
+case_blocs <- fread(data_url)
+fwrite(case_blocs, "data/case_blocs.csv")
 ```
 
 ```{r}
 #| class: dplyr
 #| eval: false
 # readr
-start_ever_grad <- read_csv(data_url, show_col_types = FALSE)
-write_csv(start_ever_grad, "data/start_ever_grad.csv")
+case_blocs <- read_csv(data_url, show_col_types = FALSE)
+write_csv(case_blocs, "data/case_blocs.csv")
 ```
 
 
@@ -215,26 +214,26 @@ write_csv(start_ever_grad, "data/start_ever_grad.csv")
 ```{r}
 #| class: base
 # base R
-start_ever_grad_df <- read.csv("data/start_ever_grad.csv")
+case_blocs_df <- read.csv("data/case_blocs.csv")
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-start_ever_grad_dt <- fread("data/start_ever_grad.csv")
+case_blocs_dt <- fread("data/case_blocs.csv")
 ```
 
 ```{r}
 #| class: dplyr
 # readr
-start_ever_grad_tbl <- read_csv("data/start_ever_grad.csv", show_col_types = FALSE)
+case_blocs_tbl <- read_csv("data/case_blocs.csv", show_col_types = FALSE)
 ```
 
 ```{r}
-start_ever_grad_dt
+case_blocs_dt
 
-check_equiv_frames(start_ever_grad_df, start_ever_grad_dt)
-check_equiv_frames(start_ever_grad_dt, start_ever_grad_tbl)
+check_equiv_frames(case_blocs_df, case_blocs_dt)
+check_equiv_frames(case_blocs_dt, case_blocs_tbl)
 ```
 
 

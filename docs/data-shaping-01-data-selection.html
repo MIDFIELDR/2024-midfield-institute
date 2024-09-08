@@ -315,7 +315,7 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#subsetting-rows-and-columns" id="toc-subsetting-rows-and-columns" class="nav-link" data-scroll-target="#subsetting-rows-and-columns">Subsetting rows and columns</a></li>
-  <li><a href="#removing-records-with-incomplete-data" id="toc-removing-records-with-incomplete-data" class="nav-link" data-scroll-target="#removing-records-with-incomplete-data">Removing records with incomplete data</a></li>
+  <li><a href="#removing-rows-wirh-incomplete-records" id="toc-removing-rows-wirh-incomplete-records" class="nav-link" data-scroll-target="#removing-rows-wirh-incomplete-records">Removing rows wirh incomplete records</a></li>
   <li><a href="#ordering-rows-or-columns" id="toc-ordering-rows-or-columns" class="nav-link" data-scroll-target="#ordering-rows-or-columns">Ordering rows or columns</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -522,27 +522,91 @@ div.csl-indent {
 <li><p><em>base R.</em> Two steps required. Subset rows by the original logical conditions; then subset to remove rows with NA across all columns. <code><a href="https://rdrr.io/r/base/colSums.html">rowSums()</a></code> assigns 1 to TRUE and 0 to FALSE. If the number of NAs in a row is less than the number of columns, then that row contains non-NA data and we keep it.</p></li>
 <li><p><em>data.table.</em> Multiple conditions separated by logical AND <code>&amp;</code>. Does not generate all-NA rows as in base R.</p></li>
 <li><p><em>dplyr.</em> Similar.</p></li>
-</ul></section><section id="subset-one-column-as-a-vector" class="level3"><h3 class="anchored" data-anchor-id="subset-one-column-as-a-vector">Subset one column as a vector</h3>
+</ul></section><section id="subset-rows-to-omit-values" class="level3"><h3 class="anchored" data-anchor-id="subset-rows-to-omit-values">Subset rows to omit values</h3>
+<p>Sometimes the intention of a row subset is to keep all rows except those that contain a particular value—implemented with a logical NOT (<code>!</code>).</p>
+<p><span class="important">Task.</span> Retain all rows of the <code>student</code> data except those with an “unknown” value (case-insensitive) in the <code>sex</code> column.</p>
+<div class="cell base">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<span><span class="va">rows_we_want</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"unknown"</span>, <span class="va">student_df</span><span class="op">$</span><span class="va">sex</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="va">student_df</span><span class="op">[</span><span class="va">rows_we_want</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dtbl">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<span><span class="va">result_dt</span> <span class="op">&lt;-</span> <span class="va">student_dt</span><span class="op">[</span><span class="op">!</span><span class="va">sex</span> <span class="op"><a href="https://rdatatable.gitlab.io/data.table/reference/like.html">%ilike%</a></span> <span class="st">"unknown"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell dplyr">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">student_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"unknown"</span>, <span class="va">sex</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">result_dt</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 97,554</span></span>
+<span><span class="co">#&gt; Columns: 13</span></span>
+<span><span class="co">#&gt; $ mcid           &lt;chr&gt; "MCID3111142225", "MCID3111142283", "MCID3111142290", "…</span></span>
+<span><span class="co">#&gt; $ institution    &lt;chr&gt; "Institution B", "Institution J", "Institution J", "Ins…</span></span>
+<span><span class="co">#&gt; $ transfer       &lt;chr&gt; "First-Time Transfer", "First-Time Transfer", "First-Ti…</span></span>
+<span><span class="co">#&gt; $ hours_transfer &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span><span class="co">#&gt; $ race           &lt;chr&gt; "Asian", "Asian", "Asian", "Asian", "Asian", "Asian", "…</span></span>
+<span><span class="co">#&gt; $ sex            &lt;chr&gt; "Male", "Female", "Male", "Male", "Male", "Male", "Male…</span></span>
+<span><span class="co">#&gt; $ age_desc       &lt;chr&gt; "Under 25", "Under 25", "Under 25", "Under 25", "Under …</span></span>
+<span><span class="co">#&gt; $ us_citizen     &lt;chr&gt; "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes", "Yes",…</span></span>
+<span><span class="co">#&gt; $ home_zip       &lt;chr&gt; NA, "22020", "23233", "20853", "22003", "23234", "24148…</span></span>
+<span><span class="co">#&gt; $ high_school    &lt;chr&gt; NA, NA, "471872", NA, "470080", "471877", NA, NA, NA, N…</span></span>
+<span><span class="co">#&gt; $ sat_math       &lt;dbl&gt; NA, 560, 510, 640, 600, 570, 480, NA, NA, NA, 520, 430,…</span></span>
+<span><span class="co">#&gt; $ sat_verbal     &lt;dbl&gt; NA, 230, 380, 460, 500, 530, 530, NA, NA, NA, 490, 490,…</span></span>
+<span><span class="co">#&gt; $ act_comp       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…</span></span>
+<span></span>
+<span><span class="fu"><a href="https://winvector.github.io/wrapr//reference/check_equiv_frames.html">check_equiv_frames</a></span><span class="op">(</span><span class="va">result_df</span>, <span class="va">result_dt</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="https://winvector.github.io/wrapr//reference/check_equiv_frames.html">check_equiv_frames</a></span><span class="op">(</span><span class="va">result_dt</span>, <span class="va">result_tbl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="important">Comments</span></p>
+<ul>
+<li><p><em>base R.</em> Uses <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code></p></li>
+<li><p><em>data.table.</em> <code>%ilike%</code> is shorthand for <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code> with <code>ignore.case = TRUE</code></p></li>
+<li><p><em>dplyr.</em> Also uses <code><a href="https://rdrr.io/r/base/grep.html">grepl()</a></code></p></li>
+</ul>
+<p>Confirm that the correct rows have been deleted.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Before deletions</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">student_dt</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Female"  "Male"    "Unknown"</span></span>
+<span><span class="co"># After deletions </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">result_dt</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Female" "Male"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="subset-rows-to-retain-the-first-instance" class="level3"><h3 class="anchored" data-anchor-id="subset-rows-to-retain-the-first-instance">Subset rows to retain the first instance</h3>
+<p>With student records, we may be interested in a student’s first term. For example, we might want to know:</p>
+<ul>
+<li>
+<code>level</code> or <code>standing</code> in the first term</li>
+<li>
+<code>cip6</code> (program or major) in the first term</li>
+</ul>
+<p>The <code>term</code> and <code>course</code> tables can have more than one</p>
+</section><section id="subset-one-column-as-a-vector" class="level3"><h3 class="anchored" data-anchor-id="subset-one-column-as-a-vector">Subset one column as a vector</h3>
 <p><span class="important">Task.</span> Obtain a vector (<code>vec</code>) of unique IDs in the <code>term</code> dataset.</p>
 <p>Because results are vectors, we compare using <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> instead of <code><a href="https://winvector.github.io/wrapr//reference/check_equiv_frames.html">check_equiv_frames()</a></code>.</p>
 <div class="cell base">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">vec_base</span> <span class="op">&lt;-</span> <span class="va">term_df</span><span class="op">[</span>, <span class="st">"mcid"</span><span class="op">]</span></span>
 <span><span class="va">vec_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">vec_base</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="va">vec_dtbl</span> <span class="op">&lt;-</span> <span class="va">term_dt</span><span class="op">[</span>, <span class="va">mcid</span><span class="op">]</span></span>
 <span><span class="va">vec_dtbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">vec_dtbl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">vec_dplyr</span> <span class="op">&lt;-</span> <span class="va">term_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">mcid</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">vec_dtbl</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">vec_dtbl</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  chr [1:97555] "MCID3111142225" "MCID3111142283" "MCID3111142290" ...</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">vec_base</span>, <span class="va">vec_dtbl</span><span class="op">)</span></span>
@@ -555,28 +619,28 @@ div.csl-indent {
 <li><p><em>base R.</em> For clarity, we deliberately write these steps in two lines of code. One could just as easily write the single line <code>result_df &lt;- unique(term_df[, "mcid"])</code>.</p></li>
 <li><p><em>data.table.</em></p></li>
 <li><p><em>dplyr.</em> <code>pull(mcid)</code> is safe as long as the <code>mcid</code> column exists in the data frame from which it is pulled. Safer to use <code>pull(.data$mcid)</code> as described in <span class="citation" data-cites="Layton:2024">(<a href="#ref-Layton:2024" role="doc-biblioref">Layton, 2024</a>)</span>.</p></li>
-</ul></section></section><section id="removing-records-with-incomplete-data" class="level2"><h2 class="anchored" data-anchor-id="removing-records-with-incomplete-data">Removing records with incomplete data</h2>
+</ul></section></section><section id="removing-rows-wirh-incomplete-records" class="level2"><h2 class="anchored" data-anchor-id="removing-rows-wirh-incomplete-records">Removing rows wirh incomplete records</h2>
 <p>An important variation of subsetting data is removing rows of data that have missing values. If appropriate, limit the dropped rows to those with missing values in specific columns.</p>
 <p><span class="important">Task.</span> We are asked to compare SAT scores by institution. Before doing any analysis, we first remove rows with missing SAT scores.</p>
 <section id="delete-rows-with-a-missing-value-in-any-column." class="level3"><h3 class="anchored" data-anchor-id="delete-rows-with-a-missing-value-in-any-column.">Delete rows with a missing value in any column.</h3>
 <div class="cell base">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">DF</span> <span class="op">&lt;-</span> <span class="va">student_df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"sat_math"</span>, <span class="st">"sat_verbal"</span><span class="op">)</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
 <span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="va">student_dt</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">institution</span>, <span class="va">sat_math</span>, <span class="va">sat_verbal</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">result_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">student_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">sat_math</span>, <span class="va">sat_verbal</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
 <span><span class="co">#&gt;          institution sat_math sat_verbal</span></span>
 <span><span class="co">#&gt;               &lt;char&gt;    &lt;num&gt;      &lt;num&gt;</span></span>
 <span><span class="co">#&gt;     1: Institution J      560        230</span></span>
@@ -604,23 +668,23 @@ div.csl-indent {
 </ul></section><section id="delete-rows-with-a-missing-value-in-specified-colums." class="level3"><h3 class="anchored" data-anchor-id="delete-rows-with-a-missing-value-in-specified-colums.">Delete rows with a missing value in specified colums.</h3>
 <p><span class="important">Task.</span></p>
 <div class="cell base">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">rows_we_want</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">student_df</span><span class="op">$</span><span class="va">institution</span><span class="op">)</span> <span class="op">|</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">student_df</span><span class="op">$</span><span class="va">sat_math</span><span class="op">)</span> <span class="op">|</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">student_df</span><span class="op">$</span><span class="va">sat_verbal</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="va">student_df</span><span class="op">[</span><span class="va">rows_we_want</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="va">result_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">student_dt</span>, cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"sat_math"</span>, <span class="st">"sat_verbal"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">student_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">sat_math</span>, <span class="va">sat_verbal</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
 <span><span class="co">#&gt;                  mcid   institution              transfer hours_transfer</span></span>
 <span><span class="co">#&gt;                &lt;char&gt;        &lt;char&gt;                &lt;char&gt;          &lt;num&gt;</span></span>
 <span><span class="co">#&gt;     1: MCID3111142283 Institution J   First-Time Transfer             NA</span></span>
@@ -678,28 +742,28 @@ div.csl-indent {
 <p><span class="important">Task.</span> Suppose we want to know a student’s level and declared major in their first term at their institution. We use the <code>term</code> dataset.<br>
 We decide to order the rows first by institution, then by ID, then by term. In each case, we select columns in a separate operation so we can highlight the row-ordering operation.</p>
 <div class="cell">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">columns_we_want</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"mcid"</span>, <span class="st">"term"</span>, <span class="st">"level"</span>, <span class="st">"cip6"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">columns_we_want</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"mcid"</span>, <span class="st">"term"</span>, <span class="st">"level"</span>, <span class="st">"cip6"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell base">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">DF</span> <span class="op">&lt;-</span> <span class="va">term_df</span><span class="op">[</span>, <span class="va">columns_we_want</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
 <span><span class="va">order_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">mcid</span>, <span class="va">term</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="va">DF</span><span class="op">[</span><span class="va">order_index</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="va">result_dt</span> <span class="op">&lt;-</span> <span class="va">term_dt</span><span class="op">[</span>, <span class="va">..columns_we_want</span><span class="op">]</span></span>
 <span><span class="va">order_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"mcid"</span>, <span class="st">"term"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setorder.html">setorderv</a></span><span class="op">(</span><span class="va">result_dt</span>, <span class="va">order_cols</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">term_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">mcid</span>, <span class="va">term</span>, <span class="va">level</span>, <span class="va">cip6</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">mcid</span>, <span class="va">term</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
 <span><span class="co">#&gt;           institution           mcid   term         level   cip6</span></span>
 <span><span class="co">#&gt;                &lt;char&gt;         &lt;char&gt; &lt;char&gt;        &lt;char&gt; &lt;char&gt;</span></span>
 <span><span class="co">#&gt;      1: Institution B MCID3111142225  19881 01 First-year 140901</span></span>
@@ -728,31 +792,31 @@ We decide to order the rows first by institution, then by ID, then by term. In e
 <p>When we want a decreasing (descending) row order, it is typically needed for some but not all of our columns.</p>
 <p><span class="important">Task.</span> Sort students by institution and descending transfer hours.</p>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">columns_we_want</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"mcid"</span>, <span class="st">"hours_transfer"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">columns_we_want</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"mcid"</span>, <span class="st">"hours_transfer"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell base">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">DF</span> <span class="op">&lt;-</span> <span class="va">student_df</span><span class="op">[</span>, <span class="va">columns_we_want</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span>
 <span><span class="va">DF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">DF</span><span class="op">)</span></span>
 <span><span class="va">order_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">DF</span>, <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">institution</span>, <span class="op">-</span><span class="va">hours_transfer</span>, <span class="va">mcid</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="va">DF</span><span class="op">[</span><span class="va">order_index</span>, , drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="va">DT</span> <span class="op">&lt;-</span> <span class="va">student_dt</span><span class="op">[</span>, <span class="va">..columns_we_want</span><span class="op">]</span></span>
 <span><span class="va">result_dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">DT</span><span class="op">)</span></span>
 <span><span class="va">order_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"institution"</span>, <span class="st">"hours_transfer"</span>, <span class="st">"mcid"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setorder.html">setorderv</a></span><span class="op">(</span><span class="va">result_dt</span>, <span class="va">order_cols</span>, order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">student_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">institution</span>, <span class="va">mcid</span>, <span class="va">hours_transfer</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">institution</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">hours_transfer</span><span class="op">)</span>, <span class="va">mcid</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
 <span><span class="co">#&gt;          institution           mcid hours_transfer</span></span>
 <span><span class="co">#&gt;               &lt;char&gt;         &lt;char&gt;          &lt;num&gt;</span></span>
 <span><span class="co">#&gt;     1: Institution B MCID3112694097            278</span></span>
@@ -783,21 +847,21 @@ We decide to order the rows first by institution, then by ID, then by term. In e
 <p>as a column index yields a data frame with the columns in the order given. Sometimes however we want to move one or more columns to the left in a data frame.</p>
 <p><span class="important">Task.</span> Using the result from the previous example, move transfer hours to the leftmost column followed by ID.</p>
 <div class="cell base">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># base R</span></span>
 <span><span class="va">column_order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">union</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hours_transfer"</span>, <span class="st">"mcid"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">result_df</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">result_df</span> <span class="op">&lt;-</span> <span class="va">result_df</span><span class="op">[</span>, <span class="va">column_order</span>, drop <span class="op">=</span> <span class="cn">FALSE</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dtbl">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data.table</span></span>
 <span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setcolorder.html">setcolorder</a></span><span class="op">(</span><span class="va">result_dt</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hours_transfer"</span>, <span class="st">"mcid"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell dplyr">
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
 <span><span class="va">result_tbl</span> <span class="op">&lt;-</span> <span class="va">result_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/relocate.html">relocate</a></span><span class="op">(</span><span class="va">hours_transfer</span>, <span class="va">mcid</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result_dt</span></span>
 <span><span class="co">#&gt;        hours_transfer           mcid   institution</span></span>
 <span><span class="co">#&gt;                 &lt;num&gt;         &lt;char&gt;        &lt;char&gt;</span></span>
 <span><span class="co">#&gt;     1:            278 MCID3112694097 Institution B</span></span>

@@ -76,7 +76,7 @@ format:
     toc: true
     code-link: true
     code-copy: true
-    code-overflow: wrap
+    code-overflow: scroll
     fig-cap-location: bottom
     tbl-cap-location: top
     reference-location: margin

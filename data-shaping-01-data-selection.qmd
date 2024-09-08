@@ -213,6 +213,125 @@ check_equiv_frames(result_dt, result_tbl)
 
 - *dplyr.* Similar. 
 
+### Subset rows to omit values
+
+Sometimes the intention of a row subset is to keep all rows except those that contain a particular value---implemented with a logical NOT (`!`). 
+
+[Task.]{.important} Retain all rows of the `student` data except those with an "unknown" value (case-insensitive) in the `sex` column. 
+
+```{r}
+#| class: base
+# base R
+rows_we_want <- !grepl("unknown", student_df$sex, ignore.case = TRUE)
+result_df <- student_df[rows_we_want, , drop = FALSE]
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_dt <- student_dt[!sex %ilike% "unknown"]
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_tbl <- student_tbl %>%
+  filter(!grepl("unknown", sex, ignore.case = TRUE))
+```
+ 
+```{r}
+glimpse(result_dt)
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
+[Comments]{.important}
+
+- *base R.* Uses `grepl()` 
+
+- *data.table.* `%ilike%` is shorthand for `grepl()` with `ignore.case = TRUE`
+
+- *dplyr.* Also uses `grepl()`
+
+Confirm that the correct rows have been deleted. 
+
+```{r}
+# Before deletions
+sort(unique(student_dt$sex))
+# After deletions 
+sort(unique(result_dt$sex))
+```
+
+
+
+
+### Subset rows to retain the first instance
+
+With student records, we may be interested in a student's first term. For example, we might want to know: 
+
+- `level` or `standing` in the first term
+- `cip6` (program or major) in the first term
+
+The `term` and `course` tables can have more than one 
+
+
+```{r}
+#| eval: false
+#| echo: false
+x <- term[, .(mcid, term, cip6)]
+x <- unique(x)
+nrow(x)
+
+y <- x[, .(mcid, term)]
+y <- unique(y)
+nrow(y)
+
+data(degree)
+
+y <- degree[, .(mcid, degree)]
+y <- unique(y)
+
+z <- degree[, .(mcid, term_degree)]
+z <- unique(z)
+
+
+
+
+nrow(y)
+nrow(z)
+
+
+x <- y[duplicated(mcid)]
+setorderv(x, "mcid")
+x
+
+
+degree[mcid == "MCID3111263269"]
+degree[mcid == "MCID3111314169"]
+
+
+
+x <- degree[, .SD[which.min(term_degree)], by = "mcid"]
+x[duplicated(mcid)]
+
+data(course)
+x <- course[, .SD[which.min(term_course)], by = "mcid"]
+
+
+
+x <- course[, .(mcid, term_course, abbrev, number)]
+x <- x[, .SD[term_course == min(term_course)], by = "mcid"]
+nrow(x)
+x[anyDuplicated(x, by = "mcid")]
+
+
+x[mcid == "MCID3111142225"]
+```
+
+
+
+
 ### Subset one column as a vector
 
 [Task.]{.important} Obtain a vector (`vec`) of unique IDs in the `term` dataset.
@@ -256,7 +375,12 @@ all.equal(vec_dtbl, vec_dplyr)
 
 - *dplyr.* `pull(mcid)` is safe as long as the `mcid` column exists in the data frame from which it is pulled. Safer to use `pull(.data$mcid)` as described in [@Layton:2024]. 
 
-## Removing records with incomplete data
+
+
+
+
+
+## Removing rows wirh incomplete records
 
 An important variation of subsetting data is removing rows of data that have missing values. If appropriate, limit the dropped rows to those with missing values in specific columns. 
 
@@ -341,6 +465,7 @@ check_equiv_frames(result_dt, result_tbl)
 - *data.table.* The same function name `na.omit()` as base R but with an argument to drops rows with missing values in specified columns. Retains all columns. 
 
 - *dplyr.* Similarly, `drop_na()` drops rows with missing values in  specified columns, retaining all columns. 
+
 
 ## Ordering rows or columns
 

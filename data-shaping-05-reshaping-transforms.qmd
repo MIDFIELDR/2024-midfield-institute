@@ -10,18 +10,18 @@ title: "Reshaping transforms"
 knitr::opts_chunk$set(comment = "#>", 
                       collapse = TRUE, 
                       message = FALSE)
+library("gt")
+library("data.table")
 ```
 
 ```{r}
 #| echo: false
 # prepare two data sets for display
-library(data.table)
-cohort <- fread("data/start_ever_grad.csv")
+case_blocs <- fread("data/case_blocs.csv")
 key_columns <- c("program", "peer_group") 
-blocks <- cohort[, .N, by = key_columns]
+blocks <- case_blocs[, .N, by = key_columns]
 blocks$peer_group <- factor(blocks$peer_group, levels = c("ever_enrolled", "starters", "graduates"))
 setorderv(blocks, c("program", "peer_group"))
-
 rowrecs <- dcast(blocks, 
                     program ~ peer_group, 
                     value.var = "N")
@@ -43,7 +43,6 @@ Pivoting operations go by a number of different names, as listed in Table 1 [@Mo
 
 ```{r}
 #| echo: false
-library(gt)
 wrapr::build_frame(
   "System"               , 'Pivot "wider"'  , 'Pivot "longer"' |
     "colloquially called", '"tall to wide"' , '"wide to tall"' |
@@ -58,7 +57,9 @@ wrapr::build_frame(
   #   everything() ~ px(110)
   #   ) |>
   tab_caption("Table 1: Reshaping operations")|> 
-  tab_options(table.font.size = "small") |>
+  tab_options(table.font.size = "small", 
+              table.background.color = "lightgreen", 
+              row_group.background.color = "lightblue") |>
   opt_stylize(style = 1, color = "gray")
 ```
 
@@ -300,32 +301,32 @@ library("wrapr")
 library("cdata")
 ```
 
-*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html). The `case_blocs` data set is taken from the midfieldr [case study](https://midfieldr.github.io/midfieldr/articles/art-001-case-goals.html) with students from four engineering programs organized in three blocs or peer-groups: starters, ever-enrolled, and graduates. 
 
 ```{r}
-cohort <- fread("data/start_ever_grad.csv")
+case_blocs <- fread("data/case_blocs.csv")
 ```
 
 ```{r}
 #| class: base
 # base R
-cohort_df <- data.frame(cohort)
+case_blocs_df <- data.frame(case_blocs)
 ```
 
 ```{r}
 #| class: dtbl
 # data.table
-cohort_dt <- copy(cohort)
+case_blocs_dt <- copy(case_blocs)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-cohort_tbl <- tibble(cohort)
+case_blocs_tbl <- tibble(case_blocs)
 ```
 
 ```{r}
-cohort_dt
+case_blocs_dt
 ```
 
 <br>
@@ -339,8 +340,8 @@ key_columns <- c("program", "peer_group")
 ```{r}
 #| class: base
 # base R
-freq_table <- table(cohort_df$program,
-                    cohort_df$peer_group,
+freq_table <- table(case_blocs_df$program,
+                    case_blocs_df$peer_group,
                     dnn = key_columns)
 blocks_df <- as.data.frame(freq_table, 
                          responseName = "N",
@@ -350,14 +351,14 @@ blocks_df <- as.data.frame(freq_table,
 ```{r}
 #| class: dtbl
 # data.table
-blocks_dt <- cohort_dt[, .N, by = key_columns]
+blocks_dt <- case_blocs_dt[, .N, by = key_columns]
 setorder(blocks_dt, program, -N)
 ```
 
 ```{r}
 #| class: dplyr
 # dplyr
-blocks_tbl <- cohort_tbl %>%
+blocks_tbl <- case_blocs_tbl %>%
  count(program, peer_group, name = "N")
 ```
 
@@ -377,7 +378,7 @@ check_equiv_frames(blocks_dt, blocks_tbl)
 
 In this transform, we group a set of rows that go together (matching on keys) and combine them into one row by adding columns. The result is in *row-records* form, with one row per program. 
 
-[Task.]{.important} Transform the three-cohorts data frame from block-records to row-records format, using `program` as the primary key.  
+[Task.]{.important} Transform the three-case_blocss data frame from block-records to row-records format, using `program` as the primary key.  
 
 ```{r}
 #| class: dtbl
