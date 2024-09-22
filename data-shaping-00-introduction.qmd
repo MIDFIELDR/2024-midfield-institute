@@ -93,7 +93,26 @@ glimpse(degree)
 
 ## Three systems
 
-For every data frame we use, we construct a separate version for each system. For example, the three versions of the `student` table are prepared as shown below. Code chunks are color-coded by system. 
+We format the data frames used in our examples three ways, once for each system: base R, data.table, and dplyr. The table shows the naming convention we use to distinguish the different forms. 
+
+
+```{r}
+#| echo: false
+wrapr::build_frame(
+  "system"    , "suffix", "example"    , "class" |
+  "base R"    , "_df"   , "student_df" , "data.frame" |
+  "data.table", "_dt"   , "student_dt" , "data.frame, data.table" |
+  "dplyr"     , "_tbl"  , "student_tbl", "data.frame, tbl_df, tbl"
+) |>
+  gt() |>
+  tab_caption("Table 2: Dataset naming convention") |>
+  tab_options(table.font.size = "small") |>
+  opt_stylize(style = 1, color = "gray")
+```
+
+<br>
+
+Code chunks that do the same task are grouped and color coded by system, as illustrated below. Here, we prepare three versions of the `student` table, one per system. 
 
 ```{r}
 #| class: base
@@ -113,23 +132,19 @@ student_dt <- copy(student)
 student_tbl <- tibble(student)
 ```
 
-<br> 
+<br>
 
-The data frame names include a suffix to indicate the system as well. 
+A group of code chunks is typically followed by a comment section. For example, commenting on the code chunks above: 
 
-```{r}
-#| echo: false
-wrapr::build_frame(
-  "system"    , "suffix", "example"    , "class" |
-  "base R"    , "_df"   , "student_df" , "data.frame" |
-  "data.table", "_dt"   , "student_dt" , "data.frame, data.table" |
-  "dplyr"     , "_tbl"  , "student_tbl", "data.frame, tbl_df, tbl"
-) |>
-  gt() |>
-  tab_caption("Table 2: Dataset naming convention") |>
-  tab_options(table.font.size = "small") |>
-  opt_stylize(style = 1, color = "gray")
-```
+[Comments]{.important}
+
+- *base R.* `data.frame()` converts the dataset to class `data.frame`, removing attributes associated with the default `data.table` format. 
+
+- *data.table.*  `copy()` creates a new memory address for the new object. In data.table, if we don't "copy", any subsequent operations on `student_dt` are applied "by reference" to the original `student` table. 
+
+- *dplyr.* `tibble()` converts the dataset to class `tbl_df`, removing  attributes associated with the default `data.table` format. 
+
+
 
 
 
@@ -168,7 +183,7 @@ all.equal(student_dt, student_tbl, check.attributes = FALSE)
 
 ## Download and write CSV files
 
-In addition to the student record data in the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). 
+In addition to the datasets from the midfielddata package, we have some prepared data to download from the Institute repository (an Internet connection is required). 
 
 *Download and write* a CSV file to your RStudio project data directory. 
 
@@ -177,21 +192,22 @@ In addition to the student record data in the midfielddata package, we have some
 data_url <- "https://raw.githubusercontent.com/MIDFIELDR/2024-midfield-institute/main/data/case_blocs.csv"
 ```
 
-One of these code chunks can be copied and run in your Console window as these lines only have to be run once. 
+One of these code chunks can be copied and run in your Console window as these lines only have to be run once. We write the data file to the data directory of your R project with file paths *relative* to the R project main directory. 
 
 ```{r}
 #| class: base
 #| eval: false
 # base R
 case_blocs <- read.csv(data_url)
-write.csv(case_blocs, "data/case_blocs.csv", row.names = FALSE)
+write.csv(case_blocs, file = "data/case_blocs.csv", row.names = FALSE)
 ```
 
 ```{r}
 #| class: dtbl
+#| eval: true
 # data.table
 case_blocs <- fread(data_url)
-fwrite(case_blocs, "data/case_blocs.csv")
+fwrite(case_blocs, file = "data/case_blocs.csv")
 ```
 
 ```{r}
@@ -199,10 +215,16 @@ fwrite(case_blocs, "data/case_blocs.csv")
 #| eval: false
 # readr
 case_blocs <- read_csv(data_url, show_col_types = FALSE)
-write_csv(case_blocs, "data/case_blocs.csv")
+write_csv(case_blocs, file = "data/case_blocs.csv")
 ```
 
+[Comments]{.important}
 
+- *base R.* `write.csv()` set `row.names` to FALSE for consistency with other two systems. All three systems expect the same first two arguments, the data frame and the file path.  
+
+- *data.table.* `fwrite()` Similar to `write.csv()` but faster. Default `row.names` is FALSE. 
+
+- *dplyr.* `write_csv()` also faster than `write.csv()`. Default `row.names` is FALSE.
 
 
 
@@ -236,9 +258,11 @@ check_equiv_frames(case_blocs_df, case_blocs_dt)
 check_equiv_frames(case_blocs_dt, case_blocs_tbl)
 ```
 
+[Comments]{.important}
 
+- `read.csv()`, `fread()`, and `read_csv()` have a large number of arguments for controlling the input. Some of the most commonly encountered are  `colClasses` (base R and data.table) or `col_types` (dplyr) to specify the class of a column; `skip` a number of lines before reading data; and `header` (base R and data.table) or `col_names` (dplyr) to use the first row of input as column names. 
 
-
+- `read.csv()`, `fread()`, and `read_csv()` were also used earlier with a URL as the argument to download the supplemental data. 
 
 
 
@@ -263,6 +287,7 @@ packageVersion("midfielddata")
 packageVersion("data.table")
 packageVersion("dplyr")
 packageVersion("tidyr")
+packageVersion("readr")
 packageVersion("wrapr")
 packageVersion("cdata")
 packageVersion("ggplot2")

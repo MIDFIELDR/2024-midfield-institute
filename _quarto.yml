@@ -62,6 +62,7 @@ website:
           - data-shaping-03-aggregating-transforms.qmd
           - data-shaping-04-multi-table-transforms.qmd
           - data-shaping-05-reshaping-transforms.qmd
+          - data-shaping-06-going-further.qmd
 
       - text: "Resources"
         file: r-resources.qmd

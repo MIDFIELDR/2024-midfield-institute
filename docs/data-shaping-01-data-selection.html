@@ -291,6 +291,12 @@ div.csl-indent {
  <span class="menu-text">Reshaping transforms</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-shaping-06-going-further.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Going further</span></a>
+  </div>
+</li>
       </ul>
 </li>
         <li class="sidebar-item">
@@ -315,7 +321,7 @@ div.csl-indent {
   <ul class="collapse">
 <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#subsetting-rows-and-columns" id="toc-subsetting-rows-and-columns" class="nav-link" data-scroll-target="#subsetting-rows-and-columns">Subsetting rows and columns</a></li>
-  <li><a href="#removing-rows-wirh-incomplete-records" id="toc-removing-rows-wirh-incomplete-records" class="nav-link" data-scroll-target="#removing-rows-wirh-incomplete-records">Removing rows wirh incomplete records</a></li>
+  <li><a href="#removing-rows-with-incomplete-records" id="toc-removing-rows-with-incomplete-records" class="nav-link" data-scroll-target="#removing-rows-with-incomplete-records">Removing rows with incomplete records</a></li>
   <li><a href="#ordering-rows-or-columns" id="toc-ordering-rows-or-columns" class="nav-link" data-scroll-target="#ordering-rows-or-columns">Ordering rows or columns</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul><div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/MIDFIELDR/2024-midfield-institute/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -577,15 +583,6 @@ div.csl-indent {
 <span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">result_dt</span><span class="op">$</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Female" "Male"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="subset-rows-to-retain-the-first-instance" class="level3"><h3 class="anchored" data-anchor-id="subset-rows-to-retain-the-first-instance">Subset rows to retain the first instance</h3>
-<p>With student records, we may be interested in a student’s first term. For example, we might want to know:</p>
-<ul>
-<li>
-<code>level</code> or <code>standing</code> in the first term</li>
-<li>
-<code>cip6</code> (program or major) in the first term</li>
-</ul>
-<p>The <code>term</code> and <code>course</code> tables can have more than one</p>
 </section><section id="subset-one-column-as-a-vector" class="level3"><h3 class="anchored" data-anchor-id="subset-one-column-as-a-vector">Subset one column as a vector</h3>
 <p><span class="important">Task.</span> Obtain a vector (<code>vec</code>) of unique IDs in the <code>term</code> dataset.</p>
 <p>Because results are vectors, we compare using <code><a href="https://rdrr.io/r/base/all.equal.html">all.equal()</a></code> instead of <code><a href="https://winvector.github.io/wrapr//reference/check_equiv_frames.html">check_equiv_frames()</a></code>.</p>
@@ -619,7 +616,7 @@ div.csl-indent {
 <li><p><em>base R.</em> For clarity, we deliberately write these steps in two lines of code. One could just as easily write the single line <code>result_df &lt;- unique(term_df[, "mcid"])</code>.</p></li>
 <li><p><em>data.table.</em></p></li>
 <li><p><em>dplyr.</em> <code>pull(mcid)</code> is safe as long as the <code>mcid</code> column exists in the data frame from which it is pulled. Safer to use <code>pull(.data$mcid)</code> as described in <span class="citation" data-cites="Layton:2024">(<a href="#ref-Layton:2024" role="doc-biblioref">Layton, 2024</a>)</span>.</p></li>
-</ul></section></section><section id="removing-rows-wirh-incomplete-records" class="level2"><h2 class="anchored" data-anchor-id="removing-rows-wirh-incomplete-records">Removing rows wirh incomplete records</h2>
+</ul></section></section><section id="removing-rows-with-incomplete-records" class="level2"><h2 class="anchored" data-anchor-id="removing-rows-with-incomplete-records">Removing rows with incomplete records</h2>
 <p>An important variation of subsetting data is removing rows of data that have missing values. If appropriate, limit the dropped rows to those with missing values in specific columns.</p>
 <p><span class="important">Task.</span> We are asked to compare SAT scores by institution. Before doing any analysis, we first remove rows with missing SAT scores.</p>
 <section id="delete-rows-with-a-missing-value-in-any-column." class="level3"><h3 class="anchored" data-anchor-id="delete-rows-with-a-missing-value-in-any-column.">Delete rows with a missing value in any column.</h3>

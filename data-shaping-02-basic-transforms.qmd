@@ -25,13 +25,14 @@ library("midfielddata")
 library("data.table")
 library("dplyr", warn.conflicts = FALSE)
 library("tidyr")
+library("stringr")
 library("wrapr")
 ```
 
 *Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
 
 ```{r}
-data(student, term)
+data(student, term, degree)
 ```
 
 ```{r}
@@ -39,6 +40,7 @@ data(student, term)
 # base R
 student_df <- data.frame(student)
 term_df <- data.frame(term)
+degree_df <- data.frame(degree)
 ```
 
 ```{r}
@@ -46,6 +48,7 @@ term_df <- data.frame(term)
 # data.table
 student_dt <- copy(student)
 term_dt <- copy(term)
+degree_dt <- copy(degree)
 ```
 
 ```{r}
@@ -53,6 +56,7 @@ term_dt <- copy(term)
 # dplyr
 student_tbl <- tibble(student)
 term_tbl <- tibble(term)
+degree_tbl <- tibble(degree)
 ```
 
 <br>
@@ -279,9 +283,12 @@ check_equiv_frames(result_dt, result_tbl)
 
 ## Recode column values
 
-[Task.]{.important}  Using the results from the previous example, recode the term-codes from numbers to academic terms "Fall", "Winter", etc.
+When recoding the values of a column we have a choice: we can recode in place, eliminating the original values entirely, or we can add new column with the new coding. In this first example, we add a column. 
 
-"Recoding" typically entails replacing existing values in a column with new, recoded values. For the sake of clarity in this example we assign the new encodings to a new column---not strictly necessary but it makes it easier to check the results. The existing column is `term_code`; the new column is `term_name`. 
+
+### Add a column with the recoded values
+
+[Task.]{.important}  Using the results from the previous example, add a column that re-codes the term-codes from numbers to academic terms "Fall", "Winter", etc. The existing column is `term_code`; the new column is `term_name`. 
 
 ```{r}
 #| class: base
@@ -339,6 +346,73 @@ check_equiv_frames(result_dt, result_tbl)
 - *data.table.* `term_name` is created using `:=` then `fcase()` assigns its  values based on logical expressions operating on `term_code`. 
 
 - *dplyr.* `term_name` is created using `mutate()` then `case_match()` assigns its values by finding matches to the `term_code` values. 
+
+
+
+
+
+### Recode strings in place
+
+Here, we partially recode string values. 
+
+[Task.]{.important} In the degree data, shorten the values in the `degree` column by substituting "BA" for "Bachelor of Arts" and "BS" for Bachelor of Science" to make the printout more readable. 
+
+Some of the `degree` values are recorded as "Bachelor Science" instead of "Bachelor of Science", so to simplify the process the first thing we do is remove all instances of the preposition "of". We also select three columns  to make the printout more readable.
+
+```{r}
+columns_we_want <- c("mcid", "term_degree", "degree")
+```
+
+```{r}
+#| class: base
+# base R
+result_df <- degree_df[, columns_we_want, drop = FALSE]
+result_df$degree <- gsub(" of", "", result_df$degree)
+result_df$degree <- sub("Bachelor Science", "BS", result_df$degree)
+result_df$degree <- sub("Bachelor Arts", "BA", result_df$degree)
+result_df$degree <- sub("Bachelor Fine Arts", "BFA", result_df$degree)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+result_dt <- degree_dt[, ..columns_we_want]
+result_dt[, degree := gsub(" of", "", degree)]
+result_dt[, degree := sub("Bachelor Science", "BS", degree)]
+result_dt[, degree := str_replace(degree, "Bachelor Arts", "BA")]
+result_dt[, degree := str_replace(degree, "Bachelor Fine Arts", "BFA")]
+```
+
+```{r}
+#| class: dplyr
+# dplyr/stringr
+result_tbl <- degree_tbl %>%
+ select(all_of(columns_we_want)) %>%
+ mutate(degree = str_replace_all(degree, " of", "")) %>% 
+ mutate(degree = str_replace(degree, "Bachelor Science", "BS")) %>%
+ mutate(degree = str_replace(degree, "Bachelor Arts", "BA")) %>%
+ mutate(degree = str_replace(degree, "Bachelor Fine Arts", "BFA"))
+```
+
+```{r}
+result_dt
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
+[Comments]{.important} 
+
+- *base R.*  `gsub()` replaces all matches in a string; `sub()` replaces the first match only. 
+
+- *data.table.* data.table does not have its own string manipulation functions, so here we show two operations using base R and two operations using `stringr`.  
+
+- *dplyr/stringr.* `str_replace_all()` replaces all matches in a string; `str_replace()` replaces the first match only. 
+
+
+
+
+
 
 ## References 
 

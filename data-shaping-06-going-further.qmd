@@ -1,0 +1,281 @@
+---
+title: "Going further"
+---
+
+![Image: *From the bottom uo* by Jusitn Kern is licensed under [CC BY-NC-ND 2.0](https://creativecommons.org/licenses/by-nc-nd/2.0/)](figures/data-shaping-6.png)
+
+```{r}
+#| label: setup
+#| include: false
+knitr::opts_chunk$set(comment = "#>", 
+                      collapse = TRUE, 
+                      message = FALSE)
+library("gt")
+library("data.table")
+```
+
+
+Using **base R**, **data.table**, and **dplyr/tidyr** to transform MIDFIELD data as needed for your analysis.
+
+In this section we demonstrate ...
+
+
+## Setup
+
+*Load* packages.
+
+```{r}
+library("midfielddata")
+library("data.table")
+library("dplyr", warn.conflicts = FALSE)
+library("tidyr")
+library("wrapr")
+```
+
+*Load* datasets from midfielddata. 
+
+```{r}
+data(student, term, degree)
+```
+
+*Recode* strings in `degree` for output readability as described in [Basic Transforms](data-shaping-02-basic-transforms.html#recode-column-values).
+
+```{r}
+degree[, degree := gsub(" of", "", degree)]
+degree[, degree := sub("Bachelor Science", "BS", degree)]
+degree[, degree := sub("Bachelor Arts", "BA", degree)]
+degree[, degree := sub("Bachelor Fine Arts", "BFA", degree)]
+```
+
+*Format* data as described in the  [Introduction](data-shaping-00-introduction.html).
+
+```{r}
+#| class: base
+# base R
+student_df <- data.frame(student)
+term_df <- data.frame(term)
+degree_df <- data.frame(degree)
+```
+
+```{r}
+#| class: dtbl
+# data.table
+student_dt <- copy(student)
+term_dt <- copy(term)
+degree_dt <- copy(degree)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+student_tbl <- tibble(student)
+term_tbl <- tibble(term)
+degree_tbl <- tibble(degree)
+```
+
+<br>
+
+
+
+
+
+
+
+
+
+## Advanced row-subsetting by groups 
+
+### When a specific instance yields a block of rows 
+
+When subsetting rows for a specific instance of one variable (first, last, etc.) by group or key variable, we may need to allow for the possible return of more than one row per key.  
+
+For example, from the `degree` data table, subsetting for the first degree-term for the following student should return two rows, one each for Electrical Engineering and Mechanical Engineering.
+
+```{r}
+id_1 <- "MCID3112353622"
+degree[mcid == id_1]
+```
+
+In contrast, subsetting for the first term by ID for this next student should return one row for their degree in Economics (Summer 2003) and drop the row for their degree in History (Fall 2006). 
+
+```{r}
+id_2 <- "MCID3111600469"
+degree[mcid == id_2]
+```
+
+[Task.]{.important} Retain all rows of the earliest term in which students earn one or more degrees. 
+
+```{r}
+key_columns <- c("mcid", "term_degree")
+columns_we_want <- c(key_columns, "degree")
+```
+
+```{r}
+#| class: base
+# base R
+DF <- degree_df[, key_columns, drop = FALSE]
+order_index <- with(DF, order(mcid, term_degree))
+DF <- DF[order_index, , drop = FALSE]
+DF_by <- by(DF, DF$mcid, function(x) 
+            data.frame(mcid = unique(x$mcid),
+                       term_degree = x$term_degree[1]))
+DF_combine <- do.call(rbind, DF_by)
+DF <- degree_df[, columns_we_want, drop = FALSE]
+result_df <- merge(DF_combine, DF, by = key_columns, all.x = TRUE)
+rownames(result_df) <- NULL
+```
+
+```{r}
+#| class: dtbl
+# data.table
+DT <- degree_dt[, ..columns_we_want]
+setkeyv(DT, key_columns)
+result_dt <- DT[, .SD[term_degree == term_degree[1]], by = c("mcid")]
+setkey(result_dt, NULL)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_tbl <- degree_tbl %>%
+  select(all_of(columns_we_want)) %>% 
+  arrange(mcid, term_degree) %>%
+  group_by(mcid) %>%
+  filter(term_degree == term_degree[1]) %>%
+  ungroup()
+```
+
+```{r}
+result_dt
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
+
+[Comments]{.important} 
+
+- *base R.* Order rows by ID and term; use `by()` for a split-apply-combine strategy to create a data frame with two columns: ID and first degree-term; and left-join using `merge()` to recover the matching degree data, including rows with more than one degree per student ID.  
+
+- *data.table.* `setkeyv()` orders the rows and `.SD[...]` subsets for the earliest term `by` ID, including any multiple rows. 
+
+- *dplyr.* `arrange()` orders the rows, `group_by()` sets ID as the key, and `filter()` subsets for the earliest term, including any multiple rows.  
+
+
+
+[Check]{.important} that we subset the relevant rows.  The result for `id_1` (from the earlier example) correctly includes two degrees in the same term. 
+
+```{r}
+result_dt[mcid == id_1]
+```
+
+The result for `id_2`correctly includes their first degree in Economics and drops their subsequent degree in History. 
+
+```{r}
+result_dt[mcid == id_2]
+```
+
+
+
+
+
+
+
+
+### When a specific instance yields one row
+
+In contrast to the previous case, there are times when we expect subsetting for a specific instance by group to yield one row only. 
+
+For example, suppose we want to identify the first term in which a student's cumulative GPA dropped below 2.0. By definition, the result should yield only one row (or none) per ID. 
+
+```{r}
+columns_we_want <- c("mcid", "term", "standing", "gpa_cumul")
+key_columns <- c("mcid", "term")
+```
+
+```{r}
+#| class: base
+# base R
+rows_we_want <- term_df$gpa_cumul < 2.0
+DF <- term_df[rows_we_want, columns_we_want, drop = FALSE]
+order_index <- with(DF, order(mcid, term))
+DF <- DF[order_index, , drop = FALSE]
+DF_by <- by(DF, DF$mcid, function(x) 
+            data.frame(mcid = x$mcid[1],
+                       term = x$term[1],
+                       standing = x$standing[1],
+                       gpa_cumul = x$gpa_cumul[1]))
+result_df <- do.call(rbind, DF_by)
+rownames(result_df) <- NULL
+```
+
+```{r}
+#| class: dtbl
+# data.table
+rows_we_want <- term_dt$gpa_cumul < 2.0
+DT <- term_dt[rows_we_want, ..columns_we_want]
+setkeyv(DT, key_columns)
+result_dt <- DT[, .SD[1], by = c("mcid")]
+setkey(result_dt, NULL)
+```
+
+```{r}
+#| class: dplyr
+# dplyr
+result_tbl <- term_tbl %>%
+  filter(gpa_cumul < 2.0) %>%
+  select(all_of(columns_we_want)) %>%
+  arrange(mcid, term) %>%
+  group_by(mcid) %>%
+  slice(1L) %>%
+  ungroup()
+```
+
+```{r}
+result_dt
+
+check_equiv_frames(result_df, result_dt)
+check_equiv_frames(result_dt, result_tbl)
+```
+
+
+
+
+[Comments]{.important} 
+
+- *base R.* Subset for rows with GPA < 2.0. Like we did above, order rows by ID and term use `by()` to split-apply-combine operate on all four columns, but retain the first instance (one row) only by ID. 
+
+- *data.table.* Subset rows and columns; `setkeyv()` orders the rows and `.SD[1]` subsets for the first instance only (one row). 
+
+- *dplyr.*  Subset rows and columns; order rows; use `slice(1L)` to subset the first row by ID.  
+
+
+
+
+
+
+
+
+
+
+
+
+[Check]{.important} that we have one row per ID as expected.
+
+```{r}
+(n_mcid <- length(unique(result_dt$mcid)))
+(n_observation <- nrow(result_dt))
+all.equal(n_mcid, n_observation)
+```
+
+
+
+
+
+
+
+
+## References 
+
+<div id="refs"></div>
+

@@ -266,68 +266,6 @@ sort(unique(result_dt$sex))
 
 
 
-### Subset rows to retain the first instance
-
-With student records, we may be interested in a student's first term. For example, we might want to know: 
-
-- `level` or `standing` in the first term
-- `cip6` (program or major) in the first term
-
-The `term` and `course` tables can have more than one 
-
-
-```{r}
-#| eval: false
-#| echo: false
-x <- term[, .(mcid, term, cip6)]
-x <- unique(x)
-nrow(x)
-
-y <- x[, .(mcid, term)]
-y <- unique(y)
-nrow(y)
-
-data(degree)
-
-y <- degree[, .(mcid, degree)]
-y <- unique(y)
-
-z <- degree[, .(mcid, term_degree)]
-z <- unique(z)
-
-
-
-
-nrow(y)
-nrow(z)
-
-
-x <- y[duplicated(mcid)]
-setorderv(x, "mcid")
-x
-
-
-degree[mcid == "MCID3111263269"]
-degree[mcid == "MCID3111314169"]
-
-
-
-x <- degree[, .SD[which.min(term_degree)], by = "mcid"]
-x[duplicated(mcid)]
-
-data(course)
-x <- course[, .SD[which.min(term_course)], by = "mcid"]
-
-
-
-x <- course[, .(mcid, term_course, abbrev, number)]
-x <- x[, .SD[term_course == min(term_course)], by = "mcid"]
-nrow(x)
-x[anyDuplicated(x, by = "mcid")]
-
-
-x[mcid == "MCID3111142225"]
-```
 
 
 
@@ -380,7 +318,7 @@ all.equal(vec_dtbl, vec_dplyr)
 
 
 
-## Removing rows wirh incomplete records
+## Removing rows with incomplete records
 
 An important variation of subsetting data is removing rows of data that have missing values. If appropriate, limit the dropped rows to those with missing values in specific columns. 
 
@@ -621,6 +559,14 @@ all.equal(result_dt, result_tbl, check.attributes = FALSE)
 - *data.table.* `setcolorder()` changes the position of columns in a data frame, by reference, moving the specified columns to the "front". 
 
 - *dplyr.*  `relocate()` changes the position of columns in a data frame moving the specified columns to the "front". 
+
+
+
+
+
+
+
+
 
 
 ## References 
