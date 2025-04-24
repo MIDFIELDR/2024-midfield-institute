@@ -214,9 +214,7 @@ rownames(result_df) <- NULL
 # data.table
 rows_we_want <- term_dt$gpa_cumul < 2.0
 DT <- term_dt[rows_we_want, ..columns_we_want]
-setkeyv(DT, key_columns)
-result_dt <- DT[, .SD[1], by = c("mcid")]
-setkey(result_dt, NULL)
+result_dt <- DT[, .SD[which.min(term)], by = c("mcid")]
 ```
 
 ```{r}
@@ -267,6 +265,26 @@ check_equiv_frames(result_dt, result_tbl)
 (n_observation <- nrow(result_dt))
 all.equal(n_mcid, n_observation)
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
